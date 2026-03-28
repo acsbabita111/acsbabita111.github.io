@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lesson L11 - Physical Security & Travel Rules</title>
+
+  <style>
+    :root{
+      --bg:#f4f7ff;
+      --card:#ffffff;
+      --text:#162235;
+      --muted:#5c6880;
+      --blue:#1148ff;
+      --blue-dark:#0c1f63;
+      --blue-soft:#eaf2ff;
+      --red:#e53935;
+      --red-soft:#fff1f1;
+      --purple:#7b1fa2;
+      --purple-soft:#f7efff;
+      --green:#1b8f4d;
+      --green-soft:#eefcf3;
+      --indigo:#3949ab;
+      --indigo-soft:#eef1ff;
+      --orange:#ef6c00;
+      --orange-soft:#fff4e8;
+      --teal:#00897b;
+      --teal-soft:#eafaf8;
+      --gold:#f9a825;
+      --shadow:0 6px 18px rgba(18,32,51,.08);
+      --radius:18px;
+    }
+
+    *{
+      box-sizing:border-box;
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:Arial, Helvetica, sans-serif;
+      line-height:1.8;
+      padding-bottom:95px;
+    }
+
+    .header{
+      background:#071a57;
+      color:#fff;
+      text-align:center;
+      padding:10px 12px 12px;
+      box-shadow:var(--shadow);
+    }
+
+    .header-line-1{
+      font-size:1.08rem;
+      font-weight:900;
+      letter-spacing:.3px;
+      line-height:1.3;
+    }
+
+    .header-line-2{
+      margin-top:4px;
+      font-size:.96rem;
+      font-weight:700;
+      line-height:1.4;
+      color:#dce7ff;
+    }
+
+    .audio-bar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(255,255,255,.97);
+      backdrop-filter:blur(8px);
+      border-bottom:1px solid #dbe3ff;
+      padding:10px 10px 12px;
+    }
+
+    .audio-status{
+      text-align:center;
+      font-size:.98rem;
+      font-weight:800;
+      color:var(--blue-dark);
+      margin-bottom:8px;
+      min-height:24px;
+    }
+
+    .audio-controls{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:8px;
+    }
+
+    .audio-btn{
+      border:none;
+      border-radius:14px;
+      padding:12px 10px;
+      font-size:1rem;
+      font-weight:800;
+      color:#fff;
+      cursor:pointer;
+      box-shadow:var(--shadow);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+
+    .audio-btn.play{ background:#0d1b4d; }
+    .audio-btn.pause{ background:#2347c8; }
+    .audio-btn.resume{ background:#2d5bff; }
+    .audio-btn.stop{ background:#e53935; }
+
+    .wrap{
+      max-width:860px;
+      margin:0 auto;
+      padding:12px;
+    }
+
+    .hero{
+      background:linear-gradient(135deg,#0f35c9 0%,#1c4eff 60%,#356cff 100%);
+      color:#fff;
+      border-radius:0 0 28px 28px;
+      padding:18px 16px 22px;
+      box-shadow:var(--shadow);
+      margin-bottom:12px;
+      text-align:center;
+    }
+
+    .lesson-badge{
+      display:inline-block;
+      background:#ff8a3d;
+      color:#fff;
+      padding:7px 14px;
+      border-radius:999px;
+      font-weight:900;
+      font-size:.95rem;
+      margin:0 auto 12px;
+      text-align:center;
+    }
+
+    .hero h1{
+      margin:0;
+      font-size:1.95rem;
+      line-height:1.2;
+      font-weight:900;
+      letter-spacing:-.3px;
+      text-align:center;
+    }
+
+    .hero .subtitle-hi{
+      margin-top:10px;
+      font-size:1.18rem;
+      font-weight:800;
+      color:#eef3ff;
+      text-align:center;
+    }
+
+    .hero .subtitle-en{
+      margin-top:8px;
+      font-size:1rem;
+      color:#dbe5ff;
+      font-weight:700;
+      text-align:center;
+    }
+
+    .progress-box{
+      background:#fff;
+      border-radius:16px;
+      padding:12px;
+      box-shadow:var(--shadow);
+      margin-bottom:14px;
+    }
+
+    .progress-label{
+      font-size:.96rem;
+      font-weight:800;
+      color:#20335d;
+      margin-bottom:8px;
+      text-align:center;
+    }
+
+    .progress-track{
+      width:100%;
+      height:12px;
+      background:#e8edff;
+      border-radius:999px;
+      overflow:hidden;
+    }
+
+    .progress-fill{
+      width:7.33%;
+      height:100%;
+      background:linear-gradient(90deg,#ff8a3d,#ffd54f);
+      border-radius:999px;
+    }
+
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:16px 15px;
+      box-shadow:var(--shadow);
+      margin-bottom:14px;
+      border-left:6px solid #d0d9ef;
+    }
+
+    .card h2{
+      margin:0 0 12px;
+      font-size:1.34rem;
+      line-height:1.3;
+      font-weight:900;
+    }
+
+    .card p,.card li{
+      font-size:1.08rem;
+      margin:0 0 10px;
+    }
+
+    .card ul,.card ol{
+      margin:0;
+      padding-left:22px;
+    }
+
+    .intro-card{ border-left-color:#42a5f5; background:linear-gradient(180deg,#fff,#f8fbff); }
+    .tech-card{ border-left-color:var(--red); background:linear-gradient(180deg,#fff,var(--red-soft)); }
+    .concept-card{ border-left-color:var(--purple); background:linear-gradient(180deg,#fff,var(--purple-soft)); }
+    .knowledge-card{ border-left-color:#1565c0; }
+    .activity-card{ border-left-color:var(--green); background:linear-gradient(180deg,#fff,var(--green-soft)); }
+    .diem-card{ border-left-color:var(--indigo); background:linear-gradient(180deg,#fff,var(--indigo-soft)); }
+    .behavior-card{ border-left-color:var(--gold); background:#fffceb; }
+    .safety-card{ border-left-color:var(--orange); background:linear-gradient(180deg,#fff,var(--orange-soft)); }
+    .reflection-card{ border-left-color:#283593; }
+    .question-card{ border-left-color:var(--teal); background:linear-gradient(180deg,#fff,var(--teal-soft)); }
+    .shorts-card{ border-left-color:#8e24aa; background:#fcf4ff; }
+
+    .mini-head{
+      display:inline-block;
+      font-size:.92rem;
+      font-weight:900;
+      color:#fff;
+      padding:6px 10px;
+      border-radius:999px;
+      margin-bottom:10px;
+    }
+
+    .mini-blue{ background:#1e88e5; }
+    .mini-red{ background:#e53935; }
+    .mini-purple{ background:#8e24aa; }
+    .mini-green{ background:#1b8f4d; }
+    .mini-indigo{ background:#3949ab; }
+    .mini-orange{ background:#ef6c00; }
+    .mini-teal{ background:#00897b; }
+    .mini-gold{ background:#f9a825; color:#3a2a00; }
+
+    .flow-box{
+      background:#101935;
+      color:#fff;
+      border-radius:14px;
+      padding:12px;
+      white-space:pre-wrap;
+      font-size:1rem;
+      line-height:1.8;
+    }
+
+    .footer-box{
+      text-align:center;
+      font-size:.95rem;
+      color:var(--muted);
+      padding:10px 12px 0;
+    }
+
+    .footer-box a{
+      color:var(--blue-dark);
+      text-decoration:none;
+      word-break:break-word;
+    }
+
+    .bottom-nav{
+      position:fixed;
+      left:0;
+      right:0;
+      bottom:0;
+      background:rgba(255,255,255,.97);
+      backdrop-filter:blur(8px);
+      border-top:1px solid #dde5fb;
+      padding:10px;
+      z-index:1000;
+    }
+
+    .bottom-nav-inner{
+      max-width:860px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:8px;
+    }
+
+    .nav-btn{
+      text-decoration:none;
+      background:#0d1b4d;
+      color:#fff;
+      padding:12px 8px;
+      border-radius:14px;
+      font-size:1rem;
+      font-weight:800;
+      box-shadow:var(--shadow);
+      min-height:54px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      line-height:1.3;
+    }
+
+    .nav-btn.main{
+      background:#16a085;
+    }
+
+    @media (max-width:480px){
+      .header-line-1{ font-size:1rem; }
+      .header-line-2{ font-size:.9rem; }
+      .hero h1{ font-size:1.72rem; }
+      .hero .subtitle-hi{ font-size:1.08rem; }
+      .card h2{ font-size:1.22rem; }
+      .card p,.card li{ font-size:1.04rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-line-1">ACS-AI DIGITAL MASTER™</div>
+    <div class="header-line-2">Level 1 • चरण 02 • Lesson L11</div>
+  </div>
+
+  <div class="audio-bar">
+    <div class="audio-status" id="audioStatus">🔊 पाठ सुनें</div>
+    <div class="audio-controls">
+      <button class="audio-btn play" onclick="startReading()">▶ Play</button>
+      <button class="audio-btn pause" onclick="pauseReading()">⏸ Pause</button>
+      <button class="audio-btn resume" onclick="resumeReading()">▶ Resume</button>
+      <button class="audio-btn stop" onclick="stopReading()">⏹ Stop</button>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="hero">
+      <div class="lesson-badge">🎓 LESSON L11</div>
+      <h1>Physical Security (फिजिकल सिक्योरिटी) & Travel Rules</h1>
+      <div class="subtitle-hi">मोबाइल की सुरक्षा और यात्रा के नियम</div>
+      <div class="subtitle-en">आज हम सीखेंगे कि मोबाइल को सुरक्षित कैसे रखें और सफर में खुद को कैसे बचाएं।</div>
+    </div>
+
+    <div class="progress-box">
+      <div class="progress-label">Lesson 11 / 150</div>
+      <div class="progress-track">
+        <div class="progress-fill"></div>
+      </div>
+    </div>
+
+    <div id="lessonContent">
+
+      <div class="card intro-card">
+        <div class="mini-head mini-blue">📘 पाठ की पहचान</div>
+        <p><b>ACS-AI DIGITAL MASTER™</b><br>
+        <b>(एसीएस-एआई डिजिटल मास्टर)</b></p>
+
+        <p>📱 यह कोर्स मोबाइल स्किल सीखने और सही उपयोग करने के लिए बनाया गया है।</p>
+
+        <p>✍️ Designed & Developed by<br>
+        Rambharosh Vidyarthi (रामभरोस विद्यार्थी)</p>
+
+        <p>Level 1| चरण 02 | Lesson L11 (लेसन L11)</p>
+      </div>
+
+      <div class="card intro-card">
+        <h2>1. प्रस्तावना</h2>
+        <p>क्या आपके साथ ऐसा हुआ है कि मोबाइल जेब से गिर गया और स्क्रीन टूट गई? या सड़क पर चलते हुए मोबाइल देख रहे थे और किसी से टकरा गए? मोबाइल कीमती है, लेकिन हमारी जान उससे भी ज्यादा कीमती है।</p>
+        <p>👉 आज हम सीखेंगे कि मोबाइल को सुरक्षित कैसे रखें और सफर में खुद को कैसे बचाएं।</p>
+      </div>
+
+      <div class="card tech-card">
+        <div class="mini-head mini-red">🔴 Technical Words</div>
+        <h2>2. पाठ से जुड़े जरूरी Technical Words (टेक्निकल वर्ड)</h2>
+        <p><b>Physical Security (फिजिकल सिक्योरिटी) (फि-जि-कल सिक्-यो-रि-टी)</b> = मोबाइल की बाहरी सुरक्षा</p>
+        <p><b>Silicone Cover (सिलिकॉन कवर) (सि-लि-कोन कव-र)</b> = मुलायम रबर का कवर जो झटके से बचाए</p>
+        <p><b>Hard Cover (हार्ड कवर) (हार्ड कव-र)</b> = मजबूत प्लास्टिक का कवर जो दबाव से बचाए</p>
+        <p><b>Cognitive Distraction (कॉग्निटिव डिस्ट्रैक्शन) (कॉग-नि-टिव डिस-ट्रैक-शन)</b> = चलते या गाड़ी चलाते समय दिमाग का ध्यान भटकना</p>
+        <p><b>DND / Do Not Disturb (डू नॉट डिस्टर्ब) (डू नॉट डिस-टर्ब)</b> = सभी notification बंद करने की सेटिंग</p>
+      </div>
+
+      <div class="card concept-card">
+        <div class="mini-head mini-purple">🧠 Concept</div>
+        <h2>3. Concept (कांसेप्ट)</h2>
+        <p>जब हम सड़क पर चलते हुए मोबाइल देखते हैं, तो हमारा दिमाग एक साथ दो काम नहीं कर पाता। इसे Cognitive Distraction कहते हैं। इससे दुर्घटना हो सकती है। इसके अलावा मोबाइल गलत जेब में रखने से गिर सकता है और टूट सकता है।</p>
+        <p>👉 हमें मोबाइल को सही जगह रखना चाहिए और सड़क पर पूरा ध्यान रास्ते पर लगाना चाहिए।</p>
+      </div>
+
+      <div class="card knowledge-card">
+        <div class="mini-head mini-blue">📚 ज्ञान बिंदु</div>
+        <h2>4. Knowledge Points (नॉलेज पॉइंट्स) — ज्ञान बिंदु</h2>
+
+        <p><b>🟢 Easy (ईज़ी) (5)</b></p>
+        <ul>
+          <li>मोबाइल को हमेशा सुरक्षित जगह पर रखें।</li>
+          <li>मोबाइल पर कवर लगाना जरूरी है।</li>
+          <li>Silicone Cover (सिलिकॉन कवर) गिरने के झटके को कम करता है।</li>
+          <li>Hard Cover (हार्ड कवर) मोबाइल को दबने और टूटने से बचाता है।</li>
+          <li>सड़क पर चलते समय मोबाइल देखना खतरनाक है।</li>
+        </ul>
+
+        <p><b>🟡 Core (कोर) (3)</b></p>
+        <ul>
+          <li>सफर में मोबाइल को आगे की जेब या बैग की अंदरूनी pocket (पॉकेट) में रखें।</li>
+          <li>गाड़ी चलाते समय रास्ता देखने के लिए Phone Holder (फोन होल्डर) का उपयोग करें।</li>
+          <li>ड्राइविंग के समय मोबाइल को DND (डू नॉट डिस्टर्ब) मोड में रखें।</li>
+        </ul>
+
+        <p><b>🔵 Advanced (एडवांस्ड) (2)</b></p>
+        <ul>
+          <li>ड्राइविंग के समय मोबाइल देखने से Cognitive Distraction (कॉग्निटिव डिस्ट्रैक्शन) होता है, जिससे दिमाग सड़क पर ध्यान नहीं दे पाता।</li>
+          <li>एक पल की लापरवाही बड़ी दुर्घटना का कारण बन सकती है।</li>
+        </ul>
+      </div>
+
+      <div class="card activity-card">
+        <div class="mini-head mini-green">🎯 Activity</div>
+        <h2>5. Activity (एक्टिविटी) / क्रियाकलाप</h2>
+        <p>नीचे के चित्र को ध्यान से देखिए और अपने मोबाइल के साथ यह गतिविधि करिए:</p>
+
+        <div class="flow-box">
+🚀 START (स्टार्ट)
+│
+▼
+📱 Mobile (मोबाइल) लो
+│
+▼
+🛡️ Cover (कवर) लगा है या नहीं — चेक करो
+│
+▼
+👖 आगे की Pocket (पॉकेट) चुनो
+│
+▼
+📱 स्क्रीन पैर की तरफ करके रखो
+│
+▼
+🚶 10 कदम चलकर देखो — मोबाइल सुरक्षित है?
+│
+▼
+📝 Copy (कॉपी) में लिखो — क्या सीखा?
+        </div>
+
+        <p>👉 अगर मोबाइल उपलब्ध न हो:</p>
+        <p>👉 एक छोटी किताब लेकर उसी तरह जेब में रखकर अभ्यास करो।</p>
+      </div>
+
+      <div class="card diem-card">
+        <div class="mini-head mini-indigo">🧭 DIEM</div>
+        <h2>6. DIEM (डीआईईएम)</h2>
+        <p><i>(मोबाइल के गूगल एवं एआई से सर्च करिए और अपने कॉपी पर 30 से 50 शब्दों में, कलम से लिखिए)</i></p>
+        <p><b>Think (थिंक):</b> क्या मैं चलते समय मोबाइल देखता हूँ?</p>
+        <p><b>Search (सर्च):</b> ड्राइविंग के समय मोबाइल उपयोग का क्या कानूनी नियम है?</p>
+        <p><b>Write (राइट):</b> मैं अपनी सुरक्षा के लिए आज से क्या बदलूँगा?</p>
+      </div>
+
+      <div class="card behavior-card">
+        <div class="mini-head mini-gold">✍️ Behavior Change</div>
+        <h2>7. Behavior Change (बिहेवियर चेंज)</h2>
+        <p>👉 नियम: सड़क पर चलते समय मोबाइल का उपयोग बिल्कुल नहीं करेंगे।</p>
+        <p>👉 नीचे के इस लाइन को अपने कॉपी पर रंगीन स्केच पेन से लिखकर अपने अभिभावक को दिखाओ।</p>
+      </div>
+
+      <div class="card safety-card">
+        <div class="mini-head mini-orange">🛡️ Safety</div>
+        <h2>8. Safety (सेफ्टी)</h2>
+        <ul>
+          <li>ड्राइविंग या चलते समय मोबाइल देखना खतरनाक है — रुककर ही उपयोग करें।</li>
+          <li>कॉल आने पर सड़क किनारे रुककर बात करें।</li>
+          <li>Earphone (ईयरफोन) लगाकर सड़क पर चलने से भी आवाज सुनाई नहीं देती — यह भी खतरनाक है।</li>
+        </ul>
+      </div>
+
+      <div class="card reflection-card">
+        <div class="mini-head mini-indigo">💭 Reflection</div>
+        <h2>9. Reflection (रिफ्लेक्शन)</h2>
+        <p><i>(नीचे की लाइन को ध्यान से पढ़ो और 1 मिनट के लिए आँख बंद करके सोचो)</i></p>
+        <p>क्या एक फोन कॉल मेरी जान से ज्यादा कीमती है?</p>
+        <p>मैं आज से सड़क पर मोबाइल का उपयोग बंद करूँगा।</p>
+      </div>
+
+      <div class="card question-card">
+        <div class="mini-head mini-teal">🔟 बोलकर बताओ</div>
+        <h2>🔟 अब ऊंची आवाज में बोलकर बताओ तो, इस पाठ में क्या सीखा?</h2>
+        <ol>
+          <li>Silicone Cover (सिलिकॉन कवर) और Hard Cover (हार्ड कवर) में क्या अंतर है?</li>
+          <li>सफर में मोबाइल को जेब में कैसे रखना चाहिए?</li>
+          <li>DND (डू नॉट डिस्टर्ब) मोड क्यों जरूरी है?</li>
+          <li>Cognitive Distraction (कॉग्निटिव डिस्ट्रैक्शन) क्या होता है?</li>
+          <li>सड़क पर मोबाइल उपयोग क्यों खतरनाक है?</li>
+        </ol>
+      </div>
+
+      <div class="card intro-card">
+        <div class="mini-head mini-blue">🎬 आगे क्या</div>
+        <h2>🎬 अगले पाठ में हम क्या सीखने वाले हैं?</h2>
+        <p>🚀 तैयार हो जाओ! 👉 अगले पाठ में हम सीखेंगे —</p>
+        <p><b>चोर बाज़ार में मोबाइल, मनोविज्ञान और साइबर कानून!</b></p>
+      </div>
+
+      <div class="card shorts-card">
+        <div class="mini-head mini-purple">🎥 Shorts / Reels Ideas</div>
+        <h2>🎥 Shorts / Reels Ideas (शॉर्ट्स / रील्स आइडिया) (10)</h2>
+        <ol>
+          <li>सिलिकॉन vs हार्ड कवर — कौन बेहतर?</li>
+          <li>सही pocket तरीका — live demo</li>
+          <li>DND मोड कैसे चालू करें</li>
+          <li>सड़क सुरक्षा का नियम</li>
+          <li>No Mobile Walk challenge</li>
+          <li>Phone Holder का सही उपयोग</li>
+          <li>सुरक्षित यात्रा — 3 आसान तरीके</li>
+          <li>Cognitive Distraction क्या है?</li>
+          <li>मेरा नया नियम — आज से</li>
+          <li>1 मिनट Safety Challenge</li>
+        </ol>
+      </div>
+
+      <div class="footer-box">
+        <p><b>📌 FOOTER</b></p>
+        <p>© Applied Computer School</p>
+        <p><a href="https://www.acs-aidigitalmaster.org/" target="_blank">https://www.acs-aidigitalmaster.org/</a></p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <div class="bottom-nav-inner">
+      <a href="lesson10.html" class="nav-btn">⬅ Previous</a>
+      <a href="index.html" class="nav-btn main">🏠 Main Page</a>
+      <a href="lesson12.html" class="nav-btn">Next ➡</a>
+    </div>
+  </div>
+
+  <script>
+    let utteranceQueue = [];
+    let currentIndex = 0;
+    let isPaused = false;
+    let isReading = false;
+
+    function splitTextIntoChunks(text, maxLength = 180) {
+      const parts = text
+        .replace(/\s+/g, " ")
+        .trim()
+        .match(new RegExp(`.{1,${maxLength}}([\\.\\?\\!\\।]|$)`, "g"));
+      return parts || [text];
+    }
+
+    function getHindiVoice() {
+      const voices = speechSynthesis.getVoices();
+      return voices.find(v => v.lang && v.lang.toLowerCase().includes("hi")) || voices[0];
+    }
+
+    function speakChunk(index) {
+      if (index >= utteranceQueue.length) {
+        isReading = false;
+        document.getElementById("audioStatus").innerText = "✅ पाठ पूरा हुआ";
+        return;
+      }
+
+      currentIndex = index;
+      const utterance = new SpeechSynthesisUtterance(utteranceQueue[index]);
+      utterance.lang = "hi-IN";
+      utterance.rate = 0.9;
+      utterance.pitch = 1;
+      utterance.volume = 1;
+
+      const voice = getHindiVoice();
+      if (voice) utterance.voice = voice;
+
+      utterance.onstart = () => {
+        isReading = true;
+        document.getElementById("audioStatus").innerText = "🔊 पाठ चल रहा है";
+      };
+
+      utterance.onend = () => {
+        if (!isPaused) speakChunk(index + 1);
+      };
+
+      utterance.onerror = () => {
+        document.getElementById("audioStatus").innerText = "⚠️ Audio support नहीं मिला";
+        isReading = false;
+      };
+
+      speechSynthesis.speak(utterance);
+    }
+
+    function startReading() {
+      if (!("speechSynthesis" in window)) {
+        document.getElementById("audioStatus").innerText = "⚠️ यह browser audio reading support नहीं करता";
+        return;
+      }
+
+      speechSynthesis.cancel();
+      isPaused = false;
+
+      const text = document.getElementById("lessonContent").innerText;
+      utteranceQueue = splitTextIntoChunks(text, 180);
+      currentIndex = 0;
+      speakChunk(0);
+    }
+
+    function pauseReading() {
+      if (speechSynthesis.speaking && !speechSynthesis.paused) {
+        speechSynthesis.pause();
+        isPaused = true;
+        document.getElementById("audioStatus").innerText = "⏸️ पाठ रुका है";
+      }
+    }
+
+    function resumeReading() {
+      if (speechSynthesis.paused) {
+        speechSynthesis.resume();
+        isPaused = false;
+        document.getElementById("audioStatus").innerText = "▶️ पाठ फिर चल रहा है";
+      } else if (!speechSynthesis.speaking && utteranceQueue.length > 0 && currentIndex < utteranceQueue.length) {
+        isPaused = false;
+        speakChunk(currentIndex);
+      }
+    }
+
+    function stopReading() {
+      speechSynthesis.cancel();
+      isPaused = false;
+      isReading = false;
+      document.getElementById("audioStatus").innerText = "🔇 पाठ बंद किया गया";
+    }
+
+    window.speechSynthesis.onvoiceschanged = () => {
+      speechSynthesis.getVoices();
+    };
+  </script>
+
+</body>
+</html>

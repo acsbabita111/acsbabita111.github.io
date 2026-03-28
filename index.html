@@ -1,1 +1,824 @@
-<h1>My Website is Working</h1>
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>एसीएस-एआई डिजिटल मास्टर</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+      --bg1: #eef4ff;
+      --bg2: #ffffff;
+      --text: #16233f;
+      --muted: #60708a;
+
+      --blue1: #1d4ed8;
+      --blue2: #2563eb;
+
+      --green1: #0f9f6e;
+      --green2: #12b981;
+
+      --orange1: #f59e0b;
+      --orange2: #f97316;
+
+      --purple1: #7c3aed;
+      --purple2: #8b5cf6;
+
+      --card: rgba(255,255,255,0.97);
+      --shadow: 0 10px 24px rgba(20, 32, 60, 0.10);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(96,165,250,0.12), transparent 28%),
+        radial-gradient(circle at 85% 12%, rgba(168,85,247,0.08), transparent 22%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      color: var(--text);
+    }
+
+    body {
+      padding: 8px;
+    }
+
+    .app {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #1037c8 0%, #235dff 65%, #4f7fff 100%);
+      color: #fff;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding: 16px 14px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: 1.72rem;
+      line-height: 1.15;
+      font-weight: 900;
+      letter-spacing: -0.4px;
+    }
+
+    .step-box {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 10px 12px;
+      margin-bottom: 10px;
+    }
+
+    .step-label {
+      font-size: 0.98rem;
+      font-weight: 800;
+      text-align: center;
+      color: #24385f;
+      margin-bottom: 8px;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      background: #e6ecff;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      width: 33.33%;
+      height: 100%;
+      background: linear-gradient(90deg, #ff8a3d, #ffd54f);
+      border-radius: 999px;
+      transition: width .25s ease;
+    }
+
+    .screen {
+      display: none;
+      animation: fadeInUp .25s ease;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding: 14px 12px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin: 0 0 12px;
+      font-size: 1.22rem;
+      font-weight: 900;
+      line-height: 1.25;
+      color: #122345;
+    }
+
+    .lang-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .level-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .chapter-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+
+    .btn-card, .chapter-btn, .lesson-btn, .nav-btn {
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+      text-align: center;
+      box-shadow: 0 8px 16px rgba(20, 32, 60, 0.12);
+      position: relative;
+      overflow: hidden;
+      transform: translateY(0);
+      transition: transform .12s ease, box-shadow .12s ease;
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .btn-card:active, .chapter-btn:active, .lesson-btn:active, .nav-btn:active {
+      transform: translateY(2px) scale(0.98);
+      box-shadow: 0 5px 10px rgba(20, 32, 60, 0.12);
+    }
+
+    .btn-card::before,
+    .chapter-btn::before,
+    .lesson-btn::before,
+    .nav-btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0));
+      pointer-events: none;
+    }
+
+    .btn-card {
+      min-height: 84px;
+      padding: 10px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .btn-card .icon {
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    .btn-card .hi {
+      font-size: 0.98rem;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    .btn-card .en {
+      font-size: 0.75rem;
+      font-weight: 700;
+      opacity: .95;
+    }
+
+    .btn-blue { background: linear-gradient(135deg, var(--blue1), var(--blue2)); }
+    .btn-green { background: linear-gradient(135deg, var(--green1), var(--green2)); }
+    .btn-orange { background: linear-gradient(135deg, var(--orange1), var(--orange2)); }
+    .btn-purple { background: linear-gradient(135deg, var(--purple1), var(--purple2)); }
+    .btn-dark { background: linear-gradient(135deg, #132d7c, #1b47c7); }
+
+    .selected {
+      outline: 3px solid rgba(255,255,255,0.95);
+      outline-offset: -4px;
+    }
+
+    .level-btn {
+      min-height: 64px;
+      padding: 10px 8px;
+    }
+
+    .chapter-btn {
+      min-height: 68px;
+      padding: 10px 8px;
+      background: linear-gradient(135deg, var(--purple1), var(--purple2));
+    }
+
+    .chapter-btn .hi,
+    .level-btn .hi {
+      display: block;
+      font-size: 0.98rem;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    .chapter-btn .en,
+    .level-btn .en {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      opacity: .95;
+    }
+
+    .chapter-wrap {
+      display: none;
+      animation: fadeInUp .2s ease;
+    }
+
+    .chapter-wrap.active {
+      display: block;
+    }
+
+    .lesson-btn {
+      min-height: 62px;
+      padding: 8px 4px;
+      background: linear-gradient(135deg, #0d2e90, #2563eb);
+      font-size: 0.92rem;
+    }
+
+    .lesson-btn .small {
+      display: block;
+      margin-top: 3px;
+      font-size: 0.64rem;
+      font-weight: 700;
+      opacity: .95;
+    }
+
+    .lesson-btn.live {
+      background: linear-gradient(135deg, #159947, #23c55e);
+    }
+
+    .lesson-btn.locked {
+      background: linear-gradient(135deg, #99a6c7, #bac3d8);
+      color: #f7f9ff;
+      opacity: .86;
+    }
+
+    .summary {
+      margin-top: 10px;
+      background: #f8fbff;
+      border: 1px solid #dfe7ff;
+      border-radius: 14px;
+      padding: 10px;
+      text-align: center;
+      font-size: 0.96rem;
+      font-weight: 800;
+      line-height: 1.5;
+      color: #22375d;
+      min-height: 48px;
+    }
+
+    .nav-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .nav-btn {
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 0.96rem;
+      padding: 10px 8px;
+      text-decoration: none;
+      background: linear-gradient(135deg, #0f1f5c, #17318c);
+    }
+
+    .nav-btn.secondary {
+      background: linear-gradient(135deg, #11998e, #16b6a7);
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 0.86rem;
+      color: var(--muted);
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(13, 27, 77, 0.96);
+      color: #fff;
+      padding: 11px 14px;
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      font-size: 0.92rem;
+      font-weight: 800;
+      width: calc(100% - 28px);
+      max-width: 520px;
+      text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+      z-index: 9999;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-6px);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero h1 {
+        font-size: 1.55rem;
+      }
+
+      .section-title {
+        font-size: 1.12rem;
+      }
+
+      .lang-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .lesson-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .btn-card {
+        min-height: 76px;
+      }
+
+      .level-btn {
+        min-height: 58px;
+      }
+
+      .chapter-btn {
+        min-height: 62px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+
+    <section class="hero">
+      <h1>एसीएस-एआई डिजिटल मास्टर</h1>
+    </section>
+
+    <section class="step-box">
+      <div class="step-label" id="progressLabel">स्टेप 1 / 3 — भाषा चुनें</div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </section>
+
+    <!-- STEP 1 -->
+    <section class="screen active" id="screen1">
+      <div class="card">
+        <h2 class="section-title">🌐 भाषा चुनें</h2>
+
+        <div class="lang-grid">
+          <button class="btn-card btn-blue" data-lang="hi" onclick="selectLanguage(this, 'हिंदी')">
+            <span class="icon">🇮🇳</span>
+            <span class="hi">हिंदी</span>
+            <span class="en">Hindi</span>
+          </button>
+
+          <button class="btn-card btn-green" data-lang="en" onclick="selectLanguage(this, 'अंग्रेज़ी')">
+            <span class="icon">🇬🇧</span>
+            <span class="hi">अंग्रेज़ी</span>
+            <span class="en">English</span>
+          </button>
+
+          <button class="btn-card btn-orange" data-lang="bho" onclick="selectLanguage(this, 'भोजपुरी')">
+            <span class="icon">🌾</span>
+            <span class="hi">भोजपुरी</span>
+            <span class="en">Bhojpuri</span>
+          </button>
+        </div>
+
+        <div class="summary" id="languageSummary">अभी तक कोई भाषा नहीं चुनी गई है।</div>
+
+        <div class="nav-row">
+          <button class="nav-btn secondary" onclick="goToStep2()">आगे बढ़ें ➜</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 2 -->
+    <section class="screen" id="screen2">
+      <div class="card">
+        <h2 class="section-title">📚 लेवल और अध्याय चुनें</h2>
+
+        <div class="level-grid">
+          <button class="btn-card btn-blue level-btn" onclick="selectLevel(this, 1)">
+            <span class="hi">लेवल 1</span>
+            <span class="en">Level 1</span>
+          </button>
+          <button class="btn-card btn-green level-btn" onclick="selectLevel(this, 2)">
+            <span class="hi">लेवल 2</span>
+            <span class="en">Level 2</span>
+          </button>
+          <button class="btn-card btn-orange level-btn" onclick="selectLevel(this, 3)">
+            <span class="hi">लेवल 3</span>
+            <span class="en">Level 3</span>
+          </button>
+        </div>
+
+        <div class="chapter-wrap" id="chapters1">
+          <div class="chapter-grid">
+            <button class="chapter-btn" onclick="selectChapter(this, 1, 1)">
+              <span class="hi">अध्याय 1</span>
+              <span class="en">Chapter 1</span>
+            </button>
+            <button class="chapter-btn" onclick="selectChapter(this, 1, 2)">
+              <span class="hi">अध्याय 2</span>
+              <span class="en">Chapter 2</span>
+            </button>
+            <button class="chapter-btn" onclick="selectChapter(this, 1, 3)">
+              <span class="hi">अध्याय 3</span>
+              <span class="en">Chapter 3</span>
+            </button>
+            <button class="chapter-btn" onclick="selectChapter(this, 1, 4)">
+              <span class="hi">अध्याय 4</span>
+              <span class="en">Chapter 4</span>
+            </button>
+            <button class="chapter-btn" onclick="selectChapter(this, 1, 5)">
+              <span class="hi">अध्याय 5</span>
+              <span class="en">Chapter 5</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="chapter-wrap" id="chapters2">
+          <div class="chapter-grid">
+            <button class="chapter-btn" onclick="selectChapter(this, 2, 6)">
+              <span class="hi">अध्याय 6</span>
+              <span class="en">Chapter 6</span>
+            </button>
+            <button class="chapter-btn" onclick="selectChapter(this, 2, 7)">
+              <span class="hi">अध्याय 7</span>
+              <span class="en">Chapter 7</span>
+            </button>
+            <button class="chapter-btn" onclick="selectChapter(this, 2, 8)">
+              <span class="hi">अध्याय 8</span>
+              <span class="en">Chapter 8</span>
+            </button>
+            <button class="chapter-btn" onclick="selectChapter(this, 2, 9)">
+              <span class="hi">अध्याय 9</span>
+              <span class="en">Chapter 9</span>
+            </button>
+            <button class="chapter-btn" onclick="selectChapter(this, 2, 10)">
+              <span class="hi">अध्याय 10</span>
+              <span class="en">Chapter 10</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="chapter-wrap" id="chapters3">
+          <div class="chapter-grid">
+            <button class="chapter-btn" onclick="selectChapter(this, 3, 11)">
+              <span class="hi">अध्याय 11</span>
+              <span class="en">Chapter 11</span>
+            </button>
+            <button class="chapter-btn" onclick="selectChapter(this, 3, 12)">
+              <span class="hi">अध्याय 12</span>
+              <span class="en">Chapter 12</span>
+            </button>
+            <button class="chapter-btn" onclick="selectChapter(this, 3, 13)">
+              <span class="hi">अध्याय 13</span>
+              <span class="en">Chapter 13</span>
+            </button>
+            <button class="chapter-btn" onclick="selectChapter(this, 3, 14)">
+              <span class="hi">अध्याय 14</span>
+              <span class="en">Chapter 14</span>
+            </button>
+            <button class="chapter-btn" onclick="selectChapter(this, 3, 15)">
+              <span class="hi">अध्याय 15</span>
+              <span class="en">Chapter 15</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="summary" id="chapterSummary">पहले लेवल चुनें, फिर अध्याय चुनें।</div>
+
+        <div class="nav-row">
+          <button class="nav-btn" onclick="backToStep1()">⬅ वापस</button>
+          <button class="nav-btn secondary" onclick="goToStep3()">आगे बढ़ें ➜</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 3 -->
+    <section class="screen" id="screen3">
+      <div class="card">
+        <h2 class="section-title">🎯 लेसन चुनें</h2>
+
+        <div class="lesson-grid" id="lessonGrid"></div>
+
+        <div class="summary" id="lessonSummary">अध्याय चुनने के बाद यहाँ लेसन दिखाई देंगे।</div>
+
+        <div class="nav-row">
+          <button class="nav-btn" onclick="backToStep2()">⬅ वापस</button>
+          <a class="nav-btn secondary" href="#" onclick="return false;">लेसन पर click करें ✅</a>
+        </div>
+
+        <div class="footer-note">© Applied Computer School</div>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // 1 से 150 तक सभी lesson available मान लिए गए हैं
+    var AVAILABLE_LESSONS = [];
+    for (var i = 1; i <= 150; i++) {
+      AVAILABLE_LESSONS.push(i);
+    }
+
+    var state = {
+      languageCode: "",
+      languageHi: "",
+      level: null,
+      chapter: null
+    };
+
+    var audioCtx = null;
+
+    function tinyBeep(freq, duration) {
+      freq = freq || 620;
+      duration = duration || 0.05;
+
+      try {
+        var AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) return;
+        if (!audioCtx) audioCtx = new AudioContextClass();
+
+        var osc = audioCtx.createOscillator();
+        var gain = audioCtx.createGain();
+
+        osc.type = "sine";
+        osc.frequency.value = freq;
+        gain.gain.value = 0.03;
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start();
+        setTimeout(function () {
+          osc.stop();
+        }, duration * 1000);
+      } catch (e) {}
+    }
+
+    function showToast(message) {
+      var toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(function () {
+        toast.classList.remove("show");
+      }, 1800);
+    }
+
+    function setStep(step) {
+      var screens = document.querySelectorAll(".screen");
+      for (var i = 0; i < screens.length; i++) {
+        screens[i].classList.remove("active");
+      }
+      document.getElementById("screen" + step).classList.add("active");
+
+      var label = document.getElementById("progressLabel");
+      var fill = document.getElementById("progressFill");
+
+      if (step === 1) {
+        label.textContent = "स्टेप 1 / 3 — भाषा चुनें";
+        fill.style.width = "33.33%";
+      } else if (step === 2) {
+        label.textContent = "स्टेप 2 / 3 — लेवल और अध्याय चुनें";
+        fill.style.width = "66.66%";
+      } else {
+        label.textContent = "स्टेप 3 / 3 — लेसन चुनें";
+        fill.style.width = "100%";
+      }
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function selectLanguage(btn, hi) {
+      tinyBeep(680, 0.04);
+
+      var buttons = document.querySelectorAll("#screen1 .btn-card");
+      for (var i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("selected");
+      }
+      btn.classList.add("selected");
+
+      state.languageCode = btn.getAttribute("data-lang");
+      state.languageHi = hi;
+
+      document.getElementById("languageSummary").innerHTML =
+        "✅ चुनी गई भाषा: <b>" + hi + "</b>";
+    }
+
+    function goToStep2() {
+      if (!state.languageCode) {
+        showToast("पहले भाषा चुनें");
+        tinyBeep(240, 0.08);
+        return;
+      }
+      setStep(2);
+    }
+
+    function backToStep1() {
+      setStep(1);
+    }
+
+    function selectLevel(btn, level) {
+      tinyBeep(640, 0.04);
+
+      var levelButtons = document.querySelectorAll(".level-btn");
+      for (var i = 0; i < levelButtons.length; i++) {
+        levelButtons[i].classList.remove("selected");
+      }
+      btn.classList.add("selected");
+
+      state.level = level;
+      state.chapter = null;
+
+      var wraps = document.querySelectorAll(".chapter-wrap");
+      for (var j = 0; j < wraps.length; j++) {
+        wraps[j].classList.remove("active");
+      }
+      document.getElementById("chapters" + level).classList.add("active");
+
+      var chapterButtons = document.querySelectorAll(".chapter-btn");
+      for (var k = 0; k < chapterButtons.length; k++) {
+        chapterButtons[k].classList.remove("selected");
+      }
+
+      document.getElementById("chapterSummary").innerHTML =
+        "✅ चुना गया: <b>लेवल " + level + "</b> • अब अध्याय चुनें";
+    }
+
+    function selectChapter(btn, level, chapter) {
+      tinyBeep(700, 0.04);
+
+      var chapterButtons = document.querySelectorAll(".chapter-btn");
+      for (var i = 0; i < chapterButtons.length; i++) {
+        chapterButtons[i].classList.remove("selected");
+      }
+      btn.classList.add("selected");
+
+      state.level = level;
+      state.chapter = chapter;
+
+      document.getElementById("chapterSummary").innerHTML =
+        "✅ चुना गया: <b>लेवल " + level + "</b> • <b>अध्याय " + chapter + "</b>";
+    }
+
+    function goToStep3() {
+      if (!state.level) {
+        showToast("पहले लेवल चुनें");
+        tinyBeep(240, 0.08);
+        return;
+      }
+      if (!state.chapter) {
+        showToast("पहले अध्याय चुनें");
+        tinyBeep(240, 0.08);
+        return;
+      }
+
+      buildLessons(state.chapter);
+      setStep(3);
+    }
+
+    function backToStep2() {
+      setStep(2);
+    }
+
+    function getLessonPad(lessonNumber) {
+      if (lessonNumber <= 99) {
+        return String(lessonNumber).padStart(2, "0");
+      }
+      return String(lessonNumber);
+    }
+
+    function buildCandidateFiles(level, chapter, lessonNumber) {
+      var chapterPad = String(chapter).padStart(2, "0");
+      var lessonPad = getLessonPad(lessonNumber);
+      var oldPatternNum = String(100 + lessonNumber);
+
+      return [
+        "l" + level + "s" + chapterPad + "l" + lessonPad + ".html",   // l1s01l01.html
+        "l" + level + "s" + chapterPad + oldPatternNum + ".html",     // l1s01101.html
+        "l" + level + "s" + chapterPad + "l" + oldPatternNum + ".html" // extra fallback
+      ];
+    }
+
+    function openLesson(level, chapter, lessonNumber) {
+      var files = buildCandidateFiles(level, chapter, lessonNumber);
+      tryOpenFile(files, 0, lessonNumber);
+    }
+
+    function tryOpenFile(files, index, lessonNumber) {
+      if (index >= files.length) {
+        showToast("Lesson " + lessonNumber + " की file नहीं मिली");
+        return;
+      }
+
+      var file = files[index];
+
+      fetch(file, { method: "HEAD" })
+        .then(function (res) {
+          if (res.ok) {
+            window.location.href = file;
+          } else {
+            tryOpenFile(files, index + 1, lessonNumber);
+          }
+        })
+        .catch(function () {
+          tryOpenFile(files, index + 1, lessonNumber);
+        });
+    }
+
+    function buildLessons(chapter) {
+      var grid = document.getElementById("lessonGrid");
+      grid.innerHTML = "";
+
+      var start = (chapter - 1) * 10 + 1;
+      var end = start + 9;
+
+      for (var lesson = start; lesson <= end; lesson++) {
+        var btn = document.createElement("button");
+        var isLive = AVAILABLE_LESSONS.indexOf(lesson) !== -1;
+
+        btn.className = "lesson-btn " + (isLive ? "live" : "locked");
+        btn.innerHTML =
+          "<span>लेसन " + lesson + "</span>" +
+          "<span class='small'>" + (isLive ? "खोलें" : "जल्द आएगा") + "</span>";
+
+        (function (lessonNo) {
+          btn.onclick = function () {
+            if (!isLive) {
+              showToast("यह lesson अभी website पर नहीं जोड़ा गया है");
+              tinyBeep(220, 0.08);
+              return;
+            }
+            tinyBeep(820, 0.04);
+            openLesson(state.level, state.chapter, lessonNo);
+          };
+        })(lesson);
+
+        grid.appendChild(btn);
+      }
+
+      document.getElementById("lessonSummary").innerHTML =
+        "📘 <b>लेवल " + state.level + "</b> • 📖 <b>अध्याय " + chapter + "</b> • 🌐 <b>" + state.languageHi + "</b>";
+    }
+  </script>
+</body>
+</html>
