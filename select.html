@@ -1,1 +1,95 @@
 
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>कोर्स चुनें</title>
+
+<style>
+body{
+    margin:0;
+    font-family:sans-serif;
+    background:#f5f7fb;
+    text-align:center;
+}
+
+.container{
+    max-width:430px;
+    margin:auto;
+    padding:15px;
+}
+
+/* TITLE */
+h1{
+    font-size:24px;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    color:#555;
+    margin-bottom:20px;
+}
+
+/* CARD */
+.card{
+    background:white;
+    border-radius:15px;
+    padding:15px;
+    margin-bottom:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* BUTTON */
+.btn{
+    display:block;
+    background:#1db954;
+    color:white;
+    padding:14px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+/* LOCKED */
+.lock{
+    background:#ddd;
+    color:#888;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📚 अपना कोर्स चुनें</h1>
+    <div class="subtitle">शुरुआत करें और डिजिटल मास्टर बनें</div>
+
+    <!-- FREE COURSE -->
+    <div class="card">
+        <h2>🔥 फ्री स्टार्ट</h2>
+        <p>Lesson 01 - Introduction</p>
+        <a href="l1s01l01.html" class="btn">👉 शुरू करें</a>
+    </div>
+
+    <!-- LOCKED -->
+    <div class="card">
+        <h2>🚀 एडवांस लेसन</h2>
+        <p>Lesson 02 - 10</p>
+        <a href="#" class="btn lock">🔒 जल्द आएगा</a>
+    </div>
+
+    <!-- LOCKED -->
+    <div class="card">
+        <h2>💼 प्रीमियम कोर्स</h2>
+        <p>पूरा डिजिटल मास्टर प्रोग्राम</p>
+        <a href="#" class="btn lock">🔒 लॉक्ड</a>
+    </div>
+
+</div>
+
+</body>
+</html>
