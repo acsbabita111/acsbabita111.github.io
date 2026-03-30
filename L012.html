@@ -11,180 +11,115 @@
 
   <style>
     :root{
-      --primary-blue:#2563EB;
-      --primary-green:#16A34A;
-      --accent-red:#EF4444;
-      --accent-yellow:#FACC15;
-      --bg:#F4F7FF;
-      --card:#FFFFFF;
-      --text:#0F172A;
-      --muted:#475569;
-      --header:#0F172A;
-      --soft-red:#FFF1F1;
-      --soft-purple:#F6F0FF;
-      --soft-green:#EEFDF4;
-      --soft-indigo:#EEF2FF;
-      --soft-orange:#FFF4E8;
-      --soft-teal:#EAFBF7;
-      --soft-gold:#FFF9DB;
-      --wa-green:#25D366;
-      --progress-start:#F97316;
-      --progress-end:#FACC15;
-      --shadow:0 8px 22px rgba(15, 23, 42, .08);
-      --radius:18px;
-      --maxw:430px;
+      --primary-blue:#2563EB; --primary-green:#16A34A; --accent-red:#EF4444; --accent-yellow:#FACC15;
+      --bg:#F4F7FF; --card:#FFFFFF; --text:#0F172A; --muted:#475569; --header:#0F172A;
+      --soft-red:#FFF1F1; --soft-purple:#F6F0FF; --soft-green:#EEFDF4; --soft-indigo:#EEF2FF;
+      --soft-orange:#FFF4E8; --soft-teal:#EAFBF7; --soft-gold:#FFF9DB;
+      --wa-green:#25D366; --progress-start:#F97316; --progress-end:#FACC15;
+      --shadow:0 8px 22px rgba(15, 23, 42, .08); --radius:18px; --maxw:430px;
     }
-
     *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-    html{ scroll-behavior:smooth; }
-    body{
-      margin:0; background:var(--bg); color:var(--text);
-      font-family:"Hind","Noto Sans Devanagari",sans-serif;
-      font-size:16px; font-weight:500; line-height:1.75;
-      padding-bottom:96px;
-    }
-
-    .hidden{ display:none !important; }
+    body{ margin:0; background:var(--bg); color:var(--text); font-family:"Hind",sans-serif; padding-bottom:96px; }
     .page{ max-width:var(--maxw); margin:0 auto; padding:0 12px 12px; }
-    .top-header{ background:var(--header); color:#fff; text-align:center; padding:10px 12px 12px; box-shadow:var(--shadow); }
-    .brand{ font-size:1.02rem; font-weight:700; line-height:1.3; }
-    .meta{ margin-top:4px; font-size:.94rem; font-weight:600; color:#D9E4FF; }
-
-    .utility-bar{ position:sticky; top:0; z-index:1200; background:rgba(255,255,255,.96); backdrop-filter:blur(8px); border-bottom:1px solid #DFE7F8; padding:10px 12px; box-shadow:0 4px 14px rgba(15,23,42,.05); }
-    .utility-row{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:8px; }
-    .utility-btn{ min-height:48px; border:none; border-radius:14px; text-decoration:none; display:flex; align-items:center; justify-content:center; text-align:center; padding:10px 8px; font-size:.96rem; font-weight:700; cursor:pointer; box-shadow:var(--shadow); }
-    .btn-secondary{ background:var(--primary-blue); color:#fff; }
-    .btn-dark{ background:var(--header); color:#fff; }
-    .audio-status{ text-align:center; font-size:.92rem; font-weight:600; color:var(--muted); min-height:22px; }
-
-    .hero{ background:linear-gradient(135deg,#1e1b4b 0%, #312e81 55%, #4338ca 100%); color:#fff; border-radius:0 0 24px 24px; margin-bottom:12px; box-shadow:var(--shadow); padding:16px 14px 18px; text-align:center; }
-    .lesson-badge{ display:inline-block; background:#F97316; color:#fff; padding:6px 12px; border-radius:999px; font-size:.9rem; font-weight:700; margin-bottom:10px; }
-    .hero h1{ margin:0; font-size:1.52rem; font-weight:700; line-height:1.25; }
-
-    .card{ background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:15px 14px; margin-bottom:12px; border-left:6px solid #D6DDF0; }
-    .card h2{ margin:0 0 10px; font-size:1.2rem; font-weight:700; }
-    .card p, .card li{ font-size:1.02rem; margin:0 0 10px; }
-    .mini-head{ display:inline-block; margin-bottom:8px; padding:5px 10px; border-radius:999px; font-size:.88rem; font-weight:700; color:#fff; }
-
-    /* Theme Colors */
-    .intro-card{ background:linear-gradient(180deg,#fff,#F8FBFF); border-left-color:#42A5F5; }
-    .tech-card{ background:linear-gradient(180deg,#fff,var(--soft-red)); border-left-color:var(--accent-red); }
-    .concept-card{ background:linear-gradient(180deg,#fff,var(--soft-purple)); border-left-color:#7C3AED; }
-    .activity-card{ background:linear-gradient(180deg,#fff,var(--soft-green)); border-left-color:var(--primary-green); }
-    .safety-card{ background:linear-gradient(180deg,#fff,var(--soft-orange)); border-left-color:#F97316; }
-    .behavior-card{ background:var(--soft-gold); border-left-color:var(--accent-yellow); }
-
-    .red-chip{ background:#E53935; }
-    .purple-chip{ background:#8E24AA; }
-    .green-chip{ background:#1B8F4D; }
-    .blue-chip{ background:#1E88E5; }
-
+    .top-header{ background:var(--header); color:#fff; text-align:center; padding:12px; }
+    .hero{ background:linear-gradient(135deg,#1e1b4b, #4338ca); color:#fff; border-radius:0 0 24px 24px; padding:20px 15px; text-align:center; margin-bottom:12px; }
+    .lesson-badge{ display:inline-block; background:#F97316; padding:5px 12px; border-radius:999px; font-size:.9rem; font-weight:700; margin-bottom:10px; }
+    .card{ background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px; margin-bottom:14px; border-left:6px solid #D6DDF0; }
+    .card h2{ margin:0 0 12px; font-size:1.3rem; font-weight:700; color:var(--header); }
+    .card h3{ margin:15px 0 8px; font-size:1.1rem; font-weight:700; }
+    .card p, .card li{ font-size:1.05rem; margin:0 0 12px; line-height:1.7; }
+    .mini-head{ display:inline-block; padding:5px 12px; border-radius:999px; font-size:.88rem; font-weight:700; color:#fff; margin-bottom:10px; }
     .progress-box{ background:#fff; border-radius:16px; padding:12px; margin-bottom:12px; box-shadow:var(--shadow); }
     .progress-track{ width:100%; height:12px; background:#E8EDFF; border-radius:999px; overflow:hidden; }
     .progress-fill{ width:8%; height:100%; background:linear-gradient(90deg,var(--progress-start),var(--progress-end)); }
-    
-    .flow-box{ background:#101935; color:#fff; border-radius:14px; padding:12px; white-space:pre-wrap; font-size:.98rem; overflow:auto; }
-    .wa-btn{ width:100%; min-height:48px; border:none; border-radius:14px; background:var(--wa-green); color:#fff; font-size:1rem; font-weight:700; padding:13px 12px; cursor:pointer; }
-
-    .bottom-nav{ position:fixed; left:0; right:0; bottom:0; z-index:1100; background:rgba(255,255,255,.97); backdrop-filter:blur(8px); border-top:1px solid #DDE5FB; padding:8px 10px; }
+    .flow-box{ background:#101935; color:#fff; border-radius:14px; padding:15px; white-space:pre-wrap; font-size:1rem; line-height:1.8; margin:10px 0; }
+    .wa-btn{ width:100%; border:none; border-radius:14px; background:var(--wa-green); color:#fff; font-size:1.1rem; font-weight:700; padding:15px; cursor:pointer; box-shadow:var(--shadow); }
+    .bottom-nav{ position:fixed; bottom:0; left:0; right:0; background:rgba(255,255,255,.98); border-top:1px solid #DDE5FB; padding:10px; z-index:1000; }
     .bottom-nav-inner{ max-width:var(--maxw); margin:0 auto; display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
-    .nav-btn{ min-height:44px; border:none; border-radius:12px; text-decoration:none; display:flex; align-items:center; justify-content:center; text-align:center; padding:10px 6px; font-size:.95rem; font-weight:700; color:#fff; }
-    .nav-secondary{ background:var(--primary-blue); }
-    .nav-main{ background:var(--header); }
-    .nav-primary{ background:var(--primary-green); }
-
-    /* AI Popup */
-    .popup-overlay{ position:fixed; inset:0; background:rgba(10,20,40,.42); display:none; z-index:2000; }
-    .popup-overlay.show{ display:block; }
-    .ai-popup{ position:fixed; left:0; right:0; bottom:-100%; z-index:2100; max-width:var(--maxw); margin:0 auto; height:72vh; background:#fff; border-top-left-radius:24px; border-top-right-radius:24px; display:flex; flex-direction:column; transition:bottom .28s ease; }
-    .ai-popup.show{ bottom:0; }
-    .popup-head{ display:flex; align-items:center; justify-content:space-between; padding:14px; border-bottom:1px solid #E8EEF8; }
-    .chat-area{ flex:1; overflow:auto; background:#F8FBFF; padding:12px; }
-    .chat-bubble{ max-width:88%; padding:10px 12px; border-radius:16px; margin-bottom:10px; font-size:.98rem; }
-    .chat-user{ margin-left:auto; background:#DDF2FF; color:#14375C; border-bottom-right-radius:6px; }
-    .chat-ai{ margin-right:auto; background:#FFFFFF; border:1px solid #E4ECF8; border-bottom-left-radius:6px; }
-    .chat-input-wrap{ background:#fff; padding:10px 12px 14px; border-top:1px solid #E8EEF8; }
-    .chat-row{ display:flex; gap:8px; }
-    .chat-input{ flex:1; min-height:48px; border:1px solid #D9E3F4; border-radius:16px; padding:12px; outline:none; }
+    .nav-btn{ padding:12px; border-radius:12px; text-align:center; text-decoration:none; color:#fff; font-weight:700; font-size:0.95rem; }
   </style>
 </head>
 <body>
 
   <header class="top-header">
-    <div class="brand">ACS-AI DIGITAL MASTER™</div>
-    <div class="meta">Level 1 • Chapter 02 • Lesson L012</div>
+    <div style="font-weight:700; font-size:1.1rem;">ACS-AI DIGITAL MASTER™</div>
+    <div style="font-size:0.9rem; color:#D9E4FF; font-weight:600;">Level 1 • Chapter 02 • Lesson L012</div>
   </header>
-
-  <div class="utility-bar">
-    <div class="page" style="padding:0;">
-      <div class="utility-row">
-        <a href="index.html" class="utility-btn btn-secondary">🏠 होम</a>
-        <button id="audioBtn" class="utility-btn btn-secondary" onclick="toggleReading()">🔊 सुनो</button>
-        <button class="utility-btn btn-dark" onclick="openAI()">🤖 AI मदद</button>
-      </div>
-      <div class="audio-status" id="audioStatus">🔊 पाठ सुनने के लिए सुनो दबाइए</div>
-    </div>
-  </div>
 
   <main class="page">
     <section class="hero">
       <div class="lesson-badge">🎓 LESSON L012</div>
-      <h1>Stolen Phones &amp; Cyber Law (स्टोलन फोन्स एण्ड साइबर लॉ)</h1>
-      <div class="subtitle-hi">चोरी के मोबाइल और साइबर कानून</div>
-      <div class="subtitle-en">आज हम सीखेंगे कि चोरी का मोबाइल खरीदना क्यों गलत है और कानून कैसे काम करता है।</div>
+      <h1 style="margin:0; font-size:1.6rem;">Stolen Phones & Cyber Law</h1>
+      <div style="margin-top:10px; font-size:1.1rem; font-weight:600; color:#EEF4FF;">चोरी के मोबाइल और साइबर कानून</div>
     </section>
 
-    <section class="progress-box">
-      <div class="progress-label">Lesson 12 / 150 • 8%</div>
+    <div class="progress-box">
+      <div style="text-align:center; font-weight:700; color:#20335D; margin-bottom:8px;">Lesson 12 / 150 • 8%</div>
       <div class="progress-track"><div class="progress-fill"></div></div>
-    </section>
+    </div>
 
     <div id="lessonContent">
-      <section class="card intro-card">
+      <section class="card" style="border-left-color:#42A5F5;">
         <h2>1. प्रस्तावना</h2>
         <p>क्या आपने कभी देखा है कि कोई व्यक्ति बहुत सस्ते में नया मोबाइल बेच रहा है? कई लोग लालच में आकर बिना बिल का फोन खरीद लेते हैं। लेकिन बाद में पता चलता है कि वह फोन चोरी का था — और खरीदने वाला भी मुसीबत में फँस गया।</p>
+        <p>👉 आज हम सीखेंगे कि चोरी का मोबाइल खरीदना क्यों गलत है और कानून इसमें कैसे काम करता है।</p>
       </section>
 
-      <section class="card tech-card">
-        <div class="mini-head red-chip">🔴 Technical Words</div>
-        <h2>2. जरूरी Technical Words</h2>
-        <p><b>Grey Market:</b> वह बाजार जहाँ बिना बिल का सामान बिकता है।</p>
-        <p><b>IMEI:</b> हर मोबाइल का खास पहचान नंबर (*#06#)।</p>
-        <p><b>IMEI Tampering:</b> पहचान नंबर बदलना — यह अपराध है।</p>
-        <p><b>Cyber Crime:</b> मोबाइल के जरिए किया गया अपराध।</p>
-        <p><b>Portal:</b> सरकारी काम की वेबसाइट (cybercrime.gov.in)।</p>
+      <section class="card" style="border-left-color:var(--accent-red); background:var(--soft-red);">
+        <div class="mini-head" style="background:var(--accent-red);">🔴 Technical Words</div>
+        <h2>2. पाठ से जुड़े जरूरी Technical Words (टेक्निकल वर्ड)</h2>
+        <p><b>Grey Market (ग्रे मार्केट) (ग्रे मार-केट)</b> = वह बाजार जहाँ बिना बिल का सामान बिकता है</p>
+        <p><b>IMEI (आईएमईआई) (आई-एम-ई-आई)</b> = हर मोबाइल का अलग पहचान नंबर</p>
+        <p><b>IMEI Tampering (आईएमईआई टैम्परिंग) (आई-एम-ई-आई टैम-प-रिंग)</b> = मोबाइल का पहचान नंबर बदलना — यह अपराध है</p>
+        <p><b>Cyber Crime (साइबर क्राइम) (साइ-बर क्राइम)</b> = इंटरनेट या मोबाइल के जरिए किया गया अपराध</p>
+        <p><b>Portal (पोर्टल) (पोर-टल)</b> = सरकारी या किसी खास काम की वेबसाइट</p>
       </section>
 
-      <section class="card concept-card">
-        <div class="mini-head purple-chip">🧠 Concept</div>
+      <section class="card" style="border-left-color:#7C3AED; background:var(--soft-purple);">
+        <div class="mini-head" style="background:#7C3AED;">🧠 Concept</div>
         <h2>3. Concept (कांसेप्ट)</h2>
-        <p>हर मोबाइल का एक खास IMEI नंबर होता है। जैसे हर इंसान का आधार नंबर अलग होता है, वैसे ही हर मोबाइल का IMEI अलग होता है। पुलिस इसी नंबर से चोरी हुए फोन को ट्रैक करती है।</p>
+        <p>हर मोबाइल का एक खास नंबर होता है जिसे IMEI कहते हैं। जैसे हर इंसान का आधार नंबर अलग होता है, वैसे ही हर मोबाइल का IMEI अलग होता है। अगर फोन चोरी हो जाए, तो पुलिस इसी नंबर से उसे ढूंढती है। कुछ लोग चोरी के फोन को बेचने के लिए यह नंबर बदल देते हैं, जो एक बड़ा अपराध है।</p>
         <p>👉 हमेशा बिल और वारंटी के साथ ही मोबाइल खरीदें — यही सुरक्षित और सही तरीका है।</p>
       </section>
 
-      <section class="card knowledge-card">
-        <div class="mini-head blue-chip">📚 ज्ञान बिंदु</div>
-        <h2>4. Knowledge Points</h2>
-        <h3>🟢 Easy (ईज़ी)</h3>
+      <section class="card" style="border-left-color:#1565C0;">
+        <div class="mini-head" style="background:#1565C0;">📚 ज्ञान बिंदु</div>
+        <h2>4. Knowledge Points (नॉलेज पॉइंट्स) — ज्ञान बिंदु</h2>
+        <h3 style="color:var(--primary-green);">🟢 Easy (ईज़ी) (5)</h3>
         <ul>
           <li>बिना बिल का फोन हमेशा संदिग्ध होता है।</li>
           <li>चोरी का सामान खरीदना कानूनन गलत है।</li>
-          <li>साइबर हेल्पलाइन नंबर <b>1930</b> है।</li>
+          <li>मोबाइल चोरी होने पर तुरंत पुलिस को बताना चाहिए।</li>
+          <li>साइबर क्राइम की शिकायत के लिए हेल्पलाइन नंबर 1930 है।</li>
+          <li>अनजान व्यक्ति से कभी मोबाइल नहीं खरीदना चाहिए।</li>
         </ul>
-        <h3>🟡 Core (कोर)</h3>
+        <h3 style="color:#F9A825;">🟡 Core (कोर) (3)</h3>
         <ul>
-          <li>IMEI नंबर से पुलिस चोरी हुए मोबाइल को ट्रैक कर सकती है।</li>
-          <li><b>cybercrime.gov.in</b> पर ऑनलाइन शिकायत की जा सकती है।</li>
+          <li>सरकारी पोर्टल cybercrime.gov.in पर शिकायत दर्ज की जा सकती है।</li>
+          <li>IMEI नंबर से पुलिस चोरी के मोबाइल को ट्रैक कर सकती है।</li>
+          <li>बिना बिल का फोन खरीदने पर कानूनी सजा हो सकती है।</li>
+        </ul>
+        <h3 style="color:var(--primary-blue);">🔵 Advanced (एडवांस्ड) (2)</h3>
+        <ul>
+          <li>IMEI Tampering भारत में एक दंडनीय अपराध है जिसके लिए जेल हो सकती है।</li>
+          <li>बिना जानकारी के चोरी का फोन लेना भी कानूनी मुसीबत है।</li>
         </ul>
       </section>
 
-      <section class="card activity-card">
-        <div class="mini-head green-chip">🎯 Activity</div>
-        <h2>5. Activity (एक्टिविटी)</h2>
-        <div class="flow-box">🚀 START
+      <section class="card" style="border-left-color:var(--primary-green); background:var(--soft-green);">
+        <div class="mini-head" style="background:var(--primary-green);">🎯 Activity</div>
+        <h2>5. Activity (एक्टिविटी) / क्रियाकलाप</h2>
+        <p>नीचे के चित्र को ध्यान से देखिए और अपने मोबाइल के साथ यह गतिविधि करिए:</p>
+        <div class="flow-box">🚀 START (स्टार्ट)
 │
 ▼
-📱 Browser खोलो -> cybercrime.gov.in टाइप करो
+📱 Mobile (मोबाइल) का Browser (ब्राउज़र) खोलो
+│
+▼
+⌨️ cybercrime.gov.in टाइप करो
+│
+▼
+🔍 वेबसाइट खुलने का इंतजार करो
 │
 ▼
 🚨 "Report Cyber Crime" बटन ढूंढो
@@ -194,109 +129,88 @@
 │
 ▼
 📝 3 मुख्य स्टेप्स कॉपी में लिखो</div>
+        <p>👉 <b>अगर मोबाइल उपलब्ध न हो:</b> कॉपी में लिखो — अगर मोबाइल चोरी हो जाए तो मैं क्या-क्या करूँगा?</p>
       </section>
 
-      <section class="card behavior-card">
-        <div class="mini-head gold-chip">✍️ Behavior Change</div>
-        <h2>7. Behavior Change</h2>
+      <section class="card" style="border-left-color:#3949AB; background:var(--soft-indigo);">
+        <div class="mini-head" style="background:#3949AB;">🧭 DIEM</div>
+        <h2>6. DIEM (डीआईईएम)</h2>
+        <p><b>1:</b> क्या मैं कभी बिना बिल का सस्ता फोन खरीदूँगा?</p>
+        <p><b>2:</b> बिना बिल फोन खरीदने पर भारत में क्या सजा है?</p>
+        <p><b>3:</b> मैं सही और सुरक्षित खरीद के लिए आज से क्या करूँगा?</p>
+      </section>
+
+      <section class="card" style="background:var(--soft-gold); border-left-color:var(--accent-yellow);">
+        <div class="mini-head" style="background:#F9A825; color:#000;">✍️ Behavior Change</div>
+        <h2>7. Behavior Change (बिहेवियर चेंज)</h2>
         <p>👉 <b>नियम:</b> बिना बिल और वारंटी के कोई भी मोबाइल नहीं खरीदेंगे।</p>
-        <p>👉 इस लाइन को रंगीन स्केच पेन से अपनी कॉपी पर लिखें।</p>
+        <p>👉 इस लाइन को रंगीन स्केच पेन से अपनी कॉपी पर लिखकर अभिभावक को दिखाओ।</p>
       </section>
 
-      <section class="card safety-card">
-        <div class="mini-head orange-chip">🛡️ Safety</div>
-        <p>मोबाइल चोरी होने पर तुरंत <b>1930</b> पर कॉल करें। बिना बिल का फोन कभी न खरीदें, सजा हो सकती है।</p>
+      <section class="card" style="border-left-color:#F97316; background:var(--soft-orange);">
+        <div class="mini-head" style="background:#F97316;">🛡️ Safety</div>
+        <h2>8. Safety (सेफ्टी)</h2>
+        <ul>
+          <li>बिना बिल का फोन खरीदना खतरनाक है।</li>
+          <li>चोरी के फोन से कानूनी परेशानी आ सकती है।</li>
+          <li>मोबाइल चोरी पर तुरंत 1930 पर कॉल करें।</li>
+        </ul>
       </section>
 
-      <div class="card" style="border-left-color:#8E24AA; background:#FCF4FF;">
-        <button class="wa-btn" onclick="shareWhatsApp()">📤 अपनी प्रोग्रेस WhatsApp पर शेयर करें</button>
-      </div>
+      <section class="card" style="border-left-color:#283593;">
+        <div class="mini-head" style="background:#283593;">💭 Reflection</div>
+        <h2>9. Reflection (रिफ्लेक्शन)</h2>
+        <p>क्या थोड़ी सी बचत मेरी सुरक्षा और इज्जत से ज्यादा जरूरी है? मैं हमेशा बिल लेकर ही मोबाइल खरीदूँगा।</p>
+      </section>
 
-      <div class="footer-box">
-        <p><b>© Applied Computer School</b></p>
-        <p><a href="https://www.acs-aidigitalmaster.org/" target="_blank">www.acs-aidigitalmaster.org</a></p>
+      <section class="card" style="border-left-color:#00897B; background:var(--soft-teal);">
+        <div class="mini-head" style="background:#00897B;">🔟 बोलकर बताओ</div>
+        <h2>10. अब ऊंची आवाज में बोलकर बताओ</h2>
+        <ol>
+          <li>IMEI (आईएमईआई) क्या है और क्यों जरूरी है?</li>
+          <li>बिना बिल का फोन क्यों नहीं खरीदना चाहिए?</li>
+          <li>साइबर हेल्पलाइन नंबर क्या है?</li>
+          <li>cybercrime.gov.in पोर्टल क्या है?</li>
+          <li>IMEI Tampering क्या है और क्यों गलत है?</li>
+        </ol>
+      </section>
+
+      <section class="card" style="border-left-color:#1E88E5; background:#F3F8FF;">
+        <div class="mini-head" style="background:#1E88E5;">🎬 आगे क्या</div>
+        <p><b>अगले पाठ में सीखेंगे:</b> मोबाइल की बैटरी का विज्ञान और उसे लंबे समय तक कैसे बचाएं!</p>
+      </section>
+
+      <section class="card" style="border-left-color:#8E24AA; background:#FCF4FF;">
+        <div class="mini-head" style="background:#8E24AA;">🎥 Shorts / Reels Ideas (10)</div>
+        <ul style="padding-left:18px;">
+          <li>1. बिना बिल फोन का खतरा | 2. IMEI डेमो | 3. 1930 हेल्पलाइन</li>
+          <li>4. पोर्टल उपयोग | 5. सस्ता फोन सच | 6. खरीद के 3 नियम</li>
+          <li>7. चोरी का जोखिम | 8. शिकायत कैसे करें | 9. बिल जरूरी</li>
+          <li>10. 1 मिनट सेफ्टी चैलेंज।</li>
+        </ul>
+      </section>
+
+      <button class="wa-btn" onclick="shareWA()">📤 अपनी प्रोग्रेस WhatsApp पर शेयर करें</button>
+      
+      <div style="text-align:center; margin-top:20px; padding-bottom:20px; font-size:0.95rem; color:var(--muted);">
+        <b>© Applied Computer School</b><br>
+        <a href="https://www.acs-aidigitalmaster.org/" style="color:var(--primary-blue); text-decoration:none;">www.acs-aidigitalmaster.org</a>
       </div>
     </div>
   </main>
 
   <nav class="bottom-nav">
     <div class="bottom-nav-inner">
-      <a href="L011.html" class="nav-btn nav-secondary">⬅ पिछला</a>
-      <a href="index.html" class="nav-btn nav-main">🏠 मुख्य</a>
-      <a href="L013.html" class="nav-btn nav-primary">अगला ➡</a>
+      <a href="L011.html" class="nav-btn" style="background:var(--primary-blue);">⬅ पिछला</a>
+      <a href="index.html" class="nav-btn" style="background:var(--header);">🏠 मुख्य</a>
+      <a href="L013.html" class="nav-btn" style="background:var(--primary-green);">अगला ➡</a>
     </div>
   </nav>
 
-  <div class="popup-overlay" id="popupOverlay" onclick="closeAI()"></div>
-  <section class="ai-popup" id="aiPopup">
-    <div class="popup-head">
-      <div class="popup-title">🤖 AI मदद (L012)</div>
-      <button class="popup-close" onclick="closeAI()">✕</button>
-    </div>
-    <div class="chat-area" id="chatArea">
-      <div class="chat-bubble chat-ai">नमस्ते! आप IMEI, 1930 हेल्पलाइन, या साइबर कानून के बारे में पूछ सकते हैं।</div>
-    </div>
-    <div class="chat-input-wrap">
-      <div class="chat-row">
-        <input class="chat-input" id="chatInput" type="text" placeholder="यहाँ लिखें..." />
-        <button class="btn-secondary" style="border-radius:12px; padding:0 15px;" onclick="sendMessage()">भेजो</button>
-      </div>
-    </div>
-  </section>
-
   <script>
-    const LESSON_THEME = "चोरी के मोबाइल और साइबर कानून";
-    let isReading = false;
-
-    function toggleReading() {
-      if (isReading) {
-        speechSynthesis.cancel();
-        isReading = false;
-        document.getElementById("audioBtn").textContent = "🔊 सुनो";
-        document.getElementById("audioStatus").textContent = "🔇 बंद किया गया";
-      } else {
-        const text = document.getElementById("lessonContent").innerText;
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = "hi-IN";
-        utterance.onstart = () => {
-          isReading = true;
-          document.getElementById("audioBtn").textContent = "⏹ रोकें";
-          document.getElementById("audioStatus").textContent = "🔊 पाठ चल रहा है...";
-        };
-        utterance.onend = () => {
-          isReading = false;
-          document.getElementById("audioBtn").textContent = "🔊 सुनो";
-          document.getElementById("audioStatus").textContent = "✅ पूरा हुआ";
-        };
-        speechSynthesis.speak(utterance);
-      }
-    }
-
-    function openAI() { document.getElementById("popupOverlay").classList.add("show"); document.getElementById("aiPopup").classList.add("show"); }
-    function closeAI() { document.getElementById("popupOverlay").classList.remove("show"); document.getElementById("aiPopup").classList.remove("show"); }
-
-    function sendMessage() {
-      const input = document.getElementById("chatInput");
-      const text = input.value.trim();
-      if(!text) return;
-      
-      const area = document.getElementById("chatArea");
-      area.innerHTML += `<div class="chat-bubble chat-user">${text}</div>`;
-      
-      let reply = "यह पाठ चोरी के मोबाइल और साइबर कानून पर है। 1930 पर कॉल करें या cybercrime.gov.in पर जाएँ।";
-      if(text.toLowerCase().includes("imei")) reply = "IMEI आपके फोन का खास नंबर है। इसे जानने के लिए *#06# डायल करें।";
-      if(text.includes("1930")) reply = "1930 राष्ट्रीय साइबर अपराध हेल्पलाइन नंबर है।";
-      
-      setTimeout(() => {
-        area.innerHTML += `<div class="chat-bubble chat-ai">🤖 ${reply}</div>`;
-        area.scrollTop = area.scrollHeight;
-      }, 500);
-      input.value = "";
-    }
-
-    function shareWhatsApp() {
-      const text = `आज मैंने ACS-AI डिजिटल मास्टर कोर्स में '${LESSON_THEME}' के बारे में सीखा। 🚀\nआप भी सीखें: https://www.acs-aidigitalmaster.org/`;
-      window.open("https://wa.me/?text=" + encodeURIComponent(text), "_blank");
+    function shareWA() {
+      const msg = "आज मैंने ACS-AI डिजिटल मास्टर कोर्स में 'चोरी के मोबाइल और साइबर कानून' के बारे में सीखा। 🚀";
+      window.open("https://wa.me/?text=" + encodeURIComponent(msg), "_blank");
     }
   </script>
 </body>
