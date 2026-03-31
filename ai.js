@@ -13,25 +13,11 @@ async function askAI(question) {
     });
 
     const data = await res.json();
-
     responseBox.innerText = data.answer;
 
   } catch (error) {
     responseBox.innerText = "⚠️ Error: AI server चालू नहीं है";
   }
-}
-
-function openAI() {
-  document.getElementById("aiPopup").style.display = "block";
-  document.getElementById("popupOverlay").style.display = "block";
-}
-
-function closeAI() {
-
-
-  
-  document.getElementById("aiPopup").style.display = "none";
-  document.getElementById("popupOverlay").style.display = "none";
 }
 
 function openAI() {
