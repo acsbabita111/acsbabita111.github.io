@@ -20,3 +20,13 @@ async function askAI(question) {
     responseBox.innerText = "⚠️ Error: AI server चालू नहीं है";
   }
 }
+
+function openAI() {
+  document.getElementById("aiPopup").style.display = "block";
+  document.getElementById("popupOverlay").style.display = "block";
+}
+
+function closeAI() {
+  document.getElementById("aiPopup").style.display = "none";
+  document.getElementById("popupOverlay").style.display = "none";
+}
