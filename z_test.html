@@ -1,156 +1,199 @@
-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ACS Selection</title>
+<title>ACS AI DIGITAL MASTER</title>
 
 <style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
 body{
-  margin:0;
-  font-family: sans-serif;
-  background:#f2f2f2;
+    font-family: Arial, sans-serif;
+    background:#f5f7fb;
+    text-align:center;
 }
 
-/* Top bar */
-.top{
-  display:flex;
-  justify-content:space-around;
-  padding:10px;
+.page{
+    max-width:430px;
+    margin:auto;
+    padding:8px 10px 8px;
 }
 
-.top button{
-  background:#3b6fcf;
-  color:#fff;
-  border:none;
-  padding:10px 15px;
-  border-radius:10px;
-  font-weight:bold;
+/* HERO */
+.hero{
+    position:relative;
+    width:100%;
+    height:260px;
+    border-radius:24px;
+    overflow:hidden;
+    background:#dbeafe;
 }
 
-/* Title */
-.title{
-  background:#7a3aa5;
-  color:#fff;
-  text-align:center;
-  padding:12px;
-  margin:10px;
-  border-radius:10px;
-  font-weight:bold;
+.hero-bg{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
 }
 
-/* Tabs */
-.tabs{
-  display:flex;
-  justify-content:space-around;
-  margin:10px;
+.hero-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to bottom, rgba(0,0,0,0.08), rgba(0,0,0,0.28));
 }
 
-.tabs button{
-  background:#0fa84a;
-  color:#fff;
-  border:none;
-  padding:10px 20px;
-  border-radius:8px;
-  font-weight:bold;
+.logo{
+    position:absolute;
+    top:10px;
+    left:10px;
+    width:52px;
+    height:52px;
+    object-fit:contain;
+    background:rgba(255,255,255,0.92);
+    border-radius:50%;
+    padding:4px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.18);
 }
 
-/* Content */
+.hero-text{
+    position:absolute;
+    left:12px;
+    right:12px;
+    bottom:12px;
+    color:#fff;
+    text-align:center;
+}
+
+.hero-text .en{
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:4px;
+    letter-spacing:0.5px;
+}
+
+.hero-text .hi{
+    font-size:30px;
+    font-weight:900;
+    line-height:1.12;
+}
+
+/* CONTENT */
 .content{
-  background:#d9e2ea;
-  height:300px;
-  margin:10px;
-  border-radius:15px;
-  padding:10px;
+    background:#fff;
+    margin-top:8px;
+    padding:18px 16px 14px;
+    border-radius:22px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
 }
 
-/* Selected */
-.selected{
-  background:#5c8fc2;
-  color:#fff;
-  text-align:center;
-  padding:12px;
-  margin:10px;
-  border-radius:10px;
-  font-weight:bold;
+.content p{
+    font-size:23px;
+    font-weight:800;
+    line-height:1.45;
+    color:#111827;
+    margin-bottom:18px;
 }
 
-/* Bottom */
-.bottom{
-  display:flex;
-  justify-content:space-around;
-  margin:10px;
+.subbu{
+    width:125px;
+    height:125px;
+    object-fit:cover;
+    border-radius:50%;
+    margin:4px auto 8px;
+    display:block;
 }
 
-.bottom button{
-  background:#0fa84a;
-  color:#fff;
-  border:none;
-  padding:10px 15px;
-  border-radius:8px;
-  font-weight:bold;
+.slogan{
+    color:#f15a24;
+    font-size:24px;
+    font-weight:900;
+    margin-bottom:12px;
 }
 
-.start{
-  padding:10px 30px;
+.btn{
+    display:block;
+    width:100%;
+    background:linear-gradient(90deg,#12a63a,#1fc84d);
+    color:#fff;
+    text-decoration:none;
+    padding:16px 12px;
+    border-radius:22px;
+    font-size:22px;
+    font-weight:900;
+    .btn:active {
+        transform: scale(0.95);
+        opacity: 0.9;
+    }
+}
+
+@media (max-width:380px){
+    .hero{
+        height:220px;
+    }
+
+    .hero-text .hi{
+        font-size:25px;
+    }
+
+    .content p{
+        font-size:20px;
+    }
+
+    .subbu{
+        width:110px;
+        height:110px;
+    }
+
+    .slogan{
+        font-size:18px;
+    }
+
+    .btn{
+        font-size:20px;
+    }
 }
 </style>
 </head>
-
 <body>
 
-<!-- Top -->
-<div class="top">
-  <button>🏠 होम</button>
-  <button>👤 लोगो</button>
-  <button>🔊 सुनो</button>
-  <button>🤖 पूछो</button>
+<div class="page">
+
+    <div class="hero">
+        <img src="hero.jpg" alt="Hero Image" class="hero-bg">
+        <div class="hero-overlay"></div>
+
+        <img src="logo.png" alt="Logo" class="logo">
+
+        <div class="hero-text">
+            <div class="en">ACS-AI DIGITAL MASTER™</div>
+            <div class="hi">एसीएस-एआई<br>डिजिटल मास्टर</div>
+        </div>
+    </div>
+
+    <div class="content">
+        <p>
+            मोबाइल में सिर्फ रील देखने वाले,<br>
+            अब समझेंगे, सीखेंगे, और बनाएंगे!
+        </p>
+
+        <p>
+            फिर बनेंगे सोशल मीडिया का सुल्तान,<br>
+            एक सच्चा डिजिटल मास्टर!
+        </p>
+
+        <img src="subbu.jpg" alt="Subbu" class="subbu">
+
+        <div class="slogan">ए आई स्किल, सीखेगा इंडिया!</div>
+
+        <a href="#" class="btn">👉 अभी शुरू करें</a>
+    </div>
+
 </div>
-
-<!-- Title -->
-<div class="title">पाठ का चयन करो</div>
-
-<!-- Tabs -->
-<div class="tabs">
-  <button onclick="showLevel()">लेवल</button>
-  <button onclick="showChapter()">चैप्टर</button>
-  <button onclick="showLesson()">लेसन</button>
-</div>
-
-<!-- Content -->
-<div class="content" id="content">
-  यहाँ पर कंटेंट दिखेगा
-</div>
-
-<!-- Selected -->
-<div class="selected" id="selected">
-  चुना हुआ पाठ
-</div>
-
-<!-- Bottom -->
-<div class="bottom">
-  <button>⬅️ पीछे</button>
-  <button class="start">👉 पाठ शुरू करें</button>
-  <button>➡️ आगे</button>
-</div>
-
-<script>
-function showLevel(){
-  document.getElementById("content").innerHTML =
-  "लेवल 1<br>लेवल 2<br>लेवल 3";
-}
-
-function showChapter(){
-  document.getElementById("content").innerHTML =
-  "चैप्टर 1<br>चैप्टर 2<br>चैप्टर 3";
-}
-
-function showLesson(){
-  document.getElementById("content").innerHTML =
-  "L001<br>L002<br>L003";
-}
-</script>
 
 </body>
 </html>
