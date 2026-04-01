@@ -1,1 +1,408 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L028 - फ्री वाई-फाई के खतरे और सुरक्षित ब्राउज़िंग</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --pair-blue-1: #3B82F6; --pair-blue-2: #1D4ED8;
+      --pair-dark-1: #334155; --pair-dark-2: #0F172A;
+      --pair-green-1: #22C55E; --pair-green-2: #15803D;
+      --primary-blue: #2563EB; --primary-green: #16A34A;
+      --accent-red: #EF4444; --accent-yellow: #FACC15;
+      --bg: #F4F7FF; --card: #FFFFFF; --text: #0F172A;
+      --muted: #475569; --line: #D9E3F4;
+      --progress-start: #F97316; --progress-end: #FACC15;
+      --shadow: 0 8px 20px rgba(15,23,42,0.08);
+      --shadow-strong: 0 10px 22px rgba(15,23,42,0.14);
+      --radius: 18px; --maxw: 430px;
+    }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: "Hind","Noto Sans Devanagari",sans-serif; font-size: 16px; line-height: 1.75; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; padding-bottom: 96px; }
+    .page { max-width: var(--maxw); margin: 0 auto; padding: 0 12px 14px; }
+    .hidden { display: none !important; }
+
+    .top-header { position: relative; text-align: center; padding: 14px 12px 16px; box-shadow: var(--shadow-strong); overflow: hidden; background: linear-gradient(180deg,rgba(255,153,51,0.96) 0%,rgba(255,173,72,0.92) 22%,rgba(255,255,255,0.98) 48%,rgba(238,248,238,0.98) 60%,rgba(19,136,8,0.94) 100%); }
+    .top-header::before { content:""; position:absolute; inset:0; background: radial-gradient(circle at 18% 10%,rgba(255,255,255,.28),transparent 24%), radial-gradient(circle at 82% 14%,rgba(255,255,255,.20),transparent 20%), linear-gradient(180deg,rgba(255,255,255,.12) 0%,rgba(255,255,255,.00) 20%,rgba(255,255,255,.18) 48%,rgba(255,255,255,.00) 68%,rgba(255,255,255,.10) 100%); pointer-events:none; }
+    .top-header::after { content:""; position:absolute; left:-10%; right:-10%; bottom:22%; height:36px; background:radial-gradient(ellipse at center,rgba(255,255,255,.28),rgba(255,255,255,0)); filter:blur(10px); pointer-events:none; }
+    .brand-wrap { position:relative; z-index:1; display:inline-block; text-align:center; padding:8px 14px; border-radius:18px; background:linear-gradient(180deg,rgba(255,255,255,.36),rgba(255,255,255,.12)); box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 6px 14px rgba(15,23,42,0.12); backdrop-filter:blur(2px); }
+    .brand-main { font-size:1.12rem; font-weight:800; line-height:1.2; letter-spacing:0.4px; color:#0F172A; text-shadow:0 1px 0 rgba(255,255,255,.16); }
+    .brand-sub { margin-top:3px; font-size:0.76rem; font-weight:500; line-height:1.2; letter-spacing:1.2px; color:#10223E; }
+    .meta { position:relative; z-index:1; margin-top:10px; font-size:.94rem; font-weight:700; color:#10223E; line-height:1.35; text-shadow:0 1px 0 rgba(255,255,255,.18); }
+
+    .utility-bar { position:sticky; top:0; z-index:1200; background:rgba(255,255,255,.97); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); box-shadow:0 4px 12px rgba(15,23,42,.05); }
+    .utility-inner { max-width:var(--maxw); margin:0 auto; padding:10px 12px; }
+    .utility-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:8px; }
+
+    .btn,.nav-btn,.wa-btn,.popup-close,.chat-photo-label,.chat-mic,.chat-send { transition:transform 0.12s ease,opacity 0.12s ease,box-shadow 0.12s ease; }
+    .btn:active,.nav-btn:active,.wa-btn:active,.popup-close:active,.chat-photo-label:active,.chat-mic:active,.chat-send:active { transform:scale(0.96); opacity:0.92; }
+    .btn { min-height:48px; border:none; border-radius:14px; padding:10px 8px; font-size:.96rem; font-weight:700; font-family:inherit; text-decoration:none; display:flex; align-items:center; justify-content:center; text-align:center; cursor:pointer; box-shadow:0 8px 18px rgba(15,23,42,0.12); position:relative; overflow:hidden; }
+    .btn::before,.nav-btn::before,.wa-btn::before { content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,0)); pointer-events:none; }
+    .btn-pair-blue { background:linear-gradient(180deg,var(--pair-blue-1),var(--pair-blue-2)); color:#fff; }
+    .btn-pair-dark { background:linear-gradient(180deg,var(--pair-dark-1),var(--pair-dark-2)); color:#fff; }
+    .btn-pair-green { background:linear-gradient(180deg,var(--pair-green-1),var(--pair-green-2)); color:#fff; }
+    .audio-status { text-align:center; font-size:.92rem; font-weight:600; color:var(--muted); min-height:22px; }
+
+    .hero { background:linear-gradient(180deg,#2D6BFF 0%,#1D4ED8 100%); color:#fff; border-radius:0 0 24px 24px; box-shadow:var(--shadow); padding:16px 14px 18px; margin-bottom:12px; text-align:center; }
+    .lesson-badge { display:inline-block; background:linear-gradient(180deg,#FDE047,#FACC15); color:var(--text); padding:6px 12px; border-radius:999px; font-size:.9rem; font-weight:700; margin-bottom:10px; box-shadow:0 4px 10px rgba(0,0,0,.12); }
+    .hero h1 { margin:0; font-size:1.42rem; line-height:1.28; font-weight:700; }
+    .hero-sub { margin-top:8px; font-size:1.02rem; line-height:1.5; color:#FFFFFF; font-weight:600; opacity:0.95; }
+
+    .progress-box { background:var(--card); border-radius:16px; box-shadow:var(--shadow); padding:12px; margin-bottom:12px; }
+    .progress-label { text-align:center; font-size:.95rem; font-weight:700; color:#20335D; margin-bottom:8px; }
+    .progress-track { width:100%; height:12px; background:#E8EDFF; border-radius:999px; overflow:hidden; }
+    .progress-fill { width:18.67%; height:100%; background:linear-gradient(90deg,var(--progress-start),var(--progress-end)); border-radius:999px; }
+
+    .card { background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:15px 14px; margin-bottom:12px; border-left:6px solid var(--primary-blue); }
+    .card-accent { border-left-color:var(--accent-yellow); }
+    .card-primary { border-left-color:var(--primary-green); }
+    .card-danger { border-left-color:var(--accent-red); }
+    .chip { display:inline-block; margin-bottom:8px; padding:5px 10px; border-radius:999px; font-size:.88rem; font-weight:700; box-shadow:0 4px 10px rgba(15,23,42,.10); }
+    .chip-blue { background:linear-gradient(180deg,#3B82F6,#2563EB); color:#fff; }
+    .chip-green { background:linear-gradient(180deg,#22C55E,#16A34A); color:#fff; }
+    .chip-yellow { background:linear-gradient(180deg,#FDE047,#FACC15); color:var(--text); }
+    .chip-red { background:linear-gradient(180deg,#F87171,#EF4444); color:#fff; }
+    .card h2 { margin:0 0 10px; font-size:1.18rem; line-height:1.35; font-weight:700; }
+    .card h3 { margin:12px 0 8px; font-size:1.03rem; line-height:1.35; font-weight:700; }
+    .card p,.card li { font-size:1.01rem; margin:0 0 10px; line-height:1.75; }
+    .card ul,.card ol { margin:0; padding-left:22px; }
+    .flow-box { background:#0F172A; color:#fff; border-radius:14px; padding:12px; white-space:pre-wrap; overflow:auto; font-size:.98rem; line-height:1.8; box-shadow:inset 0 1px 0 rgba(255,255,255,.08); }
+    .state-box { display:flex; align-items:center; justify-content:center; gap:8px; min-height:48px; border-radius:14px; background:#fff; border:1px solid var(--line); margin-bottom:12px; padding:10px 12px; font-size:.95rem; font-weight:700; color:var(--text); }
+    .wa-wrap { display:none; margin-top:12px; }
+    .wa-btn { width:100%; min-height:48px; border:none; border-radius:14px; background:linear-gradient(180deg,#34D76B,#25D366); color:#fff; font-size:1rem; font-weight:700; padding:13px 12px; cursor:pointer; box-shadow:0 10px 18px rgba(37,211,102,0.25); font-family:inherit; display:flex; align-items:center; justify-content:center; gap:10px; position:relative; overflow:hidden; }
+    .wa-btn svg { width:22px; height:22px; fill:currentColor; flex:0 0 auto; }
+    .footer-box { text-align:center; font-size:.94rem; color:var(--muted); padding:6px 8px 0; margin-bottom:6px; line-height:1.6; }
+
+    .bottom-nav { position:fixed; left:0; right:0; bottom:0; z-index:1100; background:rgba(255,255,255,.97); backdrop-filter:blur(8px); border-top:1px solid var(--line); padding:8px 10px; transition:transform .25s ease,opacity .25s ease; }
+    .bottom-nav.hide { transform:translateY(110%); opacity:0; pointer-events:none; }
+    .bottom-nav-inner { max-width:var(--maxw); margin:0 auto; display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
+    .nav-btn { min-height:48px; border-radius:12px; text-decoration:none; display:flex; align-items:center; justify-content:center; text-align:center; padding:10px 6px; font-size:.95rem; font-weight:700; line-height:1.25; color:#fff; box-shadow:0 8px 18px rgba(15,23,42,.14); position:relative; overflow:hidden; }
+    .nav-pair-blue { background:linear-gradient(180deg,var(--pair-blue-1),var(--pair-blue-2)); }
+    .nav-pair-dark { background:linear-gradient(180deg,var(--pair-dark-1),var(--pair-dark-2)); }
+    .nav-pair-green { background:linear-gradient(180deg,var(--pair-green-1),var(--pair-green-2)); }
+
+    .popup-overlay { position:fixed; inset:0; background:rgba(10,20,40,.42); display:none; z-index:2000; }
+    .popup-overlay.show { display:block; }
+    .ai-popup { position:fixed; left:0; right:0; bottom:-100%; z-index:2100; max-width:var(--maxw); margin:0 auto; height:72vh; background:#fff; border-top-left-radius:24px; border-top-right-radius:24px; box-shadow:0 -14px 30px rgba(0,0,0,.18); display:flex; flex-direction:column; transition:bottom .28s ease; }
+    .ai-popup.show { bottom:0; }
+    .popup-head { padding:14px 14px 10px; border-bottom:1px solid #E8EEF8; }
+    .popup-top { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px; }
+    .popup-title { font-size:1.08rem; font-weight:700; color:var(--text); line-height:1.3; }
+    .popup-close { min-height:44px; border:none; background:linear-gradient(180deg,#F8FBFF,#EEF3FF); color:#19315C; font-size:.92rem; font-weight:700; padding:10px 12px; border-radius:12px; cursor:pointer; font-family:inherit; box-shadow:0 6px 14px rgba(15,23,42,.08); }
+    .ai-state { min-height:48px; border-radius:14px; background:#F8FBFF; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; text-align:center; padding:10px 12px; font-size:.94rem; font-weight:700; color:var(--text); }
+    .chat-area { flex:1; overflow:auto; background:#F8FBFF; padding:12px; }
+    .chat-bubble { max-width:88%; padding:10px 12px; border-radius:16px; margin-bottom:10px; font-size:.98rem; line-height:1.55; word-break:break-word; }
+    .chat-user { margin-left:auto; background:#DDF2FF; color:#14375C; border-bottom-right-radius:6px; }
+    .chat-ai { margin-right:auto; background:#FFFFFF; color:#203252; border:1px solid #E4ECF8; border-bottom-left-radius:6px; }
+    .chat-preview { display:none; margin:0 12px 10px; padding:10px; border:1px dashed var(--line); border-radius:16px; background:#fff; text-align:center; }
+    .chat-preview img { max-width:100%; max-height:160px; border-radius:12px; }
+    .chat-input-wrap { background:#fff; border-top:1px solid #E8EEF8; padding:10px 12px 14px; }
+    .chat-actions { display:flex; gap:8px; margin-bottom:8px; }
+    .chat-photo-label,.chat-mic,.chat-send { min-height:48px; border:none; border-radius:14px; padding:12px; font-size:.98rem; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; text-align:center; font-family:inherit; box-shadow:0 6px 14px rgba(15,23,42,.08); }
+    .chat-photo-label,.chat-mic { background:linear-gradient(180deg,#FFFFFF,#F3F7FF); color:var(--text); border:1px solid var(--line); }
+    .chat-send { background:linear-gradient(180deg,var(--pair-blue-1),var(--pair-blue-2)); color:#fff; min-width:74px; }
+    .chat-row { display:flex; gap:8px; align-items:center; }
+    .chat-input { flex:1; min-height:48px; border:1px solid var(--line); background:#F9FBFF; border-radius:16px; padding:12px 14px; font-size:1rem; font-family:"Hind","Noto Sans Devanagari",sans-serif; color:#1E2E49; outline:none; }
+    @media (max-width:360px) { .hero h1{font-size:1.3rem;} .card h2{font-size:1.12rem;} .card p,.card li{font-size:.98rem;} .btn,.nav-btn{font-size:.88rem;} }
+  </style>
+</head>
+<body>
+
+  <header class="top-header">
+    <div class="brand-wrap">
+      <div class="brand-main">ACS-AI DIGITAL MASTER™</div>
+      <div class="brand-sub">Powered by Rambharosh Vidyarthi</div>
+    </div>
+    <div class="meta">Level 1 • Chapter 03 • Lesson L028</div>
+  </header>
+
+  <div class="utility-bar">
+    <div class="utility-inner">
+      <div class="utility-row">
+        <a href="index.html" class="btn btn-pair-blue">🏠 होम</a>
+        <button id="audioBtn" class="btn btn-pair-dark" onclick="toggleReading()">🔊 सुनो</button>
+        <button class="btn btn-pair-green" onclick="openAI()">🤖 AI मदद</button>
+      </div>
+      <div class="audio-status" id="audioStatus">🔊 पाठ सुनने के लिए सुनो दबाइए</div>
+    </div>
+  </div>
+
+  <main class="page">
+    <section class="hero">
+      <div class="lesson-badge">LESSON L028</div>
+      <h1>Public Wi-Fi Security &amp; Safe Browsing<br>(पब्लिक वाई-फाई सिक्योरिटी एण्ड सेफ ब्राउज़िंग)</h1>
+      <div class="hero-sub">फ्री वाई-फाई के खतरे और सुरक्षित ब्राउज़िंग</div>
+    </section>
+
+    <section class="progress-box">
+      <div class="progress-label">Lesson 28 / 150</div>
+      <div class="progress-track">
+        <div class="progress-fill"></div>
+      </div>
+    </section>
+
+    <section class="state-box tts-include">
+      🎯 आज का लक्ष्य: फ्री वाई-फाई के खतरे और सुरक्षित ब्राउज़िंग
+    </section>
+
+    <div id="lessonContent">
+
+      <section class="card tts-include">
+        <div class="chip chip-blue">1. प्रस्तावना</div>
+        <p>क्या आपने कभी मॉल, रेलवे स्टेशन या दुकान पर "Free Wi-Fi" का बोर्ड देखा है और उससे इंटरनेट चलाया है? फ्री वाई-फाई आकर्षक लगता है — लेकिन उसी नेटवर्क पर हैकर भी जुड़ा हो सकता है जो आपका पासवर्ड और बैंक जानकारी चुरा सकता है।</p>
+        <p>👉 आज हम सीखेंगे कि Public Wi-Fi से कैसे सावधान रहें, Safe Browsing कैसे चालू करें और इंटरनेट को सुरक्षित तरीके से कैसे उपयोग करें।</p>
+      </section>
+
+      <section class="card card-danger tts-include">
+        <div class="chip chip-red">🔴 2. पाठ से जुड़े जरूरी Technical Words</div>
+        <h2>पाठ से जुड़े जरूरी Technical Words (टेक्निकल वर्ड)</h2>
+        <p>Public Wi-Fi (पब्लिक वाई-फाई) वह फ्री इंटरनेट जो सार्वजनिक जगहों पर सबके लिए खुला होता है — इसमें कोई भी जुड़ सकता है</p>
+        <p>Safe Browsing (सेफ ब्राउज़िंग) Chrome की वह सेटिंग जो खतरनाक और नकली वेबसाइट खुलने से पहले चेतावनी देती है</p>
+        <p>Man-in-the-Middle (मैन-इन-द-मिडिल) वह हमला जिसमें हैकर आपके और इंटरनेट के बीच में आकर आपका डेटा पढ़ लेता है</p>
+        <p>VPN (वीपीएन) वह सुरक्षित इंटरनेट रास्ता जो हमारे डेटा को छुपाकर सुरक्षित तरीके से भेजता है</p>
+        <p>MAC Address (मैक एड्रेस) हर मोबाइल की एक खास पहचान जो Wi-Fi से जुड़ने पर दिखती है — इसे छुपाया जा सकता है</p>
+      </section>
+
+      <section class="card tts-include">
+        <div class="chip chip-blue">3. Concept</div>
+        <h2>Concept (कांसेप्ट)</h2>
+        <p>Public Wi-Fi में कोई पासवर्ड नहीं होता इसलिए कोई भी जुड़ सकता है। ऐसे नेटवर्क पर हैकर Man-in-the-Middle attack करके आपके और इंटरनेट के बीच में आ जाता है और आपका पासवर्ड या बैंक जानकारी पढ़ लेता है। Safe Browsing चालू करने से खतरनाक वेबसाइट से बचाव होता है और VPN से डेटा सुरक्षित रास्ते से जाता है।</p>
+        <p>👉 Public Wi-Fi पर लॉगिन और पेमेंट कभी नहीं करना चाहिए — यह सबसे जरूरी नियम है।</p>
+      </section>
+
+      <section class="card tts-include">
+        <div class="chip chip-blue">4. Knowledge Points</div>
+        <h2>Knowledge Points (नॉलेज पॉइंट्स) — ज्ञान बिंदु</h2>
+
+        <h3><span class="chip chip-green">🟢 Easy (ईज़ी) (5)</span></h3>
+        <ul>
+          <li>Public Wi-Fi (पब्लिक वाई-फाई) पूरी तरह सुरक्षित नहीं होता — इस पर कोई भी जुड़ सकता है।</li>
+          <li>हैकर भी उसी Public Wi-Fi से जुड़कर दूसरों का डेटा देख सकता है।</li>
+          <li>Public Wi-Fi पर पासवर्ड, बैंक जानकारी या UPI कभी नहीं डालना चाहिए।</li>
+          <li>Chrome में Safe Browsing (सेफ ब्राउज़िंग) चालू करने से खतरनाक वेबसाइट खुलने से पहले चेतावनी मिलती है।</li>
+          <li>मोबाइल में Wi-Fi का Auto-connect (ऑटो-कनेक्ट) बंद रखना चाहिए ताकि फोन खुद किसी अनजान नेटवर्क से न जुड़े।</li>
+        </ul>
+
+        <h3><span class="chip chip-yellow">🟡 Core (कोर) (3)</span></h3>
+        <ul>
+          <li>Safe Browsing (सेफ ब्राउज़िंग) Chrome में चालू करने पर नकली और खतरनाक वेबसाइट से बचाव होता है — यह एक जरूरी सुरक्षा सेटिंग है।</li>
+          <li>Man-in-the-Middle (मैन-इन-द-मिडिल) हमले में हैकर आपके और इंटरनेट के बीच में आकर आपकी सारी जानकारी पढ़ सकता है।</li>
+          <li>Randomized MAC Address (रैन्डमाइज़्ड मैक एड्रेस) चालू करने से मोबाइल की पहचान छुपती है जिससे नेटवर्क पर ट्रैक करना मुश्किल हो जाता है।</li>
+        </ul>
+
+        <h3><span class="chip chip-blue">🔵 Advanced (एडवांस्ड) (2)</span></h3>
+        <ul>
+          <li>VPN (वीपीएन) उपयोग करने से हमारा डेटा एक सुरक्षित सुरंग से होकर जाता है जिससे हैकर उसे नहीं पढ़ सकता।</li>
+          <li>Public Wi-Fi के खतरे समझना और सही नियम अपनाना एक जागरूक और सुरक्षित इंटरनेट उपयोगकर्ता की पहचान है।</li>
+        </ul>
+      </section>
+
+      <section class="card card-primary tts-include">
+        <div class="chip chip-green">🎯 5. Activity</div>
+        <h2>Activity (एक्टिविटी) / क्रियाकलाप</h2>
+        <p>नीचे के चित्र को ध्यान से देखिए और अपने मोबाइल के साथ यह गतिविधि करिए:</p>
+
+        <div class="flow-box" aria-hidden="true">🚀 START (स्टार्ट)
+│
+▼
+📱 Chrome (क्रोम) ब्राउज़र खोलो
+│
+▼
+⚙️ Settings (सेटिंग्स) पर जाओ
+│
+▼
+🛡️ Privacy and Security (प्राइवेसी एंड सिक्योरिटी) खोलो
+│
+▼
+🔍 Safe Browsing (सेफ ब्राउज़िंग) ढूंढो
+│
+▼
+✅ Safe Browsing चालू करो
+│
+▼
+📝 कॉपी में लिखो — Safe Browsing चालू था या बंद था?</div>
+
+        <p>👉 अगर Chrome उपलब्ध न हो:</p>
+        <p>👉 Settings में जाकर Wi-Fi का Auto-connect (ऑटो-कनेक्ट) बंद करो — कॉपी में लिखो कि यह सेटिंग कहाँ मिली।</p>
+      </section>
+
+      <section class="card tts-include">
+        <div class="chip chip-blue">6. DIEM</div>
+        <h2>DIEM (डीआईईएम)</h2>
+        <p><em>(मोबाइल के गूगल एवं एआई से सर्च करिए और अपने कॉपी पर 30 से 50 शब्दों में, कलम से लिखिए)</em></p>
+        <p><strong>i:</strong> Public Wi-Fi पर बैंक ऐप खोलना या पासवर्ड डालना खतरनाक क्यों है?</p>
+        <p><strong>ii:</strong> VPN (वीपीएन) क्या होता है और यह डेटा को कैसे सुरक्षित रखता है?</p>
+        <p><strong>iii:</strong> Public Wi-Fi उपयोग करते समय मैं कौन से 3 नियम हमेशा याद रखूँगा?</p>
+      </section>
+
+      <section class="card card-accent tts-include">
+        <div class="chip chip-yellow">7. Behavior Change</div>
+        <h2>Behavior Change (बिहेवियर चेंज)</h2>
+        <p>👉 नियम: मैं Public Wi-Fi पर कभी भी लॉगिन, पासवर्ड या पेमेंट नहीं करूँगा।</p>
+        <p>👉 नीचे के इस लाइन को अपने कॉपी पर रंगीन स्केच पेन से लिखकर अपने अभिभावक को दिखाओ।</p>
+      </section>
+
+      <section class="card card-danger tts-include">
+        <div class="chip chip-red">8. Safety</div>
+        <h2>Safety (सेफ्टी)</h2>
+        <ul>
+          <li>Public Wi-Fi पर हैकर डेटा चोरी कर सकता है — इस पर बैंक ऐप, UPI या कोई भी पासवर्ड कभी न डालें।</li>
+          <li>मोबाइल में Wi-Fi का Auto-connect (ऑटो-कनेक्ट) हमेशा बंद रखें — वरना फोन खुद किसी खतरनाक नेटवर्क से जुड़ सकता है।</li>
+          <li>किसी अनजान और बिना पासवर्ड वाले Wi-Fi नेटवर्क से कभी नहीं जुड़ना चाहिए।</li>
+        </ul>
+      </section>
+
+      <section class="card tts-include">
+        <div class="chip chip-blue">9. Reflection</div>
+        <h2>Reflection (रिफ्लेक्शन)</h2>
+        <p><em>(नीचे की लाइन को ध्यान से पढ़ो और 1 मिनट के लिए आँख बंद करके सोचो)</em></p>
+        <p>क्या मैं अब तक Public Wi-Fi पर बिना सोचे इंटरनेट चलाता रहा हूँ?</p>
+        <p>मैं आज से Public Wi-Fi पर लॉगिन और पेमेंट कभी नहीं करूँगा और Safe Browsing हमेशा चालू रखूँगा।</p>
+      </section>
+
+      <section class="card tts-include">
+        <div class="chip chip-blue">🔟 बोलकर बताओ</div>
+        <h2>अब ऊंची आवाज में बोलकर बताओ तो, इस पाठ में क्या सीखा?</h2>
+        <ol>
+          <li>Public Wi-Fi (पब्लिक वाई-फाई) क्या है और यह खतरनाक क्यों है?</li>
+          <li>Safe Browsing (सेफ ब्राउज़िंग) क्या करता है और इसे कैसे चालू करते हैं?</li>
+          <li>Man-in-the-Middle (मैन-इन-द-मिडिल) हमला क्या होता है?</li>
+          <li>Public Wi-Fi पर कौन से काम बिल्कुल नहीं करने चाहिए?</li>
+          <li>VPN (वीपीएन) क्या काम करता है और यह कैसे मदद करता है?</li>
+        </ol>
+      </section>
+
+      <section class="card tts-include">
+        <div class="chip chip-blue">🎬 अगले पाठ में</div>
+        <h2>अगले पाठ में हम क्या सीखने वाले हैं?</h2>
+        <p>Copyright (कॉपीराइट) क्या है और इंटरनेट पर दूसरों की चीज़ें उपयोग करने के क्या नियम हैं!</p>
+      </section>
+
+      <section class="card tts-include" id="shortsSection">
+        <div class="chip chip-blue">🎥 Shorts / Reels Ideas</div>
+        <h2>Shorts / Reels Ideas (शॉर्ट्स / रील्स आइडिया) (10)</h2>
+        <ol>
+          <li>Public Wi-Fi का सबसे बड़ा खतरा — आसान भाषा में</li>
+          <li>Safe Browsing कैसे चालू करें — Chrome में step by step</li>
+          <li>VPN क्या है और कैसे काम करता है — 1 मिनट में</li>
+          <li>Man-in-the-Middle हमला क्या है — समझो और बचो</li>
+          <li>Auto-connect Wi-Fi बंद करो — क्यों जरूरी है</li>
+          <li>Public Wi-Fi पर बैंक ऐप खोलना क्यों खतरनाक है</li>
+          <li>MAC Address छुपाने का तरीका — Randomized MAC</li>
+          <li>अनजान Wi-Fi से कभी न जुड़ें — 3 कारण</li>
+          <li>मेरा नया नियम — Public Wi-Fi पर No Login No Payment</li>
+          <li>1 मिनट Wi-Fi Safety Challenge</li>
+        </ol>
+
+        <div class="wa-wrap" id="waWrap">
+          <button class="wa-btn" onclick="shareWhatsApp()">
+            <svg viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M19.11 17.2c-.27-.13-1.58-.78-1.82-.87-.24-.09-.42-.13-.59.14-.18.27-.68.87-.84 1.05-.15.18-.31.2-.58.07-.27-.13-1.14-.42-2.17-1.34-.8-.71-1.34-1.59-1.5-1.86-.16-.27-.02-.41.11-.54.12-.12.27-.31.4-.47.13-.16.18-.27.27-.45.09-.18.04-.34-.02-.47-.07-.13-.59-1.42-.81-1.95-.21-.5-.43-.43-.59-.44-.15-.01-.34-.01-.52-.01s-.47.07-.71.34c-.24.27-.93.91-.93 2.22s.95 2.58 1.08 2.76c.13.18 1.87 2.86 4.54 4 .63.27 1.12.43 1.5.55.63.2 1.2.17 1.65.1.5-.07 1.58-.64 1.8-1.27.22-.63.22-1.17.15-1.27-.06-.1-.24-.16-.5-.29zM16.01 27.1h-.01a11 11 0 0 1-5.58-1.52l-.4-.24-4.15 1.09 1.11-4.05-.26-.42a10.98 10.98 0 1 1 9.29 5.14zm9.36-20.33A12.94 12.94 0 0 0 16.03 3C8.87 3 3.05 8.81 3.05 15.97c0 2.29.6 4.52 1.74 6.49L3 29l6.72-1.76a12.96 12.96 0 0 0 6.31 1.61h.01c7.16 0 12.97-5.81 12.98-12.97 0-3.46-1.35-6.72-3.65-9.11z"/>
+            </svg>
+            WhatsApp पर प्रोग्रेस शेयर करें
+          </button>
+        </div>
+      </section>
+
+      <div class="footer-box">
+        <p><strong>© Applied Computer School run under Freedom Fighter Gangadhar Prasad Memorial Trust.</strong></p>
+      </div>
+    </div>
+  </main>
+
+  <div class="popup-overlay" id="popupOverlay" onclick="closeAI()"></div>
+
+  <section class="ai-popup" id="aiPopup" aria-label="AI मदद">
+    <div class="popup-head">
+      <div class="popup-top">
+        <div class="popup-title">🤖 AI मदद</div>
+        <button class="popup-close" onclick="closeAI()">✕ बंद</button>
+      </div>
+      <div class="ai-state" id="aiState">🧪 परीक्षण मोड</div>
+    </div>
+    <div class="chat-area" id="chatArea">
+      <div class="chat-bubble chat-ai">नमस्ते! आप इस पाठ के बारे में लिखकर, बोलकर या फोटो भेजकर पूछ सकते हैं।</div>
+    </div>
+    <div class="chat-preview" id="imagePreviewBox">
+      <img id="imagePreview" alt="भेजी गई फोटो का प्रीव्यू">
+    </div>
+    <div class="chat-input-wrap">
+      <div class="chat-actions">
+        <label class="chat-photo-label" for="photoInput">📷 फोटो</label>
+        <button class="chat-mic" onclick="startVoiceInput()">🎤 बोलो</button>
+      </div>
+      <div class="chat-row">
+        <input class="chat-input" id="chatInput" type="text" placeholder="यहाँ लिखकर पूछो..." />
+        <button class="chat-send" onclick="sendMessage()">भेजो</button>
+      </div>
+      <input id="photoInput" class="hidden" type="file" accept="image/*" capture="environment" onchange="handlePhoto(event)">
+    </div>
+  </section>
+
+  <nav class="bottom-nav" id="bottomNav">
+    <div class="bottom-nav-inner">
+      <a href="L027.html" class="nav-btn nav-pair-blue">⬅ पिछला</a>
+      <a href="index.html" class="nav-btn nav-pair-dark">🏠 मुख्य पृष्ठ</a>
+      <a href="L029.html" class="nav-btn nav-pair-green">अगला ➡</a>
+    </div>
+  </nav>
+
+  <script>
+    const LESSON_THEME = "फ्री वाई-फाई के खतरे और सुरक्षित ब्राउज़िंग";
+    const SCROLL_KEY = "waShown_L028";
+    let utteranceQueue = [], currentIndex = 0, isReading = false;
+    const audioBtn = document.getElementById("audioBtn");
+    const audioStatus = document.getElementById("audioStatus");
+    const bottomNav = document.getElementById("bottomNav");
+    const waWrap = document.getElementById("waWrap");
+    const chatInput = document.getElementById("chatInput");
+    const chatArea = document.getElementById("chatArea");
+    const aiState = document.getElementById("aiState");
+
+    function splitTextIntoChunks(t,m=180){const c=t.replace(/\s+/g," ").trim();const x=c.match(new RegExp(`.{1,${m}}([\\.\\?\\!\\।]|$)`,"g"));return x||[c];}
+    function getReadableLessonText(){const n=document.querySelectorAll(".state-box,.tts-include h2,.tts-include h3,.tts-include p,.tts-include li");return Array.from(n).filter(n=>!n.closest(".flow-box")).map(n=>n.innerText.trim()).filter(Boolean).join(" ");}
+    function getHindiVoice(){const v=speechSynthesis.getVoices();return v.find(v=>v.lang&&v.lang.toLowerCase().includes("hi"))||v[0];}
+    function showBottomNav(s){if(s){bottomNav.classList.remove("hide");}else{bottomNav.classList.add("hide");}}
+    function setAudioIdleState(m){isReading=false;audioBtn.textContent="🔊 सुनो";audioStatus.textContent=m||"🔊 पाठ सुनने के लिए सुनो दबाइए";showBottomNav(true);}
+    function speakChunk(i){
+      if(i>=utteranceQueue.length){setAudioIdleState("✅ पाठ पूरा हुआ");currentIndex=0;return;}
+      currentIndex=i;const u=new SpeechSynthesisUtterance(utteranceQueue[i]);
+      u.lang="hi-IN";u.rate=0.9;u.pitch=1;u.volume=1;
+      const v=getHindiVoice();if(v)u.voice=v;
+      u.onstart=function(){isReading=true;audioBtn.textContent="⏹ रोकें";audioStatus.textContent="🔊 पाठ सुनाया जा रहा है";showBottomNav(false);};
+      u.onend=function(){if(isReading)speakChunk(i+1);};
+      u.onerror=function(){setAudioIdleState("⚠️ ऑडियो सपोर्ट नहीं मिला");};
+      speechSynthesis.speak(u);
+    }
+    function startReading(){if(!("speechSynthesis" in window)){audioStatus.textContent="⚠️ यह browser ऑडियो सपोर्ट नहीं करता";return;}speechSynthesis.cancel();utteranceQueue=splitTextIntoChunks(getReadableLessonText(),180);speakChunk(currentIndex||0);}
+    function stopReading(){speechSynthesis.cancel();isReading=false;audioBtn.textContent="🔊 सुनो";audioStatus.textContent="🔇 पाठ बंद किया गया";showBottomNav(true);}
+    function toggleReading(){if(isReading){stopReading();}else{startReading();}}
+    function openAI(){document.getElementById("popupOverlay").classList.add("show");document.getElementById("aiPopup").classList.add("show");setAIState("🧪 परीक्षण मोड");}
+    function closeAI(){document.getElementById("popupOverlay").classList.remove("show");document.getElementById("aiPopup").classList.remove("show");setAIState("🧪 परीक्षण मोड");}
+    function setAIState(t){aiState.textContent=t;}
+    function addChatMessage(text,type){const d=document.createElement("div");d.className="chat-bubble "+(type==="user"?"chat-user":"chat-ai");d.textContent=text;chatArea.appendChild(d);chatArea.scrollTop=chatArea.scrollHeight;}
+    function sendMessage(){const t=chatInput.value.trim();if(!t)return;chatInput.value="";addChatMessage(t,"user");setAIState("🤖 जवाब आया");if(typeof askAI==="function"){askAI(t);}else{addChatMessage("⚠️ AI service अभी उपलब्ध नहीं है।","ai");}}
+    chatInput.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();sendMessage();}});
+    function startVoiceInput(){
+      const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+      if(!SR){setAIState("⚠️ फिर कोशिश करें");addChatMessage("इस मोबाइल या browser में voice input support नहीं मिला। आप लिखकर पूछिए।","ai");return;}
+      try{const r=new SR();r.lang="hi-IN";r.interimResults=false;r.maxAlternatives=1;setAIState("🎙 सुन रहा हूँ");r.onresult=function(e){chatInput.value=e.results[0][0].transcript;sendMessage();};r.onerror=function(){setAIState("⚠️ फिर कोशिश करें");addChatMessage("आवाज समझने में समस्या आई।","ai");};r.start();}
+      catch(e){setAIState("⚠️ फिर कोशिश करें");addChatMessage("voice input शुरू नहीं हो पाया।","ai");}
+    }
+    function handlePhoto(event){const f=event.target.files[0];if(!f)return;const pb=document.getElementById("imagePreviewBox");const pv=document.getElementById("imagePreview");const rd=new FileReader();rd.onload=function(e){pv.src=e.target.result;pb.style.display="block";addChatMessage("📷 फोटो भेजा गया","user");setAIState("🧪 परीक्षण मोड");addChatMessage("अभी फोटो preview के रूप में दिख रही है। backend जुड़ने पर फोटो पढ़कर जवाब दिया जाएगा।","ai");};rd.readAsDataURL(f);}
+    function shareWhatsApp(){const t="आज मैंने एसीएस-एआई डिजिटल मास्टर कोर्स से "+LESSON_THEME+" सीखा। 🚀 एआई स्किल सीखेगा इंडिया! https://www.acs-aidigitalmaster.org/";window.location.href="https://wa.me/?text="+encodeURIComponent(t);}
+    function revealWhatsAppButton(){if(sessionStorage.getItem(SCROLL_KEY)==="shown"){waWrap.style.display="block";return;}const s=window.scrollY||document.documentElement.scrollTop;const d=document.documentElement.scrollHeight-window.innerHeight;const p=d>0?(s/d)*100:100;if(p>=90){waWrap.style.display="block";sessionStorage.setItem(SCROLL_KEY,"shown");window.removeEventListener("scroll",revealWhatsAppButton);}}
+    window.addEventListener("scroll",revealWhatsAppButton);
+    if("speechSynthesis" in window){window.speechSynthesis.onvoiceschanged=function(){speechSynthesis.getVoices();};}
+  </script>
+
+  <script src="ai.js"></script>
+</body>
+</html>
