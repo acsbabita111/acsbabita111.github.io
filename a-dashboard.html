@@ -1,1 +1,1339 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>एसीएस एआई डिजिटल मास्टर</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#f3f0ff;
+      --text:#1e1e1e;
+
+      --blue:#0044ff;
+      --blue-dark:#002ea8;
+
+      --purple:#8b00ff;
+      --purple-dark:#6500b8;
+
+      --green:#00c853;
+      --green-dark:#00963e;
+
+      --orange:#ff9100;
+      --orange-dark:#d97706;
+
+      --yellow:#ffe45c;
+      --sky:#79d2ff;
+      --pink:#ff68dc;
+
+      --shadow:0 8px 18px rgba(0,0,0,.12);
+      --soft-shadow:0 4px 10px rgba(0,0,0,.08);
+
+      --inactive-bg:#e9edf5;
+      --inactive-text:#7a8494;
+      --inactive-border:#d1d8e3;
+
+      --about-dark-1:#07111f;
+      --about-dark-2:#101b31;
+      --about-dark-3:#17284a;
+    }
+
+    *{
+      box-sizing:border-box;
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    html, body{
+      margin:0;
+      width:100%;
+      height:100%;
+      overflow:hidden;
+      font-family:"Hind","Noto Sans Devanagari",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+
+    body{
+      display:flex;
+      justify-content:center;
+    }
+
+    .मोबाइल-पृष्ठ{
+      width:100%;
+      max-width:430px;
+      height:100dvh;
+      padding:10px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      overflow:hidden;
+      background:var(--bg);
+    }
+
+    /* ===== HEADER ===== */
+    .मुख्य-हेडर{
+      position:relative;
+      background:linear-gradient(180deg,#ff9933 0%, #ffffff 50%, #138808 100%);
+      border-radius:26px;
+      padding:16px 10px 14px;
+      text-align:center;
+      box-shadow:var(--shadow);
+      flex:0 0 auto;
+      overflow:hidden;
+    }
+
+    .मुख्य-हेडर::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 15% 18%, rgba(255,255,255,.30), transparent 26%),
+        radial-gradient(circle at 85% 12%, rgba(255,255,255,.18), transparent 20%);
+      pointer-events:none;
+    }
+
+    .कोर्स-नाम{
+      position:relative;
+      z-index:1;
+      margin:0;
+      font-size:1.22rem;
+      line-height:1.18;
+      font-weight:700;
+      color:#111;
+    }
+
+    .कोर्स-उपशीर्षक{
+      position:relative;
+      z-index:1;
+      margin-top:4px;
+      font-size:.88rem;
+      font-weight:600;
+      color:#222;
+    }
+
+    /* ===== TOP ACTION AREA ===== */
+    .ऊपर-खंड{
+      display:grid;
+      grid-template-columns:1fr 92px 1fr;
+      gap:10px;
+      align-items:center;
+      flex:0 0 auto;
+    }
+
+    .दो-बटन-स्तंभ{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .ऊपर-बटन{
+      min-height:58px;
+      border:none;
+      border-radius:18px;
+      font-size:1rem;
+      font-weight:700;
+      font-family:inherit;
+      cursor:pointer;
+      box-shadow:var(--shadow);
+      transition:transform .12s ease, opacity .12s ease, box-shadow .12s ease;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:8px 10px;
+      line-height:1.2;
+      text-decoration:none;
+    }
+
+    .ऊपर-बटन:active,
+    .चयन-हेडर:active,
+    .चयन-बॉक्स:active,
+    .मुख्य-शुरू-बटन:active,
+    .नीचे-बटन:active,
+    .पॉपअप-बंद:active,
+    .भेजो-बटन:active,
+    .बोलो-बटन:active,
+    .फोटो-बटन:active{
+      transform:scale(.96);
+      opacity:.92;
+      box-shadow:0 4px 10px rgba(0,0,0,.10);
+    }
+
+    .होम-बटन{
+      background:linear-gradient(180deg,#dce8ff,#b8cfff);
+      color:#0d3da6;
+      border:2px solid #8fb1ff;
+    }
+
+    .कोर्स-बटन{
+      background:linear-gradient(180deg,#fff7e8,#ffe7bb);
+      color:#8a4c00;
+      border:2px solid #ffc96b;
+    }
+
+    .एआई-बटन{
+      background:linear-gradient(180deg,#ffb84d,#ff9100);
+      color:#fff;
+      border:2px solid #ff9f1c;
+    }
+
+    .सुनो-ऊपर-बटन{
+      background:linear-gradient(180deg,#4a68c7,#243c8d);
+      color:#fff;
+      border:2px solid #3354ba;
+    }
+
+    .मध्य-चित्र{
+      width:92px;
+      height:92px;
+      border-radius:50%;
+      overflow:hidden;
+      background:#fff;
+      padding:4px;
+      box-shadow:0 10px 20px rgba(0,0,0,.16);
+    }
+
+    .मध्य-चित्र img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:50%;
+      display:block;
+    }
+
+    /* ===== MAIN GATEWAY ===== */
+    .गेटवे-फ्रेम{
+      background:linear-gradient(180deg,#8dd9ff 0%, #73d0ff 100%);
+      border-radius:28px;
+      padding:12px;
+      box-shadow:var(--shadow);
+      flex:1 1 auto;
+      min-height:0;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      overflow:hidden;
+    }
+
+    /* Pink course selector strip */
+    .चयन-हेडर{
+      position:relative;
+      background:linear-gradient(180deg,#ff93ea,#ff62da);
+      color:#111;
+      text-align:center;
+      border:none;
+      border-radius:18px;
+      padding:12px 14px;
+      min-height:76px;
+      font-family:inherit;
+      cursor:pointer;
+      box-shadow:var(--soft-shadow);
+      flex:0 0 auto;
+      overflow:hidden;
+    }
+
+    .चयन-हेडर .ऊपर-पंक्ति{
+      display:block;
+      font-size:1.24rem;
+      font-weight:700;
+      line-height:1.1;
+    }
+
+    .चयन-हेडर .नीचे-पंक्ति{
+      display:block;
+      margin-top:6px;
+      font-size:1.02rem;
+      font-weight:700;
+      color:#17325c;
+      line-height:1.15;
+    }
+
+    /* Three selection boxes */
+    .तीन-बॉक्स-पंक्ति{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      flex:1 1 auto;
+      min-height:0;
+    }
+
+    .चयन-बॉक्स{
+      position:relative;
+      border:none;
+      border-radius:18px;
+      min-height:105px; /* HEIGHT REDUCED HERE */
+      box-shadow:var(--shadow);
+      padding:10px 6px 8px; /* PADDING REDUCED HERE */
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-start;
+      align-items:center;
+      text-align:center;
+      cursor:pointer;
+      overflow:hidden;
+      transition:transform .12s ease, opacity .12s ease, box-shadow .12s ease, background .3s ease;
+    }
+
+    /* GAME STATE COLORS */
+    
+    /* Active State - Yellow (Need to touch) */
+    .चयन-बॉक्स.active{
+      background:linear-gradient(180deg,#fff067,#ffe24c 58%, #e7be12 100%);
+      color:#1d1d1d;
+    }
+
+    /* Completed State - Green (Already selected) */
+    .चयन-बॉक्स.completed{
+      background:linear-gradient(180deg,#35d26f,#00a748);
+      color:#fff;
+    }
+    
+    .चयन-बॉक्स.completed .बॉक्स-लेबल,
+    .चयन-बॉक्स.completed .बॉक्स-मूल्य{
+      color:#fff;
+    }
+
+    /* Inactive State - Gray */
+    .चयन-बॉक्स.inactive{
+      background:linear-gradient(180deg,#eef2f7,#dfe6ef);
+      color:var(--inactive-text);
+      box-shadow:none;
+      border:2px solid var(--inactive-border);
+      cursor:not-allowed;
+      filter:grayscale(.08);
+    }
+
+    .चयन-बॉक्स .बॉक्स-लेबल{
+      font-size:1.02rem;
+      font-weight:700;
+      line-height:1.05;
+      color:#1d1d1d;
+    }
+
+    .चयन-बॉक्स.inactive .बॉक्स-लेबल{
+      color:var(--inactive-text);
+    }
+
+    .चयन-बॉक्स .बॉक्स-मूल्य{
+      margin-top:12px;
+      font-size:1rem;
+      font-weight:700;
+      line-height:1.18;
+      color:#15325c;
+      word-break:break-word;
+      padding:0 2px;
+    }
+
+    .चयन-बॉक्स.inactive .बॉक्स-मूल्य{
+      color:var(--inactive-text);
+    }
+
+    /* Invisible native selects */
+    .छिपा-सेलेक्ट{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      opacity:0;
+      cursor:pointer;
+      border:none;
+      z-index:10;
+    }
+
+    .छिपा-सेलेक्ट:disabled{
+      cursor:not-allowed;
+    }
+
+    /* Start button */
+    .मुख्य-शुरू-बटन{
+      border:none;
+      background:linear-gradient(180deg,#ffe96d 0%, #ffd83a 55%, #e9bc00 100%);
+      color:#1a1a1a;
+      border-radius:18px;
+      min-height:76px;
+      font-size:2rem;
+      font-weight:700;
+      font-family:inherit;
+      cursor:pointer;
+      box-shadow:
+        0 10px 18px rgba(0,0,0,.14),
+        inset 0 2px 0 rgba(255,255,255,.55),
+        inset 0 -3px 0 rgba(0,0,0,.12);
+      flex:0 0 auto;
+      transition:transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+    }
+
+    .मुख्य-शुरू-बटन:disabled{
+      background:linear-gradient(180deg,#ededed,#d9d9d9);
+      color:#777;
+      box-shadow:none;
+      cursor:not-allowed;
+    }
+
+    /* Bottom nav */
+    .नीचे-पंक्ति{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      flex:0 0 auto;
+    }
+
+    .नीचे-बटन{
+      min-height:58px;
+      border:none;
+      border-radius:14px;
+      color:#fff;
+      font-size:1.02rem;
+      font-weight:700;
+      font-family:inherit;
+      cursor:pointer;
+      box-shadow:var(--shadow);
+      transition:transform .12s ease, opacity .12s ease;
+    }
+
+    .पिछे{ background:linear-gradient(180deg,#2f61ff,#0037d6); }
+    .रिज्यूम{ background:linear-gradient(180deg,#4a68c7,#243c8d); }
+    .आगे{ background:linear-gradient(180deg,#35d26f,#00a748); }
+
+    .नीचे-बटन.disabled{
+      background:linear-gradient(180deg,#dfe5ee,#c6cfdb);
+      color:#7c8798;
+      box-shadow:none;
+      cursor:not-allowed;
+    }
+
+    /* ===== ABOUT FULL SCREEN ===== */
+    .पर्दा{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.55);
+      display:none;
+      z-index:200;
+    }
+
+    .पर्दा.दिखाओ{ display:block; }
+
+    .शीट{
+      position:fixed;
+      inset:0;
+      max-width:430px;
+      margin:0 auto;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(88,166,255,.18), transparent 24%),
+        radial-gradient(circle at 80% 14%, rgba(255,184,77,.14), transparent 24%),
+        linear-gradient(180deg,var(--about-dark-1) 0%, var(--about-dark-2) 52%, var(--about-dark-3) 100%);
+      z-index:210;
+      display:none;
+      flex-direction:column;
+      color:#fff;
+      overflow:hidden;
+    }
+
+    .शीट.दिखाओ{ display:flex; }
+
+    .शीट-शीर्ष{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:10px;
+      padding:18px 16px 10px;
+      flex:0 0 auto;
+    }
+
+    .शीट-ब्रांड{
+      max-width:80%;
+    }
+
+    .शीट-ब्रांड h2{
+      margin:0;
+      font-size:1.35rem;
+      line-height:1.12;
+      font-weight:700;
+    }
+
+    .शीट-ब्रांड p{
+      margin:5px 0 0;
+      font-size:.88rem;
+      color:#cdd9ea;
+      font-weight:600;
+      line-height:1.3;
+    }
+
+    .पॉपअप-बंद{
+      border:none;
+      background:rgba(255,255,255,.10);
+      color:#fff;
+      border-radius:12px;
+      padding:10px 12px;
+      font-size:1rem;
+      font-weight:700;
+      font-family:inherit;
+      cursor:pointer;
+      box-shadow:0 4px 10px rgba(0,0,0,.12);
+      backdrop-filter:blur(4px);
+    }
+
+    .शीट-अंदर{
+      flex:1 1 auto;
+      overflow:auto;
+      padding:8px 16px 18px;
+    }
+
+    .अंदर-कार्ड{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:24px;
+      box-shadow:0 10px 22px rgba(0,0,0,.18);
+      padding:16px 14px;
+      margin-bottom:14px;
+      backdrop-filter:blur(4px);
+    }
+
+    .अंदर-शीर्षक{
+      text-align:center;
+      font-size:1.32rem;
+      font-weight:700;
+      margin-bottom:12px;
+      line-height:1.22;
+    }
+
+    .अंदर-पाठ{
+      text-align:center;
+      font-size:1.08rem;
+      line-height:1.78;
+      color:#f3f7ff;
+      font-weight:600;
+    }
+
+    .अंदर-पाठ b{
+      color:#fff6c7;
+    }
+
+    .शीट-सुब्बू{
+      width:122px;
+      height:122px;
+      border-radius:50%;
+      overflow:hidden;
+      background:#fff;
+      padding:4px;
+      box-shadow:0 12px 24px rgba(0,0,0,.24);
+      margin:0 auto 12px;
+    }
+
+    .शीट-सुब्बू img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:50%;
+      display:block;
+    }
+
+    .शीट-स्लोगन{
+      text-align:center;
+      font-size:1.18rem;
+      line-height:1.35;
+      font-weight:700;
+      color:#ffb84d;
+      margin-top:2px;
+    }
+
+    .छात्रवृत्ति-कार्ड{
+      background:linear-gradient(180deg,rgba(255,184,77,.18),rgba(34,197,94,.16));
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:24px;
+      box-shadow:0 14px 30px rgba(0,0,0,.22);
+      padding:18px 14px;
+      margin-top:8px;
+      text-align:center;
+    }
+
+    .छात्रवृत्ति-शीर्षक{
+      font-size:1.3rem;
+      font-weight:700;
+      color:#fff;
+      line-height:1.2;
+      margin-bottom:10px;
+    }
+
+    .छात्रवृत्ति-मुख्य{
+      font-size:1.18rem;
+      font-weight:700;
+      color:#fff8d6;
+      line-height:1.55;
+    }
+
+    .छात्रवृत्ति-मुख्य span{
+      display:block;
+      font-size:1.55rem;
+      line-height:1.2;
+      color:#fff;
+      margin:8px 0 6px;
+    }
+
+    /* ===== AI HELP ===== */
+    .एआई-पर्दा{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.40);
+      display:none;
+      z-index:220;
+    }
+
+    .एआई-पर्दा.दिखाओ{ display:block; }
+
+    .एआई-शीट{
+      position:fixed;
+      left:0;
+      right:0;
+      bottom:-100%;
+      max-width:430px;
+      margin:0 auto;
+      height:72vh;
+      background:#fff;
+      border-top-left-radius:24px;
+      border-top-right-radius:24px;
+      box-shadow:0 -10px 26px rgba(0,0,0,.2);
+      z-index:230;
+      transition:bottom .25s ease;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .एआई-शीट.दिखाओ{ bottom:0; }
+
+    .एआई-ऊपर{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      padding:14px;
+      border-bottom:1px solid #e9eef7;
+      flex:0 0 auto;
+    }
+
+    .एआई-शीर्षक{
+      font-size:1.15rem;
+      font-weight:700;
+    }
+
+    .एआई-उप{
+      font-size:.83rem;
+      color:#666;
+      margin-top:2px;
+    }
+
+    .एआई-चैट{
+      flex:1 1 auto;
+      overflow:auto;
+      padding:12px;
+      background:#f8fbff;
+    }
+
+    .बुलबुला{
+      max-width:88%;
+      padding:10px 12px;
+      border-radius:16px;
+      margin-bottom:10px;
+      font-size:1rem;
+      line-height:1.5;
+      word-break:break-word;
+    }
+
+    .उपयोगकर्ता{
+      margin-left:auto;
+      background:#dff4ff;
+      color:#14365e;
+      border-bottom-right-radius:6px;
+    }
+
+    .सहायक{
+      margin-right:auto;
+      background:#fff;
+      color:#1f3051;
+      border:1px solid #e6edf8;
+      border-bottom-left-radius:6px;
+    }
+
+    .चित्र-पूर्वावलोकन{
+      background:#fff;
+      border:1px dashed #c9d6ec;
+      border-radius:16px;
+      padding:10px;
+      margin:0 12px 10px;
+      text-align:center;
+      display:none;
+    }
+
+    .चित्र-पूर्वावलोकन img{
+      max-width:100%;
+      max-height:160px;
+      border-radius:12px;
+    }
+
+    .एआई-इनपुट{
+      padding:10px 12px 14px;
+      border-top:1px solid #edf2f8;
+      background:#fff;
+      flex:0 0 auto;
+    }
+
+    .औज़ार{
+      display:flex;
+      gap:8px;
+      margin-bottom:8px;
+    }
+
+    .फोटो-बटन,
+    .बोलो-बटन,
+    .भेजो-बटन{
+      border:none;
+      border-radius:14px;
+      padding:12px;
+      font-weight:700;
+      cursor:pointer;
+      font-size:1rem;
+      font-family:inherit;
+    }
+
+    .फोटो-बटन{
+      background:#fff0e8;
+      color:#d95a16;
+    }
+
+    .बोलो-बटन{
+      background:#eef4ff;
+      color:#1f56d8;
+    }
+
+    .इनपुट-पंक्ति{
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+
+    .एआई-टेक्स्ट{
+      flex:1;
+      border:1px solid #dce6f6;
+      background:#f9fbff;
+      border-radius:16px;
+      padding:13px 14px;
+      font-size:1rem;
+      outline:none;
+      color:#1d2e4b;
+      font-family:inherit;
+    }
+
+    .भेजो-बटन{
+      background:#0f5fff;
+      color:#fff;
+      min-width:62px;
+    }
+
+    .छिपा{ display:none !important; }
+
+    @media (max-width:380px){
+      .ऊपर-खंड{ grid-template-columns:1fr 82px 1fr; }
+      .मध्य-चित्र{ width:82px; height:82px; }
+      .ऊपर-बटन{ min-height:54px; font-size:.92rem; }
+      .चयन-हेडर{ min-height:72px; }
+      .चयन-हेडर .ऊपर-पंक्ति{ font-size:1.12rem; }
+      .चयन-हेडर .नीचे-पंक्ति{ font-size:.95rem; }
+      .चयन-बॉक्स{ min-height:95px; } /* HEIGHT REDUCED HERE FOR SMALL SCREENS */
+      .मुख्य-शुरू-बटन{ font-size:1.72rem; min-height:70px; }
+      .नीचे-बटन{ font-size:.92rem; }
+      .अंदर-पाठ{ font-size:1rem; }
+      .छात्रवृत्ति-शीर्षक{ font-size:1.18rem; }
+      .छात्रवृत्ति-मुख्य span{ font-size:1.35rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="मोबाइल-पृष्ठ">
+
+  <header class="मुख्य-हेडर">
+    <h1 class="कोर्स-नाम">एसीएस एआई डिजिटल मास्टर</h1>
+    <div class="कोर्स-उपशीर्षक">पावर्ड बाय रामभरोस विद्यार्थी</div>
+  </header>
+
+  <section class="ऊपर-खंड">
+    <div class="दो-बटन-स्तंभ">
+      <a href="index.html" class="ऊपर-बटन होम-बटन">🏠 होम</a>
+      <button class="ऊपर-बटन कोर्स-बटन" onclick="खोलोकोर्स()">📘 कोर्स के बारे में</button>
+    </div>
+
+    <div class="मध्य-चित्र">
+      <img src="subbu.jpg" alt="Subbu">
+    </div>
+
+    <div class="दो-बटन-स्तंभ">
+      <button class="ऊपर-बटन एआई-बटन" onclick="खोलोएआई()">🤖 ए आई मदद</button>
+      <button class="ऊपर-बटन सुनो-ऊपर-बटन" id="सुनोबटन" onclick="टॉगलसुनो()">🔊 सुनो</button>
+    </div>
+  </section>
+
+  <section class="गेटवे-फ्रेम">
+
+    <div class="चयन-हेडर">
+      <span class="ऊपर-पंक्ति">अपना कोर्स चुनिए</span>
+      <span class="नीचे-पंक्ति" id="कोर्समूल्य">—</span>
+      <select class="छिपा-सेलेक्ट" id="कोर्ससेलेक्ट" onchange="कोर्सबदला()">
+        <option value="">अपना कोर्स चुनिए</option>
+        <option value="ai_digital_master">एआई डिजिटल मास्टर</option>
+      </select>
+    </div>
+
+    <div class="तीन-बॉक्स-पंक्ति">
+      <div class="चयन-बॉक्स inactive" id="लेवलबॉक्स">
+        <div class="बॉक्स-लेबल">लेवल</div>
+        <div class="बॉक्स-मूल्य" id="लेवलमूल्य">लेवल</div>
+        <select class="छिपा-सेलेक्ट" id="लेवलसेलेक्ट" onchange="लेवलबदला()" disabled>
+          <option value="">लेवल चुनिए</option>
+        </select>
+      </div>
+
+      <div class="चयन-बॉक्स inactive" id="चैप्टरबॉक्स">
+        <div class="बॉक्स-लेबल">चैप्टर</div>
+        <div class="बॉक्स-मूल्य" id="चैप्टरमूल्य">चैप्टर</div>
+        <select class="छिपा-सेलेक्ट" id="चैप्टरसेलेक्ट" onchange="चैप्टरबदला()" disabled>
+          <option value="">चैप्टर चुनिए</option>
+        </select>
+      </div>
+
+      <div class="चयन-बॉक्स inactive" id="लेसनबॉक्स">
+        <div class="बॉक्स-लेबल">लेसन</div>
+        <div class="बॉक्स-मूल्य" id="लेसनमूल्य">लेसन</div>
+        <select class="छिपा-सेलेक्ट" id="लेसनसेलेक्ट" onchange="लेसनबदला()" disabled>
+          <option value="">लेसन चुनिए</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="मुख्य-शुरू-बटन" id="मुख्यशुरूबटन" onclick="पाठखोलो()" disabled>
+      कोर्स शुरू करो
+    </button>
+
+    <div class="नीचे-पंक्ति">
+      <button class="नीचे-बटन पिछे" onclick="पिछलापाठ()">⬅ पीछे</button>
+      <button class="नीचे-बटन रिज्यूम disabled" id="रिज्यूमबटन" onclick="रिज्यूमपाठ()">⏯ रिज्यूम</button>
+      <button class="नीचे-बटन आगे" onclick="अगलापाठ()">आगे ➡</button>
+    </div>
+
+  </section>
+
+</div>
+
+<div class="पर्दा" id="कोर्सपर्दा" onclick="बंदकोर्स()"></div>
+
+<div class="शीट" id="कोर्सशीट">
+  <div class="शीट-शीर्ष">
+    <div class="शीट-ब्रांड">
+      <h2>एसीएस एआई डिजिटल मास्टर</h2>
+      <p>पावर्ड बाय रामभरोस विद्यार्थी</p>
+    </div>
+    <button class="पॉपअप-बंद" onclick="बंदकोर्स()">✕ बंद</button>
+  </div>
+
+  <div class="शीट-अंदर">
+    <div class="अंदर-कार्ड">
+      <div class="शीट-सुब्बू">
+        <img src="subbu.jpg" alt="Subbu">
+      </div>
+      <div class="अंदर-शीर्षक">नई दुनिया में प्रवेश</div>
+      <div class="अंदर-पाठ">
+        यह कोर्स सिर्फ मोबाइल फोन पर आधारित, मातृभाषा हिंदी में, सोशल मीडिया कंटेंट क्रिएशन की मास्टरी है。<br><br>
+        इसे पूरा करने के क्रम में आप अपने मोबाइल से ही शानदार, एडवेंचरस प्रोजेक्ट पूरा करके, कंटेंट निर्माण में मास्टरी
+        <b>“एसीएस-ए.आई. डिजिटल मास्टर एकलव्य”</b> का प्रमाण पत्र प्राप्त कर सकेंगे, और बनेंगे
+        <b>“सोशल मीडिया का सुल्तान”</b>।
+      </div>
+      <div class="शीट-स्लोगन">ए आई स्किल, सीखेगा इंडिया!</div>
+    </div>
+
+    <div class="छात्रवृत्ति-कार्ड">
+      <div class="छात्रवृत्ति-शीर्षक">प्रमाण पत्र और छात्रवृत्ति</div>
+      <div class="छात्रवृत्ति-मुख्य">
+        इस कोर्स को सफलता पूर्वक पूरा करने वाले प्रशिक्षु को
+        <b>“ए.सी.एस.-ए.आई. डिजिटल मास्टर एकलव्य”</b>
+        प्रमाण पत्र के साथ-साथ,
+        <b>“फ्रीडम फाइटर गंगाधर प्रसाद मेमोरियल ट्रस्ट”</b>
+        के तरफ से
+        <span>₹1000 प्रति माह × 12 महीने</span>
+        छात्रवृत्ति प्रदान किया जाएगा।
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="एआई-पर्दा" id="एआईपर्दा" onclick="बंदएआई()"></div>
+
+<div class="एआई-शीट" id="एआईशीट">
+  <div class="एआई-ऊपर">
+    <div>
+      <div class="एआई-शीर्षक">🤖 ए आई मदद</div>
+      <div class="एआई-उप">लिखकर, बोलकर या फोटो भेजकर पूछो</div>
+    </div>
+    <button class="पॉपअप-बंद" onclick="बंदएआई()">✕ बंद</button>
+  </div>
+
+  <div class="एआई-चैट" id="एआईचैट">
+    <div class="बुलबुला सहायक">नमस्ते! पहले अपना कोर्स चुनिए, फिर लेवल, चैप्टर और लेसन चुनिए।</div>
+  </div>
+
+  <div class="चित्र-पूर्वावलोकन" id="चित्रपूर्वावलोकन">
+    <img id="पूर्वावलोकनचित्र" alt="पूर्वावलोकन">
+  </div>
+
+  <div class="एआई-इनपुट">
+    <div class="औज़ार">
+      <label class="फोटो-बटन" for="फोटोइनपुट">📷 फोटो</label>
+      <button class="बोलो-बटन" onclick="बोलोक्लिक()">🎤 बोलो</button>
+    </div>
+
+    <div class="इनपुट-पंक्ति">
+      <input class="एआई-टेक्स्ट" id="एआईटेक्स्ट" type="text" placeholder="यहाँ लिखकर पूछो..." />
+      <button class="भेजो-बटन" onclick="एआईभेजो()">भेजो</button>
+    </div>
+
+    <input id="फोटोइनपुट" class="छिपा" type="file" accept="image/*" capture="environment" onchange="फोटोबदला(event)">
+  </div>
+</div>
+
+<script>
+  const पाठडाटा = {
+    courses: [
+      {
+        id: "ai_digital_master",
+        नाम: "एआई डिजिटल मास्टर",
+        levels: [
+          {
+            id: "level1",
+            नाम: "लेवल 1",
+            chapters: [
+              { no: 1, नाम: "मोबाइल मास्टरी", start: 1, end: 10 },
+              { no: 2, नाम: "साइबर मास्टरी", start: 11, end: 20 },
+              { no: 3, नाम: "डाटा मास्टरी", start: 21, end: 30 },
+              { no: 4, नाम: "कंटेंट मास्टरी", start: 31, end: 40 },
+              { no: 5, नाम: "एआई मास्टरी", start: 41, end: 50 }
+            ]
+          },
+          {
+            id: "level2",
+            नाम: "लेवल 2",
+            chapters: [
+              { no: 6, नाम: "ऑडियो मास्टरी", start: 51, end: 60 },
+              { no: 7, नाम: "फोटोग्राफिक मास्टरी", start: 61, end: 70 },
+              { no: 8, नाम: "विजुअल मास्टरी", start: 71, end: 80 },
+              { no: 9, नाम: "एआई असिस्टेड मास्टरी", start: 81, end: 90 },
+              { no: 10, नाम: "क्रिएटिव मास्टरी", start: 91, end: 100 }
+            ]
+          },
+          {
+            id: "level3",
+            नाम: "लेवल 3",
+            chapters: [
+              { no: 11, नाम: "हमारा विद्यालय", start: 101, end: 110 },
+              { no: 12, नाम: "हमारे गांव का बाजार", start: 111, end: 120 },
+              { no: 13, नाम: "हमारी धरोहर", start: 121, end: 130 },
+              { no: 14, नाम: "हमारी समस्या, हमारा समाधान", start: 131, end: 140 },
+              { no: 15, नाम: "मेरा मास्टर पोर्टफोलियो", start: 141, end: 150 }
+            ]
+          }
+        ]
+      }
+    ]
+  };
+
+  let चयनितकोर्स = "";
+  let चयनितलेवल = "";
+  let चयनितचैप्टर = null;
+  let चयनितलेसन = "";
+  let सुनोरहा = false;
+
+  const कोर्ससेलेक्ट = document.getElementById("कोर्ससेलेक्ट");
+  const लेवलसेलेक्ट = document.getElementById("लेवलसेलेक्ट");
+  const चैप्टरसेलेक्ट = document.getElementById("चैप्टरसेलेक्ट");
+  const लेसनसेलेक्ट = document.getElementById("लेसनसेलेक्ट");
+
+  const कोर्समूल्य = document.getElementById("कोर्समूल्य");
+  const लेवलमूल्य = document.getElementById("लेवलमूल्य");
+  const चैप्टरमूल्य = document.getElementById("चैप्टरमूल्य");
+  const लेसनमूल्य = document.getElementById("लेसनमूल्य");
+
+  const लेवलबॉक्स = document.getElementById("लेवलबॉक्स");
+  const चैप्टरबॉक्स = document.getElementById("चैप्टरबॉक्स");
+  const लेसनबॉक्स = document.getElementById("लेसनबॉक्स");
+
+  const मुख्यशुरूबटन = document.getElementById("मुख्यशुरूबटन");
+  const रिज्यूमबटन = document.getElementById("रिज्यूमबटन");
+  const सुनोबटन = document.getElementById("सुनोबटन");
+
+  function लेसनकोड(n){
+    return "L" + String(n).padStart(3, "0");
+  }
+
+  function कोर्सखोजो(id){
+    return पाठडाटा.courses.find(c => c.id === id);
+  }
+
+  function लेवलखोजो(courseId, levelId){
+    const course = कोर्सखोजो(courseId);
+    if(!course) return null;
+    return course.levels.find(l => l.id === levelId);
+  }
+
+  function चैप्टरखोजो(courseId, levelId, chapterNo){
+    const level = लेवलखोजो(courseId, levelId);
+    if(!level) return null;
+    return level.chapters.find(ch => ch.no === Number(chapterNo));
+  }
+
+  function बॉक्सस्थिति(){
+    // GAME LOGIC ADDED HERE: Inactive (Gray), Active (Yellow), Completed (Green)
+    लेवलबॉक्स.className = "चयन-बॉक्स inactive";
+    चैप्टरबॉक्स.className = "चयन-बॉक्स inactive";
+    लेसनबॉक्स.className = "चयन-बॉक्स inactive";
+
+    if(चयनितकोर्स){
+      if(!चयनितलेवल){
+        लेवलबॉक्स.className = "चयन-बॉक्स active"; // Yellow
+      } else {
+        लेवलबॉक्स.className = "चयन-बॉक्स completed"; // Green
+        
+        if(!चयनितचैप्टर){
+          चैप्टरबॉक्स.className = "चयन-बॉक्स active"; // Yellow
+        } else {
+          चैप्टरबॉक्स.className = "चयन-बॉक्स completed"; // Green
+          
+          if(!चयनितलेसन){
+            लेसनबॉक्स.className = "चयन-बॉक्स active"; // Yellow
+          } else {
+            लेसनबॉक्स.className = "चयन-बॉक्स completed"; // Green
+          }
+        }
+      }
+    }
+
+    मुख्यशुरूबटन.disabled = !चयनितलेसन;
+  }
+
+  function रिज्यूमस्थिति(){
+    const last = localStorage.getItem("acs_last_lesson");
+    if(last){
+      रिज्यूमबटन.classList.remove("disabled");
+    } else {
+      रिज्यूमबटन.classList.add("disabled");
+    }
+  }
+
+  function लेवलविकल्पभरना(){
+    लेवलसेलेक्ट.innerHTML = '<option value="">लेवल चुनिए</option>';
+    const course = कोर्सखोजो(चयनितकोर्स);
+    if(!course) return;
+
+    course.levels.forEach(level => {
+      const opt = document.createElement("option");
+      opt.value = level.id;
+      opt.textContent = level.नाम;
+      लेवलसेलेक्ट.appendChild(opt);
+    });
+  }
+
+  function चैप्टरविकल्पभरना(){
+    चैप्टरसेलेक्ट.innerHTML = '<option value="">चैप्टर चुनिए</option>';
+    const level = लेवलखोजो(चयनितकोर्स, चयनितलेवल);
+    if(!level) return;
+
+    level.chapters.forEach(ch => {
+      const opt = document.createElement("option");
+      opt.value = ch.no;
+      opt.textContent = `चैप्टर ${ch.no}`;
+      चैप्टरसेलेक्ट.appendChild(opt);
+    });
+  }
+
+  function लेसनविकल्पभरना(){
+    लेसनसेलेक्ट.innerHTML = '<option value="">लेसन चुनिए</option>';
+    if(!चयनितचैप्टर) return;
+
+    for(let i = चयनितचैप्टर.start; i <= चयनितचैप्टर.end; i++){
+      const code = लेसनकोड(i);
+      const opt = document.createElement("option");
+      opt.value = code;
+      opt.textContent = code;
+      लेसनसेलेक्ट.appendChild(opt);
+    }
+  }
+
+  function कोर्सबदला(){
+    चयनितकोर्स = कोर्ससेलेक्ट.value;
+    चयनितलेवल = "";
+    चयनितचैप्टर = null;
+    चयनितलेसन = "";
+
+    if(चयनितकोर्स){
+      कोर्समूल्य.textContent = "एआई डिजिटल मास्टर";
+    } else {
+      कोर्समूल्य.textContent = "—";
+    }
+
+    लेवलमूल्य.textContent = "लेवल";
+    चैप्टरमूल्य.textContent = "चैप्टर";
+    लेसनमूल्य.textContent = "लेसन";
+
+    लेवलसेलेक्ट.disabled = !चयनितकोर्स;
+    चैप्टरसेलेक्ट.disabled = true;
+    लेसनसेलेक्ट.disabled = true;
+
+    चैप्टरसेलेक्ट.innerHTML = '<option value="">चैप्टर चुनिए</option>';
+    लेसनसेलेक्ट.innerHTML = '<option value="">लेसन चुनिए</option>';
+
+    if(चयनितकोर्स){
+      लेवलविकल्पभरना();
+    } else {
+      लेवलसेलेक्ट.innerHTML = '<option value="">लेवल चुनिए</option>';
+    }
+
+    बॉक्सस्थिति();
+  }
+
+  function लेवलबदला(){
+    चयनितलेवल = लेवलसेलेक्ट.value;
+    चयनितचैप्टर = null;
+    चयनितलेसन = "";
+
+    if(चयनितलेवल){
+      const level = लेवलखोजो(चयनितकोर्स, चयनितलेवल);
+      लेवलमूल्य.textContent = level.नाम;
+      चैप्टरसेलेक्ट.disabled = false;
+      चैप्टरविकल्पभरना();
+    } else {
+      लेवलमूल्य.textContent = "लेवल";
+      चैप्टरसेलेक्ट.disabled = true;
+      चैप्टरसेलेक्ट.innerHTML = '<option value="">चैप्टर चुनिए</option>';
+    }
+
+    चैप्टरमूल्य.textContent = "चैप्टर";
+    लेसनमूल्य.textContent = "लेसन";
+    लेसनसेलेक्ट.disabled = true;
+    लेसनसेलेक्ट.innerHTML = '<option value="">लेसन चुनिए</option>';
+
+    बॉक्सस्थिति();
+  }
+
+  function चैप्टरबदला(){
+    const no = चैप्टरसेलेक्ट.value;
+    चयनितचैप्टर = null;
+    चयनितलेसन = "";
+
+    if(no){
+      चयनितचैप्टर = चैप्टरखोजो(चयनितकोर्स, चयनितलेवल, no);
+      चैप्टरमूल्य.textContent = `चैप्टर ${चयनितचैप्टर.no}`;
+      लेसनसेलेक्ट.disabled = false;
+      लेसनविकल्पभरना();
+    } else {
+      चैप्टरमूल्य.textContent = "चैप्टर";
+      लेसनसेलेक्ट.disabled = true;
+      लेसनसेलेक्ट.innerHTML = '<option value="">लेसन चुनिए</option>';
+    }
+
+    लेसनमूल्य.textContent = "लेसन";
+    बॉक्सस्थिति();
+  }
+
+  function लेसनबदला(){
+    चयनितलेसन = लेसनसेलेक्ट.value;
+
+    if(चयनितलेसन){
+      लेसनमूल्य.textContent = चयनितलेसन;
+    } else {
+      लेसनमूल्य.textContent = "लेसन";
+    }
+
+    बॉक्सस्थिति();
+  }
+
+  function पाठखोलो(){
+    if(!चयनितलेसन) return;
+    localStorage.setItem("acs_last_lesson", चयनितलेसन);
+    window.location.href = `${चयनितलेसन}.html`;
+  }
+
+  function पिछलापाठ(){
+    let आधार = चयनितलेसन || localStorage.getItem("acs_last_lesson") || "L001";
+    const n = parseInt(आधार.replace("L",""), 10);
+    const prev = n > 1 ? लेसनकोड(n - 1) : "L001";
+    localStorage.setItem("acs_last_lesson", prev);
+    window.location.href = `${prev}.html`;
+  }
+
+  function अगलापाठ(){
+    let आधार = चयनितलेसन || localStorage.getItem("acs_last_lesson") || "L001";
+    const n = parseInt(आधार.replace("L",""), 10);
+    const next = n < 150 ? लेसनकोड(n + 1) : "L150";
+    localStorage.setItem("acs_last_lesson", next);
+    window.location.href = `${next}.html`;
+  }
+
+  function रिज्यूमपाठ(){
+    const last = localStorage.getItem("acs_last_lesson");
+    if(!last) return;
+    window.location.href = `${last}.html`;
+  }
+
+  function खोलोकोर्स(){
+    document.getElementById("कोर्सपर्दा").classList.add("दिखाओ");
+    document.getElementById("कोर्सशीट").classList.add("दिखाओ");
+  }
+
+  function बंदकोर्स(){
+    document.getElementById("कोर्सपर्दा").classList.remove("दिखाओ");
+    document.getElementById("कोर्सशीट").classList.remove("दिखाओ");
+  }
+
+  function टॉगलसुनो(){
+    if(!("speechSynthesis" in window)) return;
+
+    if(सुनोरहा){
+      speechSynthesis.cancel();
+      सुनोरहा = false;
+      सुनोबटन.textContent = "🔊 सुनो";
+      return;
+    }
+
+    const text = `
+      एसीएस एआई डिजिटल मास्टर।
+      पहले अपना कोर्स चुनिए।
+      फिर लेवल चुनिए।
+      फिर चैप्टर चुनिए।
+      फिर लेसन चुनिए।
+      उसके बाद कोर्स शुरू करो।
+      नीचे पीछे, रिज्यूम और आगे बटन दिए गए हैं।
+    `;
+
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "hi-IN";
+    u.rate = 0.9;
+
+    u.onstart = () => {
+      सुनोरहा = true;
+      सुनोबटन.textContent = "⏹ रोकें";
+    };
+
+    u.onend = () => {
+      सुनोरहा = false;
+      सुनोबटन.textContent = "🔊 सुनो";
+    };
+
+    u.onerror = () => {
+      सुनोरहा = false;
+      सुनोबटन.textContent = "🔊 सुनो";
+    };
+
+    speechSynthesis.speak(u);
+  }
+
+  function खोलोएआई(){
+    document.getElementById("एआईपर्दा").classList.add("दिखाओ");
+    document.getElementById("एआईशीट").classList.add("दिखाओ");
+  }
+
+  function बंदएआई(){
+    document.getElementById("एआईपर्दा").classList.remove("दिखाओ");
+    document.getElementById("एआईशीट").classList.remove("दिखाओ");
+  }
+
+  function बुलबुलाजोड़ो(text, type="सहायक"){
+    const area = document.getElementById("एआईचैट");
+    const div = document.createElement("div");
+    div.className = "बुलबुला " + (type === "उपयोगकर्ता" ? "उपयोगकर्ता" : "सहायक");
+    div.textContent = text;
+    area.appendChild(div);
+    area.scrollTop = area.scrollHeight;
+  }
+
+  function एआईभेजो(){
+    const input = document.getElementById("एआईटेक्स्ट");
+    const text = input.value.trim();
+    if(!text) return;
+
+    बुलबुलाजोड़ो(text, "उपयोगकर्ता");
+    input.value = "";
+
+    if(typeof askAI === "function"){
+      try{
+        askAI(text);
+        return;
+      } catch(e){}
+    }
+
+    let reply = "पहले अपना कोर्स चुनिए, फिर लेवल, चैप्टर और लेसन चुनिए।";
+    if(चयनितलेसन){
+      reply = `आपने ${चयनितलेसन} चुना है। इसी लेसन के बारे बारे में सवाल पूछिए।`;
+    }
+
+    बुलबुलाजोड़ो(reply, "सहायक");
+  }
+
+  function बोलोक्लिक(){
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if(!SR){
+      बुलबुलाजोड़ो("इस मोबाइल में आवाज़ से लिखने की सुविधा नहीं मिली।", "सहायक");
+      return;
+    }
+
+    try{
+      const recognition = new SR();
+      recognition.lang = "hi-IN";
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      recognition.onresult = function(event){
+        document.getElementById("एआईटेक्स्ट").value = event.results[0][0].transcript;
+      };
+
+      recognition.onerror = function(){
+        बुलबुलाजोड़ो("आवाज़ समझने में समस्या आई।", "सहायक");
+      };
+
+      recognition.start();
+    }catch(e){
+      बुलबुलाजोड़ो("बोलो सुविधा अभी शुरू नहीं हो पाई।", "सहायक");
+    }
+  }
+
+  function फोटोबदला(event){
+    const file = event.target.files[0];
+    if(!file) return;
+
+    const previewBox = document.getElementById("चित्रपूर्वावलोकन");
+    const preview = document.getElementById("पूर्वावलोकनचित्र");
+
+    const reader = new FileReader();
+    reader.onload = function(e){
+      preview.src = e.target.result;
+      previewBox.style.display = "block";
+      बुलबुलाजोड़ो("📷 फोटो भेजा गया", "उपयोगकर्ता");
+      बुलबुलाजोड़ो("फोटो मिल गया। अभी पूर्वावलोकन दिख रहा है।", "सहायक");
+    };
+    reader.readAsDataURL(file);
+  }
+
+  document.getElementById("एआईटेक्स्ट").addEventListener("keydown", function(e){
+    if(e.key === "Enter"){
+      e.preventDefault();
+      एआईभेजो();
+    }
+  });
+
+  रिज्यूमस्थिति();
+  बॉक्सस्थिति();
+</script>
+
+<script src="ai.js"></script>
+</body>
+</html>
