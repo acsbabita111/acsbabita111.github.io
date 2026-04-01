@@ -1,1 +1,156 @@
 
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ACS Selection</title>
+
+<style>
+body{
+  margin:0;
+  font-family: sans-serif;
+  background:#f2f2f2;
+}
+
+/* Top bar */
+.top{
+  display:flex;
+  justify-content:space-around;
+  padding:10px;
+}
+
+.top button{
+  background:#3b6fcf;
+  color:#fff;
+  border:none;
+  padding:10px 15px;
+  border-radius:10px;
+  font-weight:bold;
+}
+
+/* Title */
+.title{
+  background:#7a3aa5;
+  color:#fff;
+  text-align:center;
+  padding:12px;
+  margin:10px;
+  border-radius:10px;
+  font-weight:bold;
+}
+
+/* Tabs */
+.tabs{
+  display:flex;
+  justify-content:space-around;
+  margin:10px;
+}
+
+.tabs button{
+  background:#0fa84a;
+  color:#fff;
+  border:none;
+  padding:10px 20px;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+/* Content */
+.content{
+  background:#d9e2ea;
+  height:300px;
+  margin:10px;
+  border-radius:15px;
+  padding:10px;
+}
+
+/* Selected */
+.selected{
+  background:#5c8fc2;
+  color:#fff;
+  text-align:center;
+  padding:12px;
+  margin:10px;
+  border-radius:10px;
+  font-weight:bold;
+}
+
+/* Bottom */
+.bottom{
+  display:flex;
+  justify-content:space-around;
+  margin:10px;
+}
+
+.bottom button{
+  background:#0fa84a;
+  color:#fff;
+  border:none;
+  padding:10px 15px;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+.start{
+  padding:10px 30px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Top -->
+<div class="top">
+  <button>🏠 होम</button>
+  <button>👤 लोगो</button>
+  <button>🔊 सुनो</button>
+  <button>🤖 पूछो</button>
+</div>
+
+<!-- Title -->
+<div class="title">पाठ का चयन करो</div>
+
+<!-- Tabs -->
+<div class="tabs">
+  <button onclick="showLevel()">लेवल</button>
+  <button onclick="showChapter()">चैप्टर</button>
+  <button onclick="showLesson()">लेसन</button>
+</div>
+
+<!-- Content -->
+<div class="content" id="content">
+  यहाँ पर कंटेंट दिखेगा
+</div>
+
+<!-- Selected -->
+<div class="selected" id="selected">
+  चुना हुआ पाठ
+</div>
+
+<!-- Bottom -->
+<div class="bottom">
+  <button>⬅️ पीछे</button>
+  <button class="start">👉 पाठ शुरू करें</button>
+  <button>➡️ आगे</button>
+</div>
+
+<script>
+function showLevel(){
+  document.getElementById("content").innerHTML =
+  "लेवल 1<br>लेवल 2<br>लेवल 3";
+}
+
+function showChapter(){
+  document.getElementById("content").innerHTML =
+  "चैप्टर 1<br>चैप्टर 2<br>चैप्टर 3";
+}
+
+function showLesson(){
+  document.getElementById("content").innerHTML =
+  "L001<br>L002<br>L003";
+}
+</script>
+
+</body>
+</html>
