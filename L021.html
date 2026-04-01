@@ -1,1 +1,165 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L021 - Digital Identity & 2FA</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
+  <header>
+    <div class="top-header">
+      <div class="brand-wrap">
+        <div class="brand-main">ACS-AI DIGITAL MASTER™</div>
+        <div class="brand-sub">Level 1 • Chapter 03 • Lesson L021</div>
+      </div>
+      <div class="meta">Digital Identity & 2FA</div>
+    </div>
+  </header>
+
+  <!-- Lesson Content -->
+  <main class="page">
+    <section class="hero">
+      <div class="lesson-badge">LESSON L021</div>
+      <h1>Digital Identity & 2FA (डिजिटल आईडेंटिटी और टू-एफए)</h1>
+      <div class="hero-sub">डिजिटल पहचान की सुरक्षा और दोहरी चाबी</div>
+    </section>
+
+    <!-- Lesson Points -->
+    <section class="card">
+      <div class="chip chip-blue">1. प्रस्तावना</div>
+      <p>क्या आपने कभी सुना है कि किसी का Facebook या Gmail अकाउंट हैक हो गया और उनकी सारी जानकारी चोरी हो गई? सिर्फ पासवर्ड से अकाउंट पूरी तरह सुरक्षित नहीं होता — जैसे एक ताले वाला दरवाज़ा कम सुरक्षित होता है। दो ताले हों तो चोर आसानी से नहीं घुस सकता।</p>
+      <p>👉 आज हम सीखेंगे कि अपनी डिजिटल पहचान क्या होती है और 2FA की मदद से अपने अकाउंट को दोहरी सुरक्षा कैसे दें।</p>
+    </section>
+
+    <section class="card">
+      <div class="chip chip-red">🔴 2. पाठ से जुड़े जरूरी Technical Words</div>
+      <h2>Digital Identity, 2FA, Hacker, Approval, Recovery</h2>
+      <p>Digital Identity (डिजिटल आइडेंटिटी) इंटरनेट पर आपकी पहचान — जैसे Gmail, Facebook और मोबाइल नंबर</p>
+      <p>2FA / Two-Factor Authentication (टू-एफए) — अकाउंट खोलने के लिए पासवर्ड के बाद दूसरी मंज़ूरी लेना</p>
+      <p>Hacker (हैकर) वह व्यक्ति जो गलत तरीके से किसी का अकाउंट चुराने की कोशिश करता है</p>
+      <p>Approval (अप्रूवल) — फोन पर आई सूचना देखकर Yes दबाकर अनुमति देना</p>
+      <p>Recovery (रिकवरी) — अकाउंट का पासवर्ड भूल जाने पर उसे दोबारा पाने का तरीका</p>
+    </section>
+
+    <!-- Concept Section -->
+    <section class="card">
+      <div class="chip chip-blue">3. Concept</div>
+      <h2>Concept (कांसेप्ट)</h2>
+      <p>हमारा Gmail, WhatsApp या Facebook अकाउंट हमारी डिजिटल पहचान है। अगर सिर्फ पासवर्ड से अकाउंट खुलता है तो हैकर पासवर्ड चुराकर आसानी से घुस सकता है। लेकिन 2FA चालू होने पर पासवर्ड सही होने के बाद भी फोन पर दूसरी मंज़ूरी लेनी पड़ती है — बिना इसके अकाउंट नहीं खुलता। यह दूसरा ताला है जो हैकर के लिए बहुत मुश्किल होता है।</p>
+      <p>👉 2FA हमारे अकाउंट का दूसरा ताला है — इसे हमेशा चालू रखना चाहिए।</p>
+    </section>
+
+    <!-- Knowledge Points -->
+    <section class="card">
+      <div class="chip chip-green">4. Knowledge Points</div>
+      <h3>Easy</h3>
+      <ul>
+        <li>Gmail, Facebook और मोबाइल नंबर हमारी Digital Identity हैं।</li>
+        <li>कमज़ोर पासवर्ड सुरक्षित नहीं होते — 2FA चालू करने से सुरक्षा जुड़ जाती है।</li>
+        <li>2FA चालू होने पर OTP आता है, जो बिना मंज़ूरी के अकाउंट नहीं खुलेगा।</li>
+      </ul>
+      <h3>Core</h3>
+      <ul>
+        <li>2FA चालू करने के लिए Security सेटिंग में 2-Step Verification चालू करना होता है।</li>
+        <li>पासवर्ड चोरी हो जाए तो भी 2FA से अकाउंट सुरक्षित रहता है।</li>
+      </ul>
+      <h3>Advanced</h3>
+      <ul>
+        <li>2FA सबसे मजबूत सुरक्षा तरीका है — इसे हर अकाउंट पर चालू रखें।</li>
+        <li>Recovery फोन नंबर सही रखें — वरना अकाउंट वापस नहीं मिलेगा।</li>
+      </ul>
+    </section>
+
+    <!-- Activity Section -->
+    <section class="card">
+      <div class="chip chip-yellow">5. Activity</div>
+      <p>नीचे के चित्र को ध्यान से देखिए और अपने मोबाइल के साथ यह गतिविधि करिए:</p>
+      <pre>🚀 START
+📱 Google ऐप खोलो
+👤 Profile पर क्लिक करो
+⚙️ Google Account पर जाओ
+🔒 Security टैब खोलो
+✅ 2-Step Verification ढूंढो</pre>
+      <p>👉 अगर 2-Step Verification चालू न कर पाएं, Recovery Phone Number चेक करें।</p>
+    </section>
+
+    <!-- DIEM Section -->
+    <section class="card">
+      <div class="chip chip-blue">6. DIEM</div>
+      <h2>DIEM (डीआईईएम)</h2>
+      <ul>
+        <li>Gmail या Facebook अकाउंट में 2FA कैसे चालू होगा?</li>
+        <li>Google अकाउंट में 2-Step Verification कैसे चालू करें?</li>
+        <li>अपने अकाउंट को सुरक्षित रखने के लिए कौन सा कदम उठाऊँगा?</li>
+      </ul>
+    </section>
+
+    <!-- Behavior Change -->
+    <section class="card">
+      <div class="chip chip-green">7. Behavior Change</div>
+      <p>👉 नियम: मैं अपने जरूरी अकाउंट पर 2FA हमेशा चालू रखूँगा।</p>
+      <p>👉 इस लाइन को कॉपी पर रंगीन स्केच पेन से लिखकर अपने अभिभावक को दिखाओ।</p>
+    </section>
+
+    <!-- Safety Section -->
+    <section class="card">
+      <div class="chip chip-red">8. Safety</div>
+      <ul>
+        <li>कमज़ोर पासवर्ड जैसे 1234 या अपना नाम कभी नहीं रखना चाहिए।</li>
+        <li>2FA का Approval Code या OTP किसी अनजान व्यक्ति को नहीं देना चाहिए।</li>
+        <li>Recovery Phone Number हमेशा सही और अपडेट रखें।</li>
+      </ul>
+    </section>
+
+    <!-- Reflection Section -->
+    <section class="card">
+      <div class="chip chip-blue">9. Reflection</div>
+      <p>क्या मेरा अकाउंट अभी सिर्फ एक कमज़ोर ताले यानी पासवर्ड से सुरक्षित है?</p>
+      <p>👉 मैं आज से अपने जरूरी अकाउंट पर 2FA चालू करके दूसरा ताला लगाऊँगा।</p>
+    </section>
+
+    <!-- Final Review -->
+    <section class="card">
+      <div class="chip chip-yellow">🔟 बोलकर बताओ</div>
+      <ul>
+        <li>Digital Identity क्या होती है और इसके उदाहरण क्या हैं?</li>
+        <li>2FA क्या है और यह अकाउंट को कैसे सुरक्षित रखता है?</li>
+        <li>Hacker क्या करता है और 2FA उसे कैसे रोकता है?</li>
+        <li>Approval का मतलब क्या है और यह कब आता है?</li>
+        <li>Recovery Phone Number क्यों जरूरी है?</li>
+      </ul>
+    </section>
+
+    <!-- Next Lesson Preview -->
+    <section class="card">
+      <div class="chip chip-blue">🎬 अगले पाठ में</div>
+      <p>पासवर्ड मैनेजर क्या है और कई पासवर्ड को एक जगह सुरक्षित कैसे रखें!</p>
+    </section>
+
+    <!-- Shorts / Reels Ideas -->
+    <section class="card">
+      <div class="chip chip-blue">🎥 Shorts / Reels Ideas</div>
+      <ul>
+        <li>2FA क्या है — दो ताले की सुरक्षा आसान भाषा में</li>
+        <li>डिजिटल पहचान क्या होती है — Gmail और Facebook का उदाहरण</li>
+        <li>हैकर से कैसे बचें — 2FA का जादू</li>
+        <li>Approval क्या है — Yes दबाना क्यों जरूरी है</li>
+        <li>Recovery Number क्यों सही रखें — असली कहानी</li>
+      </ul>
+    </section>
+
+    <!-- Navigation Section -->
+    <nav class="bottom-nav">
+      <div class="bottom-nav-inner">
+        <a href="L020.html" class="nav-btn nav-pair-blue">⬅ पिछला</a>
+        <a href="index.html" class="nav-btn nav-pair-dark">🏠 मुख्य पृष्ठ</a>
+        <a href="L022.html" class="nav-btn nav-pair-green">अगला ➡</a>
+      </div>
+    </nav>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
