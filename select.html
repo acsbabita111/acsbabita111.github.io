@@ -1,1 +1,132 @@
 
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson Selection</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background:#f5f7fb;
+    text-align:center;
+}
+
+.page{
+    max-width:430px;
+    margin:auto;
+    padding:10px;
+}
+
+/* HEADER */
+.header{
+    background:#fff;
+    padding:14px;
+    border-radius:18px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+    margin-bottom:10px;
+}
+
+.header h1{
+    font-size:20px;
+    font-weight:900;
+    color:#111;
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+/* CARD */
+.card{
+    background:#fff;
+    padding:18px 5px;
+    border-radius:16px;
+    font-weight:900;
+    font-size:16px;
+    color:#111;
+    text-decoration:none;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    transition:0.2s;
+}
+
+.card:hover{
+    transform:translateY(-3px);
+}
+
+.card:active{
+    transform:scale(0.95);
+}
+
+/* COLORS */
+.card:nth-child(odd){
+    background:#e0f2fe;
+}
+
+.card:nth-child(even){
+    background:#dcfce7;
+}
+
+/* BACK BUTTON */
+.back{
+    display:block;
+    margin-top:12px;
+    padding:14px;
+    border-radius:20px;
+    text-decoration:none;
+    background:#111827;
+    color:#fff;
+    font-weight:900;
+}
+
+</style>
+</head>
+<body>
+
+<div class="page">
+
+    <div class="header">
+        <h1>📘 Lesson Select करें</h1>
+    </div>
+
+    <div class="grid">
+
+        <a href="L001.html" class="card">L01</a>
+        <a href="L002.html" class="card">L02</a>
+        <a href="L003.html" class="card">L03</a>
+        <a href="L004.html" class="card">L04</a>
+        <a href="L005.html" class="card">L05</a>
+        <a href="L006.html" class="card">L06</a>
+        <a href="L007.html" class="card">L07</a>
+        <a href="L008.html" class="card">L08</a>
+        <a href="L009.html" class="card">L09</a>
+        <a href="L010.html" class="card">L10</a>
+        <a href="L011.html" class="card">L11</a>
+        <a href="L012.html" class="card">L12</a>
+        <a href="L013.html" class="card">L13</a>
+        <a href="L014.html" class="card">L14</a>
+        <a href="L015.html" class="card">L15</a>
+        <a href="L016.html" class="card">L16</a>
+        <a href="L017.html" class="card">L17</a>
+        <a href="L018.html" class="card">L18</a>
+        <a href="L019.html" class="card">L19</a>
+        <a href="L020.html" class="card">L20</a>
+
+    </div>
+
+    <a href="index.html" class="back">⬅ वापस जाएँ</a>
+
+</div>
+
+</body>
+</html>
