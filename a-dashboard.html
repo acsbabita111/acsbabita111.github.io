@@ -13,7 +13,6 @@
     :root{
       --bg:#f3f0ff;
       --text:#1e1e1e;
-      --card:#ffffff;
 
       --blue:#0044ff;
       --blue-dark:#002ea8;
@@ -28,22 +27,19 @@
       --orange-dark:#d97706;
 
       --yellow:#ffe45c;
-      --sky:#8fd8ff;
-      --pink:#ff7be5;
+      --sky:#79d2ff;
+      --pink:#ff68dc;
 
       --shadow:0 8px 18px rgba(0,0,0,.12);
       --soft-shadow:0 4px 10px rgba(0,0,0,.08);
 
-      --inactive-bg:#e8ecf5;
-      --inactive-text:#7c8798;
-      --inactive-border:#cfd8e3;
+      --inactive-bg:#e9edf5;
+      --inactive-text:#7a8494;
+      --inactive-border:#d1d8e3;
 
       --about-dark-1:#07111f;
       --about-dark-2:#101b31;
       --about-dark-3:#17284a;
-      --about-glow:#58a6ff;
-      --about-gold:#ffb84d;
-      --about-green:#22c55e;
     }
 
     *{
@@ -78,7 +74,7 @@
       background:var(--bg);
     }
 
-    /* ===== हेडर ===== */
+    /* ===== HEADER ===== */
     .मुख्य-हेडर{
       position:relative;
       background:linear-gradient(180deg,#ff9933 0%, #ffffff 50%, #138808 100%);
@@ -96,8 +92,7 @@
       inset:0;
       background:
         radial-gradient(circle at 15% 18%, rgba(255,255,255,.30), transparent 26%),
-        radial-gradient(circle at 85% 12%, rgba(255,255,255,.18), transparent 20%),
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));
+        radial-gradient(circle at 85% 12%, rgba(255,255,255,.18), transparent 20%);
       pointer-events:none;
     }
 
@@ -109,7 +104,6 @@
       line-height:1.18;
       font-weight:700;
       color:#111;
-      text-shadow:0 1px 0 rgba(255,255,255,.18);
     }
 
     .कोर्स-उपशीर्षक{
@@ -121,7 +115,7 @@
       color:#222;
     }
 
-    /* ===== ऊपर का स्वागत खंड ===== */
+    /* ===== TOP ACTION AREA ===== */
     .ऊपर-खंड{
       display:grid;
       grid-template-columns:1fr 92px 1fr;
@@ -156,8 +150,8 @@
     }
 
     .ऊपर-बटन:active,
-    .गेट-बटन:active,
-    .स्तर-बॉक्स:active,
+    .चयन-हेडर:active,
+    .चयन-बॉक्स:active,
     .मुख्य-शुरू-बटन:active,
     .नीचे-बटन:active,
     .पॉपअप-बंद:active,
@@ -211,9 +205,9 @@
       display:block;
     }
 
-    /* ===== मुख्य गेटवे ===== */
+    /* ===== MAIN GATEWAY ===== */
     .गेटवे-फ्रेम{
-      background:linear-gradient(180deg,#9ce2ff 0%, #7fd6ff 100%);
+      background:linear-gradient(180deg,#8dd9ff 0%, #73d0ff 100%);
       border-radius:28px;
       padding:12px;
       box-shadow:var(--shadow);
@@ -221,207 +215,127 @@
       min-height:0;
       display:flex;
       flex-direction:column;
-      gap:10px;
+      gap:12px;
       overflow:hidden;
     }
 
-    .गेट-शीर्षक{
-      background:linear-gradient(180deg,#ff9be9,#ff74df);
+    /* Pink course selector strip */
+    .चयन-हेडर{
+      position:relative;
+      background:linear-gradient(180deg,#ff93ea,#ff62da);
       color:#111;
       text-align:center;
-      border-radius:18px;
-      padding:10px 12px;
-      font-size:1.28rem;
-      font-weight:700;
-      flex:0 0 auto;
-      box-shadow:var(--soft-shadow);
-    }
-
-    .गेट-बटन{
       border:none;
-      background:linear-gradient(180deg,#fff67f,#ffe55d 56%, #f0c812 100%);
-      color:#111;
       border-radius:18px;
-      min-height:70px;
-      padding:10px 12px;
-      text-align:center;
+      padding:12px 14px;
+      min-height:76px;
       font-family:inherit;
       cursor:pointer;
-      box-shadow:
-        0 10px 18px rgba(0,0,0,.12),
-        inset 0 2px 0 rgba(255,255,255,.58),
-        inset 0 -2px 0 rgba(0,0,0,.10);
-      transition:transform .12s ease, opacity .12s ease, box-shadow .12s ease;
+      box-shadow:var(--soft-shadow);
       flex:0 0 auto;
+      overflow:hidden;
     }
 
-    .गेट-बटन .बटन-ऊपरी{
+    .चयन-हेडर .ऊपर-पंक्ति{
       display:block;
-      font-size:1.08rem;
+      font-size:1.24rem;
       font-weight:700;
       line-height:1.1;
     }
 
-    .गेट-बटन .बटन-निचला{
+    .चयन-हेडर .नीचे-पंक्ति{
       display:block;
-      margin-top:5px;
-      font-size:1rem;
+      margin-top:6px;
+      font-size:1.02rem;
       font-weight:700;
-      line-height:1.15;
       color:#17325c;
+      line-height:1.15;
     }
 
-    .स्तर-पंक्ति{
+    /* Three selection boxes */
+    .तीन-बॉक्स-पंक्ति{
       display:grid;
       grid-template-columns:repeat(3,1fr);
       gap:10px;
-      flex:0 0 auto;
+      flex:1 1 auto;
+      min-height:0;
     }
 
-    .स्तर-बॉक्स{
+    .चयन-बॉक्स{
+      position:relative;
+      background:linear-gradient(180deg,#fff067,#ffe24c 58%, #e7be12 100%);
       border:none;
       border-radius:18px;
-      min-height:72px;
-      padding:8px 6px;
-      text-align:center;
-      font-family:inherit;
-      cursor:pointer;
+      min-height:140px;
       box-shadow:var(--shadow);
-      transition:transform .12s ease, opacity .12s ease, box-shadow .12s ease, filter .12s ease;
+      padding:12px 8px 10px;
       display:flex;
       flex-direction:column;
+      justify-content:flex-start;
       align-items:center;
-      justify-content:center;
-      gap:4px;
-      color:#fff;
+      text-align:center;
+      cursor:pointer;
+      overflow:hidden;
+      transition:transform .12s ease, opacity .12s ease, box-shadow .12s ease;
     }
 
-    .स्तर-बॉक्स.active.level{ background:linear-gradient(180deg,#3a7cff,#0044ff); }
-    .स्तर-बॉक्स.active.chapter{ background:linear-gradient(180deg,#b043ff,#8b00ff); }
-    .स्तर-बॉक्स.active.lesson{ background:linear-gradient(180deg,#29d96f,#00c853); }
-
-    .स्तर-बॉक्स.inactive{
-      background:linear-gradient(180deg,#edf1f6,#dbe3ee);
-      color:#6f7b8c;
-      border:2px solid var(--inactive-border);
+    .चयन-बॉक्स.inactive{
+      background:linear-gradient(180deg,#eef2f7,#dfe6ef);
+      color:var(--inactive-text);
       box-shadow:none;
+      border:2px solid var(--inactive-border);
       cursor:not-allowed;
-      filter:grayscale(.12);
+      filter:grayscale(.08);
     }
 
-    .स्तर-नाम{
+    .चयन-बॉक्स .बॉक्स-लेबल{
+      font-size:1.02rem;
+      font-weight:700;
+      line-height:1.05;
+      color:#1d1d1d;
+    }
+
+    .चयन-बॉक्स.inactive .बॉक्स-लेबल{
+      color:var(--inactive-text);
+    }
+
+    .चयन-बॉक्स .बॉक्स-मूल्य{
+      margin-top:12px;
       font-size:1rem;
       font-weight:700;
-      line-height:1.1;
-    }
-
-    .स्तर-मूल्य{
-      font-size:.98rem;
-      font-weight:700;
-      line-height:1.12;
+      line-height:1.18;
+      color:#15325c;
       word-break:break-word;
       padding:0 2px;
     }
 
-    .खुली-सूची{
-      flex:1 1 auto;
-      min-height:128px;
-      background:rgba(255,255,255,.40);
-      border:1px solid rgba(255,255,255,.65);
-      border-radius:22px;
-      padding:10px;
-      display:flex;
-      flex-direction:column;
-      overflow:hidden;
+    .चयन-बॉक्स.inactive .बॉक्स-मूल्य{
+      color:var(--inactive-text);
     }
 
-    .सूची-शीर्षक{
-      text-align:center;
-      font-size:1rem;
-      font-weight:700;
-      color:#13355b;
-      flex:0 0 auto;
-      padding-bottom:6px;
-      border-bottom:1px solid rgba(19,53,91,.12);
-    }
-
-    .सूची-उप{
-      text-align:center;
-      font-size:.86rem;
-      color:#47637c;
-      margin-top:3px;
-      font-weight:600;
-      flex:0 0 auto;
-    }
-
-    .सूची-अंदर{
-      flex:1 1 auto;
-      min-height:0;
-      overflow:auto;
-      padding-top:10px;
-      display:grid;
-      gap:8px;
-      align-content:start;
-    }
-
-    .grid-1{ grid-template-columns:1fr; }
-    .grid-2{ grid-template-columns:repeat(2,1fr); }
-    .grid-3{ grid-template-columns:repeat(3,1fr); }
-
-    .विकल्प-बटन{
-      border:none;
-      border-radius:14px;
-      min-height:50px;
-      padding:10px 8px;
-      font-family:inherit;
-      font-size:.97rem;
-      font-weight:700;
+    /* Invisible native selects */
+    .छिपा-सेलेक्ट{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      opacity:0;
       cursor:pointer;
-      text-align:center;
-      line-height:1.18;
-      box-shadow:var(--soft-shadow);
-      transition:transform .12s ease, opacity .12s ease, box-shadow .12s ease;
+      border:none;
     }
 
-    .विकल्प-बटन:active{
-      transform:scale(.97);
-      opacity:.92;
+    .छिपा-सेलेक्ट:disabled{
+      cursor:not-allowed;
     }
 
-    .विकल्प-बटन.course{
-      background:#fff7d0;
-      color:#6b5400;
-    }
-
-    .विकल्प-बटन.level{
-      background:#deebff;
-      color:#1151c7;
-    }
-
-    .विकल्प-बटन.chapter{
-      background:#ece2ff;
-      color:#5a2fb3;
-    }
-
-    .विकल्प-बटन.lesson{
-      background:#dff7e3;
-      color:#1f7f36;
-    }
-
-    .विकल्प-बटन.selected{
-      background:linear-gradient(90deg,#ff9800,#ffb74d);
-      color:#fff;
-      outline:2px solid rgba(255,255,255,.88);
-      box-shadow:0 8px 14px rgba(255,152,0,.25);
-    }
-
+    /* Start button */
     .मुख्य-शुरू-बटन{
       border:none;
       background:linear-gradient(180deg,#ffe96d 0%, #ffd83a 55%, #e9bc00 100%);
       color:#1a1a1a;
       border-radius:18px;
-      min-height:70px;
-      font-size:1.65rem;
+      min-height:76px;
+      font-size:2rem;
       font-weight:700;
       font-family:inherit;
       cursor:pointer;
@@ -440,7 +354,8 @@
       cursor:not-allowed;
     }
 
-    .स्थिति-पंक्ति{
+    /* Bottom nav */
+    .नीचे-पंक्ति{
       display:grid;
       grid-template-columns:repeat(3,1fr);
       gap:10px;
@@ -448,11 +363,11 @@
     }
 
     .नीचे-बटन{
-      min-height:56px;
+      min-height:58px;
       border:none;
       border-radius:14px;
       color:#fff;
-      font-size:1rem;
+      font-size:1.02rem;
       font-weight:700;
       font-family:inherit;
       cursor:pointer;
@@ -471,7 +386,7 @@
       cursor:not-allowed;
     }
 
-    /* ===== कोर्स के बारे में full screen ===== */
+    /* ===== ABOUT FULL SCREEN ===== */
     .पर्दा{
       position:fixed;
       inset:0;
@@ -614,22 +529,9 @@
       padding:18px 14px;
       margin-top:8px;
       text-align:center;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .छात्रवृत्ति-कार्ड::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 18% 14%, rgba(255,255,255,.12), transparent 20%),
-        radial-gradient(circle at 82% 16%, rgba(255,255,255,.10), transparent 18%);
-      pointer-events:none;
     }
 
     .छात्रवृत्ति-शीर्षक{
-      position:relative;
       font-size:1.3rem;
       font-weight:700;
       color:#fff;
@@ -638,7 +540,6 @@
     }
 
     .छात्रवृत्ति-मुख्य{
-      position:relative;
       font-size:1.18rem;
       font-weight:700;
       color:#fff8d6;
@@ -653,7 +554,7 @@
       margin:8px 0 6px;
     }
 
-    /* ===== एआई मदद ===== */
+    /* ===== AI HELP ===== */
     .एआई-पर्दा{
       position:fixed;
       inset:0;
@@ -818,13 +719,12 @@
       .ऊपर-खंड{ grid-template-columns:1fr 82px 1fr; }
       .मध्य-चित्र{ width:82px; height:82px; }
       .ऊपर-बटन{ min-height:54px; font-size:.92rem; }
-      .गेट-शीर्षक{ font-size:1.18rem; }
-      .मुख्य-शुरू-बटन{ font-size:1.42rem; min-height:64px; }
-      .स्तर-पंक्ति{ gap:8px; }
-      .स्तर-बॉक्स{ min-height:68px; }
-      .स्थिति-पंक्ति{ gap:8px; }
+      .चयन-हेडर{ min-height:72px; }
+      .चयन-हेडर .ऊपर-पंक्ति{ font-size:1.12rem; }
+      .चयन-हेडर .नीचे-पंक्ति{ font-size:.95rem; }
+      .चयन-बॉक्स{ min-height:126px; }
+      .मुख्य-शुरू-बटन{ font-size:1.72rem; min-height:70px; }
       .नीचे-बटन{ font-size:.92rem; }
-      .grid-3{ grid-template-columns:repeat(2,1fr); }
       .अंदर-पाठ{ font-size:1rem; }
       .छात्रवृत्ति-शीर्षक{ font-size:1.18rem; }
       .छात्रवृत्ति-मुख्य span{ font-size:1.35rem; }
@@ -857,45 +757,54 @@
   </section>
 
   <section class="गेटवे-फ्रेम">
-    <div class="गेट-शीर्षक">अपना कोर्स चुनिए</div>
 
-    <button class="गेट-बटन" id="कोर्सचयनबटन" onclick="सूचिखोलो('course')">
-      <span class="बटन-ऊपरी">अपना कोर्स चुनिए</span>
-      <span class="बटन-निचला" id="कोर्समूल्य">—</span>
-    </button>
-
-    <div class="स्तर-पंक्ति">
-      <button class="स्तर-बॉक्स inactive level" id="लेवलबॉक्स" onclick="सूचिखोलो('level')">
-        <div class="स्तर-नाम">लेवल</div>
-        <div class="स्तर-मूल्य" id="लेवलमूल्य">लेवल</div>
-      </button>
-
-      <button class="स्तर-बॉक्स inactive chapter" id="चैप्टरबॉक्स" onclick="सूचिखोलो('chapter')">
-        <div class="स्तर-नाम">चैप्टर</div>
-        <div class="स्तर-मूल्य" id="चैप्टरमूल्य">चैप्टर</div>
-      </button>
-
-      <button class="स्तर-बॉक्स inactive lesson" id="लेसनबॉक्स" onclick="सूचिखोलो('lesson')">
-        <div class="स्तर-नाम">लेसन</div>
-        <div class="स्तर-मूल्य" id="लेसनमूल्य">लेसन</div>
-      </button>
+    <!-- Pink strip = course selector -->
+    <div class="चयन-हेडर">
+      <span class="ऊपर-पंक्ति">अपना कोर्स चुनिए</span>
+      <span class="नीचे-पंक्ति" id="कोर्समूल्य">—</span>
+      <select class="छिपा-सेलेक्ट" id="कोर्ससेलेक्ट" onchange="कोर्सबदला()">
+        <option value="">अपना कोर्स चुनिए</option>
+        <option value="ai_digital_master">एआई डिजिटल मास्टर</option>
+      </select>
     </div>
 
-    <div class="खुली-सूची">
-      <div class="सूची-शीर्षक" id="सूचीशीर्षक">अपना कोर्स चुनिए</div>
-      <div class="सूची-उप" id="सूचीउप">नीचे दिए गए विकल्प में से चुनिए</div>
-      <div class="सूची-अंदर grid-1" id="सूचीअंदर"></div>
+    <!-- Level / Chapter / Lesson -->
+    <div class="तीन-बॉक्स-पंक्ति">
+      <div class="चयन-बॉक्स inactive" id="लेवलबॉक्स">
+        <div class="बॉक्स-लेबल">लेवल</div>
+        <div class="बॉक्स-मूल्य" id="लेवलमूल्य">लेवल</div>
+        <select class="छिपा-सेलेक्ट" id="लेवलसेलेक्ट" onchange="लेवलबदला()" disabled>
+          <option value="">लेवल चुनिए</option>
+        </select>
+      </div>
+
+      <div class="चयन-बॉक्स inactive" id="चैप्टरबॉक्स">
+        <div class="बॉक्स-लेबल">चैप्टर</div>
+        <div class="बॉक्स-मूल्य" id="चैप्टरमूल्य">चैप्टर</div>
+        <select class="छिपा-सेलेक्ट" id="चैप्टरसेलेक्ट" onchange="चैप्टरबदला()" disabled>
+          <option value="">चैप्टर चुनिए</option>
+        </select>
+      </div>
+
+      <div class="चयन-बॉक्स inactive" id="लेसनबॉक्स">
+        <div class="बॉक्स-लेबल">लेसन</div>
+        <div class="बॉक्स-मूल्य" id="लेसनमूल्य">लेसन</div>
+        <select class="छिपा-सेलेक्ट" id="लेसनसेलेक्ट" onchange="लेसनबदला()" disabled>
+          <option value="">लेसन चुनिए</option>
+        </select>
+      </div>
     </div>
 
     <button class="मुख्य-शुरू-बटन" id="मुख्यशुरूबटन" onclick="पाठखोलो()" disabled>
       कोर्स शुरू करो
     </button>
 
-    <div class="स्थिति-पंक्ति">
+    <div class="नीचे-पंक्ति">
       <button class="नीचे-बटन पिछे" onclick="पिछलापाठ()">⬅ पिछे</button>
       <button class="नीचे-बटन रिज्यूम disabled" id="रिज्यूमबटन" onclick="रिज्यूमपाठ()">⏯ रिज्यूम</button>
       <button class="नीचे-बटन आगे" onclick="अगलापाठ()">आगे ➡</button>
     </div>
+
   </section>
 
 </div>
@@ -1026,8 +935,12 @@
   let चयनितलेवल = "";
   let चयनितचैप्टर = null;
   let चयनितलेसन = "";
-  let खुलीसूची = "course";
   let सुनोरहा = false;
+
+  const कोर्ससेलेक्ट = document.getElementById("कोर्ससेलेक्ट");
+  const लेवलसेलेक्ट = document.getElementById("लेवलसेलेक्ट");
+  const चैप्टरसेलेक्ट = document.getElementById("चैप्टरसेलेक्ट");
+  const लेसनसेलेक्ट = document.getElementById("लेसनसेलेक्ट");
 
   const कोर्समूल्य = document.getElementById("कोर्समूल्य");
   const लेवलमूल्य = document.getElementById("लेवलमूल्य");
@@ -1037,10 +950,6 @@
   const लेवलबॉक्स = document.getElementById("लेवलबॉक्स");
   const चैप्टरबॉक्स = document.getElementById("चैप्टरबॉक्स");
   const लेसनबॉक्स = document.getElementById("लेसनबॉक्स");
-
-  const सूचीशीर्षक = document.getElementById("सूचीशीर्षक");
-  const सूचीउप = document.getElementById("सूचीउप");
-  const सूचीअंदर = document.getElementById("सूचीअंदर");
 
   const मुख्यशुरूबटन = document.getElementById("मुख्यशुरूबटन");
   const रिज्यूमबटन = document.getElementById("रिज्यूमबटन");
@@ -1067,16 +976,26 @@
   }
 
   function बॉक्सस्थिति(){
-    // course हमेशा active
-    लेवलबॉक्स.className = चयनितकोर्स ? "स्तर-बॉक्स active level" : "स्तर-बॉक्स inactive level";
-    चैप्टरबॉक्स.className = चयनितलेवल ? "स्तर-बॉक्स active chapter" : "स्तर-बॉक्स inactive chapter";
-    लेसनबॉक्स.className = चयनितचैप्टर ? "स्तर-बॉक्स active lesson" : "स्तर-बॉक्स inactive lesson";
-
-    if(चयनितलेसन){
-      मुख्यशुरूबटन.disabled = false;
+    // course is always available
+    if(चयनितकोर्स){
+      लेवलबॉक्स.classList.remove("inactive");
     } else {
-      मुख्यशुरूबटन.disabled = true;
+      लेवलबॉक्स.classList.add("inactive");
     }
+
+    if(चयनितलेवल){
+      चैप्टरबॉक्स.classList.remove("inactive");
+    } else {
+      चैप्टरबॉक्स.classList.add("inactive");
+    }
+
+    if(चयनितचैप्टर){
+      लेसनबॉक्स.classList.remove("inactive");
+    } else {
+      लेसनबॉक्स.classList.add("inactive");
+    }
+
+    मुख्यशुरूबटन.disabled = !चयनितलेसन;
   }
 
   function रिज्यूमस्थिति(){
@@ -1088,128 +1007,131 @@
     }
   }
 
-  function सूचिखोलो(type){
-    if(type === "level" && !चयनितकोर्स) return;
-    if(type === "chapter" && !चयनितलेवल) return;
-    if(type === "lesson" && !चयनितचैप्टर) return;
+  function लेवलविकल्पभरना(){
+    लेवलसेलेक्ट.innerHTML = '<option value="">लेवल चुनिए</option>';
+    const course = कोर्सखोजो(चयनितकोर्स);
+    if(!course) return;
 
-    खुलीसूची = type;
-    renderसूची();
+    course.levels.forEach(level => {
+      const opt = document.createElement("option");
+      opt.value = level.id;
+      opt.textContent = level.नाम;
+      लेवलसेलेक्ट.appendChild(opt);
+    });
   }
 
-  function renderसूची(){
-    if(खुलीसूची === "course"){
-      सूचीशीर्षक.textContent = "अपना कोर्स चुनिए";
-      सूचीउप.textContent = "अभी उपलब्ध कोर्स नीचे दिया गया है";
-      सूचीअंदर.className = "सूची-अंदर grid-1";
-      सूचीअंदर.innerHTML = पाठडाटा.courses.map(course => `
-        <button class="विकल्प-बटन course ${चयनितकोर्स === course.id ? 'selected' : ''}" onclick="कोर्सचुना('${course.id}')">
-          ${course.नाम}
-        </button>
-      `).join("");
-      return;
-    }
+  function चैप्टरविकल्पभरना(){
+    चैप्टरसेलेक्ट.innerHTML = '<option value="">चैप्टर चुनिए</option>';
+    const level = लेवलखोजो(चयनितकोर्स, चयनितलेवल);
+    if(!level) return;
 
-    if(खुलीसूची === "level"){
-      const course = कोर्सखोजो(चयनितकोर्स);
-      सूचीशीर्षक.textContent = "लेवल चुनिए";
-      सूचीउप.textContent = "अपने चुने हुए कोर्स का लेवल चुनिए";
-      सूचीअंदर.className = "सूची-अंदर grid-1";
-      सूचीअंदर.innerHTML = course.levels.map(level => `
-        <button class="विकल्प-बटन level ${चयनितलेवल === level.id ? 'selected' : ''}" onclick="लेवलचुना('${level.id}')">
-          ${level.नाम}
-        </button>
-      `).join("");
-      return;
-    }
+    level.chapters.forEach(ch => {
+      const opt = document.createElement("option");
+      opt.value = ch.no;
+      opt.textContent = `चैप्टर ${ch.no}`;
+      चैप्टरसेलेक्ट.appendChild(opt);
+    });
+  }
 
-    if(खुलीसूची === "chapter"){
-      const level = लेवलखोजो(चयनितकोर्स, चयनितलेवल);
-      सूचीशीर्षक.textContent = "चैप्टर चुनिए";
-      सूचीउप.textContent = "चुने हुए लेवल के चैप्टर नीचे दिए गए हैं";
-      सूचीअंदर.className = "सूची-अंदर grid-1";
-      सूचीअंदर.innerHTML = level.chapters.map(ch => `
-        <button class="विकल्प-बटन chapter ${चयनितचैप्टर && चयनितचैप्टर.no === ch.no ? 'selected' : ''}" onclick="चैप्टरचुना(${ch.no})">
-          चैप्टर ${ch.no}
-        </button>
-      `).join("");
-      return;
-    }
+  function लेसनविकल्पभरना(){
+    लेसनसेलेक्ट.innerHTML = '<option value="">लेसन चुनिए</option>';
+    if(!चयनितचैप्टर) return;
 
-    if(खुलीसूची === "lesson"){
-      सूचीशीर्षक.textContent = "लेसन चुनिए";
-      सूचीउप.textContent = "चुने हुए चैप्टर के लेसन नीचे दिए गए हैं";
-      सूचीअंदर.className = "सूची-अंदर grid-3";
-
-      let html = "";
-      for(let i = चयनितचैप्टर.start; i <= चयनितचैप्टर.end; i++){
-        const code = लेसनकोड(i);
-        html += `
-          <button class="विकल्प-बटन lesson ${चयनितलेसन === code ? 'selected' : ''}" onclick="लेसनचुना('${code}')">
-            ${code}
-          </button>
-        `;
-      }
-      सूचीअंदर.innerHTML = html;
+    for(let i = चयनितचैप्टर.start; i <= चयनितचैप्टर.end; i++){
+      const code = लेसनकोड(i);
+      const opt = document.createElement("option");
+      opt.value = code;
+      opt.textContent = code;
+      लेसनसेलेक्ट.appendChild(opt);
     }
   }
 
-  function कोर्सचुना(id){
-    चयनितकोर्स = id;
+  function कोर्सबदला(){
+    चयनितकोर्स = कोर्ससेलेक्ट.value;
     चयनितलेवल = "";
     चयनितचैप्टर = null;
     चयनितलेसन = "";
 
-    const course = कोर्सखोजो(id);
-    कोर्समूल्य.textContent = course.नाम;
+    if(चयनितकोर्स){
+      कोर्समूल्य.textContent = "एआई डिजिटल मास्टर";
+    } else {
+      कोर्समूल्य.textContent = "—";
+    }
+
     लेवलमूल्य.textContent = "लेवल";
     चैप्टरमूल्य.textContent = "चैप्टर";
     लेसनमूल्य.textContent = "लेसन";
 
-    मुख्यशुरूबटन.disabled = true;
-    बॉक्सस्थिति();
+    लेवलसेलेक्ट.disabled = !चयनितकोर्स;
+    चैप्टरसेलेक्ट.disabled = true;
+    लेसनसेलेक्ट.disabled = true;
 
-    खुलीसूची = "level";
-    renderसूची();
+    चैप्टरसेलेक्ट.innerHTML = '<option value="">चैप्टर चुनिए</option>';
+    लेसनसेलेक्ट.innerHTML = '<option value="">लेसन चुनिए</option>';
+
+    if(चयनितकोर्स){
+      लेवलविकल्पभरना();
+    } else {
+      लेवलसेलेक्ट.innerHTML = '<option value="">लेवल चुनिए</option>';
+    }
+
+    बॉक्सस्थिति();
   }
 
-  function लेवलचुना(id){
-    चयनितलेवल = id;
+  function लेवलबदला(){
+    चयनितलेवल = लेवलसेलेक्ट.value;
     चयनितचैप्टर = null;
     चयनितलेसन = "";
 
-    const level = लेवलखोजो(चयनितकोर्स, id);
-    लेवलमूल्य.textContent = level.नाम;
+    if(चयनितलेवल){
+      const level = लेवलखोजो(चयनितकोर्स, चयनितलेवल);
+      लेवलमूल्य.textContent = level.नाम;
+      चैप्टरसेलेक्ट.disabled = false;
+      चैप्टरविकल्पभरना();
+    } else {
+      लेवलमूल्य.textContent = "लेवल";
+      चैप्टरसेलेक्ट.disabled = true;
+      चैप्टरसेलेक्ट.innerHTML = '<option value="">चैप्टर चुनिए</option>';
+    }
+
     चैप्टरमूल्य.textContent = "चैप्टर";
     लेसनमूल्य.textContent = "लेसन";
+    लेसनसेलेक्ट.disabled = true;
+    लेसनसेलेक्ट.innerHTML = '<option value="">लेसन चुनिए</option>';
 
-    मुख्यशुरूबटन.disabled = true;
     बॉक्सस्थिति();
-
-    खुलीसूची = "chapter";
-    renderसूची();
   }
 
-  function चैप्टरचुना(no){
-    चयनितचैप्टर = चैप्टरखोजो(चयनितकोर्स, चयनितलेवल, no);
+  function चैप्टरबदला(){
+    const no = चैप्टरसेलेक्ट.value;
+    चयनितचैप्टर = null;
     चयनितलेसन = "";
 
-    चैप्टरमूल्य.textContent = `चैप्टर ${चयनितचैप्टर.no}`;
+    if(no){
+      चयनितचैप्टर = चैप्टरखोजो(चयनितकोर्स, चयनितलेवल, no);
+      चैप्टरमूल्य.textContent = `चैप्टर ${चयनितचैप्टर.no}`;
+      लेसनसेलेक्ट.disabled = false;
+      लेसनविकल्पभरना();
+    } else {
+      चैप्टरमूल्य.textContent = "चैप्टर";
+      लेसनसेलेक्ट.disabled = true;
+      लेसनसेलेक्ट.innerHTML = '<option value="">लेसन चुनिए</option>';
+    }
+
     लेसनमूल्य.textContent = "लेसन";
-
-    मुख्यशुरूबटन.disabled = true;
     बॉक्सस्थिति();
-
-    खुलीसूची = "lesson";
-    renderसूची();
   }
 
-  function लेसनचुना(code){
-    चयनितलेसन = code;
-    लेसनमूल्य.textContent = code;
+  function लेसनबदला(){
+    चयनितलेसन = लेसनसेलेक्ट.value;
+
+    if(चयनितलेसन){
+      लेसनमूल्य.textContent = चयनितलेसन;
+    } else {
+      लेसनमूल्य.textContent = "लेसन";
+    }
 
     बॉक्सस्थिति();
-    renderसूची();
   }
 
   function पाठखोलो(){
@@ -1251,9 +1173,7 @@
   }
 
   function टॉगलसुनो(){
-    if(!("speechSynthesis" in window)){
-      return;
-    }
+    if(!("speechSynthesis" in window)) return;
 
     if(सुनोरहा){
       speechSynthesis.cancel();
@@ -1264,7 +1184,7 @@
 
     const text = `
       एसीएस एआई डिजिटल मास्टर।
-      अपना कोर्स चुनिए।
+      पहले अपना कोर्स चुनिए।
       फिर लेवल चुनिए।
       फिर चैप्टर चुनिए।
       फिर लेसन चुनिए।
@@ -1390,7 +1310,6 @@
 
   रिज्यूमस्थिति();
   बॉक्सस्थिति();
-  renderसूची();
 </script>
 
 <script src="ai.js"></script>
