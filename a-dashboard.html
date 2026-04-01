@@ -1,207 +1,1280 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ACS AI DIGITAL MASTER</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ACS AI DIGITAL MASTER</title>
 
-<style>
-body{
-  margin:0;
-  font-family:sans-serif;
-  background:#f4f7ff;
-}
+  <style>
+    :root{
+      --bg:#f4f7ff;
+      --card:#ffffff;
+      --text:#18263d;
+      --muted:#60708a;
+      --shadow:0 10px 26px rgba(15,34,64,.10);
+      --radius:22px;
 
-.wrap{
-  max-width:430px;
-  margin:auto;
-  padding:12px;
-}
+      --tab-about:#ff8a00;
+      --tab-l1:#165dff;
+      --tab-l2:#7a2cff;
+      --tab-l3:#09a753;
 
-/* TOP BAR */
-.topbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:#fff;
-  padding:10px;
-  border-radius:16px;
-  box-shadow:0 4px 12px rgba(0,0,0,.08);
-}
+      --box-about:#eef5ff;
+      --box-level:#f3ecff;
+      --box-selected:#effcf4;
+      --box-cert:#eefbf7;
 
-.topbar img{
-  width:40px;
-  border-radius:50%;
-}
+      --rain-1:#ef5350;
+      --rain-2:#ffa726;
+      --rain-3:#ffd54f;
+      --rain-4:#4caf50;
+      --rain-5:#1e88e5;
+      --rain-6:#7e57c2;
 
-.home-btn{
-  text-decoration:none;
-  font-weight:bold;
-  background:#eef3ff;
-  padding:8px 12px;
-  border-radius:20px;
-}
+      --l1-main:#165dff;
+      --l1-soft:#eaf1ff;
 
-/* MAIN TITLE */
-.main-title{
-  text-align:center;
-  font-size:20px;
-  font-weight:900;
-  margin:12px 0;
-}
+      --l2-main:#7a2cff;
+      --l2-soft:#f3eaff;
 
-/* COURSE BLOCK */
-.course-box{
-  background:#fff;
-  border-radius:18px;
-  padding:14px;
-  box-shadow:0 5px 15px rgba(0,0,0,.08);
-}
+      --l3-main:#09a753;
+      --l3-soft:#eafaf1;
 
-.level{
-  margin-bottom:12px;
-}
+      --btn-green:#0db14b;
+      --btn-green-dark:#09913d;
+      --disabled:#cfd8dc;
 
-.level button{
-  width:100%;
-  border:none;
-  padding:14px;
-  border-radius:14px;
-  font-size:18px;
-  font-weight:bold;
-  color:#fff;
-}
+      --status-bg:#fff3d6;
+      --status-text:#a85b00;
 
-.l1{background:#165dff;}
-.l2{background:#7a2cff;}
-.l3{background:#09a753;}
+      --line:#d9e3f4;
+    }
 
-.chapter{
-  margin-top:8px;
-}
+    *{
+      box-sizing:border-box;
+      -webkit-tap-highlight-color:transparent;
+    }
 
-.chapter button{
-  width:100%;
-  border:none;
-  padding:10px;
-  margin-top:6px;
-  border-radius:10px;
-  font-weight:bold;
-  background:#eef2ff;
-}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#edf3ff 0%, #f9fbff 100%);
+      color:var(--text);
+      font-family:"Noto Sans Devanagari","Hind","Mukta",Arial,sans-serif;
+      padding-bottom:120px;
+    }
 
-.lesson-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:6px;
-  margin-top:6px;
-}
+    .wrap{
+      max-width:430px;
+      margin:0 auto;
+      padding:12px;
+    }
 
-.lesson{
-  background:#eaf1ff;
-  border:none;
-  padding:10px;
-  border-radius:10px;
-  font-weight:bold;
-}
+    /* ===== NEW TRICOLOR HEADER FROM LESSON TEMPLATE ===== */
+    .top-header{
+      position:relative;
+      text-align:center;
+      padding:14px 12px 16px;
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 10px 22px rgba(15,23,42,0.14);
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,153,51,0.96) 0%,
+          rgba(255,173,72,0.92) 22%,
+          rgba(255,255,255,0.98) 48%,
+          rgba(238,248,238,0.98) 60%,
+          rgba(19,136,8,0.94) 100%
+        );
+      margin-bottom:12px;
+    }
 
-/* ABOUT */
-.about{
-  margin-top:12px;
-  background:#fff;
-  padding:12px;
-  border-radius:16px;
-  box-shadow:0 4px 12px rgba(0,0,0,.08);
-}
+    .top-header::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 18% 10%, rgba(255,255,255,.28), transparent 24%),
+        radial-gradient(circle at 82% 14%, rgba(255,255,255,.20), transparent 20%),
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,.12) 0%,
+          rgba(255,255,255,.00) 20%,
+          rgba(255,255,255,.18) 48%,
+          rgba(255,255,255,.00) 68%,
+          rgba(255,255,255,.10) 100%
+        );
+      pointer-events:none;
+    }
 
-.about h3{
-  margin:0 0 6px;
-}
+    .top-header::after{
+      content:"";
+      position:absolute;
+      left:-10%;
+      right:-10%;
+      bottom:22%;
+      height:36px;
+      background:radial-gradient(ellipse at center, rgba(255,255,255,.28), rgba(255,255,255,0));
+      filter:blur(10px);
+      pointer-events:none;
+    }
 
-.about p{
-  font-size:14px;
-  line-height:1.6;
-}
+    .brand-wrap{
+      position:relative;
+      z-index:1;
+      display:inline-block;
+      text-align:center;
+      padding:8px 14px;
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(255,255,255,.36), rgba(255,255,255,.12));
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.55),
+        0 6px 14px rgba(15, 23, 42, 0.12);
+      backdrop-filter:blur(2px);
+    }
 
-/* BUTTON */
-.start-btn{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  max-width:430px;
-  margin:auto;
-  background:#12a63a;
-  color:#fff;
-  padding:16px;
-  font-size:20px;
-  border:none;
-  font-weight:bold;
-}
+    .brand-main{
+      font-size:1.12rem;
+      font-weight:800;
+      line-height:1.2;
+      letter-spacing:0.4px;
+      color:#0F172A;
+      text-shadow:0 1px 0 rgba(255,255,255,.16);
+    }
 
-</style>
+    .brand-sub{
+      margin-top:3px;
+      font-size:0.76rem;
+      font-weight:500;
+      line-height:1.2;
+      letter-spacing:1.2px;
+      color:#10223E;
+    }
+
+    .meta{
+      position:relative;
+      z-index:1;
+      margin-top:10px;
+      font-size:.94rem;
+      font-weight:700;
+      color:#10223E;
+      line-height:1.35;
+      text-shadow:0 1px 0 rgba(255,255,255,.18);
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      background:#fff;
+      border-radius:20px;
+      padding:10px 12px;
+      box-shadow:var(--shadow);
+      margin-bottom:12px;
+    }
+
+    .home-btn,
+    .read-btn{
+      text-decoration:none;
+      border:none;
+      background:#f2f6ff;
+      color:#18315c;
+      font-weight:900;
+      font-size:17px;
+      border-radius:999px;
+      padding:10px 14px;
+      cursor:pointer;
+      min-width:92px;
+      text-align:center;
+      font-family:inherit;
+    }
+
+    .topbar-center{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex:1;
+    }
+
+    .subbu-mini{
+      width:48px;
+      height:48px;
+      border-radius:50%;
+      object-fit:cover;
+      border:3px solid #fff;
+      box-shadow:0 6px 14px rgba(0,0,0,.12);
+      background:#fff;
+    }
+
+    .status-line{
+      text-align:center;
+      font-size:16px;
+      font-weight:900;
+      color:var(--status-text);
+      background:var(--status-bg);
+      border-radius:16px;
+      padding:10px 12px;
+      margin-bottom:12px;
+      min-height:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:14px;
+      margin-bottom:12px;
+    }
+
+    .about-box{ background:var(--box-about); }
+    .level-box{ background:var(--box-level); }
+    .selected-box{
+      background:var(--box-selected);
+      border:2px solid #c9efd6;
+      transition:.25s ease;
+    }
+    .selected-box.ready{
+      background:linear-gradient(180deg,#f0fff5,#e4faec);
+      border-color:#7ad89a;
+      box-shadow:0 10px 26px rgba(30,160,80,.15);
+    }
+    .cert-box{ background:var(--box-cert); }
+
+    .tabs{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+      margin-bottom:12px;
+    }
+
+    .tab-btn{
+      border:none;
+      color:#fff;
+      font-weight:900;
+      font-size:19px;
+      padding:14px 12px;
+      border-radius:18px;
+      cursor:pointer;
+      box-shadow:0 6px 15px rgba(0,0,0,.08);
+      font-family:inherit;
+    }
+
+    .tab-about{ background:linear-gradient(90deg,var(--tab-about),#ffb347); }
+    .tab-l1{ background:linear-gradient(90deg,var(--tab-l1),#4a86ff); }
+    .tab-l2{ background:linear-gradient(90deg,var(--tab-l2),#9a63ff); }
+    .tab-l3{ background:linear-gradient(90deg,var(--tab-l3),#36cf78); }
+
+    .tab-btn.active{
+      transform:scale(.98);
+      outline:3px solid rgba(255,255,255,.55);
+    }
+
+    .tab-btn:active,
+    .home-btn:active,
+    .read-btn:active,
+    .chapter-btn:active,
+    .lesson-pill:active,
+    .start-btn:active,
+    .popup-close:active,
+    .chat-send:active,
+    .chat-voice:active,
+    .chat-photo-btn:active,
+    .level-head:active{
+      transform:scale(.96);
+      opacity:.93;
+    }
+
+    .panel{
+      overflow:hidden;
+      max-height:0;
+      opacity:0;
+      transition:max-height .35s ease, opacity .25s ease, margin .25s ease;
+      margin-top:0;
+    }
+
+    .panel.open{
+      max-height:2200px;
+      opacity:1;
+      margin-top:10px;
+    }
+
+    .about-title,
+    .cert-title,
+    .selected-title{
+      text-align:center;
+      font-size:22px;
+      font-weight:900;
+      line-height:1.35;
+      margin-bottom:10px;
+      color:#15305f;
+    }
+
+    .about-text,
+    .cert-text{
+      font-size:18px;
+      line-height:1.7;
+      text-align:center;
+      color:#293750;
+      font-weight:500;
+    }
+
+    .about-text b,
+    .cert-text b{
+      font-weight:900;
+      color:#0d2f72;
+    }
+
+    .subbu-big{
+      width:112px;
+      height:112px;
+      border-radius:50%;
+      object-fit:cover;
+      display:block;
+      margin:0 auto 10px;
+      border:4px solid #fff;
+      background:#fff;
+      box-shadow:0 8px 20px rgba(0,0,0,.12);
+    }
+
+    .subbu-line{
+      font-size:22px;
+      font-weight:900;
+      color:#ef5a21;
+      line-height:1.4;
+      text-align:center;
+      margin-top:6px;
+    }
+
+    .level-section{
+      margin-bottom:14px;
+      border-radius:20px;
+      padding:12px;
+    }
+
+    .level-section.l1{
+      background:var(--l1-soft);
+      border:2px solid #cfe0ff;
+    }
+
+    .level-section.l2{
+      background:var(--l2-soft);
+      border:2px solid #e2d3ff;
+    }
+
+    .level-section.l3{
+      background:var(--l3-soft);
+      border:2px solid #ccefdc;
+    }
+
+    .level-head{
+      color:#fff;
+      border:none;
+      width:100%;
+      text-align:center;
+      font-size:23px;
+      font-weight:900;
+      padding:15px 12px;
+      border-radius:18px;
+      cursor:pointer;
+      box-shadow:0 6px 14px rgba(0,0,0,.09);
+      font-family:inherit;
+    }
+
+    .level-head.l1{
+      background:linear-gradient(90deg,var(--l1-main),#4b86ff);
+    }
+
+    .level-head.l2{
+      background:linear-gradient(90deg,var(--l2-main),#a06aff);
+    }
+
+    .level-head.l3{
+      background:linear-gradient(90deg,var(--l3-main),#36cf78);
+    }
+
+    .level-panel{
+      overflow:hidden;
+      max-height:0;
+      opacity:0;
+      transition:max-height .35s ease, opacity .25s ease, margin .25s ease;
+      margin-top:0;
+    }
+
+    .level-panel.open{
+      max-height:2200px;
+      opacity:1;
+      margin-top:10px;
+    }
+
+    .chapter-wrap{
+      margin-bottom:10px;
+    }
+
+    .chapter-btn{
+      width:100%;
+      border:none;
+      border-radius:18px;
+      padding:14px 12px;
+      text-align:center;
+      font-size:20px;
+      font-weight:900;
+      line-height:1.45;
+      cursor:pointer;
+      box-shadow:0 6px 12px rgba(0,0,0,.07);
+      font-family:inherit;
+    }
+
+    .c1{ background:var(--rain-1); color:#fff; }
+    .c2{ background:var(--rain-2); color:#fff; }
+    .c3{ background:var(--rain-3); color:#3b2b00; }
+    .c4{ background:var(--rain-4); color:#fff; }
+    .c5{ background:var(--rain-5); color:#fff; }
+    .c6{ background:var(--rain-6); color:#fff; }
+
+    .chapter-panel{
+      overflow:hidden;
+      max-height:0;
+      opacity:0;
+      transition:max-height .35s ease, opacity .25s ease, margin .25s ease;
+      margin-top:0;
+      background:#fff;
+      border-radius:18px;
+    }
+
+    .chapter-panel.open{
+      max-height:760px;
+      opacity:1;
+      margin-top:8px;
+      padding:12px 10px 10px;
+      border:1px solid #e5edf9;
+    }
+
+    .lesson-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:8px;
+    }
+
+    .lesson-pill{
+      border:none;
+      border-radius:16px;
+      padding:12px 8px;
+      text-align:center;
+      font-size:18px;
+      font-weight:900;
+      cursor:pointer;
+      line-height:1.2;
+      min-height:56px;
+      box-shadow:0 5px 10px rgba(0,0,0,.05);
+      font-family:inherit;
+    }
+
+    .tint-1{ background:#ffe0df; color:#9f1e19; }
+    .tint-2{ background:#ffe8cc; color:#a75b00; }
+    .tint-3{ background:#fff1bf; color:#7f5c00; }
+    .tint-4{ background:#dff7e3; color:#1f7f36; }
+    .tint-5{ background:#deebff; color:#1151c7; }
+    .tint-6{ background:#ece2ff; color:#5a2fb3; }
+
+    .lesson-pill.selected{
+      background:linear-gradient(90deg,#ff9800,#ffb74d);
+      color:#fff;
+      box-shadow:0 8px 14px rgba(255,152,0,.25);
+      outline:2px solid rgba(255,255,255,.85);
+    }
+
+    .selected-title{
+      color:#0b7d3a;
+      margin-bottom:8px;
+    }
+
+    .selected-check{
+      font-size:34px;
+      text-align:center;
+      line-height:1;
+      margin-bottom:6px;
+      display:none;
+    }
+
+    .selected-box.ready .selected-check{
+      display:block;
+    }
+
+    .selected-lesson{
+      text-align:center;
+      font-size:22px;
+      font-weight:900;
+      line-height:1.45;
+      color:#13355b;
+      min-height:36px;
+    }
+
+    .selected-help{
+      text-align:center;
+      font-size:15px;
+      color:#5b6b81;
+      margin-top:6px;
+    }
+
+    .cert-title{
+      font-size:21px;
+    }
+
+    .cert-text{
+      font-size:17px;
+    }
+
+    .bottom-action{
+      position:fixed;
+      left:0;
+      right:0;
+      bottom:0;
+      background:rgba(255,255,255,.97);
+      backdrop-filter:blur(8px);
+      border-top:1px solid #dde6f7;
+      padding:10px;
+      z-index:100;
+    }
+
+    .bottom-inner{
+      max-width:430px;
+      margin:0 auto;
+    }
+
+    .mini-selected{
+      text-align:center;
+      font-size:15px;
+      font-weight:800;
+      color:#42526a;
+      margin-bottom:8px;
+      min-height:20px;
+    }
+
+    .start-btn{
+      width:100%;
+      border:none;
+      border-radius:20px;
+      padding:17px 12px;
+      font-size:24px;
+      font-weight:900;
+      color:#fff;
+      background:linear-gradient(90deg,var(--btn-green),#1dca63);
+      box-shadow:0 8px 18px rgba(13,177,75,.24);
+      cursor:pointer;
+      font-family:inherit;
+    }
+
+    .start-btn.disabled{
+      background:linear-gradient(90deg,var(--disabled),#dfe6e9);
+      color:#7a8791;
+      box-shadow:none;
+      cursor:not-allowed;
+    }
+
+    .ai-fab{
+      position:fixed;
+      right:16px;
+      bottom:138px;
+      width:58px;
+      height:58px;
+      border:none;
+      border-radius:50%;
+      background:linear-gradient(135deg,#ff5a2f,#ff7a3f);
+      color:#fff;
+      font-size:22px;
+      font-weight:900;
+      box-shadow:0 10px 18px rgba(255,90,47,.28);
+      cursor:pointer;
+      z-index:120;
+      font-family:inherit;
+    }
+
+    .popup-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(9,18,38,.36);
+      display:none;
+      z-index:200;
+    }
+
+    .popup-overlay.show{
+      display:block;
+    }
+
+    .ai-popup{
+      position:fixed;
+      left:0;
+      right:0;
+      bottom:-100%;
+      background:#fff;
+      border-top-left-radius:24px;
+      border-top-right-radius:24px;
+      max-width:430px;
+      margin:0 auto;
+      height:72vh;
+      display:flex;
+      flex-direction:column;
+      z-index:210;
+      transition:bottom .28s ease;
+      box-shadow:0 -10px 30px rgba(0,0,0,.18);
+    }
+
+    .ai-popup.show{
+      bottom:0;
+    }
+
+    .popup-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:14px 14px 10px;
+      border-bottom:1px solid #edf2f8;
+    }
+
+    .popup-title{
+      font-size:20px;
+      font-weight:900;
+      color:#162e59;
+    }
+
+    .popup-sub{
+      font-size:13px;
+      color:#60708a;
+      margin-top:2px;
+    }
+
+    .popup-close{
+      border:none;
+      background:#f2f6ff;
+      color:#17305d;
+      font-size:16px;
+      font-weight:900;
+      border-radius:12px;
+      padding:10px 12px;
+      cursor:pointer;
+      font-family:inherit;
+    }
+
+    .chat-area{
+      flex:1;
+      overflow:auto;
+      padding:12px;
+      background:#f8fbff;
+    }
+
+    .chat-bubble{
+      max-width:88%;
+      padding:10px 12px;
+      border-radius:16px;
+      margin-bottom:10px;
+      font-size:16px;
+      line-height:1.55;
+      word-break:break-word;
+    }
+
+    .chat-user{
+      margin-left:auto;
+      background:#dff4ff;
+      color:#14365e;
+      border-bottom-right-radius:6px;
+    }
+
+    .chat-ai{
+      margin-right:auto;
+      background:#ffffff;
+      color:#1f3051;
+      border:1px solid #e6edf8;
+      border-bottom-left-radius:6px;
+    }
+
+    .chat-preview{
+      background:#fff;
+      border:1px dashed #c9d6ec;
+      border-radius:16px;
+      padding:10px;
+      margin:0 12px 10px;
+      text-align:center;
+      display:none;
+    }
+
+    .chat-preview img{
+      max-width:100%;
+      max-height:160px;
+      border-radius:12px;
+    }
+
+    .chat-input-wrap{
+      padding:10px 12px 14px;
+      border-top:1px solid #edf2f8;
+      background:#fff;
+    }
+
+    .chat-tools{
+      display:flex;
+      gap:8px;
+      margin-bottom:8px;
+    }
+
+    .chat-photo-btn,
+    .chat-voice,
+    .chat-send{
+      border:none;
+      border-radius:14px;
+      padding:12px;
+      font-weight:900;
+      cursor:pointer;
+      font-size:16px;
+      font-family:inherit;
+    }
+
+    .chat-photo-btn{
+      background:#fff0e8;
+      color:#d95a16;
+      flex:0 0 auto;
+    }
+
+    .chat-voice{
+      background:#eef4ff;
+      color:#1f56d8;
+      flex:0 0 auto;
+    }
+
+    .chat-send{
+      background:#0f5fff;
+      color:#fff;
+      flex:0 0 auto;
+      min-width:62px;
+    }
+
+    .chat-row{
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+
+    .chat-input{
+      flex:1;
+      border:1px solid #dce6f6;
+      background:#f9fbff;
+      border-radius:16px;
+      padding:13px 14px;
+      font-size:16px;
+      outline:none;
+      color:#1d2e4b;
+      font-family:inherit;
+    }
+
+    .hidden{
+      display:none !important;
+    }
+
+    @media (max-width:380px){
+      .brand-main{ font-size:1.02rem; }
+      .brand-sub{ font-size:.72rem; }
+      .meta{ font-size:.88rem; }
+
+      .tab-btn{ font-size:17px; }
+      .about-title, .selected-title{ font-size:20px; }
+      .about-text{ font-size:17px; }
+      .subbu-line{ font-size:20px; }
+      .level-head{ font-size:21px; }
+      .chapter-btn{ font-size:18px; }
+      .lesson-grid{ grid-template-columns:repeat(2,1fr); }
+      .lesson-pill{ font-size:17px; min-height:52px; }
+      .selected-lesson{ font-size:20px; }
+      .start-btn{ font-size:22px; }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="wrap">
+  <div class="wrap">
 
-<div class="topbar">
-  <a href="index.html" class="home-btn">🏠 Home</a>
-  <img src="subbu.jpg">
-</div>
+    <header class="top-header">
+      <div class="brand-wrap">
+        <div class="brand-main">ACS-AI DIGITAL MASTER™</div>
+        <div class="brand-sub">Powered by Rambharosh Vidyarthi</div>
+      </div>
+      <div class="meta">Level Selection • Course Dashboard • L001–L150</div>
+    </header>
 
-<div class="main-title">
-  लेसन चुनिए → शुरू कीजिए 🚀
-</div>
+    <div class="topbar">
+      <a class="home-btn" href="index.html">🏠 Home</a>
+      <div class="topbar-center">
+        <img src="subbu.jpg" alt="Subbu" class="subbu-mini">
+      </div>
+      <button class="read-btn" id="readBtn" onclick="toggleIntroAudio()">🔊 सुनो</button>
+    </div>
 
-<div class="course-box">
+    <div class="status-line" id="pageStatus">पहले टैब चुनिए, फिर चैप्टर और लेसन चुनिए</div>
 
-<div class="level">
-<button class="l1">लेवल 1</button>
+    <div class="tabs">
+      <button class="tab-btn tab-about" id="btn-about" onclick="toggleMainPanel('about')">कोर्स के बारे में</button>
+      <button class="tab-btn tab-l1" id="btn-l1" onclick="toggleMainPanel('level1')">लेवल 1</button>
+      <button class="tab-btn tab-l2" id="btn-l2" onclick="toggleMainPanel('level2')">लेवल 2</button>
+      <button class="tab-btn tab-l3" id="btn-l3" onclick="toggleMainPanel('level3')">लेवल 3</button>
+    </div>
 
-<div class="chapter">
-<button>चैप्टर 1</button>
+    <div class="card about-box panel" id="panel-about">
+      <div class="about-title">कोर्स के बारे में संक्षिप्त जानकारी</div>
+      <div class="about-text">
+        यह कोर्स सिर्फ मोबाइल फोन पर आधारित, मातृभाषा हिंदी में, सोशल मीडिया कंटेंट क्रिएशन की मास्टरी है।<br><br>
+        इसे पूरा करने के क्रम में आप अपने मोबाइल से ही शानदार, एडवेंचरस प्रोजेक्ट पूरा करके, कंटेंट निर्माण में मास्टरी
+        <b>“एसीएस-ए.आई. डिजिटल मास्टर एकलव्य”</b> का प्रमाण पत्र प्राप्त कर सकेंगे, और बनेंगे
+        <b>“सोशल मीडिया का सुल्तान”</b>।
+      </div>
 
-<div class="lesson-grid">
-<button class="lesson" onclick="go('L001')">01</button>
-<button class="lesson" onclick="go('L002')">02</button>
-<button class="lesson" onclick="go('L003')">03</button>
-<button class="lesson" onclick="go('L004')">04</button>
-</div>
+      <div style="margin-top:16px;">
+        <img src="subbu.jpg" alt="Subbu" class="subbu-big">
+        <div class="subbu-line">ए आई स्किल, सीखेगा इंडिया!</div>
+      </div>
+    </div>
 
-</div>
-</div>
+    <div class="card level-box">
+      <div class="level-section l1">
+        <button class="level-head l1" onclick="toggleLevel('level1-panel')">लेवल 1: सेटिंग मास्टरी</button>
+        <div class="level-panel" id="level1-panel"></div>
+      </div>
 
-</div>
+      <div class="level-section l2">
+        <button class="level-head l2" onclick="toggleLevel('level2-panel')">लेवल 2: फंक्शन मास्टरी</button>
+        <div class="level-panel" id="level2-panel"></div>
+      </div>
 
-<div class="about">
-<h3>कोर्स के बारे में</h3>
-<p>
-यह कोर्स मोबाइल आधारित है और आपको डिजिटल मास्टर बनाता है।
-</p>
-</div>
+      <div class="level-section l3">
+        <button class="level-head l3" onclick="toggleLevel('level3-panel')">लेवल 3: प्रोजेक्ट मास्टरी</button>
+        <div class="level-panel" id="level3-panel"></div>
+      </div>
+    </div>
 
-</div>
+    <div class="card selected-box" id="selectedBox">
+      <div class="selected-check">✅</div>
+      <div class="selected-title">चुना गया लेसन</div>
+      <div class="selected-lesson" id="selectedLessonText">अभी कोई लेसन नहीं चुना गया है</div>
+      <div class="selected-help">जैसे ही आप कोई लेसन चुनेंगे, वही यहाँ दिखाई देगा और आवाज भी आएगी।</div>
+    </div>
 
-<button class="start-btn" onclick="start()">👉 कोर्स शुरू करें</button>
+    <div class="card cert-box panel" id="panel-cert">
+      <div class="cert-title">ए.सी.एस.-ए.आई. डिजिटल मास्टर एकलव्य</div>
+      <div class="cert-text">
+        इस कोर्स को सफलता पूर्वक पूरा करने वाले प्रशिक्षु को
+        <b>“ए.सी.एस.-ए.आई. डिजिटल मास्टर एकलव्य”</b>
+        प्रमाण पत्र के साथ-साथ,
+        <b>“फ्रीडम फाइटर गंगाधर प्रसाद मेमोरियल ट्रस्ट”</b>
+        के तरफ से <b>₹1000 प्रति माह</b> के दर से,
+        कुल <b>12 महीने</b> तक छात्रवृत्ति प्रदान किया जाएगा।
+      </div>
+    </div>
 
-<script>
-let selected = "";
+  </div>
 
-function go(id){
-  selected = id;
-  alert(id + " चुना गया");
-}
+  <button class="ai-fab" onclick="openAI()">🤖</button>
 
-function start(){
-  if(!selected){
-    alert("पहले लेसन चुनिए");
-    return;
-  }
-  window.location.href = selected + ".html";
-}
-</script>
+  <div class="popup-overlay" id="popupOverlay" onclick="closeAI()"></div>
 
+  <div class="ai-popup" id="aiPopup">
+    <div class="popup-head">
+      <div>
+        <div class="popup-title">🤖 AI मदद</div>
+        <div class="popup-sub">लिखकर, बोलकर या फोटो भेजकर पूछो</div>
+      </div>
+      <button class="popup-close" onclick="closeAI()">✕ बंद</button>
+    </div>
+
+    <div class="chat-area" id="chatArea">
+      <div class="chat-bubble chat-ai">नमस्ते! पहले कोई लेसन चुन लीजिए, फिर मुझसे सवाल पूछिए।</div>
+    </div>
+
+    <div class="chat-preview" id="imagePreviewBox">
+      <img id="imagePreview" alt="Uploaded preview">
+    </div>
+
+    <div class="chat-input-wrap">
+      <div class="chat-tools">
+        <label class="chat-photo-btn" for="photoInput">📷 फोटो</label>
+        <button class="chat-voice" onclick="startVoiceInput()">🎤 बोलो</button>
+      </div>
+
+      <div class="chat-row">
+        <input class="chat-input" id="chatInput" type="text" placeholder="यहाँ लिखकर पूछो..." />
+        <button class="chat-send" onclick="sendMessage()">भेजो</button>
+      </div>
+
+      <input id="photoInput" class="hidden" type="file" accept="image/*" capture="environment" onchange="handlePhoto(event)">
+    </div>
+  </div>
+
+  <div class="bottom-action">
+    <div class="bottom-inner">
+      <div class="mini-selected" id="bottomSelectedText">कोई लेसन चुना नहीं गया है</div>
+      <button class="start-btn disabled" id="startButton" onclick="startCourse()" disabled>👉 कोर्स शुरू करें</button>
+    </div>
+  </div>
+
+  <script>
+    let selectedLessonId = "";
+    let introReading = false;
+
+    const chapterColors = ["c1","c2","c3","c4","c5","c6"];
+    const lessonTintClasses = ["tint-1","tint-2","tint-3","tint-4","tint-5","tint-6"];
+
+    const syllabus = {
+      level1: {
+        chapters: [
+          { no:1, title:"मोबाइल मास्टरी", start:1, end:10 },
+          { no:2, title:"साइबर मास्टरी", start:11, end:20 },
+          { no:3, title:"डाटा मास्टरी", start:21, end:30 },
+          { no:4, title:"कंटेंट मास्टरी", start:31, end:40 },
+          { no:5, title:"एआई मास्टरी", start:41, end:50 }
+        ]
+      },
+      level2: {
+        chapters: [
+          { no:6, title:"ऑडियो मास्टरी", start:51, end:60 },
+          { no:7, title:"फोटोग्राफिक मास्टरी", start:61, end:70 },
+          { no:8, title:"विजुअल मास्टरी", start:71, end:80 },
+          { no:9, title:"एआई असिस्टेड मास्टरी", start:81, end:90 },
+          { no:10, title:"क्रिएटिव मास्टरी", start:91, end:100 }
+        ]
+      },
+      level3: {
+        chapters: [
+          { no:11, title:"हमारा विद्यालय", subtitle:"(प्रोजेक्ट 1 और 2)", start:101, end:110 },
+          { no:12, title:"हमारे गांव का बाजार", subtitle:"(प्रोजेक्ट 3 से 7)", start:111, end:120 },
+          { no:13, title:"हमारी धरोहर", subtitle:"(प्रोजेक्ट 8 और 9)", start:121, end:130 },
+          { no:14, title:"हमारी समस्या, हमारा समाधान!", subtitle:"", start:131, end:140 },
+          { no:15, title:"मेरा मास्टर पोर्टफोलियो", subtitle:"", start:141, end:150 }
+        ]
+      }
+    };
+
+    function lessonId(num){
+      return "L" + String(num).padStart(3,"0");
+    }
+
+    function lessonDisplay(num){
+      return String(num).padStart(2,"0");
+    }
+
+    function renderLevel(levelKey, containerId){
+      const container = document.getElementById(containerId);
+      const level = syllabus[levelKey];
+      let html = "";
+
+      level.chapters.forEach((ch, idx) => {
+        const colorClass = chapterColors[idx % chapterColors.length];
+        const tintClass = lessonTintClasses[idx % lessonTintClasses.length];
+        const chapterPanelId = `${levelKey}-chapter-${ch.no}`;
+
+        let lessonsHtml = '<div class="lesson-grid">';
+        for(let i=ch.start; i<=ch.end; i++){
+          const lid = lessonId(i);
+          lessonsHtml += `
+            <button class="lesson-pill ${tintClass}" 
+              data-lesson="${lid}" 
+              onclick="selectLesson('${lid}', this)">
+              ${lessonDisplay(i)}
+            </button>
+          `;
+        }
+        lessonsHtml += '</div>';
+
+        html += `
+          <div class="chapter-wrap">
+            <button class="chapter-btn ${colorClass}" onclick="toggleChapter('${chapterPanelId}')">
+              चैप्टर ${ch.no}. ${ch.title}
+              ${ch.subtitle ? '<br>' + ch.subtitle : ''}
+            </button>
+            <div class="chapter-panel" id="${chapterPanelId}">
+              ${lessonsHtml}
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    renderLevel("level1", "level1-panel");
+    renderLevel("level2", "level2-panel");
+    renderLevel("level3", "level3-panel");
+
+    function closeAllMainPanels(){
+      ["panel-about","panel-cert"].forEach(id=>{
+        document.getElementById(id).classList.remove("open");
+      });
+      ["btn-about","btn-l1","btn-l2","btn-l3"].forEach(id=>{
+        document.getElementById(id).classList.remove("active");
+      });
+    }
+
+    function toggleMainPanel(which){
+      closeAllMainPanels();
+
+      if(which === "about"){
+        document.getElementById("panel-about").classList.add("open");
+        document.getElementById("panel-cert").classList.add("open");
+        document.getElementById("btn-about").classList.add("active");
+        document.getElementById("pageStatus").innerText = "कोर्स जानकारी और प्रमाण पत्र नियम खुल गए हैं";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else if(which === "level1"){
+        document.getElementById("btn-l1").classList.add("active");
+        openOnlyLevel("level1-panel");
+      } else if(which === "level2"){
+        document.getElementById("btn-l2").classList.add("active");
+        openOnlyLevel("level2-panel");
+      } else if(which === "level3"){
+        document.getElementById("btn-l3").classList.add("active");
+        openOnlyLevel("level3-panel");
+      }
+    }
+
+    function openOnlyLevel(id){
+      ["level1-panel","level2-panel","level3-panel"].forEach(pid=>{
+        document.getElementById(pid).classList.remove("open");
+      });
+      document.getElementById(id).classList.add("open");
+      document.getElementById("pageStatus").innerText = "लेवल खुल गया है, अब चैप्टर चुनिए";
+      document.getElementById(id).scrollIntoView({ behavior:"smooth", block:"start" });
+    }
+
+    function toggleLevel(id){
+      const panel = document.getElementById(id);
+      const willOpen = !panel.classList.contains("open");
+
+      ["level1-panel","level2-panel","level3-panel"].forEach(pid=>{
+        document.getElementById(pid).classList.remove("open");
+      });
+
+      if(willOpen){
+        panel.classList.add("open");
+        document.getElementById("pageStatus").innerText = "लेवल खुल गया है, अब चैप्टर चुनिए";
+      } else {
+        document.getElementById("pageStatus").innerText = "पहले टैब चुनिए, फिर चैप्टर और लेसन चुनिए";
+      }
+    }
+
+    function toggleChapter(id){
+      const panel = document.getElementById(id);
+      const wrapParent = panel.parentElement.parentElement;
+
+      wrapParent.querySelectorAll(".chapter-panel").forEach(cp=>{
+        if(cp.id !== id) cp.classList.remove("open");
+      });
+
+      panel.classList.toggle("open");
+
+      if(panel.classList.contains("open")){
+        document.getElementById("pageStatus").innerText = "चैप्टर खुल गया है, अब लेसन चुनिए";
+      }
+    }
+
+    function selectLesson(id, btn){
+      selectedLessonId = id;
+
+      document.querySelectorAll(".lesson-pill").forEach(p=>p.classList.remove("selected"));
+      btn.classList.add("selected");
+
+      document.getElementById("selectedLessonText").innerText = `${id}`;
+      document.getElementById("bottomSelectedText").innerText = `चुना गया लेसन: ${id}`;
+
+      const startBtn = document.getElementById("startButton");
+      startBtn.disabled = false;
+      startBtn.classList.remove("disabled");
+
+      document.getElementById("selectedBox").classList.add("ready");
+
+      document.getElementById("pageStatus").innerText = `${id} चुना गया है। अब नीचे से कोर्स शुरू करें।`;
+
+      speakText(`आपने ${id} लेसन चुना है। नीचे कोर्स शुरू करें बटन दबाइए।`);
+    }
+
+    function startCourse(){
+      if(!selectedLessonId) return;
+      window.location.href = `${selectedLessonId}.html`;
+    }
+
+    function speakText(text){
+      if(!("speechSynthesis" in window)) return;
+      speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = "hi-IN";
+      u.rate = 0.92;
+      u.pitch = 1;
+      u.volume = 1;
+      speechSynthesis.speak(u);
+    }
+
+    function toggleIntroAudio(){
+      const btn = document.getElementById("readBtn");
+      const status = document.getElementById("pageStatus");
+
+      if(!("speechSynthesis" in window)){
+        status.innerText = "इस मोबाइल में ऑडियो सपोर्ट नहीं है";
+        return;
+      }
+
+      if(introReading){
+        speechSynthesis.cancel();
+        introReading = false;
+        btn.innerText = "🔊 सुनो";
+        status.innerText = "ऑडियो रोक दिया गया है";
+        return;
+      }
+
+      const introText = `
+      यह सिलेक्शन पेज है।
+      पहले कोर्स के बारे में, या लेवल 1, लेवल 2, लेवल 3 में से कोई टैब चुनिए।
+      फिर चैप्टर खोलिए।
+      फिर लेसन चुनिए।
+      लेसन चुनने के बाद नीचे कोर्स शुरू करें बटन दबाइए।
+      अगर मदद चाहिए, तो नीचे दाहिने कोने में ए आई बटन दबाइए।
+      `;
+
+      speechSynthesis.cancel();
+      const introUtterance = new SpeechSynthesisUtterance(introText);
+      introUtterance.lang = "hi-IN";
+      introUtterance.rate = 0.9;
+
+      introUtterance.onstart = function(){
+        introReading = true;
+        btn.innerText = "⏹ रोकें";
+        status.innerText = "पेज की जानकारी सुनाई जा रही है";
+      };
+
+      introUtterance.onend = function(){
+        introReading = false;
+        btn.innerText = "🔊 सुनो";
+        status.innerText = "सुनना पूरा हुआ";
+      };
+
+      introUtterance.onerror = function(){
+        introReading = false;
+        btn.innerText = "🔊 सुनो";
+        status.innerText = "ऑडियो में समस्या आई";
+      };
+
+      speechSynthesis.speak(introUtterance);
+    }
+
+    function openAI(){
+      document.getElementById("popupOverlay").classList.add("show");
+      document.getElementById("aiPopup").classList.add("show");
+    }
+
+    function closeAI(){
+      document.getElementById("popupOverlay").classList.remove("show");
+      document.getElementById("aiPopup").classList.remove("show");
+      if("speechSynthesis" in window) speechSynthesis.cancel();
+    }
+
+    function addChatMessage(text, type="ai"){
+      const area = document.getElementById("chatArea");
+      const div = document.createElement("div");
+      div.className = "chat-bubble " + (type === "user" ? "chat-user" : "chat-ai");
+      div.innerText = text;
+      area.appendChild(div);
+      area.scrollTop = area.scrollHeight;
+    }
+
+    function sendMessage(){
+      const input = document.getElementById("chatInput");
+      const text = input.value.trim();
+      if(!text) return;
+
+      addChatMessage(text, "user");
+      input.value = "";
+
+      const reply = buildLocalReply(text);
+      addChatMessage(reply, "ai");
+      speakText(reply);
+    }
+
+    function buildLocalReply(userText){
+      const q = userText.toLowerCase();
+
+      if(q.includes("कौन सा लेसन") || q.includes("selected") || q.includes("चुना")){
+        return selectedLessonId
+          ? `आपने अभी ${selectedLessonId} चुना है। नीचे कोर्स शुरू करें बटन दबाकर उसी लेसन पर जा सकते हैं।`
+          : "अभी आपने कोई लेसन नहीं चुना है। पहले लेवल, फिर चैप्टर, फिर लेसन चुनिए।";
+      }
+
+      if(q.includes("लेवल 1")){
+        return "लेवल 1 सेटिंग मास्टरी है। इसमें चैप्टर 1 से 5 तक हैं।";
+      }
+
+      if(q.includes("लेवल 2")){
+        return "लेवल 2 फंक्शन मास्टरी है। इसमें चैप्टर 6 से 10 तक हैं।";
+      }
+
+      if(q.includes("लेवल 3")){
+        return "लेवल 3 प्रोजेक्ट मास्टरी है। इसमें चैप्टर 11 से 15 तक हैं।";
+      }
+
+      if(q.includes("कोर्स") || q.includes("certificate") || q.includes("प्रमाण पत्र") || q.includes("छात्रवृत्ति")){
+        return "कोर्स के बारे में टैब खोलिए। वहीं पर प्रमाण पत्र और छात्रवृत्ति की पूरी जानकारी दी गई है।";
+      }
+
+      if(selectedLessonId){
+        return `आपका सवाल नोट कर लिया गया है। आपने ${selectedLessonId} चुना हुआ है। ट्रायल मोड में अभी सामान्य मदद चल रही है। असली एआई backend जुड़ने पर इसी जगह पूरा जवाब आएगा।`;
+      }
+
+      return "पहले कोई लेसन चुनिए, फिर मुझसे सवाल पूछिए। आप लिखकर, बोलकर या फोटो भेजकर भी पूछ सकते हैं।";
+    }
+
+    function startVoiceInput(){
+      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if(!SR){
+        addChatMessage("इस मोबाइल या browser में voice input support नहीं मिला। आप लिखकर पूछिए।", "ai");
+        return;
+      }
+
+      try{
+        const recognition = new SR();
+        recognition.lang = "hi-IN";
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        addChatMessage("मैं सुन रहा हूँ... अब बोलिए।", "ai");
+
+        recognition.onresult = function(event){
+          const transcript = event.results[0][0].transcript;
+          document.getElementById("chatInput").value = transcript;
+        };
+
+        recognition.onerror = function(){
+          addChatMessage("आवाज समझने में समस्या आई। फिर से कोशिश करें या लिखकर पूछें।", "ai");
+        };
+
+        recognition.start();
+      }catch(e){
+        addChatMessage("voice input शुरू नहीं हो पाया। आप लिखकर पूछिए।", "ai");
+      }
+    }
+
+    function handlePhoto(event){
+      const file = event.target.files[0];
+      if(!file) return;
+
+      const previewBox = document.getElementById("imagePreviewBox");
+      const preview = document.getElementById("imagePreview");
+
+      const reader = new FileReader();
+      reader.onload = function(e){
+        preview.src = e.target.result;
+        previewBox.style.display = "block";
+        addChatMessage("📷 फोटो भेजा गया", "user");
+        const reply = selectedLessonId
+          ? `आपका फोटो मिल गया। आपने ${selectedLessonId} चुना हुआ है। ट्रायल मोड में अभी फोटो का preview दिख रहा है। असली एआई backend जुड़ने पर इसी फोटो को पढ़कर जवाब दिया जाएगा।`
+          : "आपका फोटो मिल गया। पहले कोई लेसन भी चुन लीजिए, ताकि जवाब उसी संदर्भ में दिया जा सके।";
+        addChatMessage(reply, "ai");
+        speakText(reply);
+      };
+      reader.readAsDataURL(file);
+    }
+  </script>
 </body>
 </html>
