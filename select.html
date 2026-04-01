@@ -1,132 +1,567 @@
-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson Selection</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ACS AI DIGITAL MASTER - Lesson Selection</title>
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-body{
-    font-family: Arial, sans-serif;
-    background:#f5f7fb;
-    text-align:center;
-}
+    body{
+      font-family: Arial, sans-serif;
+      background:#f5f7fb;
+      color:#111827;
+    }
 
-.page{
-    max-width:430px;
-    margin:auto;
-    padding:10px;
-}
+    .page{
+      max-width:430px;
+      margin:auto;
+      padding:10px 10px 20px;
+    }
 
-/* HEADER */
-.header{
-    background:#fff;
-    padding:14px;
-    border-radius:18px;
-    box-shadow:0 4px 15px rgba(0,0,0,0.08);
-    margin-bottom:10px;
-}
+    .top-header{
+      position: relative;
+      text-align:center;
+      padding:14px 12px 16px;
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 10px 22px rgba(15,23,42,0.14);
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,153,51,0.96) 0%,
+          rgba(255,173,72,0.92) 22%,
+          rgba(255,255,255,0.98) 48%,
+          rgba(238,248,238,0.98) 60%,
+          rgba(19,136,8,0.94) 100%
+        );
+      margin-bottom:10px;
+    }
 
-.header h1{
-    font-size:20px;
-    font-weight:900;
-    color:#111;
-}
+    .top-header::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 18% 10%, rgba(255,255,255,.28), transparent 24%),
+        radial-gradient(circle at 82% 14%, rgba(255,255,255,.20), transparent 20%),
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,.12) 0%,
+          rgba(255,255,255,.00) 20%,
+          rgba(255,255,255,.18) 48%,
+          rgba(255,255,255,.00) 68%,
+          rgba(255,255,255,.10) 100%
+        );
+      pointer-events:none;
+    }
 
-/* GRID */
-.grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
-}
+    .brand-wrap{
+      position:relative;
+      z-index:1;
+      display:inline-block;
+      text-align:center;
+      padding:8px 14px;
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(255,255,255,.36), rgba(255,255,255,.12));
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.55),
+        0 6px 14px rgba(15,23,42,0.12);
+      backdrop-filter: blur(2px);
+    }
 
-/* CARD */
-.card{
-    background:#fff;
-    padding:18px 5px;
-    border-radius:16px;
-    font-weight:900;
-    font-size:16px;
-    color:#111;
-    text-decoration:none;
-    box-shadow:0 4px 12px rgba(0,0,0,0.08);
-    transition:0.2s;
-}
+    .brand-main{
+      font-size:1.08rem;
+      font-weight:900;
+      line-height:1.2;
+      letter-spacing:0.4px;
+      color:#0F172A;
+    }
 
-.card:hover{
-    transform:translateY(-3px);
-}
+    .brand-sub{
+      margin-top:3px;
+      font-size:0.74rem;
+      font-weight:500;
+      line-height:1.2;
+      letter-spacing:1.1px;
+      color:#10223E;
+    }
 
-.card:active{
-    transform:scale(0.95);
-}
+    .meta{
+      position:relative;
+      z-index:1;
+      margin-top:10px;
+      font-size:0.95rem;
+      font-weight:800;
+      color:#10223E;
+      line-height:1.35;
+    }
 
-/* COLORS */
-.card:nth-child(odd){
-    background:#e0f2fe;
-}
+    .hero-card{
+      background:#fff;
+      border-radius:22px;
+      box-shadow:0 5px 20px rgba(0,0,0,0.08);
+      padding:18px 14px 16px;
+      margin-bottom:10px;
+      text-align:center;
+    }
 
-.card:nth-child(even){
-    background:#dcfce7;
-}
+    .hero-card h1{
+      font-size:1.55rem;
+      line-height:1.2;
+      color:#111827;
+      margin-bottom:8px;
+      font-weight:900;
+    }
 
-/* BACK BUTTON */
-.back{
-    display:block;
-    margin-top:12px;
-    padding:14px;
-    border-radius:20px;
-    text-decoration:none;
-    background:#111827;
-    color:#fff;
-    font-weight:900;
-}
+    .hero-card p{
+      font-size:1rem;
+      line-height:1.55;
+      color:#374151;
+      font-weight:700;
+      margin-bottom:12px;
+    }
 
-</style>
+    .hero-badges{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+    }
+
+    .badge{
+      padding:10px 8px;
+      border-radius:14px;
+      font-size:0.93rem;
+      font-weight:800;
+      box-shadow:0 4px 10px rgba(15,23,42,.08);
+    }
+
+    .badge-blue{
+      background:linear-gradient(180deg,#dbeafe,#bfdbfe);
+      color:#1e3a8a;
+    }
+
+    .badge-green{
+      background:linear-gradient(180deg,#dcfce7,#bbf7d0);
+      color:#166534;
+    }
+
+    .section-card{
+      background:#fff;
+      border-radius:22px;
+      box-shadow:0 5px 20px rgba(0,0,0,0.08);
+      padding:16px 12px 14px;
+      margin-bottom:10px;
+    }
+
+    .section-title{
+      font-size:1.12rem;
+      font-weight:900;
+      color:#111827;
+      margin-bottom:12px;
+      text-align:center;
+    }
+
+    .lesson-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+    }
+
+    .lesson-btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:58px;
+      border-radius:16px;
+      text-decoration:none;
+      font-size:1rem;
+      font-weight:900;
+      box-shadow:0 6px 14px rgba(15,23,42,.10);
+      transition:transform .12s ease, opacity .12s ease;
+      position:relative;
+      overflow:hidden;
+      text-align:center;
+      padding:8px 4px;
+    }
+
+    .lesson-btn::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(255,255,255,.24), rgba(255,255,255,0));
+      pointer-events:none;
+    }
+
+    .lesson-btn:active{
+      transform:scale(0.96);
+      opacity:0.92;
+    }
+
+    .lesson-blue{
+      background:linear-gradient(180deg,#e0f2fe,#bfdbfe);
+      color:#1e3a8a;
+    }
+
+    .lesson-green{
+      background:linear-gradient(180deg,#dcfce7,#bbf7d0);
+      color:#166534;
+    }
+
+    .lesson-yellow{
+      background:linear-gradient(180deg,#fef9c3,#fde68a);
+      color:#92400e;
+    }
+
+    .bottom-actions{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:10px;
+    }
+
+    .action-btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:54px;
+      border-radius:18px;
+      text-decoration:none;
+      font-size:1rem;
+      font-weight:900;
+      color:#fff;
+      box-shadow:0 8px 18px rgba(15,23,42,.14);
+      transition:transform .12s ease, opacity .12s ease;
+      position:relative;
+      overflow:hidden;
+      text-align:center;
+      padding:10px 8px;
+    }
+
+    .action-btn::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0));
+      pointer-events:none;
+    }
+
+    .action-btn:active{
+      transform:scale(0.96);
+      opacity:0.92;
+    }
+
+    .btn-blue{
+      background:linear-gradient(180deg,#3B82F6,#1D4ED8);
+    }
+
+    .btn-dark{
+      background:linear-gradient(180deg,#334155,#0F172A);
+    }
+
+    .footer-box{
+      text-align:center;
+      font-size:.92rem;
+      color:#475569;
+      padding:12px 8px 0;
+      line-height:1.6;
+    }
+
+    @media (max-width:380px){
+      .hero-card h1{
+        font-size:1.35rem;
+      }
+
+      .hero-card p{
+        font-size:0.94rem;
+      }
+
+      .lesson-btn{
+        min-height:54px;
+        font-size:0.94rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<div class="page">
+  <div class="page">
 
-    <div class="header">
-        <h1>📘 Lesson Select करें</h1>
+    <header class="top-header">
+      <div class="brand-wrap">
+        <div class="brand-main">ACS-AI DIGITAL MASTER™</div>
+        <div class="brand-sub">Powered by Rambharosh Vidyarthi</div>
+      </div>
+      <div class="meta">Level 1 • Lesson Direction Page • L001–L150</div>
+    </header>
+
+    <section class="hero-card">
+      <h1>📘 लेसन चुनें</h1>
+      <p>
+        नीचे दिए गए किसी भी लेसन पर टैप करके सीधे पढ़ाई शुरू करें।
+      </p>
+      <div class="hero-badges">
+        <div class="badge badge-blue">कुल लेसन: 150</div>
+        <div class="badge badge-green">मोबाइल फ्रेंडली</div>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="section-title">Chapter 01 • L001–L010</div>
+      <div class="lesson-grid">
+        <a href="L001.html" class="lesson-btn lesson-blue">L001</a>
+        <a href="L002.html" class="lesson-btn lesson-green">L002</a>
+        <a href="L003.html" class="lesson-btn lesson-yellow">L003</a>
+        <a href="L004.html" class="lesson-btn lesson-blue">L004</a>
+        <a href="L005.html" class="lesson-btn lesson-green">L005</a>
+        <a href="L006.html" class="lesson-btn lesson-yellow">L006</a>
+        <a href="L007.html" class="lesson-btn lesson-blue">L007</a>
+        <a href="L008.html" class="lesson-btn lesson-green">L008</a>
+        <a href="L009.html" class="lesson-btn lesson-yellow">L009</a>
+        <a href="L010.html" class="lesson-btn lesson-blue">L010</a>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="section-title">Chapter 02 • L011–L020</div>
+      <div class="lesson-grid">
+        <a href="L011.html" class="lesson-btn lesson-blue">L011</a>
+        <a href="L012.html" class="lesson-btn lesson-green">L012</a>
+        <a href="L013.html" class="lesson-btn lesson-yellow">L013</a>
+        <a href="L014.html" class="lesson-btn lesson-blue">L014</a>
+        <a href="L015.html" class="lesson-btn lesson-green">L015</a>
+        <a href="L016.html" class="lesson-btn lesson-yellow">L016</a>
+        <a href="L017.html" class="lesson-btn lesson-blue">L017</a>
+        <a href="L018.html" class="lesson-btn lesson-green">L018</a>
+        <a href="L019.html" class="lesson-btn lesson-yellow">L019</a>
+        <a href="L020.html" class="lesson-btn lesson-blue">L020</a>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="section-title">L021–L030</div>
+      <div class="lesson-grid">
+        <a href="L021.html" class="lesson-btn lesson-blue">L021</a>
+        <a href="L022.html" class="lesson-btn lesson-green">L022</a>
+        <a href="L023.html" class="lesson-btn lesson-yellow">L023</a>
+        <a href="L024.html" class="lesson-btn lesson-blue">L024</a>
+        <a href="L025.html" class="lesson-btn lesson-green">L025</a>
+        <a href="L026.html" class="lesson-btn lesson-yellow">L026</a>
+        <a href="L027.html" class="lesson-btn lesson-blue">L027</a>
+        <a href="L028.html" class="lesson-btn lesson-green">L028</a>
+        <a href="L029.html" class="lesson-btn lesson-yellow">L029</a>
+        <a href="L030.html" class="lesson-btn lesson-blue">L030</a>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="section-title">L031–L040</div>
+      <div class="lesson-grid">
+        <a href="L031.html" class="lesson-btn lesson-blue">L031</a>
+        <a href="L032.html" class="lesson-btn lesson-green">L032</a>
+        <a href="L033.html" class="lesson-btn lesson-yellow">L033</a>
+        <a href="L034.html" class="lesson-btn lesson-blue">L034</a>
+        <a href="L035.html" class="lesson-btn lesson-green">L035</a>
+        <a href="L036.html" class="lesson-btn lesson-yellow">L036</a>
+        <a href="L037.html" class="lesson-btn lesson-blue">L037</a>
+        <a href="L038.html" class="lesson-btn lesson-green">L038</a>
+        <a href="L039.html" class="lesson-btn lesson-yellow">L039</a>
+        <a href="L040.html" class="lesson-btn lesson-blue">L040</a>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="section-title">L041–L050</div>
+      <div class="lesson-grid">
+        <a href="L041.html" class="lesson-btn lesson-blue">L041</a>
+        <a href="L042.html" class="lesson-btn lesson-green">L042</a>
+        <a href="L043.html" class="lesson-btn lesson-yellow">L043</a>
+        <a href="L044.html" class="lesson-btn lesson-blue">L044</a>
+        <a href="L045.html" class="lesson-btn lesson-green">L045</a>
+        <a href="L046.html" class="lesson-btn lesson-yellow">L046</a>
+        <a href="L047.html" class="lesson-btn lesson-blue">L047</a>
+        <a href="L048.html" class="lesson-btn lesson-green">L048</a>
+        <a href="L049.html" class="lesson-btn lesson-yellow">L049</a>
+        <a href="L050.html" class="lesson-btn lesson-blue">L050</a>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="section-title">L051–L060</div>
+      <div class="lesson-grid">
+        <a href="L051.html" class="lesson-btn lesson-blue">L051</a>
+        <a href="L052.html" class="lesson-btn lesson-green">L052</a>
+        <a href="L053.html" class="lesson-btn lesson-yellow">L053</a>
+        <a href="L054.html" class="lesson-btn lesson-blue">L054</a>
+        <a href="L055.html" class="lesson-btn lesson-green">L055</a>
+        <a href="L056.html" class="lesson-btn lesson-yellow">L056</a>
+        <a href="L057.html" class="lesson-btn lesson-blue">L057</a>
+        <a href="L058.html" class="lesson-btn lesson-green">L058</a>
+        <a href="L059.html" class="lesson-btn lesson-yellow">L059</a>
+        <a href="L060.html" class="lesson-btn lesson-blue">L060</a>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="section-title">L061–L070</div>
+      <div class="lesson-grid">
+        <a href="L061.html" class="lesson-btn lesson-blue">L061</a>
+        <a href="L062.html" class="lesson-btn lesson-green">L062</a>
+        <a href="L063.html" class="lesson-btn lesson-yellow">L063</a>
+        <a href="L064.html" class="lesson-btn lesson-blue">L064</a>
+        <a href="L065.html" class="lesson-btn lesson-green">L065</a>
+        <a href="L066.html" class="lesson-btn lesson-yellow">L066</a>
+        <a href="L067.html" class="lesson-btn lesson-blue">L067</a>
+        <a href="L068.html" class="lesson-btn lesson-green">L068</a>
+        <a href="L069.html" class="lesson-btn lesson-yellow">L069</a>
+        <a href="L070.html" class="lesson-btn lesson-blue">L070</a>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="section-title">L071–L080</div>
+      <div class="lesson-grid">
+        <a href="L071.html" class="lesson-btn lesson-blue">L071</a>
+        <a href="L072.html" class="lesson-btn lesson-green">L072</a>
+        <a href="L073.html" class="lesson-btn lesson-yellow">L073</a>
+        <a href="L074.html" class="lesson-btn lesson-blue">L074</a>
+        <a href="L075.html" class="lesson-btn lesson-green">L075</a>
+        <a href="L076.html" class="lesson-btn lesson-yellow">L076</a>
+        <a href="L077.html" class="lesson-btn lesson-blue">L077</a>
+        <a href="L078.html" class="lesson-btn lesson-green">L078</a>
+        <a href="L079.html" class="lesson-btn lesson-yellow">L079</a>
+        <a href="L080.html" class="lesson-btn lesson-blue">L080</a>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="section-title">L081–L090</div>
+      <div class="lesson-grid">
+        <a href="L081.html" class="lesson-btn lesson-blue">L081</a>
+        <a href="L082.html" class="lesson-btn lesson-green">L082</a>
+        <a href="L083.html" class="lesson-btn lesson-yellow">L083</a>
+        <a href="L084.html" class="lesson-btn lesson-blue">L084</a>
+        <a href="L085.html" class="lesson-btn lesson-green">L085</a>
+        <a href="L086.html" class="lesson-btn lesson-yellow">L086</a>
+        <a href="L087.html" class="lesson-btn lesson-blue">L087</a>
+        <a href="L088.html" class="lesson-btn lesson-green">L088</a>
+        <a href="L089.html" class="lesson-btn lesson-yellow">L089</a>
+        <a href="L090.html" class="lesson-btn lesson-blue">L090</a>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="section-title">L091–L100</div>
+      <div class="lesson-grid">
+        <a href="L091.html" class="lesson-btn lesson-blue">L091</a>
+        <a href="L092.html" class="lesson-btn lesson-green">L092</a>
+        <a href="L093.html" class="lesson-btn lesson-yellow">L093</a>
+        <a href="L094.html" class="lesson-btn lesson-blue">L094</a>
+        <a href="L095.html" class="lesson-btn lesson-green">L095</a>
+        <a href="L096.html" class="lesson-btn lesson-yellow">L096</a>
+        <a href="L097.html" class="lesson-btn lesson-blue">L097</a>
+        <a href="L098.html" class="lesson-btn lesson-green">L098</a>
+        <a href="L099.html" class="lesson-btn lesson-yellow">L099</a>
+        <a href="L100.html" class="lesson-btn lesson-blue">L100</a>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="section-title">L101–L110</div>
+      <div class="lesson-grid">
+        <a href="L101.html" class="lesson-btn lesson-blue">L101</a>
+        <a href="L102.html" class="lesson-btn lesson-green">L102</a>
+        <a href="L103.html" class="lesson-btn lesson-yellow">L103</a>
+        <a href="L104.html" class="lesson-btn lesson-blue">L104</a>
+        <a href="L105.html" class="lesson-btn lesson-green">L105</a>
+        <a href="L106.html" class="lesson-btn lesson-yellow">L106</a>
+        <a href="L107.html" class="lesson-btn lesson-blue">L107</a>
+        <a href="L108.html" class="lesson-btn lesson-green">L108</a>
+        <a href="L109.html" class="lesson-btn lesson-yellow">L109</a>
+        <a href="L110.html" class="lesson-btn lesson-blue">L110</a>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="section-title">L111–L120</div>
+      <div class="lesson-grid">
+        <a href="L111.html" class="lesson-btn lesson-blue">L111</a>
+        <a href="L112.html" class="lesson-btn lesson-green">L112</a>
+        <a href="L113.html" class="lesson-btn lesson-yellow">L113</a>
+        <a href="L114.html" class="lesson-btn lesson-blue">L114</a>
+        <a href="L115.html" class="lesson-btn lesson-green">L115</a>
+        <a href="L116.html" class="lesson-btn lesson-yellow">L116</a>
+        <a href="L117.html" class="lesson-btn lesson-blue">L117</a>
+        <a href="L118.html" class="lesson-btn lesson-green">L118</a>
+        <a href="L119.html" class="lesson-btn lesson-yellow">L119</a>
+        <a href="L120.html" class="lesson-btn lesson-blue">L120</a>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="section-title">L121–L130</div>
+      <div class="lesson-grid">
+        <a href="L121.html" class="lesson-btn lesson-blue">L121</a>
+        <a href="L122.html" class="lesson-btn lesson-green">L122</a>
+        <a href="L123.html" class="lesson-btn lesson-yellow">L123</a>
+        <a href="L124.html" class="lesson-btn lesson-blue">L124</a>
+        <a href="L125.html" class="lesson-btn lesson-green">L125</a>
+        <a href="L126.html" class="lesson-btn lesson-yellow">L126</a>
+        <a href="L127.html" class="lesson-btn lesson-blue">L127</a>
+        <a href="L128.html" class="lesson-btn lesson-green">L128</a>
+        <a href="L129.html" class="lesson-btn lesson-yellow">L129</a>
+        <a href="L130.html" class="lesson-btn lesson-blue">L130</a>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="section-title">L131–L140</div>
+      <div class="lesson-grid">
+        <a href="L131.html" class="lesson-btn lesson-blue">L131</a>
+        <a href="L132.html" class="lesson-btn lesson-green">L132</a>
+        <a href="L133.html" class="lesson-btn lesson-yellow">L133</a>
+        <a href="L134.html" class="lesson-btn lesson-blue">L134</a>
+        <a href="L135.html" class="lesson-btn lesson-green">L135</a>
+        <a href="L136.html" class="lesson-btn lesson-yellow">L136</a>
+        <a href="L137.html" class="lesson-btn lesson-blue">L137</a>
+        <a href="L138.html" class="lesson-btn lesson-green">L138</a>
+        <a href="L139.html" class="lesson-btn lesson-yellow">L139</a>
+        <a href="L140.html" class="lesson-btn lesson-blue">L140</a>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="section-title">L141–L150</div>
+      <div class="lesson-grid">
+        <a href="L141.html" class="lesson-btn lesson-blue">L141</a>
+        <a href="L142.html" class="lesson-btn lesson-green">L142</a>
+        <a href="L143.html" class="lesson-btn lesson-yellow">L143</a>
+        <a href="L144.html" class="lesson-btn lesson-blue">L144</a>
+        <a href="L145.html" class="lesson-btn lesson-green">L145</a>
+        <a href="L146.html" class="lesson-btn lesson-yellow">L146</a>
+        <a href="L147.html" class="lesson-btn lesson-blue">L147</a>
+        <a href="L148.html" class="lesson-btn lesson-green">L148</a>
+        <a href="L149.html" class="lesson-btn lesson-yellow">L149</a>
+        <a href="L150.html" class="lesson-btn lesson-blue">L150</a>
+      </div>
+    </section>
+
+    <div class="bottom-actions">
+      <a href="index.html" class="action-btn btn-dark">🏠 लैंडिंग पेज</a>
+      <a href="L001.html" class="action-btn btn-blue">🚀 L001 से शुरू करें</a>
     </div>
 
-    <div class="grid">
-
-        <a href="L001.html" class="card">L01</a>
-        <a href="L002.html" class="card">L02</a>
-        <a href="L003.html" class="card">L03</a>
-        <a href="L004.html" class="card">L04</a>
-        <a href="L005.html" class="card">L05</a>
-        <a href="L006.html" class="card">L06</a>
-        <a href="L007.html" class="card">L07</a>
-        <a href="L008.html" class="card">L08</a>
-        <a href="L009.html" class="card">L09</a>
-        <a href="L010.html" class="card">L10</a>
-        <a href="L011.html" class="card">L11</a>
-        <a href="L012.html" class="card">L12</a>
-        <a href="L013.html" class="card">L13</a>
-        <a href="L014.html" class="card">L14</a>
-        <a href="L015.html" class="card">L15</a>
-        <a href="L016.html" class="card">L16</a>
-        <a href="L017.html" class="card">L17</a>
-        <a href="L018.html" class="card">L18</a>
-        <a href="L019.html" class="card">L19</a>
-        <a href="L020.html" class="card">L20</a>
-
+    <div class="footer-box">
+      <p><strong>© Applied Computer School run under Freedom Fighter Gangadhar Prasad Memorial Trust.</strong></p>
     </div>
 
-    <a href="index.html" class="back">⬅ वापस जाएँ</a>
-
-</div>
+  </div>
 
 </body>
 </html>
