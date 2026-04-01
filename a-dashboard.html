@@ -3,47 +3,47 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>ACS AI DIGITAL MASTER</title>
+  <title>एसीएस एआई डिजिटल मास्टर</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#f4f7ff;
+      --bg:#f3f0ff;
+      --text:#1e1e1e;
       --card:#ffffff;
-      --text:#18263d;
-      --muted:#60708a;
-      --shadow:0 10px 26px rgba(15,34,64,.10);
 
-      --line:#dbe5f4;
-      --soft:#f7faff;
+      --blue:#0044ff;
+      --blue-dark:#002ea8;
 
-      --accent-blue:#165dff;
-      --accent-purple:#7a2cff;
-      --accent-green:#09a753;
-      --accent-orange:#ff8a00;
+      --purple:#8b00ff;
+      --purple-dark:#6500b8;
 
-      --status-bg:#fff3d6;
-      --status-text:#a85b00;
+      --green:#00c853;
+      --green-dark:#00963e;
 
-      --btn-green:#12b54b;
-      --btn-green-2:#1fd162;
-      --btn-green-3:#0a963c;
-      --disabled:#cfd8dc;
+      --orange:#ff9100;
+      --orange-dark:#d97706;
 
-      --top-about-bg:#fff7ea;
-      --top-about-border:#ffd18c;
-      --top-about-text:#a85b00;
+      --yellow:#ffe45c;
+      --sky:#8fd8ff;
+      --pink:#ff7be5;
 
-      --top-home-bg:#dfeaff;
-      --top-home-bg2:#c8dcff;
-      --top-home-border:#8fb1ff;
-      --top-home-text:#0f3ea8;
+      --shadow:0 8px 18px rgba(0,0,0,.12);
+      --soft-shadow:0 4px 10px rgba(0,0,0,.08);
 
-      --listen-1:#3a58a8;
-      --listen-2:#29458d;
-      --listen-3:#1b3170;
+      --inactive-bg:#e8ecf5;
+      --inactive-text:#7c8798;
+      --inactive-border:#cfd8e3;
 
-      --ai-1:#ff9800;
-      --ai-2:#ffb347;
+      --about-dark-1:#07111f;
+      --about-dark-2:#101b31;
+      --about-dark-3:#17284a;
+      --about-glow:#58a6ff;
+      --about-gold:#ffb84d;
+      --about-green:#22c55e;
     }
 
     *{
@@ -56,9 +56,9 @@
       width:100%;
       height:100%;
       overflow:hidden;
-      background:linear-gradient(180deg,#edf3ff 0%, #f9fbff 100%);
+      font-family:"Hind","Noto Sans Devanagari",sans-serif;
+      background:var(--bg);
       color:var(--text);
-      font-family:"Noto Sans Devanagari","Hind","Mukta",Arial,sans-serif;
     }
 
     body{
@@ -66,626 +66,678 @@
       justify-content:center;
     }
 
-    .app{
+    .मोबाइल-पृष्ठ{
       width:100%;
       max-width:430px;
       height:100dvh;
+      padding:10px;
       display:flex;
       flex-direction:column;
-      padding:8px;
-      gap:8px;
+      gap:10px;
       overflow:hidden;
+      background:var(--bg);
     }
 
-    .top-header{
+    /* ===== हेडर ===== */
+    .मुख्य-हेडर{
       position:relative;
+      background:linear-gradient(180deg,#ff9933 0%, #ffffff 50%, #138808 100%);
+      border-radius:26px;
+      padding:16px 10px 14px;
       text-align:center;
-      padding:10px 10px 12px;
-      border-radius:22px;
-      overflow:hidden;
-      box-shadow:0 10px 22px rgba(15,23,42,0.14);
-      background:
-        linear-gradient(
-          180deg,
-          rgba(255,153,51,0.96) 0%,
-          rgba(255,173,72,0.92) 22%,
-          rgba(255,255,255,0.98) 48%,
-          rgba(238,248,238,0.98) 60%,
-          rgba(19,136,8,0.94) 100%
-        );
+      box-shadow:var(--shadow);
       flex:0 0 auto;
+      overflow:hidden;
     }
 
-    .top-header::before{
+    .मुख्य-हेडर::before{
       content:"";
       position:absolute;
       inset:0;
       background:
-        radial-gradient(circle at 18% 10%, rgba(255,255,255,.28), transparent 24%),
-        radial-gradient(circle at 82% 14%, rgba(255,255,255,.20), transparent 20%),
-        linear-gradient(
-          180deg,
-          rgba(255,255,255,.12) 0%,
-          rgba(255,255,255,.00) 20%,
-          rgba(255,255,255,.18) 48%,
-          rgba(255,255,255,.00) 68%,
-          rgba(255,255,255,.10) 100%
-        );
+        radial-gradient(circle at 15% 18%, rgba(255,255,255,.30), transparent 26%),
+        radial-gradient(circle at 85% 12%, rgba(255,255,255,.18), transparent 20%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));
       pointer-events:none;
     }
 
-    .brand-wrap{
+    .कोर्स-नाम{
       position:relative;
       z-index:1;
-      display:inline-block;
-      text-align:center;
-      padding:8px 14px;
-      border-radius:18px;
-      background:linear-gradient(180deg, rgba(255,255,255,.36), rgba(255,255,255,.12));
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.55),
-        0 6px 14px rgba(15, 23, 42, 0.12);
-      backdrop-filter:blur(2px);
-    }
-
-    .brand-main{
-      font-size:1rem;
-      font-weight:900;
-      line-height:1.15;
-      letter-spacing:0.2px;
-      color:#0F172A;
-    }
-
-    .brand-sub{
-      margin-top:2px;
-      font-size:0.72rem;
+      margin:0;
+      font-size:1.22rem;
+      line-height:1.18;
       font-weight:700;
-      line-height:1.15;
-      letter-spacing:0.3px;
-      color:#10223E;
+      color:#111;
+      text-shadow:0 1px 0 rgba(255,255,255,.18);
     }
 
-    .meta{
+    .कोर्स-उपशीर्षक{
       position:relative;
       z-index:1;
-      margin-top:6px;
-      font-size:.86rem;
-      font-weight:800;
-      color:#10223E;
-      line-height:1.25;
+      margin-top:4px;
+      font-size:.88rem;
+      font-weight:600;
+      color:#222;
     }
 
-    .topbar{
+    /* ===== ऊपर का स्वागत खंड ===== */
+    .ऊपर-खंड{
       display:grid;
-      grid-template-columns:1fr auto 1fr;
+      grid-template-columns:1fr 92px 1fr;
+      gap:10px;
       align-items:center;
-      gap:8px;
-      background:#fff;
-      border-radius:18px;
-      padding:8px 10px;
-      box-shadow:var(--shadow);
       flex:0 0 auto;
     }
 
-    .top-btn{
-      text-decoration:none;
-      border:2px solid transparent;
-      font-weight:900;
-      font-size:15px;
-      border-radius:16px;
-      padding:10px 8px;
+    .दो-बटन-स्तंभ{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .ऊपर-बटन{
+      min-height:58px;
+      border:none;
+      border-radius:18px;
+      font-size:1rem;
+      font-weight:700;
+      font-family:inherit;
       cursor:pointer;
+      box-shadow:var(--shadow);
+      transition:transform .12s ease, opacity .12s ease, box-shadow .12s ease;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:8px 10px;
+      line-height:1.2;
+      text-decoration:none;
+    }
+
+    .ऊपर-बटन:active,
+    .गेट-बटन:active,
+    .स्तर-बॉक्स:active,
+    .मुख्य-शुरू-बटन:active,
+    .नीचे-बटन:active,
+    .पॉपअप-बंद:active,
+    .भेजो-बटन:active,
+    .बोलो-बटन:active,
+    .फोटो-बटन:active{
+      transform:scale(.96);
+      opacity:.92;
+      box-shadow:0 4px 10px rgba(0,0,0,.10);
+    }
+
+    .होम-बटन{
+      background:linear-gradient(180deg,#dce8ff,#b8cfff);
+      color:#0d3da6;
+      border:2px solid #8fb1ff;
+    }
+
+    .कोर्स-बटन{
+      background:linear-gradient(180deg,#fff7e8,#ffe7bb);
+      color:#8a4c00;
+      border:2px solid #ffc96b;
+    }
+
+    .एआई-बटन{
+      background:linear-gradient(180deg,#ffb84d,#ff9100);
+      color:#fff;
+      border:2px solid #ff9f1c;
+    }
+
+    .सुनो-ऊपर-बटन{
+      background:linear-gradient(180deg,#4a68c7,#243c8d);
+      color:#fff;
+      border:2px solid #3354ba;
+    }
+
+    .मध्य-चित्र{
+      width:92px;
+      height:92px;
+      border-radius:50%;
+      overflow:hidden;
+      background:#fff;
+      padding:4px;
+      box-shadow:0 10px 20px rgba(0,0,0,.16);
+    }
+
+    .मध्य-चित्र img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:50%;
+      display:block;
+    }
+
+    /* ===== मुख्य गेटवे ===== */
+    .गेटवे-फ्रेम{
+      background:linear-gradient(180deg,#9ce2ff 0%, #7fd6ff 100%);
+      border-radius:28px;
+      padding:12px;
+      box-shadow:var(--shadow);
+      flex:1 1 auto;
+      min-height:0;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      overflow:hidden;
+    }
+
+    .गेट-शीर्षक{
+      background:linear-gradient(180deg,#ff9be9,#ff74df);
+      color:#111;
+      text-align:center;
+      border-radius:18px;
+      padding:10px 12px;
+      font-size:1.28rem;
+      font-weight:700;
+      flex:0 0 auto;
+      box-shadow:var(--soft-shadow);
+    }
+
+    .गेट-बटन{
+      border:none;
+      background:linear-gradient(180deg,#fff67f,#ffe55d 56%, #f0c812 100%);
+      color:#111;
+      border-radius:18px;
+      min-height:70px;
+      padding:10px 12px;
       text-align:center;
       font-family:inherit;
-      min-height:48px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      box-shadow:0 4px 10px rgba(0,0,0,.04);
-      transition:transform .14s ease, box-shadow .14s ease, opacity .14s ease;
-    }
-
-    .top-btn.about{
-      background:linear-gradient(180deg,var(--top-about-bg),#fff1d9);
-      border-color:var(--top-about-border);
-      color:var(--top-about-text);
-    }
-
-    .top-btn.home{
-      background:linear-gradient(180deg,var(--top-home-bg),var(--top-home-bg2));
-      border-color:var(--top-home-border);
-      color:var(--top-home-text);
-      box-shadow:0 6px 12px rgba(40,80,180,.10);
-    }
-
-    .top-btn:active,
-    .choice-btn:active,
-    .panel-item:active,
-    .action-btn:active,
-    .start-btn:active,
-    .popup-close:active,
-    .chat-send:active,
-    .chat-voice:active,
-    .chat-photo-btn:active{
-      transform:translateY(2px) scale(.97);
-      opacity:.94;
-      box-shadow:0 3px 8px rgba(0,0,0,.10);
-    }
-
-    .avatar-wrap{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .subbu-mini{
-      width:48px;
-      height:48px;
-      border-radius:50%;
-      object-fit:cover;
-      border:3px solid #fff;
-      box-shadow:0 6px 14px rgba(0,0,0,.12);
-      background:#fff;
-    }
-
-    .status-line{
-      text-align:center;
-      font-size:14px;
-      font-weight:900;
-      color:var(--status-text);
-      background:var(--status-bg);
-      border-radius:14px;
-      padding:8px 10px;
-      min-height:18px;
-      box-shadow:var(--shadow);
+      cursor:pointer;
+      box-shadow:
+        0 10px 18px rgba(0,0,0,.12),
+        inset 0 2px 0 rgba(255,255,255,.58),
+        inset 0 -2px 0 rgba(0,0,0,.10);
+      transition:transform .12s ease, opacity .12s ease, box-shadow .12s ease;
       flex:0 0 auto;
     }
 
-    .main-card{
-      background:var(--card);
-      border-radius:22px;
+    .गेट-बटन .बटन-ऊपरी{
+      display:block;
+      font-size:1.08rem;
+      font-weight:700;
+      line-height:1.1;
+    }
+
+    .गेट-बटन .बटन-निचला{
+      display:block;
+      margin-top:5px;
+      font-size:1rem;
+      font-weight:700;
+      line-height:1.15;
+      color:#17325c;
+    }
+
+    .स्तर-पंक्ति{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      flex:0 0 auto;
+    }
+
+    .स्तर-बॉक्स{
+      border:none;
+      border-radius:18px;
+      min-height:72px;
+      padding:8px 6px;
+      text-align:center;
+      font-family:inherit;
+      cursor:pointer;
       box-shadow:var(--shadow);
+      transition:transform .12s ease, opacity .12s ease, box-shadow .12s ease, filter .12s ease;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:4px;
+      color:#fff;
+    }
+
+    .स्तर-बॉक्स.active.level{ background:linear-gradient(180deg,#3a7cff,#0044ff); }
+    .स्तर-बॉक्स.active.chapter{ background:linear-gradient(180deg,#b043ff,#8b00ff); }
+    .स्तर-बॉक्स.active.lesson{ background:linear-gradient(180deg,#29d96f,#00c853); }
+
+    .स्तर-बॉक्स.inactive{
+      background:linear-gradient(180deg,#edf1f6,#dbe3ee);
+      color:#6f7b8c;
+      border:2px solid var(--inactive-border);
+      box-shadow:none;
+      cursor:not-allowed;
+      filter:grayscale(.12);
+    }
+
+    .स्तर-नाम{
+      font-size:1rem;
+      font-weight:700;
+      line-height:1.1;
+    }
+
+    .स्तर-मूल्य{
+      font-size:.98rem;
+      font-weight:700;
+      line-height:1.12;
+      word-break:break-word;
+      padding:0 2px;
+    }
+
+    .खुली-सूची{
+      flex:1 1 auto;
+      min-height:128px;
+      background:rgba(255,255,255,.40);
+      border:1px solid rgba(255,255,255,.65);
+      border-radius:22px;
       padding:10px;
       display:flex;
       flex-direction:column;
-      gap:8px;
-      flex:1 1 auto;
-      min-height:0;
       overflow:hidden;
     }
 
-    .selector-row{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:8px;
-      flex:0 0 auto;
-    }
-
-    .choice-btn{
-      border:none;
-      border-radius:18px;
-      min-height:58px;
-      padding:8px 6px;
-      cursor:pointer;
-      font-family:inherit;
+    .सूची-शीर्षक{
       text-align:center;
-      font-weight:900;
-      font-size:16px;
-      line-height:1.15;
-      color:#fff;
-      box-shadow:0 8px 16px rgba(0,0,0,.12);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:2px;
-      transition:transform .14s ease, box-shadow .14s ease, opacity .14s ease;
-    }
-
-    .choice-btn.level{ background:linear-gradient(180deg,#3a7cff,#165dff); }
-    .choice-btn.chapter{ background:linear-gradient(180deg,#9852ff,#7a2cff); }
-    .choice-btn.lesson{ background:linear-gradient(180deg,#28c86c,#09a753); }
-
-    .choice-top{
-      font-size:14px;
-      opacity:.95;
-    }
-
-    .choice-value{
-      font-size:16px;
-      font-weight:900;
-      word-break:break-word;
-    }
-
-    .selector-panel{
-      flex:1 1 auto;
-      min-height:140px;
-      background:var(--soft);
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:8px;
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-    }
-
-    .panel-head{
-      text-align:center;
-      font-size:15px;
-      font-weight:900;
-      color:#16325b;
-      padding-bottom:5px;
-      border-bottom:1px solid #e2ebfa;
-      flex:0 0 auto;
-    }
-
-    .panel-sub{
-      margin-top:3px;
-      text-align:center;
-      font-size:12px;
-      color:#60708a;
+      font-size:1rem;
       font-weight:700;
+      color:#13355b;
+      flex:0 0 auto;
+      padding-bottom:6px;
+      border-bottom:1px solid rgba(19,53,91,.12);
+    }
+
+    .सूची-उप{
+      text-align:center;
+      font-size:.86rem;
+      color:#47637c;
+      margin-top:3px;
+      font-weight:600;
       flex:0 0 auto;
     }
 
-    .panel-list{
+    .सूची-अंदर{
       flex:1 1 auto;
       min-height:0;
       overflow:auto;
-      padding-top:8px;
+      padding-top:10px;
       display:grid;
       gap:8px;
       align-content:start;
     }
 
-    .panel-list.grid-2{ grid-template-columns:repeat(2,1fr); }
-    .panel-list.grid-3{ grid-template-columns:repeat(3,1fr); }
-    .panel-list.grid-1{ grid-template-columns:1fr; }
+    .grid-1{ grid-template-columns:1fr; }
+    .grid-2{ grid-template-columns:repeat(2,1fr); }
+    .grid-3{ grid-template-columns:repeat(3,1fr); }
 
-    .panel-item{
+    .विकल्प-बटन{
       border:none;
       border-radius:14px;
+      min-height:50px;
       padding:10px 8px;
-      text-align:center;
-      font-size:14px;
-      font-weight:900;
-      line-height:1.25;
-      cursor:pointer;
       font-family:inherit;
-      min-height:48px;
-      box-shadow:0 5px 10px rgba(0,0,0,.05);
-      transition:transform .14s ease, box-shadow .14s ease, opacity .14s ease;
+      font-size:.97rem;
+      font-weight:700;
+      cursor:pointer;
+      text-align:center;
+      line-height:1.18;
+      box-shadow:var(--soft-shadow);
+      transition:transform .12s ease, opacity .12s ease, box-shadow .12s ease;
     }
 
-    .panel-item.level-item{
+    .विकल्प-बटन:active{
+      transform:scale(.97);
+      opacity:.92;
+    }
+
+    .विकल्प-बटन.course{
+      background:#fff7d0;
+      color:#6b5400;
+    }
+
+    .विकल्प-बटन.level{
       background:#deebff;
       color:#1151c7;
     }
 
-    .panel-item.chapter-item{
+    .विकल्प-बटन.chapter{
       background:#ece2ff;
       color:#5a2fb3;
     }
 
-    .panel-item.lesson-item{
+    .विकल्प-बटन.lesson{
       background:#dff7e3;
       color:#1f7f36;
     }
 
-    .panel-item.active{
+    .विकल्प-बटन.selected{
       background:linear-gradient(90deg,#ff9800,#ffb74d);
       color:#fff;
       outline:2px solid rgba(255,255,255,.88);
       box-shadow:0 8px 14px rgba(255,152,0,.25);
     }
 
-    .panel-empty{
-      text-align:center;
-      color:#6a7a92;
-      font-size:14px;
-      font-weight:800;
-      line-height:1.6;
-      padding:16px 8px;
-    }
-
-    .action-row{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:8px;
-      flex:0 0 auto;
-    }
-
-    .action-btn{
+    .मुख्य-शुरू-बटन{
       border:none;
+      background:linear-gradient(180deg,#ffe96d 0%, #ffd83a 55%, #e9bc00 100%);
+      color:#1a1a1a;
       border-radius:18px;
-      min-height:50px;
-      padding:11px 10px;
-      cursor:pointer;
-      font-family:inherit;
-      text-align:center;
-      font-weight:900;
-      font-size:17px;
-      line-height:1.15;
-      color:#fff;
-      box-shadow:0 8px 16px rgba(0,0,0,.12);
-      transition:transform .14s ease, box-shadow .14s ease, opacity .14s ease;
-    }
-
-    .action-btn.listen{
-      background:linear-gradient(180deg,var(--listen-1),var(--listen-2));
-      border:1px solid rgba(255,255,255,.15);
-    }
-
-    .action-btn.ai{
-      background:linear-gradient(180deg,var(--ai-2),var(--ai-1));
-      color:#fff;
-    }
-
-    .selected-box{
-      background:linear-gradient(180deg,#f0fff5,#e4faec);
-      border:2px solid #7ad89a;
-      border-radius:18px;
-      padding:10px;
-      box-shadow:0 10px 26px rgba(30,160,80,.15);
-      flex:0 0 auto;
-    }
-
-    .selected-title{
-      text-align:center;
-      font-size:15px;
-      font-weight:900;
-      color:#0b7d3a;
-      margin-bottom:4px;
-    }
-
-    .selected-lesson{
-      text-align:center;
-      font-size:17px;
-      font-weight:900;
-      line-height:1.35;
-      color:#13355b;
-      min-height:26px;
-    }
-
-    .selected-help{
-      text-align:center;
-      font-size:12px;
-      color:#5b6b81;
-      margin-top:3px;
+      min-height:70px;
+      font-size:1.65rem;
       font-weight:700;
-      min-height:16px;
-    }
-
-    .start-btn{
-      width:100%;
-      border:none;
-      border-radius:18px;
-      padding:14px 12px;
-      font-size:20px;
-      font-weight:900;
-      color:#fff;
-      background:
-        linear-gradient(180deg,var(--btn-green-2) 0%, var(--btn-green) 48%, var(--btn-green-3) 100%);
-      box-shadow:
-        0 10px 20px rgba(13,177,75,.22),
-        inset 0 2px 0 rgba(255,255,255,.35),
-        inset 0 -2px 0 rgba(0,0,0,.08);
-      cursor:pointer;
       font-family:inherit;
+      cursor:pointer;
+      box-shadow:
+        0 10px 18px rgba(0,0,0,.14),
+        inset 0 2px 0 rgba(255,255,255,.55),
+        inset 0 -3px 0 rgba(0,0,0,.12);
       flex:0 0 auto;
-      transition:transform .14s ease, box-shadow .14s ease, opacity .14s ease;
+      transition:transform .12s ease, box-shadow .12s ease, opacity .12s ease;
     }
 
-    .start-btn.disabled{
-      background:linear-gradient(180deg,var(--disabled),#dfe6e9);
-      color:#7a8791;
+    .मुख्य-शुरू-बटन:disabled{
+      background:linear-gradient(180deg,#ededed,#d9d9d9);
+      color:#777;
       box-shadow:none;
       cursor:not-allowed;
     }
 
-    .overlay{
-      position:fixed;
-      inset:0;
-      background:rgba(9,18,38,.36);
-      display:none;
-      z-index:200;
-    }
-
-    .overlay.show{ display:block; }
-
-    .sheet{
-      position:fixed;
-      left:0;
-      right:0;
-      bottom:-100%;
-      background:#fff;
-      border-top-left-radius:24px;
-      border-top-right-radius:24px;
-      max-width:430px;
-      margin:0 auto;
-      height:78vh;
-      display:flex;
-      flex-direction:column;
-      z-index:210;
-      transition:bottom .28s ease;
-      box-shadow:0 -10px 30px rgba(0,0,0,.18);
-    }
-
-    .sheet.show{ bottom:0; }
-
-    .sheet-head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
+    .स्थिति-पंक्ति{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
       gap:10px;
-      padding:14px 14px 10px;
-      border-bottom:1px solid #edf2f8;
       flex:0 0 auto;
     }
 
-    .sheet-title{
-      font-size:20px;
-      font-weight:900;
-      color:#162e59;
-      line-height:1.3;
-    }
-
-    .popup-close{
+    .नीचे-बटन{
+      min-height:56px;
       border:none;
-      background:#f2f6ff;
-      color:#17305d;
-      font-size:16px;
-      font-weight:900;
-      border-radius:12px;
-      padding:10px 12px;
-      cursor:pointer;
+      border-radius:14px;
+      color:#fff;
+      font-size:1rem;
+      font-weight:700;
       font-family:inherit;
+      cursor:pointer;
+      box-shadow:var(--shadow);
+      transition:transform .12s ease, opacity .12s ease;
     }
 
-    .about-scroll{
-      flex:1 1 auto;
-      overflow:auto;
-      padding:14px;
-      background:#f8fbff;
+    .पिछे{ background:linear-gradient(180deg,#2f61ff,#0037d6); }
+    .रिज्यूम{ background:linear-gradient(180deg,#4a68c7,#243c8d); }
+    .आगे{ background:linear-gradient(180deg,#35d26f,#00a748); }
+
+    .नीचे-बटन.disabled{
+      background:linear-gradient(180deg,#dfe5ee,#c6cfdb);
+      color:#7c8798;
+      box-shadow:none;
+      cursor:not-allowed;
     }
 
-    .about-card{
-      background:#fff;
-      border-radius:20px;
-      box-shadow:0 5px 16px rgba(0,0,0,.08);
-      padding:14px;
-      margin-bottom:12px;
-    }
-
-    .about-title{
-      text-align:center;
-      font-size:21px;
-      font-weight:900;
-      line-height:1.35;
-      margin-bottom:10px;
-      color:#15305f;
-    }
-
-    .about-text,
-    .cert-text{
-      font-size:17px;
-      line-height:1.72;
-      text-align:center;
-      color:#293750;
-      font-weight:500;
-    }
-
-    .about-text b,
-    .cert-text b{
-      font-weight:900;
-      color:#0d2f72;
-    }
-
-    .subbu-big{
-      width:108px;
-      height:108px;
-      border-radius:50%;
-      object-fit:cover;
-      display:block;
-      margin:0 auto 10px;
-      border:4px solid #fff;
-      background:#fff;
-      box-shadow:0 8px 20px rgba(0,0,0,.12);
-    }
-
-    .subbu-line{
-      font-size:21px;
-      font-weight:900;
-      color:#ef5a21;
-      line-height:1.4;
-      text-align:center;
-      margin-top:6px;
-    }
-
-    .popup-overlay{
+    /* ===== कोर्स के बारे में full screen ===== */
+    .पर्दा{
       position:fixed;
       inset:0;
-      background:rgba(9,18,38,.36);
+      background:rgba(0,0,0,.55);
       display:none;
       z-index:200;
     }
 
-    .popup-overlay.show{ display:block; }
+    .पर्दा.दिखाओ{ display:block; }
 
-    .ai-popup{
+    .शीट{
+      position:fixed;
+      inset:0;
+      max-width:430px;
+      margin:0 auto;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(88,166,255,.18), transparent 24%),
+        radial-gradient(circle at 80% 14%, rgba(255,184,77,.14), transparent 24%),
+        linear-gradient(180deg,var(--about-dark-1) 0%, var(--about-dark-2) 52%, var(--about-dark-3) 100%);
+      z-index:210;
+      display:none;
+      flex-direction:column;
+      color:#fff;
+      overflow:hidden;
+    }
+
+    .शीट.दिखाओ{ display:flex; }
+
+    .शीट-शीर्ष{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:10px;
+      padding:18px 16px 10px;
+      flex:0 0 auto;
+    }
+
+    .शीट-ब्रांड{
+      max-width:80%;
+    }
+
+    .शीट-ब्रांड h2{
+      margin:0;
+      font-size:1.35rem;
+      line-height:1.12;
+      font-weight:700;
+    }
+
+    .शीट-ब्रांड p{
+      margin:5px 0 0;
+      font-size:.88rem;
+      color:#cdd9ea;
+      font-weight:600;
+      line-height:1.3;
+    }
+
+    .पॉपअप-बंद{
+      border:none;
+      background:rgba(255,255,255,.10);
+      color:#fff;
+      border-radius:12px;
+      padding:10px 12px;
+      font-size:1rem;
+      font-weight:700;
+      font-family:inherit;
+      cursor:pointer;
+      box-shadow:0 4px 10px rgba(0,0,0,.12);
+      backdrop-filter:blur(4px);
+    }
+
+    .शीट-अंदर{
+      flex:1 1 auto;
+      overflow:auto;
+      padding:8px 16px 18px;
+    }
+
+    .अंदर-कार्ड{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:24px;
+      box-shadow:0 10px 22px rgba(0,0,0,.18);
+      padding:16px 14px;
+      margin-bottom:14px;
+      backdrop-filter:blur(4px);
+    }
+
+    .अंदर-शीर्षक{
+      text-align:center;
+      font-size:1.32rem;
+      font-weight:700;
+      margin-bottom:12px;
+      line-height:1.22;
+    }
+
+    .अंदर-पाठ{
+      text-align:center;
+      font-size:1.08rem;
+      line-height:1.78;
+      color:#f3f7ff;
+      font-weight:600;
+    }
+
+    .अंदर-पाठ b{
+      color:#fff6c7;
+    }
+
+    .शीट-सुब्बू{
+      width:122px;
+      height:122px;
+      border-radius:50%;
+      overflow:hidden;
+      background:#fff;
+      padding:4px;
+      box-shadow:0 12px 24px rgba(0,0,0,.24);
+      margin:0 auto 12px;
+    }
+
+    .शीट-सुब्बू img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:50%;
+      display:block;
+    }
+
+    .शीट-स्लोगन{
+      text-align:center;
+      font-size:1.18rem;
+      line-height:1.35;
+      font-weight:700;
+      color:#ffb84d;
+      margin-top:2px;
+    }
+
+    .छात्रवृत्ति-कार्ड{
+      background:linear-gradient(180deg,rgba(255,184,77,.18),rgba(34,197,94,.16));
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:24px;
+      box-shadow:0 14px 30px rgba(0,0,0,.22);
+      padding:18px 14px;
+      margin-top:8px;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .छात्रवृत्ति-कार्ड::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 18% 14%, rgba(255,255,255,.12), transparent 20%),
+        radial-gradient(circle at 82% 16%, rgba(255,255,255,.10), transparent 18%);
+      pointer-events:none;
+    }
+
+    .छात्रवृत्ति-शीर्षक{
+      position:relative;
+      font-size:1.3rem;
+      font-weight:700;
+      color:#fff;
+      line-height:1.2;
+      margin-bottom:10px;
+    }
+
+    .छात्रवृत्ति-मुख्य{
+      position:relative;
+      font-size:1.18rem;
+      font-weight:700;
+      color:#fff8d6;
+      line-height:1.55;
+    }
+
+    .छात्रवृत्ति-मुख्य span{
+      display:block;
+      font-size:1.55rem;
+      line-height:1.2;
+      color:#fff;
+      margin:8px 0 6px;
+    }
+
+    /* ===== एआई मदद ===== */
+    .एआई-पर्दा{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.40);
+      display:none;
+      z-index:220;
+    }
+
+    .एआई-पर्दा.दिखाओ{ display:block; }
+
+    .एआई-शीट{
       position:fixed;
       left:0;
       right:0;
       bottom:-100%;
-      background:#fff;
-      border-top-left-radius:24px;
-      border-top-right-radius:24px;
       max-width:430px;
       margin:0 auto;
       height:72vh;
+      background:#fff;
+      border-top-left-radius:24px;
+      border-top-right-radius:24px;
+      box-shadow:0 -10px 26px rgba(0,0,0,.2);
+      z-index:230;
+      transition:bottom .25s ease;
       display:flex;
       flex-direction:column;
-      z-index:210;
-      transition:bottom .28s ease;
-      box-shadow:0 -10px 30px rgba(0,0,0,.18);
     }
 
-    .ai-popup.show{ bottom:0; }
+    .एआई-शीट.दिखाओ{ bottom:0; }
 
-    .popup-head{
+    .एआई-ऊपर{
       display:flex;
-      align-items:center;
       justify-content:space-between;
+      align-items:center;
       gap:10px;
-      padding:14px 14px 10px;
-      border-bottom:1px solid #edf2f8;
+      padding:14px;
+      border-bottom:1px solid #e9eef7;
+      flex:0 0 auto;
     }
 
-    .popup-title{
-      font-size:20px;
-      font-weight:900;
-      color:#162e59;
+    .एआई-शीर्षक{
+      font-size:1.15rem;
+      font-weight:700;
     }
 
-    .popup-sub{
-      font-size:13px;
-      color:#60708a;
+    .एआई-उप{
+      font-size:.83rem;
+      color:#666;
       margin-top:2px;
     }
 
-    .chat-area{
-      flex:1;
+    .एआई-चैट{
+      flex:1 1 auto;
       overflow:auto;
       padding:12px;
       background:#f8fbff;
     }
 
-    .chat-bubble{
+    .बुलबुला{
       max-width:88%;
       padding:10px 12px;
       border-radius:16px;
       margin-bottom:10px;
-      font-size:16px;
-      line-height:1.55;
+      font-size:1rem;
+      line-height:1.5;
       word-break:break-word;
     }
 
-    .chat-user{
+    .उपयोगकर्ता{
       margin-left:auto;
       background:#dff4ff;
       color:#14365e;
       border-bottom-right-radius:6px;
     }
 
-    .chat-ai{
+    .सहायक{
       margin-right:auto;
-      background:#ffffff;
+      background:#fff;
       color:#1f3051;
       border:1px solid #e6edf8;
       border-bottom-left-radius:6px;
     }
 
-    .chat-preview{
+    .चित्र-पूर्वावलोकन{
       background:#fff;
       border:1px dashed #c9d6ec;
       border-radius:16px;
@@ -695,608 +747,652 @@
       display:none;
     }
 
-    .chat-preview img{
+    .चित्र-पूर्वावलोकन img{
       max-width:100%;
       max-height:160px;
       border-radius:12px;
     }
 
-    .chat-input-wrap{
+    .एआई-इनपुट{
       padding:10px 12px 14px;
       border-top:1px solid #edf2f8;
       background:#fff;
+      flex:0 0 auto;
     }
 
-    .chat-tools{
+    .औज़ार{
       display:flex;
       gap:8px;
       margin-bottom:8px;
     }
 
-    .chat-photo-btn,
-    .chat-voice,
-    .chat-send{
+    .फोटो-बटन,
+    .बोलो-बटन,
+    .भेजो-बटन{
       border:none;
       border-radius:14px;
       padding:12px;
-      font-weight:900;
+      font-weight:700;
       cursor:pointer;
-      font-size:16px;
+      font-size:1rem;
       font-family:inherit;
     }
 
-    .chat-photo-btn{
+    .फोटो-बटन{
       background:#fff0e8;
       color:#d95a16;
-      flex:0 0 auto;
     }
 
-    .chat-voice{
+    .बोलो-बटन{
       background:#eef4ff;
       color:#1f56d8;
-      flex:0 0 auto;
     }
 
-    .chat-send{
-      background:#0f5fff;
-      color:#fff;
-      flex:0 0 auto;
-      min-width:62px;
-    }
-
-    .chat-row{
+    .इनपुट-पंक्ति{
       display:flex;
       gap:8px;
       align-items:center;
     }
 
-    .chat-input{
+    .एआई-टेक्स्ट{
       flex:1;
       border:1px solid #dce6f6;
       background:#f9fbff;
       border-radius:16px;
       padding:13px 14px;
-      font-size:16px;
+      font-size:1rem;
       outline:none;
       color:#1d2e4b;
       font-family:inherit;
     }
 
-    .hidden{
-      display:none !important;
+    .भेजो-बटन{
+      background:#0f5fff;
+      color:#fff;
+      min-width:62px;
     }
 
+    .छिपा{ display:none !important; }
+
     @media (max-width:380px){
-      .brand-main{ font-size:.94rem; }
-      .brand-sub{ font-size:.68rem; }
-      .meta{ font-size:.80rem; }
-      .top-btn{ font-size:14px; min-height:46px; }
-      .choice-btn{ min-height:56px; }
-      .panel-list.grid-3{ grid-template-columns:repeat(2,1fr); }
-      .selected-lesson{ font-size:16px; }
-      .start-btn{ font-size:18px; }
+      .ऊपर-खंड{ grid-template-columns:1fr 82px 1fr; }
+      .मध्य-चित्र{ width:82px; height:82px; }
+      .ऊपर-बटन{ min-height:54px; font-size:.92rem; }
+      .गेट-शीर्षक{ font-size:1.18rem; }
+      .मुख्य-शुरू-बटन{ font-size:1.42rem; min-height:64px; }
+      .स्तर-पंक्ति{ gap:8px; }
+      .स्तर-बॉक्स{ min-height:68px; }
+      .स्थिति-पंक्ति{ gap:8px; }
+      .नीचे-बटन{ font-size:.92rem; }
+      .grid-3{ grid-template-columns:repeat(2,1fr); }
+      .अंदर-पाठ{ font-size:1rem; }
+      .छात्रवृत्ति-शीर्षक{ font-size:1.18rem; }
+      .छात्रवृत्ति-मुख्य span{ font-size:1.35rem; }
     }
   </style>
 </head>
 <body>
 
-  <div class="app">
+<div class="मोबाइल-पृष्ठ">
 
-    <header class="top-header">
-      <div class="brand-wrap">
-        <div class="brand-main">एसीएस-एआई डिजिटल मास्टर™</div>
-        <div class="brand-sub">पावर्ड बाय रामभरोस विद्यार्थी</div>
-      </div>
-      <div class="meta">लेवल चयन • कोर्स डैशबोर्ड • एल001–एल150</div>
-    </header>
+  <header class="मुख्य-हेडर">
+    <h1 class="कोर्स-नाम">एसीएस एआई डिजिटल मास्टर</h1>
+    <div class="कोर्स-उपशीर्षक">पावर्ड बाय रामभरोस विद्यार्थी</div>
+  </header>
 
-    <div class="topbar">
-      <button class="top-btn about" onclick="openAbout()">📘 कोर्स के बारे में</button>
-
-      <div class="avatar-wrap">
-        <img src="subbu.jpg" alt="Subbu" class="subbu-mini">
-      </div>
-
-      <a class="top-btn home" href="index.html">🏠 होम</a>
+  <section class="ऊपर-खंड">
+    <div class="दो-बटन-स्तंभ">
+      <a href="index.html" class="ऊपर-बटन होम-बटन">🏠 होम</a>
+      <button class="ऊपर-बटन कोर्स-बटन" onclick="खोलोकोर्स()">📘 कोर्स के बारे में</button>
     </div>
 
-    <div class="status-line" id="pageStatus">लेवल चुनिए → चैप्टर खोलिए → लेसन चुनिए</div>
-
-    <div class="main-card">
-
-      <div class="selector-row">
-        <button class="choice-btn level" onclick="openSelector('level')">
-          <span class="choice-top">लेवल</span>
-          <span class="choice-value" id="levelLabel">लेवल</span>
-        </button>
-
-        <button class="choice-btn chapter" onclick="openSelector('chapter')">
-          <span class="choice-top">चैप्टर</span>
-          <span class="choice-value" id="chapterLabel">चैप्टर</span>
-        </button>
-
-        <button class="choice-btn lesson" onclick="openSelector('lesson')">
-          <span class="choice-top">लेसन</span>
-          <span class="choice-value" id="lessonLabel">लेसन</span>
-        </button>
-      </div>
-
-      <div class="selector-panel">
-        <div class="panel-head" id="panelHead">लेवल चुनिए</div>
-        <div class="panel-sub" id="panelSub">लेवल 1, लेवल 2 या लेवल 3 में से चुनिए</div>
-        <div class="panel-list grid-1" id="panelList"></div>
-      </div>
-
-      <div class="action-row">
-        <button class="action-btn listen" id="readBtn" onclick="toggleIntroAudio()">🔊 सुनो</button>
-        <button class="action-btn ai" onclick="openAI()">🤖 ए आई मदद</button>
-      </div>
-
-      <div class="selected-box">
-        <div class="selected-title">चुना गया लेसन</div>
-        <div class="selected-lesson" id="selectedLessonText">अभी कोई लेसन नहीं चुना गया है</div>
-        <div class="selected-help" id="bottomSelectedText">पहले लेवल, फिर चैप्टर, फिर लेसन चुनिए</div>
-      </div>
-
-      <button class="start-btn disabled" id="startButton" onclick="startCourse()" disabled>👉 कोर्स शुरू करें</button>
-
+    <div class="मध्य-चित्र">
+      <img src="subbu.jpg" alt="Subbu">
     </div>
 
+    <div class="दो-बटन-स्तंभ">
+      <button class="ऊपर-बटन एआई-बटन" onclick="खोलोएआई()">🤖 ए आई मदद</button>
+      <button class="ऊपर-बटन सुनो-ऊपर-बटन" id="सुनोबटन" onclick="टॉगलसुनो()">🔊 सुनो</button>
+    </div>
+  </section>
+
+  <section class="गेटवे-फ्रेम">
+    <div class="गेट-शीर्षक">अपना कोर्स चुनिए</div>
+
+    <button class="गेट-बटन" id="कोर्सचयनबटन" onclick="सूचिखोलो('course')">
+      <span class="बटन-ऊपरी">अपना कोर्स चुनिए</span>
+      <span class="बटन-निचला" id="कोर्समूल्य">—</span>
+    </button>
+
+    <div class="स्तर-पंक्ति">
+      <button class="स्तर-बॉक्स inactive level" id="लेवलबॉक्स" onclick="सूचिखोलो('level')">
+        <div class="स्तर-नाम">लेवल</div>
+        <div class="स्तर-मूल्य" id="लेवलमूल्य">लेवल</div>
+      </button>
+
+      <button class="स्तर-बॉक्स inactive chapter" id="चैप्टरबॉक्स" onclick="सूचिखोलो('chapter')">
+        <div class="स्तर-नाम">चैप्टर</div>
+        <div class="स्तर-मूल्य" id="चैप्टरमूल्य">चैप्टर</div>
+      </button>
+
+      <button class="स्तर-बॉक्स inactive lesson" id="लेसनबॉक्स" onclick="सूचिखोलो('lesson')">
+        <div class="स्तर-नाम">लेसन</div>
+        <div class="स्तर-मूल्य" id="लेसनमूल्य">लेसन</div>
+      </button>
+    </div>
+
+    <div class="खुली-सूची">
+      <div class="सूची-शीर्षक" id="सूचीशीर्षक">अपना कोर्स चुनिए</div>
+      <div class="सूची-उप" id="सूचीउप">नीचे दिए गए विकल्प में से चुनिए</div>
+      <div class="सूची-अंदर grid-1" id="सूचीअंदर"></div>
+    </div>
+
+    <button class="मुख्य-शुरू-बटन" id="मुख्यशुरूबटन" onclick="पाठखोलो()" disabled>
+      कोर्स शुरू करो
+    </button>
+
+    <div class="स्थिति-पंक्ति">
+      <button class="नीचे-बटन पिछे" onclick="पिछलापाठ()">⬅ पिछे</button>
+      <button class="नीचे-बटन रिज्यूम disabled" id="रिज्यूमबटन" onclick="रिज्यूमपाठ()">⏯ रिज्यूम</button>
+      <button class="नीचे-बटन आगे" onclick="अगलापाठ()">आगे ➡</button>
+    </div>
+  </section>
+
+</div>
+
+<!-- कोर्स के बारे में -->
+<div class="पर्दा" id="कोर्सपर्दा" onclick="बंदकोर्स()"></div>
+
+<div class="शीट" id="कोर्सशीट">
+  <div class="शीट-शीर्ष">
+    <div class="शीट-ब्रांड">
+      <h2>एसीएस एआई डिजिटल मास्टर</h2>
+      <p>पावर्ड बाय रामभरोस विद्यार्थी</p>
+    </div>
+    <button class="पॉपअप-बंद" onclick="बंदकोर्स()">✕ बंद</button>
   </div>
 
-  <div class="overlay" id="aboutOverlay" onclick="closeAbout()"></div>
-
-  <div class="sheet" id="aboutSheet">
-    <div class="sheet-head">
-      <div class="sheet-title">📘 कोर्स के बारे में</div>
-      <button class="popup-close" onclick="closeAbout()">✕ बंद</button>
+  <div class="शीट-अंदर">
+    <div class="अंदर-कार्ड">
+      <div class="शीट-सुब्बू">
+        <img src="subbu.jpg" alt="Subbu">
+      </div>
+      <div class="अंदर-शीर्षक">नई दुनिया में प्रवेश</div>
+      <div class="अंदर-पाठ">
+        यह कोर्स सिर्फ मोबाइल फोन पर आधारित, मातृभाषा हिंदी में, सोशल मीडिया कंटेंट क्रिएशन की मास्टरी है।<br><br>
+        इसे पूरा करने के क्रम में आप अपने मोबाइल से ही शानदार, एडवेंचरस प्रोजेक्ट पूरा करके, कंटेंट निर्माण में मास्टरी
+        <b>“एसीएस-ए.आई. डिजिटल मास्टर एकलव्य”</b> का प्रमाण पत्र प्राप्त कर सकेंगे, और बनेंगे
+        <b>“सोशल मीडिया का सुल्तान”</b>।
+      </div>
+      <div class="शीट-स्लोगन">ए आई स्किल, सीखेगा इंडिया!</div>
     </div>
 
-    <div class="about-scroll">
-      <div class="about-card">
-        <div class="about-title">कोर्स के बारे में संक्षिप्त जानकारी</div>
-        <div class="about-text">
-          यह कोर्स सिर्फ मोबाइल फोन पर आधारित, मातृभाषा हिंदी में, सोशल मीडिया कंटेंट क्रिएशन की मास्टरी है।<br><br>
-          इसे पूरा करने के क्रम में आप अपने मोबाइल से ही शानदार, एडवेंचरस प्रोजेक्ट पूरा करके, कंटेंट निर्माण में मास्टरी
-          <b>“एसीएस-ए.आई. डिजिटल मास्टर एकलव्य”</b> का प्रमाण पत्र प्राप्त कर सकेंगे, और बनेंगे
-          <b>“सोशल मीडिया का सुल्तान”</b>।
-        </div>
-
-        <div style="margin-top:16px;">
-          <img src="subbu.jpg" alt="Subbu" class="subbu-big">
-          <div class="subbu-line">ए आई स्किल, सीखेगा इंडिया!</div>
-        </div>
-      </div>
-
-      <div class="about-card">
-        <div class="about-title">ए.सी.एस.-ए.आई. डिजिटल मास्टर एकलव्य</div>
-        <div class="cert-text">
-          इस कोर्स को सफलता पूर्वक पूरा करने वाले प्रशिक्षु को
-          <b>“ए.सी.एस.-ए.आई. डिजिटल मास्टर एकलव्य”</b>
-          प्रमाण पत्र के साथ-साथ,
-          <b>“फ्रीडम फाइटर गंगाधर प्रसाद मेमोरियल ट्रस्ट”</b>
-          के तरफ से <b>₹1000 प्रति माह</b> के दर से,
-          कुल <b>12 महीने</b> तक छात्रवृत्ति प्रदान किया जाएगा।
-        </div>
+    <div class="छात्रवृत्ति-कार्ड">
+      <div class="छात्रवृत्ति-शीर्षक">प्रमाण पत्र और छात्रवृत्ति</div>
+      <div class="छात्रवृत्ति-मुख्य">
+        इस कोर्स को सफलता पूर्वक पूरा करने वाले प्रशिक्षु को
+        <b>“ए.सी.एस.-ए.आई. डिजिटल मास्टर एकलव्य”</b>
+        प्रमाण पत्र के साथ-साथ,
+        <b>“फ्रीडम फाइटर गंगाधर प्रसाद मेमोरियल ट्रस्ट”</b>
+        के तरफ से
+        <span>₹1000 प्रति माह × 12 महीने</span>
+        छात्रवृत्ति प्रदान किया जाएगा।
       </div>
     </div>
   </div>
+</div>
 
-  <div class="popup-overlay" id="popupOverlay" onclick="closeAI()"></div>
+<!-- एआई मदद -->
+<div class="एआई-पर्दा" id="एआईपर्दा" onclick="बंदएआई()"></div>
 
-  <div class="ai-popup" id="aiPopup">
-    <div class="popup-head">
-      <div>
-        <div class="popup-title">🤖 ए आई मदद</div>
-        <div class="popup-sub">लिखकर, बोलकर या फोटो भेजकर पूछो</div>
-      </div>
-      <button class="popup-close" onclick="closeAI()">✕ बंद</button>
+<div class="एआई-शीट" id="एआईशीट">
+  <div class="एआई-ऊपर">
+    <div>
+      <div class="एआई-शीर्षक">🤖 ए आई मदद</div>
+      <div class="एआई-उप">लिखकर, बोलकर या फोटो भेजकर पूछो</div>
     </div>
-
-    <div class="chat-area" id="chatArea">
-      <div class="chat-bubble chat-ai">नमस्ते! पहले लेवल, चैप्टर और लेसन चुन लीजिए, फिर मुझसे सवाल पूछिए।</div>
-    </div>
-
-    <div class="chat-preview" id="imagePreviewBox">
-      <img id="imagePreview" alt="Uploaded preview">
-    </div>
-
-    <div class="chat-input-wrap">
-      <div class="chat-tools">
-        <label class="chat-photo-btn" for="photoInput">📷 फोटो</label>
-        <button class="chat-voice" onclick="startVoiceInput()">🎤 बोलो</button>
-      </div>
-
-      <div class="chat-row">
-        <input class="chat-input" id="chatInput" type="text" placeholder="यहाँ लिखकर पूछो..." />
-        <button class="chat-send" onclick="sendMessage()">भेजो</button>
-      </div>
-
-      <input id="photoInput" class="hidden" type="file" accept="image/*" capture="environment" onchange="handlePhoto(event)">
-    </div>
+    <button class="पॉपअप-बंद" onclick="बंदएआई()">✕ बंद</button>
   </div>
 
-  <script>
-    let selectedLevelKey = "";
-    let selectedChapter = null;
-    let selectedLessonId = "";
-    let introReading = false;
+  <div class="एआई-चैट" id="एआईचैट">
+    <div class="बुलबुला सहायक">नमस्ते! पहले अपना कोर्स चुनिए, फिर लेवल, चैप्टर और लेसन चुनिए।</div>
+  </div>
 
-    const syllabus = {
-      level1: {
-        label: "लेवल 1",
-        chapters: [
-          { no:1, title:"मोबाइल मास्टरी", start:1, end:10 },
-          { no:2, title:"साइबर मास्टरी", start:11, end:20 },
-          { no:3, title:"डाटा मास्टरी", start:21, end:30 },
-          { no:4, title:"कंटेंट मास्टरी", start:31, end:40 },
-          { no:5, title:"एआई मास्टरी", start:41, end:50 }
-        ]
-      },
-      level2: {
-        label: "लेवल 2",
-        chapters: [
-          { no:6, title:"ऑडियो मास्टरी", start:51, end:60 },
-          { no:7, title:"फोटोग्राफिक मास्टरी", start:61, end:70 },
-          { no:8, title:"विजुअल मास्टरी", start:71, end:80 },
-          { no:9, title:"एआई असिस्टेड मास्टरी", start:81, end:90 },
-          { no:10, title:"क्रिएटिव मास्टरी", start:91, end:100 }
-        ]
-      },
-      level3: {
-        label: "लेवल 3",
-        chapters: [
-          { no:11, title:"हमारा विद्यालय", subtitle:"(प्रोजेक्ट 1 और 2)", start:101, end:110 },
-          { no:12, title:"हमारे गांव का बाजार", subtitle:"(प्रोजेक्ट 3 से 7)", start:111, end:120 },
-          { no:13, title:"हमारी धरोहर", subtitle:"(प्रोजेक्ट 8 और 9)", start:121, end:130 },
-          { no:14, title:"हमारी समस्या, हमारा समाधान!", subtitle:"", start:131, end:140 },
-          { no:15, title:"मेरा मास्टर पोर्टफोलियो", subtitle:"", start:141, end:150 }
+  <div class="चित्र-पूर्वावलोकन" id="चित्रपूर्वावलोकन">
+    <img id="पूर्वावलोकनचित्र" alt="पूर्वावलोकन">
+  </div>
+
+  <div class="एआई-इनपुट">
+    <div class="औज़ार">
+      <label class="फोटो-बटन" for="फोटोइनपुट">📷 फोटो</label>
+      <button class="बोलो-बटन" onclick="बोलोक्लिक()">🎤 बोलो</button>
+    </div>
+
+    <div class="इनपुट-पंक्ति">
+      <input class="एआई-टेक्स्ट" id="एआईटेक्स्ट" type="text" placeholder="यहाँ लिखकर पूछो..." />
+      <button class="भेजो-बटन" onclick="एआईभेजो()">भेजो</button>
+    </div>
+
+    <input id="फोटोइनपुट" class="छिपा" type="file" accept="image/*" capture="environment" onchange="फोटोबदला(event)">
+  </div>
+</div>
+
+<script>
+  const पाठडाटा = {
+    courses: [
+      {
+        id: "ai_digital_master",
+        नाम: "एआई डिजिटल मास्टर",
+        levels: [
+          {
+            id: "level1",
+            नाम: "लेवल 1",
+            chapters: [
+              { no: 1, नाम: "मोबाइल मास्टरी", start: 1, end: 10 },
+              { no: 2, नाम: "साइबर मास्टरी", start: 11, end: 20 },
+              { no: 3, नाम: "डाटा मास्टरी", start: 21, end: 30 },
+              { no: 4, नाम: "कंटेंट मास्टरी", start: 31, end: 40 },
+              { no: 5, नाम: "एआई मास्टरी", start: 41, end: 50 }
+            ]
+          },
+          {
+            id: "level2",
+            नाम: "लेवल 2",
+            chapters: [
+              { no: 6, नाम: "ऑडियो मास्टरी", start: 51, end: 60 },
+              { no: 7, नाम: "फोटोग्राफिक मास्टरी", start: 61, end: 70 },
+              { no: 8, नाम: "विजुअल मास्टरी", start: 71, end: 80 },
+              { no: 9, नाम: "एआई असिस्टेड मास्टरी", start: 81, end: 90 },
+              { no: 10, नाम: "क्रिएटिव मास्टरी", start: 91, end: 100 }
+            ]
+          },
+          {
+            id: "level3",
+            नाम: "लेवल 3",
+            chapters: [
+              { no: 11, नाम: "हमारा विद्यालय", start: 101, end: 110 },
+              { no: 12, नाम: "हमारे गांव का बाजार", start: 111, end: 120 },
+              { no: 13, नाम: "हमारी धरोहर", start: 121, end: 130 },
+              { no: 14, नाम: "हमारी समस्या, हमारा समाधान", start: 131, end: 140 },
+              { no: 15, नाम: "मेरा मास्टर पोर्टफोलियो", start: 141, end: 150 }
+            ]
+          }
         ]
       }
-    };
+    ]
+  };
 
-    function lessonId(num){
-      return "L" + String(num).padStart(3,"0");
+  let चयनितकोर्स = "";
+  let चयनितलेवल = "";
+  let चयनितचैप्टर = null;
+  let चयनितलेसन = "";
+  let खुलीसूची = "course";
+  let सुनोरहा = false;
+
+  const कोर्समूल्य = document.getElementById("कोर्समूल्य");
+  const लेवलमूल्य = document.getElementById("लेवलमूल्य");
+  const चैप्टरमूल्य = document.getElementById("चैप्टरमूल्य");
+  const लेसनमूल्य = document.getElementById("लेसनमूल्य");
+
+  const लेवलबॉक्स = document.getElementById("लेवलबॉक्स");
+  const चैप्टरबॉक्स = document.getElementById("चैप्टरबॉक्स");
+  const लेसनबॉक्स = document.getElementById("लेसनबॉक्स");
+
+  const सूचीशीर्षक = document.getElementById("सूचीशीर्षक");
+  const सूचीउप = document.getElementById("सूचीउप");
+  const सूचीअंदर = document.getElementById("सूचीअंदर");
+
+  const मुख्यशुरूबटन = document.getElementById("मुख्यशुरूबटन");
+  const रिज्यूमबटन = document.getElementById("रिज्यूमबटन");
+  const सुनोबटन = document.getElementById("सुनोबटन");
+
+  function लेसनकोड(n){
+    return "L" + String(n).padStart(3, "0");
+  }
+
+  function कोर्सखोजो(id){
+    return पाठडाटा.courses.find(c => c.id === id);
+  }
+
+  function लेवलखोजो(courseId, levelId){
+    const course = कोर्सखोजो(courseId);
+    if(!course) return null;
+    return course.levels.find(l => l.id === levelId);
+  }
+
+  function चैप्टरखोजो(courseId, levelId, chapterNo){
+    const level = लेवलखोजो(courseId, levelId);
+    if(!level) return null;
+    return level.chapters.find(ch => ch.no === Number(chapterNo));
+  }
+
+  function बॉक्सस्थिति(){
+    // course हमेशा active
+    लेवलबॉक्स.className = चयनितकोर्स ? "स्तर-बॉक्स active level" : "स्तर-बॉक्स inactive level";
+    चैप्टरबॉक्स.className = चयनितलेवल ? "स्तर-बॉक्स active chapter" : "स्तर-बॉक्स inactive chapter";
+    लेसनबॉक्स.className = चयनितचैप्टर ? "स्तर-बॉक्स active lesson" : "स्तर-बॉक्स inactive lesson";
+
+    if(चयनितलेसन){
+      मुख्यशुरूबटन.disabled = false;
+    } else {
+      मुख्यशुरूबटन.disabled = true;
+    }
+  }
+
+  function रिज्यूमस्थिति(){
+    const last = localStorage.getItem("acs_last_lesson");
+    if(last){
+      रिज्यूमबटन.classList.remove("disabled");
+    } else {
+      रिज्यूमबटन.classList.add("disabled");
+    }
+  }
+
+  function सूचिखोलो(type){
+    if(type === "level" && !चयनितकोर्स) return;
+    if(type === "chapter" && !चयनितलेवल) return;
+    if(type === "lesson" && !चयनितचैप्टर) return;
+
+    खुलीसूची = type;
+    renderसूची();
+  }
+
+  function renderसूची(){
+    if(खुलीसूची === "course"){
+      सूचीशीर्षक.textContent = "अपना कोर्स चुनिए";
+      सूचीउप.textContent = "अभी उपलब्ध कोर्स नीचे दिया गया है";
+      सूचीअंदर.className = "सूची-अंदर grid-1";
+      सूचीअंदर.innerHTML = पाठडाटा.courses.map(course => `
+        <button class="विकल्प-बटन course ${चयनितकोर्स === course.id ? 'selected' : ''}" onclick="कोर्सचुना('${course.id}')">
+          ${course.नाम}
+        </button>
+      `).join("");
+      return;
     }
 
-    function openAbout(){
-      document.getElementById("aboutOverlay").classList.add("show");
-      document.getElementById("aboutSheet").classList.add("show");
+    if(खुलीसूची === "level"){
+      const course = कोर्सखोजो(चयनितकोर्स);
+      सूचीशीर्षक.textContent = "लेवल चुनिए";
+      सूचीउप.textContent = "अपने चुने हुए कोर्स का लेवल चुनिए";
+      सूचीअंदर.className = "सूची-अंदर grid-1";
+      सूचीअंदर.innerHTML = course.levels.map(level => `
+        <button class="विकल्प-बटन level ${चयनितलेवल === level.id ? 'selected' : ''}" onclick="लेवलचुना('${level.id}')">
+          ${level.नाम}
+        </button>
+      `).join("");
+      return;
     }
 
-    function closeAbout(){
-      document.getElementById("aboutOverlay").classList.remove("show");
-      document.getElementById("aboutSheet").classList.remove("show");
+    if(खुलीसूची === "chapter"){
+      const level = लेवलखोजो(चयनितकोर्स, चयनितलेवल);
+      सूचीशीर्षक.textContent = "चैप्टर चुनिए";
+      सूचीउप.textContent = "चुने हुए लेवल के चैप्टर नीचे दिए गए हैं";
+      सूचीअंदर.className = "सूची-अंदर grid-1";
+      सूचीअंदर.innerHTML = level.chapters.map(ch => `
+        <button class="विकल्प-बटन chapter ${चयनितचैप्टर && चयनितचैप्टर.no === ch.no ? 'selected' : ''}" onclick="चैप्टरचुना(${ch.no})">
+          चैप्टर ${ch.no}
+        </button>
+      `).join("");
+      return;
     }
 
-    function openSelector(type){
-      const panelHead = document.getElementById("panelHead");
-      const panelSub = document.getElementById("panelSub");
-      const panelList = document.getElementById("panelList");
+    if(खुलीसूची === "lesson"){
+      सूचीशीर्षक.textContent = "लेसन चुनिए";
+      सूचीउप.textContent = "चुने हुए चैप्टर के लेसन नीचे दिए गए हैं";
+      सूचीअंदर.className = "सूची-अंदर grid-3";
 
-      if(type === "level"){
-        panelHead.innerText = "लेवल चुनिए";
-        panelSub.innerText = "लेवल 1, लेवल 2 या लेवल 3 में से चुनिए";
-        panelList.className = "panel-list grid-1";
-        panelList.innerHTML = `
-          <button class="panel-item level-item ${selectedLevelKey === 'level1' ? 'active' : ''}" onclick="selectLevel('level1')">लेवल 1<br>सेटिंग मास्टरी</button>
-          <button class="panel-item level-item ${selectedLevelKey === 'level2' ? 'active' : ''}" onclick="selectLevel('level2')">लेवल 2<br>फंक्शन मास्टरी</button>
-          <button class="panel-item level-item ${selectedLevelKey === 'level3' ? 'active' : ''}" onclick="selectLevel('level3')">लेवल 3<br>प्रोजेक्ट मास्टरी</button>
-        `;
-        return;
-      }
-
-      if(type === "chapter"){
-        if(!selectedLevelKey){
-          panelHead.innerText = "पहले लेवल चुनिए";
-          panelSub.innerText = "चैप्टर चुनने से पहले लेवल जरूरी है";
-          panelList.className = "panel-list grid-1";
-          panelList.innerHTML = `<div class="panel-empty">पहले <b>लेवल</b> चुनिए, फिर चैप्टर की सूची खुलेगी।</div>`;
-          return;
-        }
-
-        const chapters = syllabus[selectedLevelKey].chapters;
-        panelHead.innerText = "चैप्टर चुनिए";
-        panelSub.innerText = `${syllabus[selectedLevelKey].label} के चैप्टर नीचे दिए गए हैं`;
-        panelList.className = "panel-list grid-1";
-        panelList.innerHTML = chapters.map(ch => `
-          <button class="panel-item chapter-item ${selectedChapter && selectedChapter.no === ch.no ? 'active' : ''}" onclick="selectChapter(${ch.no})">
-            चैप्टर ${ch.no}. ${ch.title}${ch.subtitle ? '<br>' + ch.subtitle : ''}
+      let html = "";
+      for(let i = चयनितचैप्टर.start; i <= चयनितचैप्टर.end; i++){
+        const code = लेसनकोड(i);
+        html += `
+          <button class="विकल्प-बटन lesson ${चयनितलेसन === code ? 'selected' : ''}" onclick="लेसनचुना('${code}')">
+            ${code}
           </button>
-        `).join("");
-        return;
+        `;
       }
+      सूचीअंदर.innerHTML = html;
+    }
+  }
 
-      if(type === "lesson"){
-        if(!selectedLevelKey || !selectedChapter){
-          panelHead.innerText = "पहले चैप्टर चुनिए";
-          panelSub.innerText = "लेसन चुनने से पहले चैप्टर जरूरी है";
-          panelList.className = "panel-list grid-1";
-          panelList.innerHTML = `<div class="panel-empty">पहले <b>लेवल</b> और फिर <b>चैप्टर</b> चुनिए, उसके बाद लेसन की सूची खुलेगी।</div>`;
-          return;
-        }
+  function कोर्सचुना(id){
+    चयनितकोर्स = id;
+    चयनितलेवल = "";
+    चयनितचैप्टर = null;
+    चयनितलेसन = "";
 
-        panelHead.innerText = "लेसन चुनिए";
-        panelSub.innerText = `चैप्टर ${selectedChapter.no} के लेसन नीचे दिए गए हैं`;
-        panelList.className = "panel-list grid-3";
+    const course = कोर्सखोजो(id);
+    कोर्समूल्य.textContent = course.नाम;
+    लेवलमूल्य.textContent = "लेवल";
+    चैप्टरमूल्य.textContent = "चैप्टर";
+    लेसनमूल्य.textContent = "लेसन";
 
-        let html = "";
-        for(let i = selectedChapter.start; i <= selectedChapter.end; i++){
-          const lid = lessonId(i);
-          html += `
-            <button class="panel-item lesson-item ${selectedLessonId === lid ? 'active' : ''}" onclick="selectLesson('${lid}')">
-              ${lid}
-            </button>
-          `;
-        }
-        panelList.innerHTML = html;
-      }
+    मुख्यशुरूबटन.disabled = true;
+    बॉक्सस्थिति();
+
+    खुलीसूची = "level";
+    renderसूची();
+  }
+
+  function लेवलचुना(id){
+    चयनितलेवल = id;
+    चयनितचैप्टर = null;
+    चयनितलेसन = "";
+
+    const level = लेवलखोजो(चयनितकोर्स, id);
+    लेवलमूल्य.textContent = level.नाम;
+    चैप्टरमूल्य.textContent = "चैप्टर";
+    लेसनमूल्य.textContent = "लेसन";
+
+    मुख्यशुरूबटन.disabled = true;
+    बॉक्सस्थिति();
+
+    खुलीसूची = "chapter";
+    renderसूची();
+  }
+
+  function चैप्टरचुना(no){
+    चयनितचैप्टर = चैप्टरखोजो(चयनितकोर्स, चयनितलेवल, no);
+    चयनितलेसन = "";
+
+    चैप्टरमूल्य.textContent = `चैप्टर ${चयनितचैप्टर.no}`;
+    लेसनमूल्य.textContent = "लेसन";
+
+    मुख्यशुरूबटन.disabled = true;
+    बॉक्सस्थिति();
+
+    खुलीसूची = "lesson";
+    renderसूची();
+  }
+
+  function लेसनचुना(code){
+    चयनितलेसन = code;
+    लेसनमूल्य.textContent = code;
+
+    बॉक्सस्थिति();
+    renderसूची();
+  }
+
+  function पाठखोलो(){
+    if(!चयनितलेसन) return;
+    localStorage.setItem("acs_last_lesson", चयनितलेसन);
+    window.location.href = `${चयनितलेसन}.html`;
+  }
+
+  function पिछलापाठ(){
+    let आधार = चयनितलेसन || localStorage.getItem("acs_last_lesson") || "L001";
+    const n = parseInt(आधार.replace("L",""), 10);
+    const prev = n > 1 ? लेसनकोड(n - 1) : "L001";
+    localStorage.setItem("acs_last_lesson", prev);
+    window.location.href = `${prev}.html`;
+  }
+
+  function अगलापाठ(){
+    let आधार = चयनितलेसन || localStorage.getItem("acs_last_lesson") || "L001";
+    const n = parseInt(आधार.replace("L",""), 10);
+    const next = n < 150 ? लेसनकोड(n + 1) : "L150";
+    localStorage.setItem("acs_last_lesson", next);
+    window.location.href = `${next}.html`;
+  }
+
+  function रिज्यूमपाठ(){
+    const last = localStorage.getItem("acs_last_lesson");
+    if(!last) return;
+    window.location.href = `${last}.html`;
+  }
+
+  function खोलोकोर्स(){
+    document.getElementById("कोर्सपर्दा").classList.add("दिखाओ");
+    document.getElementById("कोर्सशीट").classList.add("दिखाओ");
+  }
+
+  function बंदकोर्स(){
+    document.getElementById("कोर्सपर्दा").classList.remove("दिखाओ");
+    document.getElementById("कोर्सशीट").classList.remove("दिखाओ");
+  }
+
+  function टॉगलसुनो(){
+    if(!("speechSynthesis" in window)){
+      return;
     }
 
-    function selectLevel(levelKey){
-      selectedLevelKey = levelKey;
-      selectedChapter = null;
-      selectedLessonId = "";
-
-      document.getElementById("levelLabel").innerText = syllabus[levelKey].label;
-      document.getElementById("chapterLabel").innerText = "चैप्टर";
-      document.getElementById("lessonLabel").innerText = "लेसन";
-
-      document.getElementById("selectedLessonText").innerText = "अभी कोई लेसन नहीं चुना गया है";
-      document.getElementById("bottomSelectedText").innerText = `${syllabus[levelKey].label} चुना गया है। अब चैप्टर चुनिए।`;
-
-      const startBtn = document.getElementById("startButton");
-      startBtn.disabled = true;
-      startBtn.classList.add("disabled");
-      startBtn.innerText = "👉 कोर्स शुरू करें";
-
-      document.getElementById("pageStatus").innerText = `${syllabus[levelKey].label} चुना गया है। अब चैप्टर चुनिए।`;
-      speakText(`${syllabus[levelKey].label} चुना गया है। अब चैप्टर चुनिए।`);
-
-      openSelector("chapter");
-    }
-
-    function selectChapter(chNo){
-      const chapters = syllabus[selectedLevelKey].chapters;
-      selectedChapter = chapters.find(ch => ch.no === chNo);
-      selectedLessonId = "";
-
-      document.getElementById("chapterLabel").innerText = `चैप्टर ${selectedChapter.no}`;
-      document.getElementById("lessonLabel").innerText = "लेसन";
-
-      document.getElementById("selectedLessonText").innerText = "अभी कोई लेसन नहीं चुना गया है";
-      document.getElementById("bottomSelectedText").innerText = `चैप्टर ${selectedChapter.no} चुना गया है। अब लेसन चुनिए।`;
-
-      const startBtn = document.getElementById("startButton");
-      startBtn.disabled = true;
-      startBtn.classList.add("disabled");
-      startBtn.innerText = "👉 कोर्स शुरू करें";
-
-      document.getElementById("pageStatus").innerText = `चैप्टर ${selectedChapter.no} चुना गया है। अब लेसन चुनिए।`;
-      speakText(`चैप्टर ${selectedChapter.no} चुना गया है। अब लेसन चुनिए।`);
-
-      openSelector("lesson");
-    }
-
-    function selectLesson(id){
-      selectedLessonId = id;
-
-      document.getElementById("lessonLabel").innerText = `लेसन ${id}`;
-      document.getElementById("selectedLessonText").innerText = `आपने लेसन ${id} चुना`;
-      document.getElementById("bottomSelectedText").innerText = `चुना गया लेसन: ${id}`;
-
-      const startBtn = document.getElementById("startButton");
-      startBtn.disabled = false;
-      startBtn.classList.remove("disabled");
-      startBtn.innerText = `👉 ${id} शुरू करें`;
-
-      document.getElementById("pageStatus").innerText = `${id} चुना गया है। अब कोर्स शुरू करें।`;
-      speakText(`आपने लेसन ${id} चुना है। अब कोर्स शुरू करें।`);
-
-      openSelector("lesson");
-    }
-
-    function startCourse(){
-      if(!selectedLessonId) return;
-      window.location.href = `${selectedLessonId}.html`;
-    }
-
-    function speakText(text){
-      if(!("speechSynthesis" in window)) return;
+    if(सुनोरहा){
       speechSynthesis.cancel();
-      const u = new SpeechSynthesisUtterance(text);
-      u.lang = "hi-IN";
-      u.rate = 0.92;
-      u.pitch = 1;
-      u.volume = 1;
-      speechSynthesis.speak(u);
+      सुनोरहा = false;
+      सुनोबटन.textContent = "🔊 सुनो";
+      return;
     }
 
-    function toggleIntroAudio(){
-      const btn = document.getElementById("readBtn");
-      const status = document.getElementById("pageStatus");
-
-      if(!("speechSynthesis" in window)){
-        status.innerText = "इस मोबाइल में ऑडियो सपोर्ट नहीं है";
-        return;
-      }
-
-      if(introReading){
-        speechSynthesis.cancel();
-        introReading = false;
-        btn.innerText = "🔊 सुनो";
-        status.innerText = "ऑडियो रोक दिया गया है";
-        return;
-      }
-
-      const introText = `
-      यह कोर्स डैशबोर्ड है।
-      पहले लेवल चुनिए।
+    const text = `
+      एसीएस एआई डिजिटल मास्टर।
+      अपना कोर्स चुनिए।
+      फिर लेवल चुनिए।
       फिर चैप्टर चुनिए।
       फिर लेसन चुनिए।
-      उसके बाद नीचे कोर्स शुरू करें बटन दबाइए।
-      अगर मदद चाहिए, तो ए आई मदद बटन दबाइए।
-      `;
+      उसके बाद कोर्स शुरू करो।
+      नीचे पिछे, रिज्यूम और आगे बटन दिए गए हैं।
+    `;
 
-      speechSynthesis.cancel();
-      const introUtterance = new SpeechSynthesisUtterance(introText);
-      introUtterance.lang = "hi-IN";
-      introUtterance.rate = 0.9;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "hi-IN";
+    u.rate = 0.9;
 
-      introUtterance.onstart = function(){
-        introReading = true;
-        btn.innerText = "⏹ रोकें";
-        status.innerText = "पेज की जानकारी सुनाई जा रही है";
-      };
+    u.onstart = () => {
+      सुनोरहा = true;
+      सुनोबटन.textContent = "⏹ रोकें";
+    };
 
-      introUtterance.onend = function(){
-        introReading = false;
-        btn.innerText = "🔊 सुनो";
-        status.innerText = "सुनना पूरा हुआ";
-      };
+    u.onend = () => {
+      सुनोरहा = false;
+      सुनोबटन.textContent = "🔊 सुनो";
+    };
 
-      introUtterance.onerror = function(){
-        introReading = false;
-        btn.innerText = "🔊 सुनो";
-        status.innerText = "ऑडियो में समस्या आई";
-      };
+    u.onerror = () => {
+      सुनोरहा = false;
+      सुनोबटन.textContent = "🔊 सुनो";
+    };
 
-      speechSynthesis.speak(introUtterance);
-    }
+    speechSynthesis.speak(u);
+  }
 
-    function openAI(){
-      document.getElementById("popupOverlay").classList.add("show");
-      document.getElementById("aiPopup").classList.add("show");
-    }
+  function खोलोएआई(){
+    document.getElementById("एआईपर्दा").classList.add("दिखाओ");
+    document.getElementById("एआईशीट").classList.add("दिखाओ");
+  }
 
-    function closeAI(){
-      document.getElementById("popupOverlay").classList.remove("show");
-      document.getElementById("aiPopup").classList.remove("show");
-      if("speechSynthesis" in window) speechSynthesis.cancel();
-    }
+  function बंदएआई(){
+    document.getElementById("एआईपर्दा").classList.remove("दिखाओ");
+    document.getElementById("एआईशीट").classList.remove("दिखाओ");
+  }
 
-    function addChatMessage(text, type="ai"){
-      const area = document.getElementById("chatArea");
-      const div = document.createElement("div");
-      div.className = "chat-bubble " + (type === "user" ? "chat-user" : "chat-ai");
-      div.innerText = text;
-      area.appendChild(div);
-      area.scrollTop = area.scrollHeight;
-    }
+  function बुलबुलाजोड़ो(text, type="सहायक"){
+    const area = document.getElementById("एआईचैट");
+    const div = document.createElement("div");
+    div.className = "बुलबुला " + (type === "उपयोगकर्ता" ? "उपयोगकर्ता" : "सहायक");
+    div.textContent = text;
+    area.appendChild(div);
+    area.scrollTop = area.scrollHeight;
+  }
 
-    function sendMessage(){
-      const input = document.getElementById("chatInput");
-      const text = input.value.trim();
-      if(!text) return;
+  function एआईभेजो(){
+    const input = document.getElementById("एआईटेक्स्ट");
+    const text = input.value.trim();
+    if(!text) return;
 
-      addChatMessage(text, "user");
-      input.value = "";
+    बुलबुलाजोड़ो(text, "उपयोगकर्ता");
+    input.value = "";
 
-      if(typeof askAI === "function"){
-        try{
-          askAI(text);
-          return;
-        }catch(e){}
-      }
-
-      const reply = buildLocalReply(text);
-      addChatMessage(reply, "ai");
-      speakText(reply);
-    }
-
-    function buildLocalReply(userText){
-      const q = userText.toLowerCase();
-
-      if(q.includes("कौन सा लेसन") || q.includes("selected") || q.includes("चुना")){
-        return selectedLessonId
-          ? `आपने अभी ${selectedLessonId} चुना है। नीचे कोर्स शुरू करें बटन दबाकर उसी लेसन पर जा सकते हैं।`
-          : "अभी आपने कोई लेसन नहीं चुना है। पहले लेवल, फिर चैप्टर, फिर लेसन चुनिए।";
-      }
-
-      if(q.includes("लेवल 1")){
-        return "लेवल 1 सेटिंग मास्टरी है। इसमें चैप्टर 1 से 5 तक हैं।";
-      }
-
-      if(q.includes("लेवल 2")){
-        return "लेवल 2 फंक्शन मास्टरी है। इसमें चैप्टर 6 से 10 तक हैं।";
-      }
-
-      if(q.includes("लेवल 3")){
-        return "लेवल 3 प्रोजेक्ट मास्टरी है। इसमें चैप्टर 11 से 15 तक हैं।";
-      }
-
-      if(q.includes("कोर्स") || q.includes("certificate") || q.includes("प्रमाण पत्र") || q.includes("छात्रवृत्ति")){
-        return "कोर्स के बारे में बटन दबाइए। वहीं पर प्रमाण पत्र और छात्रवृत्ति की पूरी जानकारी दी गई है।";
-      }
-
-      if(selectedLessonId){
-        return `आपने ${selectedLessonId} चुना हुआ है। ट्रायल मोड में अभी सामान्य मदद चल रही है। असली एआई backend जुड़ने पर इसी जगह पूरा जवाब आएगा।`;
-      }
-
-      return "पहले लेवल, फिर चैप्टर और फिर लेसन चुनिए। उसके बाद मुझसे सवाल पूछिए।";
-    }
-
-    document.getElementById("chatInput").addEventListener("keydown", function(e){
-      if(e.key === "Enter"){
-        e.preventDefault();
-        sendMessage();
-      }
-    });
-
-    function startVoiceInput(){
-      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-      if(!SR){
-        addChatMessage("इस मोबाइल या browser में voice input support नहीं मिला। आप लिखकर पूछिए।", "ai");
-        return;
-      }
-
+    if(typeof askAI === "function"){
       try{
-        const recognition = new SR();
-        recognition.lang = "hi-IN";
-        recognition.interimResults = false;
-        recognition.maxAlternatives = 1;
-
-        addChatMessage("मैं सुन रहा हूँ... अब बोलिए।", "ai");
-
-        recognition.onresult = function(event){
-          const transcript = event.results[0][0].transcript;
-          document.getElementById("chatInput").value = transcript;
-        };
-
-        recognition.onerror = function(){
-          addChatMessage("आवाज समझने में समस्या आई। फिर से कोशिश करें या लिखकर पूछें।", "ai");
-        };
-
-        recognition.start();
-      }catch(e){
-        addChatMessage("voice input शुरू नहीं हो पाया। आप लिखकर पूछिए।", "ai");
-      }
+        askAI(text);
+        return;
+      } catch(e){}
     }
 
-    function handlePhoto(event){
-      const file = event.target.files[0];
-      if(!file) return;
+    let reply = "पहले अपना कोर्स चुनिए, फिर लेवल, चैप्टर और लेसन चुनिए।";
+    if(चयनितलेसन){
+      reply = `आपने ${चयनितलेसन} चुना है। इसी लेसन के बारे में सवाल पूछिए।`;
+    }
 
-      const previewBox = document.getElementById("imagePreviewBox");
-      const preview = document.getElementById("imagePreview");
+    बुलबुलाजोड़ो(reply, "सहायक");
+  }
 
-      const reader = new FileReader();
-      reader.onload = function(e){
-        preview.src = e.target.result;
-        previewBox.style.display = "block";
-        addChatMessage("📷 फोटो भेजा गया", "user");
-        const reply = selectedLessonId
-          ? `आपका फोटो मिल गया। आपने ${selectedLessonId} चुना हुआ है। अभी फोटो का preview दिख रहा है।`
-          : "आपका फोटो मिल गया। पहले कोई लेसन भी चुन लीजिए, ताकि जवाब उसी संदर्भ में दिया जा सके।";
-        addChatMessage(reply, "ai");
-        speakText(reply);
+  function बोलोक्लिक(){
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if(!SR){
+      बुलबुलाजोड़ो("इस मोबाइल में आवाज़ से लिखने की सुविधा नहीं मिली।", "सहायक");
+      return;
+    }
+
+    try{
+      const recognition = new SR();
+      recognition.lang = "hi-IN";
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      recognition.onresult = function(event){
+        document.getElementById("एआईटेक्स्ट").value = event.results[0][0].transcript;
       };
-      reader.readAsDataURL(file);
+
+      recognition.onerror = function(){
+        बुलबुलाजोड़ो("आवाज़ समझने में समस्या आई।", "सहायक");
+      };
+
+      recognition.start();
+    }catch(e){
+      बुलबुलाजोड़ो("बोलो सुविधा अभी शुरू नहीं हो पाई।", "सहायक");
     }
+  }
 
-    openSelector("level");
-  </script>
+  function फोटोबदला(event){
+    const file = event.target.files[0];
+    if(!file) return;
 
-  <script src="ai.js"></script>
+    const previewBox = document.getElementById("चित्रपूर्वावलोकन");
+    const preview = document.getElementById("पूर्वावलोकनचित्र");
+
+    const reader = new FileReader();
+    reader.onload = function(e){
+      preview.src = e.target.result;
+      previewBox.style.display = "block";
+      बुलबुलाजोड़ो("📷 फोटो भेजा गया", "उपयोगकर्ता");
+      बुलबुलाजोड़ो("फोटो मिल गया। अभी पूर्वावलोकन दिख रहा है।", "सहायक");
+    };
+    reader.readAsDataURL(file);
+  }
+
+  document.getElementById("एआईटेक्स्ट").addEventListener("keydown", function(e){
+    if(e.key === "Enter"){
+      e.preventDefault();
+      एआईभेजो();
+    }
+  });
+
+  रिज्यूमस्थिति();
+  बॉक्सस्थिति();
+  renderसूची();
+</script>
+
+<script src="ai.js"></script>
 </body>
 </html>
