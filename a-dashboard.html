@@ -25,9 +25,25 @@
       --status-bg:#fff3d6;
       --status-text:#a85b00;
 
-      --btn-green:#0db14b;
-      --btn-green-dark:#09913d;
+      --btn-green:#12b54b;
+      --btn-green-2:#1fd162;
+      --btn-green-3:#0a963c;
       --disabled:#cfd8dc;
+
+      --top-about-bg:#fff7ea;
+      --top-about-border:#ffd18c;
+      --top-about-text:#a85b00;
+
+      --top-home-bg:#eef4ff;
+      --top-home-border:#bcd2ff;
+      --top-home-text:#1446b8;
+
+      --listen-1:#324a8a;
+      --listen-2:#20366c;
+      --listen-3:#16274e;
+
+      --ai-1:#ff9800;
+      --ai-2:#ffb347;
     }
 
     *{
@@ -157,9 +173,7 @@
 
     .top-btn{
       text-decoration:none;
-      border:none;
-      background:#f2f6ff;
-      color:#18315c;
+      border:2px solid transparent;
       font-weight:900;
       font-size:16px;
       border-radius:16px;
@@ -167,11 +181,24 @@
       cursor:pointer;
       text-align:center;
       font-family:inherit;
-      min-height:50px;
+      min-height:52px;
       display:flex;
       align-items:center;
       justify-content:center;
       box-shadow:0 4px 10px rgba(0,0,0,.04);
+      transition:transform .14s ease, box-shadow .14s ease, opacity .14s ease;
+    }
+
+    .top-btn.about{
+      background:linear-gradient(180deg,var(--top-about-bg),#fff1d9);
+      border-color:var(--top-about-border);
+      color:var(--top-about-text);
+    }
+
+    .top-btn.home{
+      background:linear-gradient(180deg,var(--top-home-bg),#dfeaff);
+      border-color:var(--top-home-border);
+      color:var(--top-home-text);
     }
 
     .top-btn:active,
@@ -179,13 +206,13 @@
     .panel-item:active,
     .action-btn:active,
     .start-btn:active,
-    .fab-btn:active,
     .popup-close:active,
     .chat-send:active,
     .chat-voice:active,
     .chat-photo-btn:active{
-      transform:scale(.96);
-      opacity:.93;
+      transform:translateY(2px) scale(.97);
+      opacity:.94;
+      box-shadow:0 3px 8px rgba(0,0,0,.10);
     }
 
     .avatar-wrap{
@@ -231,7 +258,6 @@
       overflow:hidden;
     }
 
-    /* Selector row */
     .selector-row{
       display:grid;
       grid-template-columns:repeat(3,1fr);
@@ -251,17 +277,26 @@
       font-size:17px;
       line-height:1.2;
       color:#fff;
-      box-shadow:0 6px 14px rgba(0,0,0,.10);
+      box-shadow:0 8px 16px rgba(0,0,0,.12);
       display:flex;
       flex-direction:column;
       align-items:center;
       justify-content:center;
       gap:3px;
+      transition:transform .14s ease, box-shadow .14s ease, opacity .14s ease;
     }
 
-    .choice-btn.level{ background:linear-gradient(90deg,var(--accent-blue),#4a86ff); }
-    .choice-btn.chapter{ background:linear-gradient(90deg,var(--accent-purple),#9a63ff); }
-    .choice-btn.lesson{ background:linear-gradient(90deg,var(--accent-green),#36cf78); }
+    .choice-btn.level{
+      background:linear-gradient(180deg,#3a7cff,#165dff);
+    }
+
+    .choice-btn.chapter{
+      background:linear-gradient(180deg,#9852ff,#7a2cff);
+    }
+
+    .choice-btn.lesson{
+      background:linear-gradient(180deg,#28c86c,#09a753);
+    }
 
     .choice-top{
       font-size:15px;
@@ -274,7 +309,6 @@
       word-break:break-word;
     }
 
-    /* Expand area */
     .selector-panel{
       flex:1 1 auto;
       min-height:0;
@@ -292,7 +326,7 @@
       font-size:16px;
       font-weight:900;
       color:#16325b;
-      padding-bottom:8px;
+      padding-bottom:6px;
       border-bottom:1px solid #e2ebfa;
       flex:0 0 auto;
     }
@@ -303,6 +337,7 @@
       font-size:13px;
       color:#60708a;
       font-weight:700;
+      flex:0 0 auto;
     }
 
     .panel-list{
@@ -339,6 +374,7 @@
       font-family:inherit;
       min-height:54px;
       box-shadow:0 5px 10px rgba(0,0,0,.05);
+      transition:transform .14s ease, box-shadow .14s ease, opacity .14s ease;
     }
 
     .panel-item.level-item{
@@ -372,7 +408,6 @@
       padding:18px 10px;
     }
 
-    /* Action row */
     .action-row{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -392,18 +427,20 @@
       font-size:18px;
       line-height:1.2;
       color:#fff;
-      box-shadow:0 6px 14px rgba(0,0,0,.10);
+      box-shadow:0 8px 16px rgba(0,0,0,.12);
+      transition:transform .14s ease, box-shadow .14s ease, opacity .14s ease;
     }
 
     .action-btn.listen{
-      background:linear-gradient(90deg,#334155,#0F172A);
+      background:linear-gradient(180deg,var(--listen-1),var(--listen-2));
+      border:1px solid rgba(255,255,255,.15);
     }
 
     .action-btn.ai{
-      background:linear-gradient(90deg,var(--accent-orange),#ffb347);
+      background:linear-gradient(180deg,var(--ai-2),var(--ai-1));
+      color:#fff;
     }
 
-    /* Bottom info */
     .selected-box{
       background:linear-gradient(180deg,#f0fff5,#e4faec);
       border:2px solid #7ad89a;
@@ -447,15 +484,27 @@
       font-size:22px;
       font-weight:900;
       color:#fff;
-      background:linear-gradient(90deg,var(--btn-green),#1dca63);
-      box-shadow:0 8px 18px rgba(13,177,75,.24);
+      background:
+        linear-gradient(180deg,var(--btn-green-2) 0%, var(--btn-green) 48%, var(--btn-green-3) 100%);
+      box-shadow:
+        0 10px 20px rgba(13,177,75,.22),
+        inset 0 2px 0 rgba(255,255,255,.35),
+        inset 0 -2px 0 rgba(0,0,0,.08);
       cursor:pointer;
       font-family:inherit;
       flex:0 0 auto;
+      transition:transform .14s ease, box-shadow .14s ease, opacity .14s ease;
+    }
+
+    .start-btn:hover{
+      box-shadow:
+        0 12px 24px rgba(13,177,75,.28),
+        inset 0 2px 0 rgba(255,255,255,.35),
+        inset 0 -2px 0 rgba(0,0,0,.08);
     }
 
     .start-btn.disabled{
-      background:linear-gradient(90deg,var(--disabled),#dfe6e9);
+      background:linear-gradient(180deg,var(--disabled),#dfe6e9);
       color:#7a8791;
       box-shadow:none;
       cursor:not-allowed;
@@ -586,24 +635,6 @@
     }
 
     /* AI popup */
-    .ai-fab{
-      position:fixed;
-      right:16px;
-      bottom:18px;
-      width:56px;
-      height:56px;
-      border:none;
-      border-radius:50%;
-      background:linear-gradient(135deg,#ff5a2f,#ff7a3f);
-      color:#fff;
-      font-size:22px;
-      font-weight:900;
-      box-shadow:0 10px 18px rgba(255,90,47,.28);
-      cursor:pointer;
-      z-index:120;
-      display:none; /* hidden because now AI is in row button */
-    }
-
     .popup-overlay{
       position:fixed;
       inset:0;
@@ -778,7 +809,7 @@
       .brand-sub{ font-size:.72rem; }
       .meta{ font-size:.84rem; }
 
-      .top-btn{ font-size:15px; min-height:46px; }
+      .top-btn{ font-size:15px; min-height:48px; }
       .subbu-mini{ width:48px; height:48px; }
 
       .choice-btn{ min-height:58px; font-size:16px; }
@@ -805,13 +836,13 @@
     </header>
 
     <div class="topbar">
-      <button class="top-btn" onclick="openAbout()">📘 कोर्स के बारे में</button>
+      <button class="top-btn about" onclick="openAbout()">📘 कोर्स के बारे में</button>
 
       <div class="avatar-wrap">
         <img src="subbu.jpg" alt="Subbu" class="subbu-mini">
       </div>
 
-      <a class="top-btn" href="index.html">🏠 होम</a>
+      <a class="top-btn home" href="index.html">🏠 होम</a>
     </div>
 
     <div class="status-line" id="pageStatus">लेवल चुनिए → चैप्टर खोलिए → लेसन चुनिए</div>
@@ -836,15 +867,9 @@
       </div>
 
       <div class="selector-panel">
-        <div class="panel-head" id="panelHead">किसी एक विकल्प को चुनिए</div>
-        <div class="panel-sub" id="panelSub">ऊपर लेवल, चैप्टर या लेसन पर टच कीजिए</div>
-        <div class="panel-list grid-1" id="panelList">
-          <div class="panel-empty">
-            पहले <b>लेवल</b> चुनिए।<br>
-            फिर उसी के अनुसार <b>चैप्टर</b> चुनिए।<br>
-            उसके बाद <b>लेसन</b> चुनिए।
-          </div>
-        </div>
+        <div class="panel-head" id="panelHead">लेवल चुनिए</div>
+        <div class="panel-sub" id="panelSub">लेवल 1, लेवल 2 या लेवल 3 में से चुनिए</div>
+        <div class="panel-list grid-1" id="panelList"></div>
       </div>
 
       <div class="action-row">
@@ -1007,6 +1032,7 @@
           <button class="panel-item level-item ${selectedLevelKey === 'level2' ? 'active' : ''}" onclick="selectLevel('level2')">लेवल 2<br>फंक्शन मास्टरी</button>
           <button class="panel-item level-item ${selectedLevelKey === 'level3' ? 'active' : ''}" onclick="selectLevel('level3')">लेवल 3<br>प्रोजेक्ट मास्टरी</button>
         `;
+        return;
       }
 
       if(type === "chapter"){
@@ -1027,6 +1053,7 @@
             चैप्टर ${ch.no}. ${ch.title}${ch.subtitle ? '<br>' + ch.subtitle : ''}
           </button>
         `).join("");
+        return;
       }
 
       if(type === "lesson"){
@@ -1041,6 +1068,7 @@
         panelHead.innerText = "लेसन चुनिए";
         panelSub.innerText = `चैप्टर ${selectedChapter.no} के लेसन नीचे दिए गए हैं`;
         panelList.className = "panel-list grid-3";
+
         let html = "";
         for(let i = selectedChapter.start; i <= selectedChapter.end; i++){
           const lid = lessonId(i);
@@ -1152,7 +1180,6 @@
 
       const introText = `
       यह कोर्स डैशबोर्ड है।
-      ऊपर लेवल, चैप्टर और लेसन के तीन बटन हैं।
       पहले लेवल चुनिए।
       फिर चैप्टर चुनिए।
       फिर लेसन चुनिए।
