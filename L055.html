@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L055 - वॉइस नोट क्राफ्ट (Voice Note Craft)</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --pair-blue-1: #3B82F6;
+      --pair-blue-2: #1D4ED8;
+
+      --pair-dark-1: #334155;
+      --pair-dark-2: #0F172A;
+
+      --pair-green-1: #22C55E;
+      --pair-green-2: #15803D;
+
+      --primary-blue: #2563EB;
+      --primary-green: #16A34A;
+      --accent-red: #EF4444;
+      --accent-yellow: #FACC15;
+
+      --bg: #F4F7FF;
+      --card: #FFFFFF;
+      --text: #0F172A;
+      --muted: #475569;
+      --line: #D9E3F4;
+
+      --progress-start: #F97316;
+      --progress-end: #FACC15;
+      --wa-green: #25D366;
+
+      --shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+      --shadow-strong: 0 10px 22px rgba(15, 23, 42, 0.14);
+      --radius: 18px;
+      --maxw: 430px;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Hind", "Noto Sans Devanagari", sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      padding-bottom: 96px;
+    }
+
+    .page {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 12px 14px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .top-header {
+      position: relative;
+      text-align: center;
+      padding: 14px 12px 16px;
+      box-shadow: var(--shadow-strong);
+      overflow: hidden;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,153,51,0.96) 0%,
+          rgba(255,173,72,0.92) 22%,
+          rgba(255,255,255,0.98) 48%,
+          rgba(238,248,238,0.98) 60%,
+          rgba(19,136,8,0.94) 100%
+        );
+    }
+
+    .top-header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 18% 10%, rgba(255,255,255,.28), transparent 24%),
+        radial-gradient(circle at 82% 14%, rgba(255,255,255,.20), transparent 20%),
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,.12) 0%,
+          rgba(255,255,255,.00) 20%,
+          rgba(255,255,255,.18) 48%,
+          rgba(255,255,255,.00) 68%,
+          rgba(255,255,255,.10) 100%
+        );
+      pointer-events: none;
+    }
+
+    .top-header::after {
+      content: "";
+      position: absolute;
+      left: -10%;
+      right: -10%;
+      bottom: 22%;
+      height: 36px;
+      background: radial-gradient(ellipse at center, rgba(255,255,255,.28), rgba(255,255,255,0));
+      filter: blur(10px);
+      pointer-events: none;
+    }
+
+    .brand-wrap {
+      position: relative;
+      z-index: 1;
+      display: inline-block;
+      text-align: center;
+      padding: 8px 14px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,.36), rgba(255,255,255,.12));
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.55),
+        0 6px 14px rgba(15, 23, 42, 0.12);
+      backdrop-filter: blur(2px);
+    }
+
+    .brand-main {
+      font-size: 1.12rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: 0.4px;
+      color: #0F172A;
+      text-shadow: 0 1px 0 rgba(255,255,255,.16);
+    }
+
+    .brand-sub {
+      margin-top: 3px;
+      font-size: 0.76rem;
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: 1.2px;
+      color: #10223E;
+    }
+
+    .meta {
+      position: relative;
+      z-index: 1;
+      margin-top: 10px;
+      font-size: .94rem;
+      font-weight: 700;
+      color: #10223E;
+      line-height: 1.35;
+      text-shadow: 0 1px 0 rgba(255,255,255,.18);
+    }
+
+    .utility-bar {
+      position: sticky;
+      top: 0;
+      z-index: 1200;
+      background: rgba(255,255,255,.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 4px 12px rgba(15, 23, 42, .05);
+    }
+
+    .utility-inner {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 10px 12px;
+    }
+
+    .utility-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .btn,
+    .nav-btn,
+    .wa-btn,
+    .popup-close,
+    .chat-photo-label,
+    .chat-mic,
+    .chat-send {
+      transition: transform 0.12s ease, opacity 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .btn:active,
+    .nav-btn:active,
+    .wa-btn:active,
+    .popup-close:active,
+    .chat-photo-label:active,
+    .chat-mic:active,
+    .chat-send:active {
+      transform: scale(0.96);
+      opacity: 0.92;
+    }
+
+    .btn {
+      min-height: 48px;
+      border: none;
+      border-radius: 14px;
+      padding: 10px 8px;
+      font-size: .96rem;
+      font-weight: 700;
+      font-family: inherit;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before,
+    .nav-btn::before,
+    .wa-btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0));
+      pointer-events: none;
+    }
+
+    .btn-pair-blue {
+      background: linear-gradient(180deg, var(--pair-blue-1), var(--pair-blue-2));
+      color: #fff;
+    }
+
+    .btn-pair-dark {
+      background: linear-gradient(180deg, var(--pair-dark-1), var(--pair-dark-2));
+      color: #fff;
+    }
+
+    .btn-pair-green {
+      background: linear-gradient(180deg, var(--pair-green-1), var(--pair-green-2));
+      color: #fff;
+    }
+
+    .audio-status {
+      text-align: center;
+      font-size: .92rem;
+      font-weight: 600;
+      color: var(--muted);
+      min-height: 22px;
+    }
+
+    .hero {
+      background: linear-gradient(180deg, #2D6BFF 0%, #1D4ED8 100%);
+      color: #fff;
+      border-radius: 0 0 24px 24px;
+      box-shadow: var(--shadow);
+      padding: 16px 14px 18px;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .lesson-badge {
+      display: inline-block;
+      background: linear-gradient(180deg, #FDE047, #FACC15);
+      color: var(--text);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: .9rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,.12);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: 1.42rem;
+      line-height: 1.28;
+      font-weight: 700;
+    }
+
+    .hero-sub {
+      margin-top: 8px;
+      font-size: 1.02rem;
+      line-height: 1.5;
+      color: #FFFFFF;
+      font-weight: 600;
+      opacity: 0.95;
+    }
+
+    .progress-box {
+      background: var(--card);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+
+    .progress-label {
+      text-align: center;
+      font-size: .95rem;
+      font-weight: 700;
+      color: #20335D;
+      margin-bottom: 8px;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 12px;
+      background: #E8EDFF;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      width: 36.66%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--progress-start), var(--progress-end));
+      border-radius: 999px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 15px 14px;
+      margin-bottom: 12px;
+      border-left: 6px solid var(--primary-blue);
+    }
+
+    .card-accent {
+      border-left-color: var(--accent-yellow);
+    }
+
+    .card-primary {
+      border-left-color: var(--primary-green);
+    }
+
+    .card-danger {
+      border-left-color: var(--accent-red);
+    }
+
+    .chip {
+      display: inline-block;
+      margin-bottom: 8px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: .88rem;
+      font-weight: 700;
+      box-shadow: 0 4px 10px rgba(15,23,42,.10);
+    }
+
+    .chip-blue {
+      background: linear-gradient(180deg, #3B82F6, #2563EB);
+      color: #fff;
+    }
+
+    .chip-green {
+      background: linear-gradient(180deg, #22C55E, #16A34A);
+      color: #fff;
+    }
+
+    .chip-yellow {
+      background: linear-gradient(180deg, #FDE047, #FACC15);
+      color: var(--text);
+    }
+
+    .chip-red {
+      background: linear-gradient(180deg, #F87171, #EF4444);
+      color: #fff;
+    }
+
+    .card h2 {
+      margin: 0 0 10px;
+      font-size: 1.18rem;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+    .card h3 {
+      margin: 12px 0 8px;
+      font-size: 1.03rem;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+    .card p,
+    .card li {
+      font-size: 1.01rem;
+      margin: 0 0 10px;
+      line-height: 1.75;
+    }
+
+    .card ul,
+    .card ol {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    .flow-box {
+      background: #0F172A;
+      color: #fff;
+      border-radius: 14px;
+      padding: 12px;
+      white-space: pre-wrap;
+      overflow: auto;
+      font-size: .98rem;
+      line-height: 1.8;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    .state-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      border-radius: 14px;
+      background: #fff;
+      border: 1px solid var(--line);
+      margin-bottom: 12px;
+      padding: 10px 12px;
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .wa-wrap {
+      display: none;
+      margin-top: 12px;
+    }
+
+    .wa-btn {
+      width: 100%;
+      min-height: 48px;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #34D76B, #25D366);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 13px 12px;
+      cursor: pointer;
+      box-shadow: 0 10px 18px rgba(37, 211, 102, 0.25);
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wa-btn svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+      flex: 0 0 auto;
+    }
+
+    .footer-box {
+      text-align: center;
+      font-size: .94rem;
+      color: var(--muted);
+      padding: 6px 8px 0;
+      margin-bottom: 6px;
+      line-height: 1.6;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1100;
+      background: rgba(255,255,255,.97);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid var(--line);
+      padding: 8px 10px;
+      transition: transform .25s ease, opacity .25s ease;
+    }
+
+    .bottom-nav.hide {
+      transform: translateY(110%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .bottom-nav-inner {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+
+    .nav-btn {
+      min-height: 48px;
+      border-radius: 12px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 10px 6px;
+      font-size: .95rem;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #fff;
+      box-shadow: 0 8px 18px rgba(15,23,42,.14);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-pair-blue {
+      background: linear-gradient(180deg, var(--pair-blue-1), var(--pair-blue-2));
+    }
+
+    .nav-pair-dark {
+      background: linear-gradient(180deg, var(--pair-dark-1), var(--pair-dark-2));
+    }
+
+    .nav-pair-green {
+      background: linear-gradient(180deg, var(--pair-green-1), var(--pair-green-2));
+    }
+
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 20, 40, .42);
+      display: none;
+      z-index: 2000;
+    }
+
+    .popup-overlay.show {
+      display: block;
+    }
+
+    .ai-popup {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: -100%;
+      z-index: 2100;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      height: 72vh;
+      background: #fff;
+      border-top-left-radius: 24px;
+      border-top-right-radius: 24px;
+      box-shadow: 0 -14px 30px rgba(0,0,0,.18);
+      display: flex;
+      flex-direction: column;
+      transition: bottom .28s ease;
+    }
+
+    .ai-popup.show {
+      bottom: 0;
+    }
+
+    .popup-head {
+      padding: 14px 14px 10px;
+      border-bottom: 1px solid #E8EEF8;
+    }
+
+    .popup-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .popup-title {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .popup-close {
+      min-height: 44px;
+      border: none;
+      background: linear-gradient(180deg, #F8FBFF, #EEF3FF);
+      color: #19315C;
+      font-size: .92rem;
+      font-weight: 700;
+      padding: 10px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: 0 6px 14px rgba(15,23,42,.08);
+    }
+
+    .ai-state {
+      min-height: 48px;
+      border-radius: 14px;
+      background: #F8FBFF;
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 10px 12px;
+      font-size: .94rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .chat-area {
+      flex: 1;
+      overflow: auto;
+      background: #F8FBFF;
+      padding: 12px;
+    }
+
+    .chat-bubble {
+      max-width: 88%;
+      padding: 10px 12px;
+      border-radius: 16px;
+      margin-bottom: 10px;
+      font-size: .98rem;
+      line-height: 1.55;
+      word-break: break-word;
+    }
+
+    .chat-user {
+      margin-left: auto;
+      background: #DDF2FF;
+      color: #14375C;
+      border-bottom-right-radius: 6px;
+    }
+
+    .chat-ai {
+      margin-right: auto;
+      background: #FFFFFF;
+      color: #203252;
+      border: 1px solid #E4ECF8;
+      border-bottom-left-radius: 6px;
+    }
+
+    .chat-preview {
+      display: none;
+      margin: 0 12px 10px;
+      padding: 10px;
+      border: 1px dashed var(--line);
+      border-radius: 16px;
+      background: #fff;
+      text-align: center;
+    }
+
+    .chat-preview img {
+      max-width: 100%;
+      max-height: 160px;
+      border-radius: 12px;
+    }
+
+    .chat-input-wrap {
+      background: #fff;
+      border-top: 1px solid #E8EEF8;
+      padding: 10px 12px 14px;
+    }
+
+    .chat-actions {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .chat-photo-label,
+    .chat-mic,
+    .chat-send {
+      min-height: 48px;
+      border: none;
+      border-radius: 14px;
+      padding: 12px;
+      font-size: .98rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: inherit;
+      box-shadow: 0 6px 14px rgba(15,23,42,.08);
+    }
+
+    .chat-photo-label,
+    .chat-mic {
+      background: linear-gradient(180deg, #FFFFFF, #F3F7FF);
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    .chat-send {
+      background: linear-gradient(180deg, var(--pair-blue-1), var(--pair-blue-2));
+      color: #fff;
+      min-width: 74px;
+    }
+
+    .chat-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .chat-input {
+      flex: 1;
+      min-height: 48px;
+      border: 1px solid var(--line);
+      background: #F9FBFF;
+      border-radius: 16px;
+      padding: 12px 14px;
+      font-size: 1rem;
+      font-family: "Hind", "Noto Sans Devanagari", sans-serif;
+      color: #1E2E49;
+      outline: none;
+    }
+
+    @media (max-width: 360px) {
+      .hero h1 {
+        font-size: 1.3rem;
+      }
+
+      .card h2 {
+        font-size: 1.12rem;
+      }
+
+      .card p,
+      .card li {
+        font-size: .98rem;
+      }
+
+      .btn,
+      .nav-btn {
+        font-size: .88rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="top-header">
+    <div class="brand-wrap">
+      <div class="brand-main">ACS-AI DIGITAL MASTER™</div>
+      <div class="brand-sub">Powered by Rambharosh Vidyarthi</div>
+    </div>
+    <div class="meta">Level 2 • Chapter 06 • Lesson L055</div>
+  </header>
+
+  <div class="utility-bar">
+    <div class="utility-inner">
+      <div class="utility-row">
+        <a href="index.html" class="btn btn-pair-blue">🏠 होम</a>
+        <button id="audioBtn" class="btn btn-pair-dark" onclick="toggleReading()">🔊 सुनो</button>
+        <button class="btn btn-pair-green" onclick="openAI()">🤖 AI मदद</button>
+      </div>
+      <div class="audio-status" id="audioStatus">🔊 पाठ सुनने के लिए सुनो दबाइए</div>
+    </div>
+  </div>
+
+  <main class="page">
+    <section class="hero">
+      <div class="lesson-badge">LESSON L055</div>
+      <h1>वॉइस नोट क्राफ्ट (Voice Note Craft)</h1>
+      <div class="hero-sub">एक अच्छा Voice Note कैसा होता है?</div>
+    </section>
+
+    <section class="progress-box">
+      <div class="progress-label">Lesson 55 / 150</div>
+      <div class="progress-track">
+        <div class="progress-fill"></div>
+      </div>
+    </section>
+
+    <section class="state-box tts-include">
+      🎯 आज का लक्ष्य: वॉइस नोट क्राफ्ट (Voice Note Craft)
+    </section>
+
+    <div id="lessonContent">
+
+      <section class="card tts-include">
+        <div class="chip chip-blue">1. प्रस्तावना</div>
+        <p>क्या आप WhatsApp (व्हाट्सएप) पर वॉइस नोट भेजते हैं? कई बार लोग बहुत लंबा वॉइस नोट भेजते हैं, जिसे सुनना और समझना मुश्किल हो जाता है।</p>
+        <p>आज हम समझेंगे कि एक अच्छा वॉइस नोट कैसे बनाया जाता है — जो छोटा हो, साफ़ हो और सुनने वाला तुरंत समझ जाए।</p>
+        <p>👉 आज हम सीखेंगे कि सोच-समझकर बोला गया छोटा संदेश किसी भी लंबी बात से ज़्यादा असरदार होता है।</p>
+      </section>
+
+      <section class="card card-danger tts-include">
+        <div class="chip chip-red">🔴 2. पाठ से जुड़े जरुरी Technical Words</div>
+        <h2>पाठ से जुड़े जरुरी Technical Words (टेक्निकल वर्ड)</h2>
+        <p>Voice Note (वॉइस नोट) = आवाज़ से भेजा गया छोटा संदेश</p>
+        <p>Message (मैसेज) = किसी को दी जाने वाली जानकारी या सूचना</p>
+        <p>Pronunciation (प्रोनंसिएशन) = शब्दों को सही और साफ़ तरीके से बोलना</p>
+        <p>Action Line (एक्शन लाइन) = संदेश के अंत में बताना कि सुनने वाले को आगे क्या करना है</p>
+        <p>Tone (टोन) = बोलने का तरीका — जैसे मीठा, सख्त या सम्मानजनक</p>
+      </section>
+
+      <section class="card tts-include">
+        <div class="chip chip-blue">3. Concept</div>
+        <h2>Concept (कांसेप्ट)</h2>
+        <p>जब हम किसी को वॉइस नोट भेजते हैं, तो सुनने वाले के पास समय कम होता है। अगर हम बिना सोचे बोलते हैं, तो बात उलझ जाती है।</p>
+        <p>एक अच्छे वॉइस नोट में तीन बातें होती हैं:</p>
+        <p>👉 शुरुआत में बताओ — क्या कहना है</p>
+        <p>👉 बीच में बताओ — क्यों कह रहे हो</p>
+        <p>👉 अंत में Action Line दो — सुनने वाले को क्या करना है</p>
+        <p>👉 एक Digital Creator का वॉइस नोट छोटा, साफ़ और सोचा-समझा होता है — यही उसकी पहचान है।</p>
+      </section>
+
+      <section class="card tts-include">
+        <div class="chip chip-blue">4. Knowledge Points</div>
+        <h2>Knowledge Points (नॉलेज पॉइंट्स) — ज्ञान बिंदु</h2>
+
+        <h3><span class="chip chip-green">🟢 Easy (ईज़ी) (5)</span></h3>
+        <ul>
+          <li>1. Voice Note (वॉइस नोट) आवाज़ से भेजा जाने वाला छोटा संदेश होता है।</li>
+          <li>2. बहुत लंबा वॉइस नोट सुनने वाले को उलझन में डाल सकता है।</li>
+          <li>3. बोलने से पहले सोचना चाहिए कि क्या कहना है।</li>
+          <li>4. साफ़ और धीरे-धीरे बोलने से सुनने वाला आसानी से समझता है।</li>
+          <li>5. छोटा और सीधा संदेश हमेशा ज़्यादा असरदार होता है।</li>
+        </ul>
+
+        <h3><span class="chip chip-yellow">🟡 Core (कोर) (3)</span></h3>
+        <ul>
+          <li>1. सही Pronunciation (प्रोनंसिएशन) यानी साफ़ उच्चारण से सुनने वाला बिना रुके समझ जाता है।</li>
+          <li>2. अच्छे Tone (टोन) यानी सम्मानजनक और मीठे तरीके से बोलने से बात अच्छी लगती है।</li>
+          <li>3. संदेश के अंत में Action Line देने से सुनने वाले को पता चलता है कि उसे आगे क्या करना है।</li>
+        </ul>
+
+        <h3><span class="chip chip-blue">🔵 Advanced (एडवांस्ड) (2)</span></h3>
+        <ul>
+          <li>1. वॉइस नोट भेजने से पहले 5 सेकंड रुककर सोचना — यह आदत एक Digital Creator को औरों से अलग बनाती है।</li>
+          <li>2. सही Tone (टोन) और सही Pronunciation (प्रोनंसिएशन) मिलकर एक साधारण संदेश को भी असरदार बना देते हैं।</li>
+        </ul>
+      </section>
+
+      <section class="card card-primary tts-include">
+        <div class="chip chip-green">🎯 5. Activity</div>
+        <h2>Activity (एक्टिविटी) / क्रियाकलाप</h2>
+        <p>नीचे के चित्र को ध्यान से देखिए और अपने मोबाइल में इस गतिविधि को करिए:</p>
+
+        <div class="flow-box" aria-hidden="true">🚀 START (स्टार्ट)
+│
+▼
+📱 WhatsApp (व्हाट्सएप) खोलो
+│
+▼
+📋 पहले मन में सोचो — क्या कहना है?
+│
+▼
+🔴 Voice Note रिकॉर्ड करो — 20 से 30 सेकंड
+│
+▼
+🗣️ शुरुआत में बताओ — क्या बात है
+▼
+🗣️ बीच में बताओ — क्यों बता रहे हो
+▼
+🗣️ अंत में Action Line दो — "कृपया बता देना" या "कल तक जवाब दे देना"
+│
+▼
+⏹️ Stop करो और खुद सुनो
+│
+▼
+📝 Copy में लिखो — क्या बात साफ़ थी? क्या सुधार करना है?
+│
+▼
+🔁 एक बार और रिकॉर्ड करो — सुधार के साथ</div>
+
+        <p>👉 अगर WhatsApp नहीं है:</p>
+        <p>👉 Voice Recorder (वॉयस रिकॉर्डर) ऐप में रिकॉर्ड करो और खुद सुनो。</p>
+      </section>
+
+      <section class="card tts-include">
+        <div class="chip chip-blue">6. DIEM</div>
+        <h2>DIEM (डीआईईएम)</h2>
+        <p><em>(मोबाइल के Google एवं AI से सर्च करिए और अपने कॉपी पर 30 से 50 शब्दों में, कलम से लिखिए)</em></p>
+        <p><strong>1:</strong> वॉइस नोट क्या होता है?</p>
+        <p><strong>2:</strong> effective voice message tips (इफेक्टिव वॉइस मैसेज टिप्स)</p>
+        <p><strong>3:</strong> पहली और दूसरी रिकॉर्डिंग में क्या फ़र्क आया — 3 वाक्यों में लिखो।</p>
+      </section>
+
+      <section class="card card-accent tts-include">
+        <div class="chip chip-yellow">7. Behavior Change</div>
+        <h2>Behavior Change (बिहेवियर चेंज)</h2>
+        <p>👉 नियम: मैं हर वॉइस नोट भेजने से पहले 5 सेकंड रुककर सोचूँगा/सोचूँगी — कि क्या कहना है और कैसे कहना है।</p>
+        <p>👉 इस लाइन को अपने कॉपी पर रंगीन स्केच पेन से लिख करके अपने अभिभावक को दिखाओ।</p>
+      </section>
+
+      <section class="card card-danger tts-include">
+        <div class="chip chip-red">8. Safety</div>
+        <h2>Safety (सेफ्टी)</h2>
+        <ul>
+          <li>वॉइस नोट में कोई गुप्त या निजी जानकारी नहीं बोलेंगे।</li>
+          <li>किसी अनजान नंबर पर वॉइस नोट नहीं भेजेंगे।</li>
+          <li>वॉइस नोट में गलत या कठोर भाषा का उपयोग नहीं करेंगे।</li>
+        </ul>
+      </section>
+
+      <section class="card tts-include">
+        <div class="chip chip-blue">9. Reflection</div>
+        <h2>Reflection (रिफ्लेक्शन)</h2>
+        <p><em>(नीचे के लाइन को ध्यान से पढ़ो और 1 मिनट के लिए आंख बंद करके सोचो)</em></p>
+        <p>मैंने आज सीखा कि सोच-समझकर बोला गया छोटा संदेश सबसे ज़्यादा असरदार होता है।</p>
+        <p>क्या मेरा वॉइस नोट सुनने वाले को बिना उलझन के समझ आया?</p>
+      </section>
+
+      <section class="card tts-include">
+        <div class="chip chip-blue">🔟 बोलकर बताओ</div>
+        <h2>अब ऊंची आवाज में बोलकर बताओ तो, इस पाठ में क्या सीखा?</h2>
+        <ol>
+          <li>Voice Note (वॉइस नोट) क्या होता है?</li>
+          <li>लंबा वॉइस नोट क्यों अच्छा नहीं होता?</li>
+          <li>Action Line (एक्शन लाइन) क्या होती है और इसे अंत में क्यों देते हैं?</li>
+          <li>Pronunciation (प्रोनंसिएशन) यानी साफ़ उच्चारण क्यों जरूरी है?</li>
+          <li>वॉइस नोट भेजने से पहले 5 सेकंड रुकना क्यों जरूरी है?</li>
+        </ol>
+      </section>
+
+      <section class="card tts-include">
+        <div class="chip chip-blue">🎬 अगले पाठ में</div>
+        <h2>अगले पाठ में हम क्या सीखने वाले हैं?</h2>
+        <p>आवाज़ में भाव और उतार-चढ़ाव कैसे लाएं — ताकि सुनने वाला बंध जाए!</p>
+      </section>
+
+      <section class="card tts-include" id="shortsSection">
+        <div class="chip chip-blue">🎥 Shorts / Reels Ideas</div>
+        <h2>Shorts / Reels Ideas (शॉर्ट्स / रील्स आइडिया) (10)</h2>
+        <ol>
+          <li>सही Voice Note कैसे भेजें — 3 नियम</li>
+          <li>लंबा vs छोटा Voice Note — कौन बेहतर?</li>
+          <li>Action Line क्या होती है? — Example के साथ</li>
+          <li>साफ़ बोलना क्यों ज़रूरी है — Demo</li>
+          <li>5 सेकंड Rule — भेजने से पहले सोचो</li>
+          <li>Voice Note Demo — पहले और बाद में</li>
+          <li>आवाज़ में Tone का असर — सुनो फ़र्क</li>
+          <li>Message छोटा रखो — टिप्स</li>
+          <li>मेरा वॉइस नोट सुधार</li>
+          <li>आज मैंने क्या नया सीखा?</li>
+        </ol>
+
+        <div class="wa-wrap" id="waWrap">
+          <button class="wa-btn" onclick="shareWhatsApp()">
+            <svg viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M19.11 17.2c-.27-.13-1.58-.78-1.82-.87-.24-.09-.42-.13-.59.14-.18.27-.68.87-.84 1.05-.15.18-.31.2-.58.07-.27-.13-1.14-.42-2.17-1.34-.8-.71-1.34-1.59-1.5-1.86-.16-.27-.02-.41.11-.54.12-.12.27-.31.4-.47.13-.16.18-.27.27-.45.09-.18.04-.34-.02-.47-.07-.13-.59-1.42-.81-1.95-.21-.5-.43-.43-.59-.44-.15-.01-.34-.01-.52-.01s-.47.07-.71.34c-.24.27-.93.91-.93 2.22s.95 2.58 1.08 2.76c.13.18 1.87 2.86 4.54 4 .63.27 1.12.43 1.5.55.63.2 1.2.17 1.65.1.5-.07 1.58-.64 1.8-1.27.22-.63.22-1.17.15-1.27-.06-.1-.24-.16-.5-.29zM16.01 27.1h-.01a11 11 0 0 1-5.58-1.52l-.4-.24-4.15 1.09 1.11-4.05-.26-.42a10.98 10.98 0 1 1 9.29 5.14zm9.36-20.33A12.94 12.94 0 0 0 16.03 3C8.87 3 3.05 8.81 3.05 15.97c0 2.29.6 4.52 1.74 6.49L3 29l6.72-1.76a12.96 12.96 0 0 0 6.31 1.61h.01c7.16 0 12.97-5.81 12.98-12.97 0-3.46-1.35-6.72-3.65-9.11z"/>
+            </svg>
+            WhatsApp पर प्रोग्रेस शेयर करें
+          </button>
+        </div>
+      </section>
+
+      <div class="footer-box">
+        <p><strong>© Applied Computer School run under Freedom Fighter Gangadhar Prasad Memorial Trust.</strong></p>
+      </div>
+    </div>
+  </main>
+
+  <div class="popup-overlay" id="popupOverlay" onclick="closeAI()"></div>
+
+  <section class="ai-popup" id="aiPopup" aria-label="AI मदद">
+    <div class="popup-head">
+      <div class="popup-top">
+        <div class="popup-title">🤖 AI मदद</div>
+        <button class="popup-close" onclick="closeAI()">✕ बंद</button>
+      </div>
+      <div class="ai-state" id="aiState">🧪 परीक्षण मोड</div>
+    </div>
+
+    <div class="chat-area" id="chatArea">
+      <div class="chat-bubble chat-ai">नमस्ते! आप इस पाठ के बारे में लिखकर, बोलकर या फोटो भेजकर पूछ सकते हैं।</div>
+    </div>
+
+    <div class="chat-preview" id="imagePreviewBox">
+      <img id="imagePreview" alt="भेजी गई फोटो का प्रीव्यू">
+    </div>
+
+    <div class="chat-input-wrap">
+      <div class="chat-actions">
+        <label class="chat-photo-label" for="photoInput">📷 फोटो</label>
+        <button class="chat-mic" onclick="startVoiceInput()">🎤 बोलो</button>
+      </div>
+
+      <div class="chat-row">
+        <input class="chat-input" id="chatInput" type="text" placeholder="यहाँ लिखकर पूछो..." />
+        <button class="chat-send" onclick="sendMessage()">भेजो</button>
+      </div>
+
+      <input id="photoInput" class="hidden" type="file" accept="image/*" capture="environment" onchange="handlePhoto(event)">
+    </div>
+  </section>
+
+  <nav class="bottom-nav" id="bottomNav">
+    <div class="bottom-nav-inner">
+      <a href="L054.html" class="nav-btn nav-pair-blue">⬅ पिछला</a>
+      <a href="index.html" class="nav-btn nav-pair-dark">🏠 मुख्य पृष्ठ</a>
+      <a href="L056.html" class="nav-btn nav-pair-green">अगला ➡</a>
+    </div>
+  </nav>
+
+  <script>
+    const LESSON_THEME = "वॉइस नोट क्राफ्ट (Voice Note Craft)";
+    const SCROLL_KEY = "waShown_L055";
+
+    let utteranceQueue = [];
+    let currentIndex = 0;
+    let isReading = false;
+
+    const audioBtn = document.getElementById("audioBtn");
+    const audioStatus = document.getElementById("audioStatus");
+    const bottomNav = document.getElementById("bottomNav");
+    const waWrap = document.getElementById("waWrap");
+    const chatInput = document.getElementById("chatInput");
+    const chatArea = document.getElementById("chatArea");
+    const aiState = document.getElementById("aiState");
+
+    function splitTextIntoChunks(text, maxLength = 180) {
+      const clean = text.replace(/\s+/g, " ").trim();
+      const matches = clean.match(new RegExp(`.{1,${maxLength}}([\\.\\?\\!\\।]|$)`, "g"));
+      return matches || [clean];
+    }
+
+    function getReadableLessonText() {
+      const nodes = document.querySelectorAll(".state-box, .tts-include h2, .tts-include h3, .tts-include p, .tts-include li");
+      return Array.from(nodes)
+        .filter(node => !node.closest(".flow-box"))
+        .map(node => node.innerText.trim())
+        .filter(Boolean)
+        .join(" ");
+    }
+
+    function getHindiVoice() {
+      const voices = speechSynthesis.getVoices();
+      return voices.find(v => v.lang && v.lang.toLowerCase().includes("hi")) || voices[0];
+    }
+
+    function showBottomNav(show) {
+      if (show) {
+        bottomNav.classList.remove("hide");
+      } else {
+        bottomNav.classList.add("hide");
+      }
+    }
+
+    function setAudioIdleState(message) {
+      isReading = false;
+      audioBtn.textContent = "🔊 सुनो";
+      audioStatus.textContent = message || "🔊 पाठ सुनने के लिए सुनो दबाइए";
+      showBottomNav(true);
+    }
+
+    function speakChunk(index) {
+      if (index >= utteranceQueue.length) {
+        setAudioIdleState("✅ पाठ पूरा हुआ");
+        currentIndex = 0;
+        return;
+      }
+
+      currentIndex = index;
+      const utterance = new SpeechSynthesisUtterance(utteranceQueue[index]);
+      utterance.lang = "hi-IN";
+      utterance.rate = 0.9;
+      utterance.pitch = 1;
+      utterance.volume = 1;
+
+      const voice = getHindiVoice();
+      if (voice) utterance.voice = voice;
+
+      utterance.onstart = function () {
+        isReading = true;
+        audioBtn.textContent = "⏹ रोकें";
+        audioStatus.textContent = "🔊 पाठ सुनाया जा रहा है";
+        showBottomNav(false);
+      };
+
+      utterance.onend = function () {
+        if (isReading) speakChunk(index + 1);
+      };
+
+      utterance.onerror = function () {
+        setAudioIdleState("⚠️ ऑडियो सपोर्ट नहीं मिला");
+      };
+
+      speechSynthesis.speak(utterance);
+    }
+
+    function startReading() {
+      if (!("speechSynthesis" in window)) {
+        audioStatus.textContent = "⚠️ यह browser ऑडियो सपोर्ट नहीं करता";
+        return;
+      }
+
+      speechSynthesis.cancel();
+      const text = getReadableLessonText();
+      utteranceQueue = splitTextIntoChunks(text, 180);
+      speakChunk(currentIndex || 0);
+    }
+
+    function stopReading() {
+      speechSynthesis.cancel();
+      isReading = false;
+      audioBtn.textContent = "🔊 सुनो";
+      audioStatus.textContent = "🔇 पाठ बंद किया गया";
+      showBottomNav(true);
+    }
+
+    function toggleReading() {
+      if (isReading) {
+        stopReading();
+      } else {
+        startReading();
+      }
+    }
+
+    function openAI() {
+      document.getElementById("popupOverlay").classList.add("show");
+      document.getElementById("aiPopup").classList.add("show");
+      setAIState("🧪 परीक्षण मोड");
+    }
+
+    function closeAI() {
+      document.getElementById("popupOverlay").classList.remove("show");
+      document.getElementById("aiPopup").classList.remove("show");
+      setAIState("🧪 परीक्षण मोड");
+    }
+
+    function setAIState(text) {
+      aiState.textContent = text;
+    }
+
+    function addChatMessage(text, type) {
+      const div = document.createElement("div");
+      div.className = "chat-bubble " + (type === "user" ? "chat-user" : "chat-ai");
+      div.textContent = text;
+      chatArea.appendChild(div);
+      chatArea.scrollTop = chatArea.scrollHeight;
+    }
+
+    function sendMessage() {
+      const text = chatInput.value.trim();
+      if (!text) return;
+
+      chatInput.value = "";
+      addChatMessage(text, "user");
+      setAIState("🤖 जवाब आया");
+
+      if (typeof askAI === "function") {
+        askAI(text);
+      } else {
+        addChatMessage("⚠️ AI service अभी उपलब्ध नहीं है।", "ai");
+      }
+    }
+
+    chatInput.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+
+    function startVoiceInput() {
+      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      if (!SR) {
+        setAIState("⚠️ फिर कोशिश करें");
+        addChatMessage("इस मोबाइल या browser में voice input support नहीं मिला। आप लिखकर पूछिए।", "ai");
+        return;
+      }
+
+      try {
+        const recognition = new SR();
+        recognition.lang = "hi-IN";
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        setAIState("🎙 सुन रहा हूँ");
+
+        recognition.onresult = function (event) {
+          const transcript = event.results[0][0].transcript;
+          chatInput.value = transcript;
+          sendMessage();
+        };
+
+        recognition.onerror = function () {
+          setAIState("⚠️ फिर कोशिश करें");
+          addChatMessage("आवाज समझने में समस्या आई।", "ai");
+        };
+
+        recognition.start();
+      } catch (e) {
+        setAIState("⚠️ फिर कोशिश करें");
+        addChatMessage("voice input शुरू नहीं हो पाया।", "ai");
+      }
+    }
+
+    function handlePhoto(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const previewBox = document.getElementById("imagePreviewBox");
+      const preview = document.getElementById("imagePreview");
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        preview.src = e.target.result;
+        previewBox.style.display = "block";
+
+        addChatMessage("📷 फोटो भेजा गया", "user");
+        setAIState("🧪 परीक्षण मोड");
+        addChatMessage("अभी फोटो preview के रूप में दिख रही है। backend जुड़ने पर फोटो पढ़कर जवाब दिया जाएगा।", "ai");
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function shareWhatsApp() {
+      const text = "आज मैंने एसीएस-एआई डिजिटल मास्टर कोर्स से " + LESSON_THEME + " सीखा। 🚀 एआई स्किल सीखेगा इंडिया! https://www.acs-aidigitalmaster.org/";
+      const url = "https://wa.me/?text=" + encodeURIComponent(text);
+      window.location.href = url;
+    }
+
+    function revealWhatsAppButton() {
+      if (sessionStorage.getItem(SCROLL_KEY) === "shown") {
+        waWrap.style.display = "block";
+        return;
+      }
+
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 100;
+
+      if (progress >= 90) {
+        waWrap.style.display = "block";
+        sessionStorage.setItem(SCROLL_KEY, "shown");
+        window.removeEventListener("scroll", revealWhatsAppButton);
+      }
+    }
+
+    window.addEventListener("scroll", revealWhatsAppButton);
+
+    if ("speechSynthesis" in window) {
+      window.speechSynthesis.onvoiceschanged = function () {
+        speechSynthesis.getVoices();
+      };
+    }
+  </script>
+
+  <script src="ai.js"></script>
+</body>
+</html>
