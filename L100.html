@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L100 - लेवल शोकेस (Level Showcase)</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --pair-blue-1: #3B82F6;
+      --pair-blue-2: #1D4ED8;
+      --pair-dark-1: #334155;
+      --pair-dark-2: #0F172A;
+      --pair-green-1: #22C55E;
+      --pair-green-2: #15803D;
+      --primary-blue: #2563EB;
+      --primary-green: #16A34A;
+      --accent-red: #EF4444;
+      --accent-yellow: #FACC15;
+      --bg: #F4F7FF;
+      --card: #FFFFFF;
+      --text: #0F172A;
+      --muted: #475569;
+      --line: #D9E3F4;
+      --progress-start: #F97316;
+      --progress-end: #FACC15;
+      --wa-green: #25D366;
+      --shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+      --shadow-strong: 0 10px 22px rgba(15, 23, 42, 0.14);
+      --radius: 18px;
+      --maxw: 430px;
+    }
+
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: "Hind", "Noto Sans Devanagari", sans-serif;
+      font-size: 16px; line-height: 1.75; padding-bottom: 100px;
+    }
+
+    .page { max-width: var(--maxw); margin: 0 auto; padding: 0 12px 14px; }
+
+    .top-header {
+      position: relative; text-align: center; padding: 14px 12px 16px;
+      box-shadow: var(--shadow-strong); overflow: hidden;
+      background: linear-gradient(180deg, rgba(255,153,51,0.96) 0%, rgba(255,255,255,0.98) 48%, rgba(19,136,8,0.94) 100%);
+    }
+
+    .brand-wrap {
+      position: relative; z-index: 1; display: inline-block; padding: 8px 14px;
+      border-radius: 18px; background: linear-gradient(180deg, rgba(255,255,255,.36), rgba(255,255,255,.12));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.55), 0 6px 14px rgba(15, 23, 42, 0.12);
+      backdrop-filter: blur(2px);
+    }
+    .brand-main { font-size: 1.12rem; font-weight: 800; color: #0F172A; line-height: 1.2; }
+    .brand-sub { margin-top: 3px; font-size: 0.76rem; font-weight: 500; letter-spacing: 1.2px; color: #10223E; }
+    .meta { position: relative; z-index: 1; margin-top: 10px; font-size: .94rem; font-weight: 700; color: #10223E; }
+
+    .utility-bar {
+      position: sticky; top: 0; z-index: 1200; background: rgba(255,255,255,.97);
+      backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+      box-shadow: 0 4px 12px rgba(15, 23, 42, .05);
+    }
+    .utility-inner { max-width: var(--maxw); margin: 0 auto; padding: 10px 12px; }
+    .utility-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+
+    .btn {
+      min-height: 48px; border: none; border-radius: 14px; font-size: .96rem;
+      font-weight: 700; font-family: inherit; display: flex; align-items: center; justify-content: center;
+      text-decoration: none; cursor: pointer; box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+    }
+    .btn-pair-blue { background: linear-gradient(180deg, var(--pair-blue-1), var(--pair-blue-2)); color: #fff; }
+    .btn-pair-dark { background: linear-gradient(180deg, var(--pair-dark-1), var(--pair-dark-2)); color: #fff; }
+    .btn-pair-green { background: linear-gradient(180deg, var(--pair-green-1), var(--pair-green-2)); color: #fff; }
+
+    .hero {
+      background: linear-gradient(180deg, #1D4ED8 0%, #0F172A 100%); color: #fff;
+      border-radius: 0 0 24px 24px; box-shadow: var(--shadow); padding: 20px 14px;
+      margin-bottom: 12px; text-align: center;
+    }
+    .lesson-badge {
+      display: inline-block; background: linear-gradient(180deg, #FDE047, #FACC15); color: var(--text);
+      padding: 6px 16px; border-radius: 999px; font-size: 1rem; font-weight: 800; margin-bottom: 10px;
+      box-shadow: 0 4px 12px rgba(250, 204, 21, 0.3);
+    }
+    .hero h1 { margin: 0; font-size: 1.6rem; line-height: 1.2; font-weight: 800; text-transform: uppercase; }
+    .hero-sub { margin-top: 10px; font-size: 1.1rem; font-weight: 600; color: #CBD5E1; }
+
+    .progress-box { background: var(--card); border-radius: 16px; box-shadow: var(--shadow); padding: 12px; margin-bottom: 12px; }
+    .progress-label { text-align: center; font-size: .95rem; font-weight: 700; color: #20335D; margin-bottom: 8px; }
+    .progress-track { width: 100%; height: 12px; background: #E8EDFF; border-radius: 999px; overflow: hidden; }
+    .progress-fill { width: 66.66%; height: 100%; background: linear-gradient(90deg, var(--progress-start), var(--progress-end)); }
+
+    .card {
+      background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+      padding: 15px 14px; margin-bottom: 12px; border-left: 6px solid var(--primary-blue);
+    }
+    .card-danger { border-left-color: var(--accent-red); }
+    .card-primary { border-left-color: var(--primary-green); }
+    .card-accent { border-left-color: var(--accent-yellow); }
+    .card-gold { border-left-color: #D4AF37; background: #FFFDF5; }
+
+    .chip {
+      display: inline-block; margin-bottom: 8px; padding: 5px 10px; border-radius: 999px;
+      font-size: .88rem; font-weight: 700; box-shadow: 0 4px 10px rgba(15,23,42,.10);
+    }
+    .chip-blue { background: linear-gradient(180deg, #3B82F6, #2563EB); color: #fff; }
+    .chip-green { background: linear-gradient(180deg, #22C55E, #16A34A); color: #fff; }
+
+    h2 { margin: 0 0 10px; font-size: 1.2rem; line-height: 1.35; font-weight: 700; }
+    p, li { font-size: 1.05rem; margin: 0 0 12px; line-height: 1.75; }
+    ul, ol { padding-left: 22px; margin: 0; }
+
+    .flow-box {
+      background: #0F172A; color: #fff; border-radius: 14px; padding: 14px;
+      white-space: pre-wrap; overflow: auto; font-size: .98rem; line-height: 1.8;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08); margin: 10px 0;
+    }
+
+    .milestone-badge {
+      background: #D4AF37; color: #fff; padding: 12px; border-radius: 12px;
+      text-align: center; font-weight: 800; font-size: 1.1rem; margin-bottom: 15px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+
+    .bottom-nav {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 1100;
+      background: rgba(255,255,255,.97); backdrop-filter: blur(8px);
+      border-top: 1px solid var(--line); padding: 8px 10px;
+    }
+    .bottom-nav-inner { max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .nav-btn {
+      min-height: 48px; border-radius: 12px; text-decoration: none; display: flex; align-items: center;
+      justify-content: center; text-align: center; padding: 10px 6px; font-size: .95rem; font-weight: 700; color: #fff;
+    }
+    .nav-pair-blue { background: linear-gradient(180deg, var(--pair-blue-1), var(--pair-blue-2)); }
+    .nav-pair-dark { background: linear-gradient(180deg, var(--pair-dark-1), var(--pair-dark-2)); }
+    .nav-pair-green { background: linear-gradient(180deg, var(--pair-green-1), var(--pair-green-2)); }
+
+    .footer-box { text-align: center; font-size: .94rem; color: var(--muted); padding: 10px; margin-top: 20px; border-top: 1px solid var(--line); }
+  </style>
+</head>
+<body>
+
+  <header class="top-header">
+    <div class="brand-wrap">
+      <div class="brand-main">ACS-AI DIGITAL MASTER™</div>
+      <div class="brand-sub">Powered by Rambharosh Vidyarthi</div>
+    </div>
+    <div class="meta">Level 2 • Chapter 10 • Lesson L100</div>
+  </header>
+
+  <div class="utility-bar">
+    <div class="utility-inner">
+      <div class="utility-row">
+        <a href="index.html" class="btn btn-pair-blue">🏠 होम</a>
+        <button class="btn btn-pair-dark" onclick="toggleTTS()">🔊 सुनो</button>
+        <button class="btn btn-pair-green">🤖 AI मदद</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="page">
+    <section class="hero">
+      <div class="lesson-badge">🎉 MILESTONE L100 🎉</div>
+      <h1>Level Showcase (लेवल शोकेस)</h1>
+      <div class="hero-sub">अपनी Digital Journey को आत्मविश्वास से प्रस्तुत करें</div>
+    </section>
+
+    <section class="progress-box">
+      <div class="progress-label">Lesson 100 / 150 (Milestone)</div>
+      <div class="progress-track"><div class="progress-fill"></div></div>
+    </section>
+
+    <section class="card tts-include">
+      <div class="chip chip-blue">1. प्रस्तावना</div>
+      <p>बधाई हो! आज आप अपने इस सफर के <strong>100वें पाठ</strong> तक पहुँच गए हैं। आपने इस यात्रा में Settings, Security, AI, Content निर्माण और Portfolio तैयार करना सीखा।</p>
+      <p>👉 सीखना तब मज़बूत होता है — जब आप अपने काम को दुनिया के सामने आत्मविश्वास के साथ दिखाते हैं। आज हम अपनी <strong>Digital Journey</strong> को सही ढंग से प्रस्तुत करना सीखेंगे।</p>
+    </section>
+
+    <section class="card card-danger tts-include">
+      <div class="chip chip-red">🔴 2. जरुरी Technical Words</div>
+      <h2>महत्वपूर्ण तकनीकी शब्द</h2>
+      <ul>
+        <li><strong>Showcase (शोकेस):</strong> अपने बेहतरीन काम और हुनर को दूसरों के सामने आत्मविश्वास के साथ दिखाना।</li>
+        <li><strong>Digital Journey:</strong> स्किल्स सीखने और प्रोजेक्ट्स बनाने का आपका पूरा सफर।</li>
+        <li><strong>Presentation Skill:</strong> अपनी बात और काम को प्रभावी ढंग से प्रस्तुत करने की कला।</li>
+        <li><strong>Visible Learning (विज़िबल लर्निंग):</strong> ऐसा सीखना जो काम के रूप में दिखाई दे।</li>
+        <li><strong>Growth (ग्रोथ):</strong> फीडबैक लेकर अपने काम को और बेहतर बनाना।</li>
+      </ul>
+    </section>
+
+    <section class="card tts-include">
+      <div class="chip chip-blue">3. Concept</div>
+      <h2>कांसेप्ट (Concept)</h2>
+      <p>एक अच्छे Creator की पहचान सिर्फ उसके काम से नहीं, बल्कि उसकी <strong>Presentation Skill</strong> से भी होती है। जब आप अपना Portfolio दिखाते हैं, तो आपकी मेहनत दूसरों को 'Visible' हो जाती है।</p>
+      
+      <p>👉 <strong>Feedback</strong> से घबराना नहीं है; यह आपकी ग्रोथ का हिस्सा है। जब आप गर्व से अपना काम दिखाते हैं, तो आप खुद को एक ज़िम्मेदार डिजिटल क्रिएटर साबित करते हैं।</p>
+    </section>
+
+    <section class="card tts-include">
+      <div class="chip chip-blue">4. Knowledge Points</div>
+      <h2>Knowledge Points (ज्ञान बिंदु)</h2>
+      <h3>🟢 Easy (ईज़ी)</h3>
+      <ul>
+        <li>1. अपने काम को दूसरों के सामने दिखाना 'Showcase' कहलाता है।</li>
+        <li>2. परिवार या दोस्तों के सामने काम दिखाने से आत्मविश्वास बढ़ता है।</li>
+      </ul>
+      <h3>🟡 Core (कोर)</h3>
+      <ul>
+        <li>1. Showcase आपकी लर्निंग को 'दिखाई देने वाला' (Visible) बनाता है।</li>
+        <li>2. अच्छी प्रेजेंटेशन में आपकी साफ़ आवाज़ और आत्मविश्वास भी शामिल होते हैं।</li>
+      </ul>
+      
+      <h3>🔵 Advanced (एडवांस्ड)</h3>
+      <ul>
+        <li>1. डिजिटल पोर्टफोलियो का शोकेस करना अपनी <strong>Professional Identity</strong> बनाने की शुरुआत है।</li>
+        <li>2. एक मज़बूत क्रिएटर काम के साथ-साथ अपने 'सफर की कहानी' भी सुनाता है।</li>
+      </ul>
+    </section>
+
+    <section class="card card-primary tts-include">
+      <div class="chip chip-green">🎯 5. Activity</div>
+      <h2>Activity (एक्टिविटी) / लेवल शोकेस</h2>
+      <div class="flow-box" aria-hidden="true">🚀 START (स्टार्ट)
+│
+▼
+📱 अपना Portfolio Link तैयार रखें
+│
+▼
+👨‍🏫 शिक्षक (Mentor) को अपना Portfolio दिखाएं
+│
+▼
+🗣️ बताएं कि कौन सा Project बनाने में सबसे मज़ा आया
+│
+▼
+👨‍👩‍👧‍👦 परिवार के सामने 2-3 मिनट की Presentation दें
+│
+▼
+💬 अपनी Digital Journey के बारे में बताएं
+│
+▼
+✅ बधाई! आपने लेवल शोकेस पूरा किया।</div>
+      <p>👉 अगर लाइव प्रेजेंटेशन संभव न हो: अपनी कॉपी में 5-7 पंक्तियों का "मेरा डिजिटल सफर" भाषण लिखें और अभ्यास करें।</p>
+    </section>
+
+    <section class="card card-gold tts-include">
+      <div class="milestone-badge">🏆 Level Portfolio Pass Criteria 🏆</div>
+      <p>आपका Level तभी Complete माना जाएगा जब आपके Portfolio Link में ये 5 चीज़ें हों:</p>
+      <ol>
+        <li>✅ 1 Audio Project</li>
+        <li>✅ 1 Photo Story या Poster</li>
+        <li>✅ 1 Video Project</li>
+        <li>✅ 1 AI-assisted Content</li>
+        <li>✅ 1 Organized Portfolio Folder / Link</li>
+      </ol>
+      
+    </section>
+
+    <section class="card tts-include">
+      <div class="chip chip-blue">6. DIEM</div>
+      <p>1: इस सफर में सीखी गई कौन सी डिजिटल स्किल आपके जीवन में सबसे ज़्यादा काम आएगी?</p>
+      <p>2: "Presentation Confidence Tips" सर्च करके कोई 1 अच्छा तरीका लिखो।</p>
+      <p>3: अपनी 'Digital Journey' पर 5 पंक्तियों का परिचय लिखो।</p>
+    </section>
+
+    <section class="card card-accent tts-include">
+      <div class="chip chip-yellow">7. Behavior Change</div>
+      <p>👉 नियम: मैं अपनी मेहनत और अपने काम पर गर्व करूँगा/करूँगी — और अपने बनाए हुए Projects को आत्मविश्वास के साथ प्रस्तुत करूँगा/करूँगी।</p>
+    </section>
+
+    <section class="card tts-include">
+      <div class="chip chip-blue">9. Reflection</div>
+      <p>क्या अब मैं खुद को आत्मविश्वास के साथ एक <strong>Digital Creator</strong> कह सकता/सकती हूँ? मैंने इस पूरे सफर में सबसे अहम चीज़ क्या सीखी?</p>
+    </section>
+
+    <section class="card tts-include">
+      <div class="chip chip-blue">🔟 बोलकर बताओ</div>
+      <ol>
+        <li>हुनर को दूसरों के सामने दिखाने को क्या कहते हैं?</li>
+        <li>काम के रूप में दिखने वाले सीखने को क्या कहते हैं?</li>
+        <li>लेवल पास करने के लिए पोर्टफोलियो में कितनी चीजें होना ज़रूरी हैं?</li>
+      </ol>
+    </section>
+
+    <section class="card card-primary tts-include">
+      <div class="chip chip-green">🎬 आगे क्या है? (What's Next?)</div>
+      <p>यह अंत नहीं है — यह आपकी नई डिजिटल पहचान और रचनात्मकता की शुरुआत है। अपनी स्किल्स का उपयोग करते रहें और अपना पोर्टफोलियो सहेज कर रखें।</p>
+    </section>
+
+    <div class="footer-box">
+      <strong>© Applied Computer School run under Freedom Fighter Gangadhar Prasad Memorial Trust.</strong>
+    </div>
+  </main>
+
+  <nav class="bottom-nav">
+    <div class="bottom-nav-inner">
+      <a href="L099.html" class="nav-btn nav-pair-blue">⬅ पिछला</a>
+      <a href="index.html" class="nav-btn nav-pair-dark">🏠 होम</a>
+      <a href="L101.html" class="nav-btn nav-pair-green">अगला ➡</a>
+    </div>
+  </nav>
+
+  <script>
+    function toggleTTS() {
+      const text = Array.from(document.querySelectorAll('.tts-include'))
+        .map(el => el.innerText).join(' ');
+      const msg = new SpeechSynthesisUtterance(text);
+      msg.lang = 'hi-IN';
+      window.speechSynthesis.speak(msg);
+    }
+  </script>
+</body>
+</html>
