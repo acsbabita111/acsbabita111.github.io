@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L095 - फाइल नेमिंग (File Naming)</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --pair-blue-1: #3B82F6;
+      --pair-blue-2: #1D4ED8;
+      --pair-dark-1: #334155;
+      --pair-dark-2: #0F172A;
+      --pair-green-1: #22C55E;
+      --pair-green-2: #15803D;
+      --primary-blue: #2563EB;
+      --primary-green: #16A34A;
+      --accent-red: #EF4444;
+      --accent-yellow: #FACC15;
+      --bg: #F4F7FF;
+      --card: #FFFFFF;
+      --text: #0F172A;
+      --muted: #475569;
+      --line: #D9E3F4;
+      --progress-start: #F97316;
+      --progress-end: #FACC15;
+      --wa-green: #25D366;
+      --shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+      --shadow-strong: 0 10px 22px rgba(15, 23, 42, 0.14);
+      --radius: 18px;
+      --maxw: 430px;
+    }
+
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: "Hind", "Noto Sans Devanagari", sans-serif;
+      font-size: 16px; line-height: 1.75; padding-bottom: 96px;
+    }
+
+    .page { max-width: var(--maxw); margin: 0 auto; padding: 0 12px 14px; }
+    .hidden { display: none !important; }
+
+    .top-header {
+      position: relative; text-align: center; padding: 14px 12px 16px;
+      box-shadow: var(--shadow-strong); overflow: hidden;
+      background: linear-gradient(180deg, rgba(255,153,51,0.96) 0%, rgba(255,255,255,0.98) 48%, rgba(19,136,8,0.94) 100%);
+    }
+
+    .brand-wrap {
+      position: relative; z-index: 1; display: inline-block; padding: 8px 14px;
+      border-radius: 18px; background: linear-gradient(180deg, rgba(255,255,255,.36), rgba(255,255,255,.12));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.55), 0 6px 14px rgba(15, 23, 42, 0.12);
+      backdrop-filter: blur(2px);
+    }
+    .brand-main { font-size: 1.12rem; font-weight: 800; color: #0F172A; line-height: 1.2; }
+    .brand-sub { margin-top: 3px; font-size: 0.76rem; font-weight: 500; letter-spacing: 1.2px; color: #10223E; }
+    .meta { position: relative; z-index: 1; margin-top: 10px; font-size: .94rem; font-weight: 700; color: #10223E; }
+
+    .utility-bar {
+      position: sticky; top: 0; z-index: 1200; background: rgba(255,255,255,.97);
+      backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+      box-shadow: 0 4px 12px rgba(15, 23, 42, .05);
+    }
+    .utility-inner { max-width: var(--maxw); margin: 0 auto; padding: 10px 12px; }
+    .utility-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+
+    .btn {
+      min-height: 48px; border: none; border-radius: 14px; font-size: .96rem;
+      font-weight: 700; font-family: inherit; display: flex; align-items: center; justify-content: center;
+      text-decoration: none; cursor: pointer; box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+    }
+    .btn-pair-blue { background: linear-gradient(180deg, var(--pair-blue-1), var(--pair-blue-2)); color: #fff; }
+    .btn-pair-dark { background: linear-gradient(180deg, var(--pair-dark-1), var(--pair-dark-2)); color: #fff; }
+    .btn-pair-green { background: linear-gradient(180deg, var(--pair-green-1), var(--pair-green-2)); color: #fff; }
+
+    .hero {
+      background: linear-gradient(180deg, #2D6BFF 0%, #1D4ED8 100%); color: #fff;
+      border-radius: 0 0 24px 24px; box-shadow: var(--shadow); padding: 16px 14px 18px;
+      margin-bottom: 12px; text-align: center;
+    }
+    .lesson-badge {
+      display: inline-block; background: linear-gradient(180deg, #FDE047, #FACC15); color: var(--text);
+      padding: 6px 12px; border-radius: 999px; font-size: .9rem; font-weight: 700; margin-bottom: 10px;
+    }
+    .hero h1 { margin: 0; font-size: 1.42rem; line-height: 1.28; font-weight: 700; }
+    .hero-sub { margin-top: 8px; font-size: 1.02rem; font-weight: 600; opacity: 0.95; }
+
+    .progress-box { background: var(--card); border-radius: 16px; box-shadow: var(--shadow); padding: 12px; margin-bottom: 12px; }
+    .progress-label { text-align: center; font-size: .95rem; font-weight: 700; color: #20335D; margin-bottom: 8px; }
+    .progress-track { width: 100%; height: 12px; background: #E8EDFF; border-radius: 999px; overflow: hidden; }
+    .progress-fill { width: 63.33%; height: 100%; background: linear-gradient(90deg, var(--progress-start), var(--progress-end)); }
+
+    .card {
+      background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+      padding: 15px 14px; margin-bottom: 12px; border-left: 6px solid var(--primary-blue);
+    }
+    .card-danger { border-left-color: var(--accent-red); }
+    .card-primary { border-left-color: var(--primary-green); }
+    .card-accent { border-left-color: var(--accent-yellow); }
+
+    .chip {
+      display: inline-block; margin-bottom: 8px; padding: 5px 10px; border-radius: 999px;
+      font-size: .88rem; font-weight: 700; box-shadow: 0 4px 10px rgba(15,23,42,.10);
+    }
+    .chip-blue { background: linear-gradient(180deg, #3B82F6, #2563EB); color: #fff; }
+    .chip-red { background: linear-gradient(180deg, #F87171, #EF4444); color: #fff; }
+
+    h2 { margin: 0 0 10px; font-size: 1.18rem; line-height: 1.35; font-weight: 700; }
+    h3 { margin: 12px 0 8px; font-size: 1.03rem; line-height: 1.35; font-weight: 700; }
+    p, li { font-size: 1.01rem; margin: 0 0 10px; line-height: 1.75; }
+    ul, ol { padding-left: 22px; margin: 0; }
+
+    .flow-box {
+      background: #0F172A; color: #fff; border-radius: 14px; padding: 12px;
+      white-space: pre-wrap; overflow: auto; font-size: .98rem; line-height: 1.8;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08); margin: 10px 0;
+    }
+
+    .state-box {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 48px; border-radius: 14px; background: #fff; border: 1px solid var(--line);
+      margin-bottom: 12px; padding: 10px 12px; font-size: .95rem; font-weight: 700; color: var(--text);
+    }
+
+    .bottom-nav {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 1100;
+      background: rgba(255,255,255,.97); backdrop-filter: blur(8px);
+      border-top: 1px solid var(--line); padding: 8px 10px;
+    }
+    .bottom-nav-inner { max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .nav-btn {
+      min-height: 48px; border-radius: 12px; text-decoration: none; display: flex; align-items: center;
+      justify-content: center; text-align: center; padding: 10px 6px; font-size: .95rem; font-weight: 700; color: #fff;
+    }
+    .nav-pair-blue { background: linear-gradient(180deg, var(--pair-blue-1), var(--pair-blue-2)); }
+    .nav-pair-dark { background: linear-gradient(180deg, var(--pair-dark-1), var(--pair-dark-2)); }
+    .nav-pair-green { background: linear-gradient(180deg, var(--pair-green-1), var(--pair-green-2)); }
+
+    .footer-box { text-align: center; font-size: .94rem; color: var(--muted); padding: 10px; margin-bottom: 10px; }
+    .wa-btn {
+      width: 100%; min-height: 48px; border: none; border-radius: 14px;
+      background: linear-gradient(180deg, #34D76B, #25D366); color: #fff;
+      font-size: 1rem; font-weight: 700; padding: 13px 12px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="top-header">
+    <div class="brand-wrap">
+      <div class="brand-main">ACS-AI DIGITAL MASTER™</div>
+      <div class="brand-sub">Powered by Rambharosh Vidyarthi</div>
+    </div>
+    <div class="meta">Level 2 • Chapter 10 • Lesson L095</div>
+  </header>
+
+  <div class="utility-bar">
+    <div class="utility-inner">
+      <div class="utility-row">
+        <a href="index.html" class="btn btn-pair-blue">🏠 होम</a>
+        <button class="btn btn-pair-dark" onclick="toggleTTS()">🔊 सुनो</button>
+        <button class="btn btn-pair-green">🤖 AI मदद</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="page">
+    <section class="hero">
+      <div class="lesson-badge">LESSON L095</div>
+      <h1>फाइल नेमिंग (File Naming)</h1>
+      <div class="hero-sub">सही File Name भविष्य के काम में क्यों मदद करता है?</div>
+    </section>
+
+    <section class="progress-box">
+      <div class="progress-label">Lesson 95 / 150</div>
+      <div class="progress-track"><div class="progress-fill"></div></div>
+    </section>
+
+    <section class="state-box tts-include">
+      🎯 आज का लक्ष्य: अपनी डिजिटल फाइलों को व्यवस्थित नाम देकर समय बचाना सीखना।
+    </section>
+
+    <section class="card tts-include">
+      <div class="chip chip-blue">1. प्रस्तावना</div>
+      <p>कल्पना कीजिए — आपने 3 महीने पहले एक बहुत अच्छा Video Save किया था — लेकिन उसका नाम रखा था "video1.mp4" या "Untitled।" आज जब वह File चाहिए — तो क्या आप उसे जल्दी ढूँढ पाएंगे? नहीं।</p>
+      <p>👉 आज हम सीखेंगे कि Files को सही नाम देना क्यों ज़रूरी है — और यह आदत भविष्य में हमारा बहुत समय कैसे बचाती है।</p>
+    </section>
+
+    <section class="card card-danger tts-include">
+      <div class="chip chip-red">🔴 2. जरुरी Technical Words</div>
+      <h2>पाठ से जुड़े जरुरी Technical Words</h2>
+      <ul>
+        <li><strong>File Naming:</strong> File को सही और आसानी से पहचान में आने वाला नाम देना।</li>
+        <li><strong>Naming Convention:</strong> Files का नाम रखने का एक तय और एक जैसा नियम।</li>
+        <li><strong>Workflow:</strong> काम को सुचारू और व्यवस्थित तरीके से करना।</li>
+        <li><strong>Version Control:</strong> File के पुराने और नए रूप को नाम से पहचानना (जैसे v1 और v2)।</li>
+        <li><strong>Systematic:</strong> व्यवस्थित और सोच-समझकर काम करना।</li>
+      </ul>
+    </section>
+
+    <section class="card tts-include">
+      <div class="chip chip-blue">3. Concept</div>
+      <h2>कांसेप्ट (Concept)</h2>
+      <p>जैसे इंसान की पहचान उसके नाम से होती है — वैसे ही File की पहचान उसके नाम से होती है। अगर नाम Untitled, New File, VID1234 या abc हो तो खोजने में बहुत परेशानी होती है।</p>
+      
+      <p>👉 इसीलिए हमें एक <strong>Naming Convention</strong> अपनाना चाहिए। जैसे:</p>
+      <ul>
+        <li>School_Project_Draft</li>
+        <li>Science_Quiz_v1</li>
+        <li>Village_Documentary_Final</li>
+      </ul>
+      <p>अगर File में बाद में बदलाव हो तो नया <strong>Version</strong> दें: Script_v1 → Script_v2 → Script_Final।</p>
+    </section>
+
+    <section class="card tts-include">
+      <div class="chip chip-blue">4. Knowledge Points</div>
+      <h2>Knowledge Points (नॉलेज पॉइंट्स)</h2>
+      <h3>🟢 Easy (ईज़ी)</h3>
+      <ul>
+        <li>1. "Untitled" या "abc" जैसे नाम भविष्य में परेशानी पैदा करते हैं।</li>
+        <li>2. नाम रखने के तय नियम को Naming Convention कहते हैं।</li>
+        <li>3. सही File Naming समय बचाने की एक ज़रूरी डिजिटल आदत है।</li>
+      </ul>
+      <h3>🟡 Core (कोर)</h3>
+      <ul>
+        <li>1. अच्छे नाम से Search Bar में File जल्दी और आसानी से मिल जाती है।</li>
+        <li>2. Version Control (v1, v2, Final) से काम के विकास को पहचाना जा सकता है।</li>
+      </ul>
+      <h3>🔵 Advanced (एडवांस्ड)</h3>
+      <ul>
+        <li>1. नाम में YYYY-MM-DD Format में Date जोड़ने से Files खुद-ब-खुद Sort हो जाती हैं।</li>
+        <li>2. नाम में Space की जगह Underscore (_) या Dash (-) का उपयोग करना सबसे सुरक्षित है।</li>
+      </ul>
+    </section>
+
+    <section class="card card-primary tts-include">
+      <div class="chip chip-green">🎯 5. Activity</div>
+      <h2>Activity (एक्टिविटी) / क्रियाकलाप</h2>
+      
+      <div class="flow-box" aria-hidden="true">🚀 START (स्टार्ट)
+│
+▼
+📱 फोन का File Manager या Gallery खोलो
+│
+▼
+🔍 कोई ऐसी File खोजो जिसका नाम साफ़ न हो
+│
+▼
+✏️ उसे Rename करो — Naming Convention के अनुसार
+│
+▼
+📝 5 Files के लिए एक Pattern बनाओ (जैसे: 01_Intro_v1)
+│
+▼
+🔎 Search Bar में नया नाम लिखकर ढूँढो
+│
+▼
+✅ बधाई! आपने File Management सीख लिया
+│
+▼
+📝 Copy में लिखो — नए नाम से फाइल ढूँढना कितना आसान हुआ?</div>
+    </section>
+
+    <section class="card tts-include">
+      <div class="chip chip-blue">6. DIEM</div>
+      <p>1: गलत File Naming से भविष्य में क्या-क्या परेशानी हो सकती है?</p>
+      <p>2: "File Naming Best Practices" सर्च करके 2 ज़रूरी नियम लिखो।</p>
+      <p>3: अपने अगले Project के लिए 5 Files का Naming Pattern बनाओ।</p>
+    </section>
+
+    <section class="card card-accent tts-include">
+      <div class="chip chip-yellow">7. Behavior Change</div>
+      <p>👉 नियम: मैं आज के बाद किसी भी File को "Untitled" या बेकार नाम से Save नहीं करूँगा/करूँगी — तुरंत उसे सही और साफ़ नाम दूँगा/दूँगी।</p>
+    </section>
+
+    <section class="card card-danger tts-include">
+      <div class="chip chip-red">8. Safety & Compatibility</div>
+      <h2>सुरक्षा के लिए ध्यान रखें:</h2>
+      <ul>
+        <li>Special Characters (जैसे * \ / : ? " < > |) का उपयोग न करें।</li>
+        <li>नाम में कभी भी Password या Phone Number न लिखें।</li>
+        <li>केवल अक्षर, नंबर, Underscore (_) या Dash (-) ही उपयोग करें।</li>
+      </ul>
+    </section>
+
+    <section class="card tts-include">
+      <div class="chip chip-blue">9. Reflection</div>
+      <p>क्या अब मेरी पुरानी Files ढूँढना पहले से ज़्यादा आसान हो गया है? क्या v1, v2, Final जैसे नाम लगाने से मेरा कन्फ्यूजन कम हुआ है?</p>
+    </section>
+
+    <section class="card tts-include">
+      <div class="chip chip-blue">🔟 बोलकर बताओ</div>
+      <ol>
+        <li>File को सही नाम देने को क्या कहते हैं?</li>
+        <li>v1, v2 और Final जैसे नामों से क्या पहचाना जाता है?</li>
+        <li>File के नाम में किन चिह्नों (Characters) से बचना चाहिए?</li>
+      </ol>
+    </section>
+
+    <section class="card tts-include">
+      <div class="chip chip-blue">🎬 अगले पाठ में</div>
+      <p>Files को सही जगह रखने के लिए Folders कैसे बनाए जाते हैं! (L96)</p>
+    </section>
+
+    <div id="waWrap" style="display:none; margin-bottom: 20px;">
+      <button class="wa-btn" onclick="shareWA()">
+        WhatsApp पर प्रोग्रेस शेयर करें
+      </button>
+    </div>
+
+    <div class="footer-box">
+      <strong>© Applied Computer School run under Freedom Fighter Gangadhar Prasad Memorial Trust.</strong>
+    </div>
+  </main>
+
+  <nav class="bottom-nav">
+    <div class="bottom-nav-inner">
+      <a href="L094.html" class="nav-btn nav-pair-blue">⬅ पिछला</a>
+      <a href="index.html" class="nav-btn nav-pair-dark">🏠 होम</a>
+      <a href="L096.html" class="nav-btn nav-pair-green">अगला ➡</a>
+    </div>
+  </nav>
+
+  <script>
+    function toggleTTS() {
+      const text = Array.from(document.querySelectorAll('.tts-include'))
+        .map(el => el.innerText).join(' ');
+      const msg = new SpeechSynthesisUtterance(text);
+      msg.lang = 'hi-IN';
+      window.speechSynthesis.speak(msg);
+    }
+
+    function shareWA() {
+      const text = "आज मैंने ACS-AI Digital Master में 'फाइल नेमिंग' की शक्ति सीखी! 🚀 #DigitalOrganization #EfficientLearning";
+      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    window.onscroll = function() {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10) {
+        document.getElementById('waWrap').style.display = 'block';
+      }
+    };
+  </script>
+</body>
+</html>
