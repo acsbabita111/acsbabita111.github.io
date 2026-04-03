@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L088 - एआई विज़ुअल (AI Visual)</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --pair-blue-1: #3B82F6;
+      --pair-blue-2: #1D4ED8;
+      --pair-dark-1: #334155;
+      --pair-dark-2: #0F172A;
+      --pair-green-1: #22C55E;
+      --pair-green-2: #15803D;
+      --primary-blue: #2563EB;
+      --primary-green: #16A34A;
+      --accent-red: #EF4444;
+      --accent-yellow: #FACC15;
+      --bg: #F4F7FF;
+      --card: #FFFFFF;
+      --text: #0F172A;
+      --muted: #475569;
+      --line: #D9E3F4;
+      --progress-start: #F97316;
+      --progress-end: #FACC15;
+      --wa-green: #25D366;
+      --shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+      --shadow-strong: 0 10px 22px rgba(15, 23, 42, 0.14);
+      --radius: 18px;
+      --maxw: 430px;
+    }
+
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: "Hind", sans-serif; font-size: 16px; line-height: 1.75;
+      padding-bottom: 96px;
+    }
+
+    .page { max-width: var(--maxw); margin: 0 auto; padding: 0 12px 14px; }
+    .hidden { display: none !important; }
+
+    .top-header {
+      position: relative; text-align: center; padding: 14px 12px 16px;
+      box-shadow: var(--shadow-strong); overflow: hidden;
+      background: linear-gradient(180deg, #FF9933 0%, #FFFFFF 48%, #138808 100%);
+    }
+
+    .brand-wrap {
+      position: relative; z-index: 1; display: inline-block; padding: 8px 14px;
+      border-radius: 18px; background: rgba(255,255,255,0.4);
+      box-shadow: 0 6px 14px rgba(15, 23, 42, 0.12); backdrop-filter: blur(2px);
+    }
+
+    .brand-main { font-size: 1.12rem; font-weight: 800; color: #0F172A; }
+    .brand-sub { font-size: 0.76rem; font-weight: 500; letter-spacing: 1.2px; color: #10223E; }
+    .meta { margin-top: 10px; font-size: .94rem; font-weight: 700; color: #10223E; }
+
+    .utility-bar {
+      position: sticky; top: 0; z-index: 1200; background: rgba(255,255,255,.97);
+      backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+    }
+    .utility-inner { max-width: var(--maxw); margin: 0 auto; padding: 10px 12px; }
+    .utility-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+
+    .btn {
+      min-height: 48px; border: none; border-radius: 14px; font-size: .96rem;
+      font-weight: 700; display: flex; align-items: center; justify-content: center;
+      text-decoration: none; cursor: pointer; box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+    }
+    .btn-pair-blue { background: linear-gradient(180deg, var(--pair-blue-1), var(--pair-blue-2)); color: #fff; }
+    .btn-pair-dark { background: linear-gradient(180deg, var(--pair-dark-1), var(--pair-dark-2)); color: #fff; }
+    .btn-pair-green { background: linear-gradient(180deg, var(--pair-green-1), var(--pair-green-2)); color: #fff; }
+
+    .hero {
+      background: linear-gradient(180deg, #2D6BFF 0%, #1D4ED8 100%); color: #fff;
+      border-radius: 0 0 24px 24px; padding: 16px 14px 18px; text-align: center;
+    }
+    .lesson-badge {
+      display: inline-block; background: var(--accent-yellow); color: var(--text);
+      padding: 4px 12px; border-radius: 999px; font-size: .85rem; font-weight: 700; margin-bottom: 8px;
+    }
+    .hero h1 { margin: 0; font-size: 1.4rem; }
+    .hero-sub { margin-top: 6px; font-size: 1rem; opacity: 0.9; }
+
+    .progress-box { background: #fff; border-radius: 16px; padding: 12px; margin: 12px 0; box-shadow: var(--shadow); }
+    .progress-label { text-align: center; font-size: .9rem; font-weight: 700; margin-bottom: 8px; }
+    .progress-track { width: 100%; height: 10px; background: #E8EDFF; border-radius: 10px; overflow: hidden; }
+    .progress-fill { width: 58.66%; height: 100%; background: linear-gradient(90deg, #F97316, #FACC15); }
+
+    .card {
+      background: #fff; border-radius: var(--radius); padding: 16px; margin-bottom: 12px;
+      box-shadow: var(--shadow); border-left: 6px solid var(--primary-blue);
+    }
+    .card-danger { border-left-color: var(--accent-red); }
+    .card-primary { border-left-color: var(--primary-green); }
+    .card-accent { border-left-color: var(--accent-yellow); }
+
+    .chip {
+      display: inline-block; padding: 4px 10px; border-radius: 999px;
+      font-size: .85rem; font-weight: 700; margin-bottom: 10px;
+    }
+    .chip-blue { background: #DDF2FF; color: #1D4ED8; }
+    .chip-red { background: #FFE4E6; color: #E11D48; }
+
+    h2 { font-size: 1.2rem; margin-top: 0; }
+    p, li { font-size: 1.02rem; color: #1E293B; }
+    ul, ol { padding-left: 20px; }
+
+    .flow-box {
+      background: #0F172A; color: #F8FAFC; border-radius: 14px;
+      padding: 14px; font-size: 0.95rem; white-space: pre-wrap; margin: 10px 0;
+    }
+
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px); padding: 10px; border-top: 1px solid var(--line);
+    }
+    .bottom-nav-inner { max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+  </style>
+</head>
+<body>
+
+  <header class="top-header">
+    <div class="brand-wrap">
+      <div class="brand-main">ACS-AI DIGITAL MASTER™</div>
+      <div class="brand-sub">Powered by Rambharosh Vidyarthi</div>
+    </div>
+    <div class="meta">Level 2 • Chapter 09 • Lesson L088</div>
+  </header>
+
+  <div class="utility-bar">
+    <div class="utility-inner">
+      <div class="utility-row">
+        <a href="index.html" class="btn btn-pair-blue">🏠 होम</a>
+        <button class="btn btn-pair-dark">🔊 सुनो</button>
+        <button class="btn btn-pair-green">🤖 AI मदद</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="page">
+    <section class="hero">
+      <div class="lesson-badge">LESSON L088</div>
+      <h1>एआई विज़ुअल (AI Visual)</h1>
+      <div class="hero-sub">अपनी कल्पना को साफ़ Visual Prompt में कैसे बदलें?</div>
+    </section>
+
+    <section class="progress-box">
+      <div class="progress-label">Lesson 88 / 150</div>
+      <div class="progress-track"><div class="progress-fill"></div></div>
+    </section>
+
+    <section class="card">
+      <div class="chip chip-blue">1. प्रस्तावना</div>
+      <p>क्या आप अपने दिमाग में कोई सुंदर दृश्य सोच सकते हैं? अब सोचिए — अगर वही कल्पना एक तस्वीर बन जाए तो कैसा लगेगा?</p>
+      <p>👉 आज हम सीखेंगे कि <strong>Text-to-Image</strong> तकनीक की मदद से AI को ऐसे निर्देश कैसे दें जिससे वह हमारी कल्पना के करीब तस्वीर बना सके।</p>
+      <p><em>⚠️ यह पाठ तभी लागू होगा जब आपके फोन पर Image बनाने वाला Tool उपलब्ध हो।</em></p>
+    </section>
+
+    <section class="card card-danger">
+      <div class="chip chip-red">🔴 2. जरुरी Technical Words</div>
+      <h2>तकनीकी शब्द (Technical Words)</h2>
+      <ul>
+        <li><strong>Text-to-Image:</strong> लिखकर तस्वीर बनवाने की तकनीक।</li>
+        <li><strong>Visual Prompt:</strong> तस्वीर के लिए लिखा गया स्पष्ट निर्देश।</li>
+        <li><strong>Detail:</strong> तस्वीर को सटीक बनाने की बारीक जानकारी।</li>
+        <li><strong>Mood:</strong> तस्वीर का भाव (रहस्यमयी, खुशनुमा आदि)।</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <div class="chip chip-blue">3. Concept</div>
+      <h2>कांसेप्ट (Concept)</h2>
+      <p>AI Image Tool वही बना सकता है जो आप उसे साफ़ शब्दों में बताते हैं।</p>
+      
+      <p>एक अच्छा <strong>Visual Prompt</strong> इन 4 हिस्सों से बनता है:</p>
+      <p>👉 <strong>पात्र + स्थान + Mood + रंग</strong></p>
+      <p>उदाहरण: "एक बिल्ली" (साधारण) बनाम "एक सफेद बिल्ली, लाल चश्मा पहने, अंतरिक्ष यान में बैठी है" (बेहतरीन)।</p>
+    </section>
+
+    <section class="card">
+      <div class="chip chip-blue">4. Knowledge Points</div>
+      <h2>ज्ञान बिंदु (Knowledge Points)</h2>
+      <h3>🟢 Easy (ईज़ी)</h3>
+      <ul>
+        <li>साधारण Prompt से साधारण तस्वीर बनती है।</li>
+        <li>रंग भी Prompt का एक ज़रूरी हिस्सा होते हैं।</li>
+      </ul>
+      <h3>🟡 Core (कोर)</h3>
+      <ul>
+        <li>जितनी साफ़ Detail होगी उतना बेहतर परिणाम मिलेगा।</li>
+        <li>Prompt में 'कौन, कहाँ और कैसा' बताना ज़रूरी है।</li>
+      </ul>
+    </section>
+
+    <section class="card card-primary">
+      <div class="chip chip-blue">🎯 5. Activity</div>
+      <h2>Activity (एक्टिविटी)</h2>
+      <div class="flow-box">
+🚀 START
+│
+▼
+📱 AI Image App खोलो
+│
+▼
+✍️ लिखो: "चश्मा पहने एक बिल्ली की तस्वीर बनाओ।"
+│
+▼
+🎨 अब लिखो: "एक सफेद बिल्ली, लाल चश्मा पहने, अंतरिक्ष यान के अंदर बैठी है। पीछे नीले और बैंगनी तारे चमक रहे हैं।"
+│
+▼
+⚖️ दोनों तस्वीरों की तुलना करो
+│
+▼
+📝 Copy में लिखो — Detail बढ़ाने से क्या बदलाव आया?</div>
+      
+    </section>
+
+    <section class="card card-danger">
+      <div class="chip chip-red">8. Safety & Ethics</div>
+      <h2>सेफ्टी (Safety)</h2>
+      <ul>
+        <li>किसी असली इंसान की नकली (Deepfake) तस्वीर बनाना गलत है।</li>
+        <li>AI तस्वीर को शेयर करते समय बताएं कि यह AI द्वारा निर्मित है।</li>
+        <li>AI के जवाब को हमेशा खुद जाँचे।</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <div class="chip chip-blue">🔟 बोलकर बताओ</div>
+      <p>1. लिखकर तस्वीर बनाने वाली तकनीक को क्या कहते हैं?</p>
+      <p>2. अच्छे Visual Prompt के 4 मुख्य हिस्से कौन से हैं?</p>
+    </section>
+
+    <div style="text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px;">
+      © Applied Computer School • Freedom Fighter Gangadhar Prasad Memorial Trust
+    </div>
+  </main>
+
+  <nav class="bottom-nav">
+    <div class="bottom-nav-inner">
+      <a href="L087.html" class="btn btn-pair-blue" style="font-size: 0.8rem;">⬅ पिछला</a>
+      <a href="index.html" class="btn btn-pair-dark" style="font-size: 0.8rem;">🏠 होम</a>
+      <a href="L089.html" class="btn btn-pair-green" style="font-size: 0.8rem;">अगला ➡</a>
+    </div>
+  </nav>
+
+</body>
+</html>
