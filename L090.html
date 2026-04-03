@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L090 - एआई + मानव सहयोग (AI + Human Collaboration)</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --pair-blue-1: #3B82F6;
+      --pair-blue-2: #1D4ED8;
+      --pair-dark-1: #334155;
+      --pair-dark-2: #0F172A;
+      --pair-green-1: #22C55E;
+      --pair-green-2: #15803D;
+      --primary-blue: #2563EB;
+      --primary-green: #16A34A;
+      --accent-red: #EF4444;
+      --accent-yellow: #FACC15;
+      --bg: #F4F7FF;
+      --card: #FFFFFF;
+      --text: #0F172A;
+      --muted: #475569;
+      --line: #D9E3F4;
+      --progress-start: #F97316;
+      --progress-end: #FACC15;
+      --wa-green: #25D366;
+      --shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+      --shadow-strong: 0 10px 22px rgba(15, 23, 42, 0.14);
+      --radius: 18px;
+      --maxw: 430px;
+    }
+
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: "Hind", "Noto Sans Devanagari", sans-serif;
+      font-size: 16px; line-height: 1.75; padding-bottom: 96px;
+    }
+
+    .page { max-width: var(--maxw); margin: 0 auto; padding: 0 12px 14px; }
+    .hidden { display: none !important; }
+
+    .top-header {
+      position: relative; text-align: center; padding: 14px 12px 16px;
+      box-shadow: var(--shadow-strong); overflow: hidden;
+      background: linear-gradient(180deg, #FF9933 0%, #FFFFFF 48%, #138808 100%);
+    }
+
+    .brand-wrap {
+      position: relative; z-index: 1; display: inline-block; padding: 8px 14px;
+      border-radius: 18px; background: rgba(255,255,255,0.4);
+      box-shadow: 0 6px 14px rgba(15, 23, 42, 0.12); backdrop-filter: blur(2px);
+    }
+    .brand-main { font-size: 1.12rem; font-weight: 800; color: #0F172A; }
+    .brand-sub { font-size: 0.76rem; font-weight: 500; letter-spacing: 1.2px; color: #10223E; }
+    .meta { margin-top: 10px; font-size: .94rem; font-weight: 700; color: #10223E; }
+
+    .utility-bar {
+      position: sticky; top: 0; z-index: 1200; background: rgba(255,255,255,.97);
+      backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+    }
+    .utility-inner { max-width: var(--maxw); margin: 0 auto; padding: 10px 12px; }
+    .utility-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+
+    .btn {
+      min-height: 48px; border: none; border-radius: 14px; font-size: .96rem;
+      font-weight: 700; display: flex; align-items: center; justify-content: center;
+      text-decoration: none; cursor: pointer; box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+      font-family: inherit;
+    }
+    .btn-pair-blue { background: linear-gradient(180deg, var(--pair-blue-1), var(--pair-blue-2)); color: #fff; }
+    .btn-pair-dark { background: linear-gradient(180deg, var(--pair-dark-1), var(--pair-dark-2)); color: #fff; }
+    .btn-pair-green { background: linear-gradient(180deg, var(--pair-green-1), var(--pair-green-2)); color: #fff; }
+
+    .hero {
+      background: linear-gradient(180deg, #2D6BFF 0%, #1D4ED8 100%); color: #fff;
+      border-radius: 0 0 24px 24px; padding: 16px 14px 18px; text-align: center;
+      margin-bottom: 12px;
+    }
+    .lesson-badge {
+      display: inline-block; background: var(--accent-yellow); color: var(--text);
+      padding: 4px 12px; border-radius: 999px; font-size: .85rem; font-weight: 700; margin-bottom: 8px;
+    }
+    .hero h1 { margin: 0; font-size: 1.4rem; }
+    .hero-sub { margin-top: 6px; font-size: 1rem; opacity: 0.9; }
+
+    .progress-box { background: #fff; border-radius: 16px; padding: 12px; margin-bottom: 12px; box-shadow: var(--shadow); }
+    .progress-label { text-align: center; font-size: .9rem; font-weight: 700; margin-bottom: 8px; }
+    .progress-track { width: 100%; height: 10px; background: #E8EDFF; border-radius: 10px; overflow: hidden; }
+    .progress-fill { width: 60%; height: 100%; background: linear-gradient(90deg, #F97316, #FACC15); }
+
+    .card {
+      background: #fff; border-radius: var(--radius); padding: 16px; margin-bottom: 12px;
+      box-shadow: var(--shadow); border-left: 6px solid var(--primary-blue);
+    }
+    .card-danger { border-left-color: var(--accent-red); }
+    .card-primary { border-left-color: var(--primary-green); }
+    .card-accent { border-left-color: var(--accent-yellow); }
+
+    .chip {
+      display: inline-block; padding: 4px 10px; border-radius: 999px;
+      font-size: .85rem; font-weight: 700; margin-bottom: 10px;
+    }
+    .chip-blue { background: #DDF2FF; color: #1D4ED8; }
+    .chip-red { background: #FFE4E6; color: #E11D48; }
+
+    h2 { font-size: 1.2rem; margin: 0 0 10px; }
+    h3 { font-size: 1.05rem; margin: 12px 0 8px; color: var(--pair-dark-2); }
+    p, li { font-size: 1.02rem; color: #1E293B; margin-bottom: 10px; }
+    ul, ol { padding-left: 20px; margin: 0; }
+
+    .flow-box {
+      background: #0F172A; color: #F8FAFC; border-radius: 14px;
+      padding: 14px; font-size: 0.95rem; white-space: pre-wrap; margin: 10px 0;
+    }
+
+    .rubric-grid {
+      display: grid; gap: 10px; margin-top: 10px;
+    }
+    .rubric-item {
+      padding: 10px; border-radius: 12px; border: 1px solid var(--line);
+    }
+    .rubric-item strong { display: block; color: var(--primary-blue); margin-bottom: 4px; }
+
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 1100;
+      background: rgba(255,255,255,0.97); backdrop-filter: blur(10px);
+      padding: 10px; border-top: 1px solid var(--line);
+    }
+    .bottom-nav-inner { max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    
+    .nav-btn {
+      min-height: 48px; border-radius: 12px; display: flex; align-items: center;
+      justify-content: center; text-decoration: none; font-weight: 700; color: #fff;
+      font-size: 0.9rem; text-align: center;
+    }
+    .nav-pair-blue { background: linear-gradient(180deg, var(--pair-blue-1), var(--pair-blue-2)); }
+    .nav-pair-dark { background: linear-gradient(180deg, var(--pair-dark-1), var(--pair-dark-2)); }
+    .nav-pair-green { background: linear-gradient(180deg, var(--pair-green-1), var(--pair-green-2)); }
+  </style>
+</head>
+<body>
+
+  <header class="top-header">
+    <div class="brand-wrap">
+      <div class="brand-main">ACS-AI DIGITAL MASTER™</div>
+      <div class="brand-sub">Powered by Rambharosh Vidyarthi</div>
+    </div>
+    <div class="meta">Level 2 • Chapter 09 • Lesson L090</div>
+  </header>
+
+  <div class="utility-bar">
+    <div class="utility-inner">
+      <div class="utility-row">
+        <a href="index.html" class="btn btn-pair-blue">🏠 होम</a>
+        <button class="btn btn-pair-dark">🔊 सुनो</button>
+        <button class="btn btn-pair-green">🤖 AI मदद</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="page">
+    <section class="hero">
+      <div class="lesson-badge">LESSON L090</div>
+      <h1>AI + Human Collaboration (एआई + मानव सहयोग)</h1>
+      <div class="hero-sub">AI और मानव मिलकर बेहतर सामग्री कैसे बनाते हैं?</div>
+    </section>
+
+    <section class="progress-box">
+      <div class="progress-label">Lesson 90 / 150</div>
+      <div class="progress-track"><div class="progress-fill"></div></div>
+    </section>
+
+    <section class="card">
+      <div class="chip chip-blue">1. प्रस्तावना</div>
+      <p>कई लोगों को लगता है कि AI इंसानों की जगह ले लेगा। लेकिन सच्चाई यह है कि AI केवल एक <strong>Tool (औज़ार)</strong> है — इंसान नहीं।</p>
+      <p>AI तेज़ी से काम कर सकता है — लेकिन वह आपकी भावनाएँ, आपके गाँव की सच्चाई या आपके अनुभव को पूरी तरह नहीं समझ सकता।</p>
+      <p>👉 आज हम सीखेंगे कि AI और इंसान मिलकर एक बेहतर Team कैसे बनाते हैं — जहाँ AI गति देता है और इंसान उसमें समझ और असली जानकारी जोड़ता है।</p>
+    </section>
+
+    <section class="card card-danger">
+      <div class="chip chip-red">🔴 2. तकनीकी शब्द</div>
+      <h2>पाठ से जुड़े जरुरी Technical Words</h2>
+      <ul>
+        <li><strong>Collaboration:</strong> दो या दो से अधिक लोगों या चीज़ों का मिलकर काम करना।</li>
+        <li><strong>Draft:</strong> किसी काम का पहला और कच्चा रूप जिसे बाद में सुधारा जाता है।</li>
+        <li><strong>Human Refinement:</strong> इंसान द्वारा AI के जवाब में किया गया सुधार।</li>
+        <li><strong>Local Context:</strong> अपने आस-पास की असली और ज़मीनी जानकारी।</li>
+        <li><strong>Workflow:</strong> किसी काम को सही क्रम में करने का तरीका।</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <div class="chip chip-blue">3. Concept</div>
+      <h2>कांसेप्ट (Concept)</h2>
+      <p>AI की ताकत है — तेज़ी, Data और जल्दी Draft बनाना। इंसान की ताकत है — भावना, अनुभव, समझ और स्थानीय जानकारी।</p>
+      
+      <p>जब हम AI से कोई Speech या Script बनवाते हैं — तो वह केवल एक <strong>Draft</strong> होता है। असली काम तब पूरा होता है जब इंसान उसमें सुधार (Human Refinement) करता है।</p>
+      <p>👉 उदाहरण — AI "प्रदूषण" पर 5 लाइन लिख सकता है। लेकिन आपके गाँव की नदी की असली बात सिर्फ आप जोड़ सकते हैं।</p>
+    </section>
+
+    <section class="card">
+      <div class="chip chip-blue">4. ज्ञान बिंदु</div>
+      <h2>Knowledge Points</h2>
+      <h3>🟢 Easy (ईज़ी)</h3>
+      <ul>
+        <li>1. AI हमारा सहायक है; यह इंसान की जगह नहीं ले सकता।</li>
+        <li>2. भावनाएँ और अनुभव केवल इंसान जोड़ सकता है।</li>
+      </ul>
+      <h3>🟡 Core (कोर)</h3>
+      <ul>
+        <li>1. <strong>Human Refinement</strong> के बिना AI का जवाब बेजान लग सकता है।</li>
+        <li>2. अच्छा Workflow वही है जिसमें AI ढाँचा दे और इंसान उसे बेहतर बनाए।</li>
+      </ul>
+      <h3>🔵 Advanced (एडवांस्ड)</h3>
+      <ul>
+        <li>1. AI डेटा में तेज़ है, लेकिन इंसान सहानुभूति (Empathy) में मज़बूत है।</li>
+        <li>2. बेहतरीन कंटेंट वही है जिसमें अंतिम स्पर्श (Final Touch) इंसान का हो।</li>
+      </ul>
+    </section>
+
+    <section class="card card-primary">
+      <div class="chip chip-blue">🎯 5. Activity</div>
+      <h2>Activity (एक्टिविटी)</h2>
+      <div class="flow-box">
+🚀 START
+│
+▼
+📱 AI App से लिखवाओ: "प्रदूषण पर 5 लाइन का भाषण।"
+│
+▼
+👀 AI का Draft ध्यान से पढ़ो
+│
+▼
+📝 अब उसमें अपने गाँव या स्कूल की असली समस्या जोड़ो
+│
+▼
+✅ अब पूरा पढ़ो — यह आपका Refined Final Version है
+│
+▼
+📝 Copy में लिखो — Draft और Final Version में क्या फ़र्क आया?</div>
+      
+    </section>
+
+    <section class="card">
+      <div class="chip chip-blue">6. DIEM</div>
+      <p>1: AI और इंसान की ताकतें अलग-अलग कैसे हैं?</p>
+      <p>2: AI के Draft में <strong>Local Context</strong> जोड़कर अपना भाषण तैयार करो।</p>
+    </section>
+
+    <section class="card card-accent">
+      <div class="chip chip-yellow">📊 अध्याय 9 Rubric — AI (प्रमाण)</div>
+      <div class="rubric-grid">
+        <div class="rubric-item"><strong>बेसिक (Basic)</strong> आपने AI से Prompt देकर Draft लिया।</div>
+        <div class="rubric-item"><strong>स्किल्ड (Skilled)</strong> आपने AI के आउटपुट को सुधारा और चेक किया।</div>
+        <div class="rubric-item"><strong>एडवांस्ड (Advanced)</strong> आपने AI जवाब को Refine किया और उसे अपना 'Learner-Owned' कंटेंट बनाया।</div>
+      </div>
+    </section>
+
+    <section class="card card-accent">
+      <div class="chip chip-yellow">7. Behavior Change</div>
+      <p>👉 नियम: मैं AI के जवाब को ज्यों का त्यों Copy-Paste नहीं करूँगा — बल्कि उसमें अपनी भाषा और स्थानीय जानकारी जोड़कर उसे अपना बनाऊँगा।</p>
+    </section>
+
+    <section class="card card-danger">
+      <div class="chip chip-red">8. Safety</div>
+      <ul>
+        <li>AI जवाब को बिना जाँचे कॉपी करना ईमानदारी नहीं है।</li>
+        <li>अंतिम ज़िम्मेदारी हमेशा इंसान की होती है, मशीन की नहीं।</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <div class="chip chip-blue">🔟 बोलकर बताओ</div>
+      <ol>
+        <li>काम के कच्चे रूप को क्या कहते हैं?</li>
+        <li>इंसान द्वारा किए गए सुधार को क्या कहते हैं?</li>
+        <li>असली और स्थानीय जानकारी को क्या कहते हैं?</li>
+      </ol>
+    </section>
+
+    <section class="card card-primary">
+      <div class="chip chip-blue">🎬 अगले पाठ में</div>
+      <p>अगले चरण में हम सीखेंगे कि अपने काम को सुरक्षित और व्यवस्थित तरीके से कैसे रखा जाए! (L91)</p>
+    </section>
+
+    <div style="text-align: center; color: var(--muted); font-size: 0.85rem; padding: 20px;">
+      © Applied Computer School • Freedom Fighter Gangadhar Prasad Memorial Trust
+    </div>
+  </main>
+
+  <nav class="bottom-nav">
+    <div class="bottom-nav-inner">
+      <a href="L089.html" class="nav-btn nav-pair-blue">⬅ पिछला</a>
+      <a href="index.html" class="nav-btn nav-pair-dark">🏠 होम</a>
+      <a href="L091.html" class="nav-btn nav-pair-green">अगला ➡</a>
+    </div>
+  </nav>
+
+</body>
+</html>
