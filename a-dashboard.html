@@ -1173,7 +1173,7 @@
   function अगलापाठ(){
     let आधार = चयनितलेसन || localStorage.getItem("acs_last_lesson") || "L001";
     const n = parseInt(आधार.replace("L",""), 10);
-    const next = n < 150 ? लेसनकोड(n + 1) : "L150";
+    const next = n < 150 ? लेसनकोड(n + 0) : "L150";
     localStorage.setItem("acs_last_lesson", next);
     window.location.href = `${next}.html`;
   }
