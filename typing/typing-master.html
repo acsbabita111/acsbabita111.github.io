@@ -1,1 +1,284 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ACS Typing Master</title>
 
+  <style>
+    body{
+      margin:0;
+      font-family:Arial, sans-serif;
+      background:#0f172a;
+      color:#fff;
+      text-align:center;
+    }
+
+    .container{
+      max-width:430px;
+      margin:auto;
+      padding:20px 16px 30px;
+    }
+
+    h1{
+      margin:10px 0 6px;
+      font-size:34px;
+      font-weight:700;
+    }
+
+    .lesson-box{
+      margin:10px 0 18px;
+      font-size:20px;
+      font-weight:700;
+      color:#facc15;
+    }
+
+    .text-display{
+      font-size:22px;
+      line-height:1.5;
+      background:#1e3a8a;
+      padding:18px 14px;
+      border-radius:14px;
+      margin-bottom:18px;
+      min-height:110px;
+      box-shadow:0 4px 12px rgba(0,0,0,.25);
+    }
+
+    .correct{
+      color:#22c55e;
+    }
+
+    .wrong{
+      color:#ef4444;
+    }
+
+    textarea{
+      width:100%;
+      height:120px;
+      font-size:18px;
+      padding:14px;
+      border-radius:14px;
+      border:none;
+      outline:none;
+      box-sizing:border-box;
+      resize:none;
+    }
+
+    .stats{
+      margin-top:14px;
+      font-size:18px;
+      font-weight:700;
+    }
+
+    .btn-row{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+
+    button{
+      padding:12px 18px;
+      border:none;
+      border-radius:12px;
+      font-size:16px;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .start-btn{
+      background:#22c55e;
+      color:#fff;
+    }
+
+    .back-btn{
+      background:#2563eb;
+      color:#fff;
+    }
+
+    .next-btn{
+      background:#f97316;
+      color:#fff;
+    }
+
+    .home-btn{
+      background:#475569;
+      color:#fff;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>ACS Typing Master</h1>
+
+  <div class="lesson-box" id="lessonTitle">Lesson: L001</div>
+
+  <div id="text" class="text-display"></div>
+
+  <textarea id="input" placeholder="Typing शुरू करो..."></textarea>
+
+  <div class="stats">
+    WPM: <span id="wpm">0</span> |
+    Accuracy: <span id="accuracy">100</span>%
+  </div>
+
+  <div class="btn-row">
+    <button class="start-btn" onclick="startTest()">Start Test</button>
+    <button class="back-btn" onclick="prevLesson()">⬅ Previous</button>
+    <button class="next-btn" onclick="nextLesson()">Next ➡</button>
+    <button class="home-btn" onclick="goDashboard()">Dashboard</button>
+  </div>
+</div>
+
+<script>
+  const lessonTexts = {
+    L001: "the quick brown fox jumps over the lazy dog",
+    L002: "asdf jkl semicolon asdf jkl semicolon",
+    L003: "practice daily and improve your typing speed",
+    L004: "typing with focus gives better accuracy and control",
+    L005: "mobile keyboard users can also learn external keyboard skills",
+
+    L006: "home row keys are the foundation of good typing",
+    L007: "left hand and right hand should work together smoothly",
+    L008: "slow and correct typing is better than fast mistakes",
+    L009: "accuracy first speed later",
+    L010: "good posture helps better performance during typing",
+
+    L011: "learn the keyboard step by step and enjoy the process",
+    L012: "typing practice builds confidence for study and work",
+    L013: "students can become strong typists with daily effort",
+    L014: "small lessons can create big improvement over time",
+    L015: "read the text carefully and type without panic",
+
+    L016: "speed grows naturally when fingers know their position",
+    L017: "each correct key press improves muscle memory",
+    L018: "typing tests help measure progress honestly",
+    L019: "steady hands and calm mind improve results",
+    L020: "practice makes progress when repeated with discipline",
+
+    L021: "sentence typing improves rhythm and finger coordination",
+    L022: "external keyboard typing can be learned on mobile too",
+    L023: "digital skill development starts with small habits",
+    L024: "consistency matters more than random effort",
+    L025: "focus on the current line and avoid unnecessary movement",
+
+    L026: "official tests require concentration and honest performance",
+    L027: "keep your eyes on the screen and fingers on the keyboard",
+    L028: "proper finger placement reduces typing mistakes",
+    L029: "repeat difficult words until they become easy",
+    L030: "a confident learner becomes a faster typist",
+
+    L031: "long typing tests train stamina and stable attention",
+    L032: "professional typing needs speed accuracy and consistency",
+    L033: "strong basics create strong advanced typing skills",
+    L034: "do not rush let your skill grow with practice",
+    L035: "typing well can support study work and income goals",
+
+    L036: "grand master typing needs patience and daily effort",
+    L037: "great typists stay accurate even when speed increases",
+    L038: "training should be simple regular and focused",
+    L039: "measured practice is the path to mastery",
+    L040: "your typing journey starts with one correct lesson"
+  };
+
+  function getLessonFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("lesson") || "L001";
+  }
+
+  let currentLesson = getLessonFromURL();
+  let text = lessonTexts[currentLesson] || lessonTexts["L001"];
+  let startTime = null;
+
+  function updateLessonTitle() {
+    document.getElementById("lessonTitle").innerText = "Lesson: " + currentLesson;
+  }
+
+  function loadText() {
+    const textDiv = document.getElementById("text");
+    textDiv.innerHTML = "";
+
+    text.split("").forEach(char => {
+      let span = document.createElement("span");
+      span.innerText = char;
+      textDiv.appendChild(span);
+    });
+  }
+
+  function startTest() {
+    document.getElementById("input").value = "";
+    startTime = new Date().getTime();
+    loadText();
+    document.getElementById("wpm").innerText = "0";
+    document.getElementById("accuracy").innerText = "100";
+  }
+
+  document.getElementById("input").addEventListener("input", function() {
+    if (!startTime) return;
+
+    let input = this.value;
+    let spans = document.getElementById("text").querySelectorAll("span");
+
+    let correct = 0;
+
+    spans.forEach((span, index) => {
+      let char = input[index];
+
+      if (char == null) {
+        span.classList.remove("correct", "wrong");
+      } else if (char === span.innerText) {
+        span.classList.add("correct");
+        span.classList.remove("wrong");
+        correct++;
+      } else {
+        span.classList.add("wrong");
+        span.classList.remove("correct");
+      }
+    });
+
+    let time = (new Date().getTime() - startTime) / 1000 / 60;
+    let wpm = Math.round((correct / 5) / time);
+    let accuracy = Math.round((correct / input.length) * 100) || 100;
+
+    document.getElementById("wpm").innerText = isFinite(wpm) ? wpm : 0;
+    document.getElementById("accuracy").innerText = accuracy;
+  });
+
+  function formatLesson(num) {
+    return "L" + String(num).padStart(3, "0");
+  }
+
+  function lessonNumber() {
+    return parseInt(currentLesson.replace("L", ""), 10);
+  }
+
+  function nextLesson() {
+    let n = lessonNumber();
+    if (n < 40) {
+      n++;
+      const next = formatLesson(n);
+      window.location.href = "typing-master.html?lesson=" + next;
+    }
+  }
+
+  function prevLesson() {
+    let n = lessonNumber();
+    if (n > 1) {
+      n--;
+      const prev = formatLesson(n);
+      window.location.href = "typing-master.html?lesson=" + prev;
+    }
+  }
+
+  function goDashboard() {
+    window.location.href = "/a-dashboard.html";
+  }
+
+  updateLessonTitle();
+  loadText();
+</script>
+
+</body>
+</html>
