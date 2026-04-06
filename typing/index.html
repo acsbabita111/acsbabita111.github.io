@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ACS Typing Master</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0f172a; 
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #app-container {
+            width: 100%;
+            max-width: 900px;
+            height: 100%;
+            max-height: 450px;
+            position: relative;
+            text-align: center;
+        }
+
+        .screen {
+            display: none; 
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 20px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .active-screen {
+            display: flex; 
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #38bdf8; 
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 16px;
+            color: #94a3b8;
+        }
+
+        .status-box {
+            background-color: #1e293b;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px dashed #475569;
+            margin-bottom: 20px;
+            width: 80%;
+        }
+        .highlight {
+            color: #f97316; 
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .btn {
+            background-color: #22c55e; 
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            display: none; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        #portrait-blocker {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #ef4444; 
+            color: white;
+            z-index: 9999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        #portrait-blocker h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        @media screen and (orientation: portrait) {
+            #app-container { display: none; }
+            #portrait-blocker { display: flex; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="portrait-blocker">
+        <h2>⚠️ कृपया फोन घुमाएं</h2>
+        <p>यह टाइपिंग सिस्टम केवल <b>Landscape Mode (आड़ा)</b> में काम करता है।<br>कृपया अपना फोन रोटेट करें।</p>
+    </div>
+
+    <div id="app-container">
+        
+        <div id="screen-splash" class="screen active-screen">
+            <h1>ACS TYPING MASTER</h1>
+            <p class="subtitle">Global South's Digital Army | v3.1</p>
+        </div>
+
+        <div id="screen-setup" class="screen">
+            <h2 style="color: #38bdf8;">Hardware Setup</h2>
+            
+            <div class="status-box" id="keyboard-status">
+                <p>OTG डोंगल और कीबोर्ड कनेक्ट करें।</p>
+                <p class="highlight">कीबोर्ड का कोई भी बटन दबाएं (Press Any Key)</p>
+            </div>
+
+            <button class="btn" id="btn-next" onclick="goToNextScreen()">आगे बढ़ें (Next) ➔</button>
+        </div>
+
+    </div>
+
+    <script>
+        setTimeout(() => {
+            document.getElementById('screen-splash').classList.remove('active-screen');
+            document.getElementById('screen-setup').classList.add('active-screen');
+        }, 2500);
+
+        let keyboardDetected = false;
+
+        document.addEventListener('keydown', function(event) {
+            if (document.getElementById('screen-setup').classList.contains('active-screen') && !keyboardDetected) {
+                
+                keyboardDetected = true; 
+                
+                let statusBox = document.getElementById('keyboard-status');
+                statusBox.style.borderColor = "#22c55e"; 
+                statusBox.innerHTML = `
+                    <h3 style="color: #22c55e; margin: 0;">✅ Keyboard Detected!</h3>
+                    <p>शाबाश! आपने <b>'${event.key}'</b> बटन दबाया है।</p>
+                `;
+
+                document.getElementById('btn-next').style.display = 'block';
+            }
+        });
+
+        function goToNextScreen() {
+            alert("Perfect! अब यहाँ 'User Type (Fun / Skill / Job)' वाली स्क्रीन खुलेगी। (अगले स्टेप में)");
+        }
+    </script>
+</body>
+</html>
