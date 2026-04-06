@@ -19,16 +19,7 @@
       --cyan:#06b6d4;
       --pink:#ec4899;
       --purple:#8b5cf6;
-      --finger-left-pinky:#3b82f6;
-      --finger-left-ring:#f97316;
-      --finger-left-middle:#22c55e;
-      --finger-left-index:#8b5cf6;
-      --finger-right-index:#facc15;
-      --finger-right-middle:#ec4899;
-      --finger-right-ring:#06b6d4;
-      --finger-right-pinky:#ef4444;
-      --white:#ffffff;
-      --shadow:0 10px 24px rgba(0,0,0,.28);
+      --shadow:0 8px 18px rgba(0,0,0,.22);
     }
 
     *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -37,10 +28,10 @@
       margin:0;
       width:100%;
       height:100%;
+      overflow:hidden;
       background:var(--bg);
       color:var(--text);
-      font-family:Arial, "Noto Sans Devanagari", sans-serif;
-      overflow:hidden;
+      font-family:Arial,"Noto Sans Devanagari",sans-serif;
     }
 
     body{
@@ -62,329 +53,96 @@
       position:absolute;
       inset:0;
       display:none;
-      padding:14px 14px 42px;
-      overflow:auto;
     }
 
     .screen.active{display:block}
 
-    .card{
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:20px;
-      box-shadow:var(--shadow);
+    .splash{
+      padding:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      height:100%;
     }
 
-    .center{
-      min-height:100%;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      gap:14px;
+    .card{
+      width:100%;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:18px 14px;
     }
 
     .title{
-      font-size:2.3rem;
-      line-height:1.05;
-      font-weight:800;
-      text-align:center;
       margin:0;
-      text-shadow:0 3px 10px rgba(255,255,255,.18);
+      text-align:center;
+      font-size:2rem;
+      font-weight:800;
+      line-height:1.05;
     }
 
     .subtitle{
-      font-size:1rem;
-      line-height:1.5;
+      margin:10px 0 0;
       text-align:center;
+      font-size:.98rem;
+      line-height:1.5;
       color:var(--muted);
-      margin:0;
     }
 
-    .big-btn, .small-btn{
+    .big-btn,.small-btn{
       border:none;
-      border-radius:16px;
-      font-weight:800;
+      border-radius:14px;
       font-family:inherit;
+      font-weight:800;
       cursor:pointer;
       box-shadow:var(--shadow);
     }
 
     .big-btn{
-      min-height:58px;
-      font-size:1.05rem;
-      padding:14px 16px;
+      width:100%;
+      min-height:52px;
+      margin-top:16px;
+      font-size:1rem;
     }
 
     .small-btn{
-      min-height:46px;
-      font-size:.95rem;
-      padding:10px 14px;
+      min-height:42px;
+      font-size:.9rem;
+      padding:8px 10px;
     }
 
     .btn-green{background:linear-gradient(180deg,#34d399,#16a34a);color:#fff}
     .btn-blue{background:linear-gradient(180deg,#3b82f6,#1d4ed8);color:#fff}
     .btn-orange{background:linear-gradient(180deg,#fb923c,#ea580c);color:#fff}
     .btn-dark{background:linear-gradient(180deg,#334155,#1e293b);color:#fff}
-    .btn-red{background:linear-gradient(180deg,#f87171,#dc2626);color:#fff}
 
-    .topbar{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:10px;
-      margin-bottom:10px;
-    }
-
-    .badge{
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(255,255,255,.08);
-      font-size:.9rem;
-      font-weight:700;
-      color:#fff;
-    }
-
-    .lesson-title{
-      text-align:center;
-      font-size:1.65rem;
-      font-weight:800;
-      margin:8px 0 4px;
-    }
-
-    .powered-line{
-      text-align:center;
-      font-size:.95rem;
-      font-weight:700;
-      color:#cbd5e1;
-      margin-top:-2px;
-      margin-bottom:8px;
-    }
-
-    .lesson-code{
-      text-align:center;
-      color:var(--yellow);
-      font-size:1.85rem;
-      font-weight:800;
-      margin:0 0 14px;
-    }
-
-    .target-box{
-      background:linear-gradient(180deg,#1732ff,#1536c4);
-      border-radius:18px;
-      padding:16px 14px;
-      min-height:112px;
-      font-size:1.02rem;
-      line-height:1.65;
-      text-align:center;
-      box-shadow:var(--shadow);
-      margin-bottom:14px;
-    }
-
-    .sequence-box{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      justify-content:center;
-      margin-top:10px;
-      margin-bottom:10px;
-    }
-
-    .seq{
-      min-width:42px;
-      padding:8px 10px;
-      border-radius:10px;
-      background:#ffffff;
-      color:#111827;
-      font-weight:800;
-      box-shadow:0 3px 10px rgba(0,0,0,.2);
-    }
-
-    .seq.active{
-      background:var(--orange);
-      color:#fff;
-    }
-
-    .input-box{
-      background:#ffffff;
-      border-radius:18px;
-      padding:10px;
-      box-shadow:var(--shadow);
-      margin-bottom:12px;
-    }
-
-    textarea{
-      width:100%;
-      min-height:110px;
-      border:none;
-      outline:none;
-      resize:none;
-      font-size:1.35rem;
-      line-height:1.45;
-      font-family:inherit;
-      color:#111827;
-    }
-
-    .stats{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:10px;
-      margin:12px 0;
-    }
-
-    .stat{
-      background:rgba(255,255,255,.07);
-      border-radius:16px;
-      padding:10px;
-      text-align:center;
-      box-shadow:var(--shadow);
-    }
-
-    .stat .label{
-      font-size:.82rem;
-      color:var(--muted);
-      font-weight:700;
-    }
-
-    .stat .value{
-      font-size:1.3rem;
-      font-weight:900;
-      margin-top:4px;
-    }
-
-    .practice-panel{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:12px;
-      margin-top:10px;
-    }
-
-    .section-title{
-      font-size:1.05rem;
-      font-weight:800;
-      margin:0 0 8px;
-      color:#fff;
-    }
-
-    .keyboard{
-      background:rgba(255,255,255,.06);
-      border-radius:18px;
-      padding:10px;
-      box-shadow:var(--shadow);
-    }
-
-    .kb-row{
-      display:grid;
-      gap:6px;
-      margin-bottom:6px;
-    }
-
-    .kb-row.r1{grid-template-columns:repeat(10,1fr)}
-    .kb-row.r2{grid-template-columns:1.3fr repeat(10,1fr) 1.5fr}
-    .kb-row.r3{grid-template-columns:1.6fr repeat(10,1fr) 1.8fr}
-    .kb-row.r4{grid-template-columns:2fr repeat(9,1fr) 2.2fr}
-    .kb-row.r5{grid-template-columns:1.1fr 1.1fr 4fr 1.1fr 1.1fr}
-
-    .key{
-      min-height:38px;
-      border-radius:10px;
-      display:flex;
+    .landscape-overlay{
+      position:absolute;
+      inset:0;
+      background:#020617;
+      z-index:130;
+      display:none;
       align-items:center;
       justify-content:center;
+      text-align:center;
+      padding:18px;
+      font-size:1.25rem;
       font-weight:800;
-      font-size:.95rem;
-      color:#111827;
-      background:#f8fafc;
-      border:2px solid rgba(255,255,255,.28);
-      transition:.15s ease;
-      text-transform:none;
+      line-height:1.5;
     }
 
-    .key.l-pinky{background:rgba(59,130,246,.95); color:#fff}
-    .key.l-ring{background:rgba(249,115,22,.95); color:#fff}
-    .key.l-middle{background:rgba(34,197,94,.95); color:#fff}
-    .key.l-index{background:rgba(139,92,246,.95); color:#fff}
-    .key.r-index{background:rgba(250,204,21,.95); color:#111827}
-    .key.r-middle{background:rgba(236,72,153,.95); color:#fff}
-    .key.r-ring{background:rgba(6,182,212,.95); color:#fff}
-    .key.r-pinky{background:rgba(239,68,68,.95); color:#fff}
-    .key.neutral{background:#e5e7eb;color:#111827}
-    .key.active{
-      outline:4px solid #fff;
-      transform:scale(1.04);
-      filter:brightness(1.12);
-      box-shadow:0 0 0 4px rgba(255,255,255,.12), 0 0 18px rgba(255,255,255,.28);
-    }
-
-    .hands{
-      background:rgba(255,255,255,.06);
-      border-radius:18px;
-      padding:12px;
-      box-shadow:var(--shadow);
-    }
-
-    .hands-wrap{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:16px;
-      align-items:end;
-    }
-
-    .hand{
-      position:relative;
-      height:130px;
-      display:flex;
-      justify-content:center;
-      align-items:flex-end;
-      gap:6px;
-    }
-
-    .finger{
-      width:20px;
-      border-radius:14px 14px 10px 10px;
-      background:#d1d5db;
-      position:relative;
-      transition:.15s ease;
-      box-shadow:0 4px 10px rgba(0,0,0,.18);
-    }
-
-    .finger.f1{height:70px}
-    .finger.f2{height:92px}
-    .finger.f3{height:110px}
-    .finger.f4{height:96px}
-    .finger.f5{height:74px}
-
-    .finger.left-pinky{background:rgba(59,130,246,.9)}
-    .finger.left-ring{background:rgba(249,115,22,.9)}
-    .finger.left-middle{background:rgba(34,197,94,.9)}
-    .finger.left-index{background:rgba(139,92,246,.9)}
-    .finger.right-index{background:rgba(250,204,21,.95)}
-    .finger.right-middle{background:rgba(236,72,153,.95)}
-    .finger.right-ring{background:rgba(6,182,212,.95)}
-    .finger.right-pinky{background:rgba(239,68,68,.95)}
-    .finger.thumb{background:#9ca3af;height:46px;width:38px;border-radius:18px}
-
-    .finger.active{
-      outline:4px solid #fff;
-      transform:translateY(-4px) scale(1.06);
-      box-shadow:0 0 0 4px rgba(255,255,255,.12), 0 0 18px rgba(255,255,255,.3);
-    }
-
-    .footer-buttons{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:10px;
-      margin-top:14px;
-    }
+    .landscape-overlay.show{display:flex}
 
     .popup-backdrop{
       position:absolute;
       inset:0;
-      background:rgba(0,0,0,.72);
-      z-index:100;
+      background:rgba(0,0,0,.74);
+      z-index:120;
       display:none;
       align-items:center;
       justify-content:center;
-      padding:14px;
+      padding:10px;
     }
 
     .popup-backdrop.show{display:flex}
@@ -394,94 +152,355 @@
       max-height:92dvh;
       overflow:auto;
       background:linear-gradient(180deg,#0d1b36,#0b1530);
-      border-radius:22px;
-      padding:16px;
-      box-shadow:var(--shadow);
+      border-radius:18px;
+      padding:14px;
       border:1px solid rgba(255,255,255,.12);
+      box-shadow:var(--shadow);
     }
 
     .popup-title{
-      font-size:1.5rem;
-      font-weight:900;
       margin:0 0 10px;
       text-align:center;
-      color:#fff;
+      font-size:1.35rem;
+      font-weight:900;
     }
 
     .popup-block{
       background:rgba(255,255,255,.06);
-      border-radius:16px;
-      padding:12px;
-      margin-bottom:10px;
+      border-radius:14px;
+      padding:10px 12px;
+      margin-bottom:8px;
     }
 
     .popup-block h3{
-      margin:0 0 8px;
-      font-size:1.02rem;
-      color:#facc15;
+      margin:0 0 6px;
+      color:var(--yellow);
+      font-size:1rem;
     }
 
     .popup-block ul{
       margin:0;
       padding-left:18px;
-      line-height:1.6;
-      color:#fff;
-      font-size:.96rem;
+      line-height:1.5;
+      font-size:.92rem;
+    }
+
+    .popup-note{
+      text-align:center;
+      font-size:.88rem;
+      color:#d8e1f7;
+      line-height:1.5;
+      margin-top:8px;
     }
 
     .popup-actions{
       display:grid;
       grid-template-columns:1fr 1fr;
-      gap:10px;
-      margin-top:12px;
-    }
-
-    .popup-note{
+      gap:8px;
       margin-top:10px;
-      text-align:center;
-      font-size:.92rem;
-      color:#cbd5e1;
-      line-height:1.5;
     }
 
-    .landscape-overlay{
-      position:absolute;
-      inset:0;
-      background:#020617;
-      z-index:120;
-      display:none;
+    .practice{
+      padding:8px 8px 28px;
+      height:100%;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .topbar{
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      align-items:center;
+      gap:8px;
+      flex:0 0 auto;
+      margin-bottom:6px;
+    }
+
+    .badge{
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.09);
+      font-size:.8rem;
+      font-weight:800;
+      white-space:nowrap;
+    }
+
+    .brand{
+      text-align:center;
+      min-width:0;
+    }
+
+    .brand h1{
+      margin:0;
+      font-size:1.15rem;
+      font-weight:900;
+      line-height:1.05;
+    }
+
+    .powered{
+      margin-top:2px;
+      font-size:.72rem;
+      font-weight:700;
+      color:#d7dff5;
+      line-height:1.2;
+    }
+
+    .lesson-line{
+      text-align:center;
+      color:var(--yellow);
+      font-size:1.2rem;
+      font-weight:900;
+      line-height:1.1;
+      margin-bottom:6px;
+      flex:0 0 auto;
+    }
+
+    .layout{
+      flex:1 1 auto;
+      min-height:0;
+      display:grid;
+      grid-template-columns:1.02fr .98fr;
+      gap:8px;
+    }
+
+    .left-panel,.right-panel{
+      min-height:0;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .target-box{
+      background:linear-gradient(180deg,#1732ff,#1536c4);
+      border-radius:16px;
+      padding:10px 10px 8px;
+      box-shadow:var(--shadow);
+      min-height:0;
+    }
+
+    .target-text{
+      font-size:.95rem;
+      font-weight:800;
+      line-height:1.45;
+      text-align:center;
+      word-break:break-word;
+      min-height:44px;
+    }
+
+    .sequence-box{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      justify-content:center;
+      margin-top:8px;
+    }
+
+    .seq{
+      min-width:32px;
+      padding:6px 8px;
+      border-radius:8px;
+      background:#fff;
+      color:#111827;
+      font-size:.84rem;
+      font-weight:800;
+      line-height:1;
+    }
+
+    .seq.active{
+      background:var(--orange);
+      color:#fff;
+    }
+
+    .input-box{
+      background:#fff;
+      border-radius:14px;
+      padding:8px;
+      box-shadow:var(--shadow);
+      flex:0 0 auto;
+    }
+
+    textarea{
+      width:100%;
+      min-height:66px;
+      max-height:66px;
+      border:none;
+      outline:none;
+      resize:none;
+      font-size:1rem;
+      line-height:1.35;
+      font-family:inherit;
+      color:#111827;
+      overflow:auto;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:6px;
+      flex:0 0 auto;
+    }
+
+    .stat{
+      background:rgba(255,255,255,.07);
+      border-radius:12px;
+      padding:7px 6px;
+      text-align:center;
+      box-shadow:var(--shadow);
+    }
+
+    .stat .label{
+      font-size:.66rem;
+      color:var(--muted);
+      font-weight:700;
+      line-height:1.1;
+    }
+
+    .stat .value{
+      margin-top:4px;
+      font-size:.98rem;
+      font-weight:900;
+      line-height:1.1;
+    }
+
+    .sound-status{
+      text-align:center;
+      font-size:.82rem;
+      font-weight:700;
+      color:#d6def7;
+      line-height:1.2;
+      flex:0 0 auto;
+    }
+
+    .button-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:6px;
+      flex:0 0 auto;
+    }
+
+    .button-grid.two{
+      margin-top:0;
+    }
+
+    .keyboard-card,.hands-card{
+      background:rgba(255,255,255,.06);
+      border-radius:16px;
+      box-shadow:var(--shadow);
+      padding:8px;
+      min-height:0;
+    }
+
+    .section-title{
+      margin:0 0 6px;
+      font-size:.9rem;
+      font-weight:900;
+      line-height:1.1;
+    }
+
+    .keyboard{
+      transform-origin:top center;
+      scale:.92;
+      margin-top:-2px;
+    }
+
+    .kb-row{
+      display:grid;
+      gap:4px;
+      margin-bottom:4px;
+    }
+
+    .kb-row.r1{grid-template-columns:repeat(10,1fr)}
+    .kb-row.r2{grid-template-columns:1.1fr repeat(10,1fr) 1.25fr}
+    .kb-row.r3{grid-template-columns:1.35fr repeat(10,1fr) 1.45fr}
+    .kb-row.r4{grid-template-columns:1.7fr repeat(9,1fr) 1.75fr}
+    .kb-row.r5{grid-template-columns:1fr 1fr 3.6fr 1fr 1fr}
+
+    .key{
+      min-height:24px;
+      border-radius:7px;
+      display:flex;
       align-items:center;
       justify-content:center;
-      text-align:center;
-      padding:20px;
-      font-size:1.4rem;
-      font-weight:800;
-      line-height:1.5;
+      font-weight:900;
+      font-size:.72rem;
+      color:#111827;
+      background:#f8fafc;
+      border:1px solid rgba(255,255,255,.25);
+      transition:.12s ease;
     }
 
-    .sound-indicator{
-      text-align:center;
-      font-size:.92rem;
-      color:#cbd5e1;
-      margin-bottom:8px;
+    .key.l-pinky{background:#3b82f6;color:#fff}
+    .key.l-ring{background:#fb923c;color:#fff}
+    .key.l-middle{background:#22c55e;color:#fff}
+    .key.l-index{background:#8b5cf6;color:#fff}
+    .key.r-index{background:#facc15;color:#111827}
+    .key.r-middle{background:#ec4899;color:#fff}
+    .key.r-ring{background:#06b6d4;color:#fff}
+    .key.r-pinky{background:#ef4444;color:#fff}
+    .key.neutral{background:#e5e7eb;color:#111827}
+    .key.active{
+      outline:2px solid #fff;
+      transform:scale(1.03);
+      box-shadow:0 0 0 2px rgba(255,255,255,.12),0 0 10px rgba(255,255,255,.24);
+    }
+
+    .hands-wrap{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      align-items:end;
+      margin-top:2px;
+    }
+
+    .hand{
+      height:66px;
+      display:flex;
+      justify-content:center;
+      align-items:flex-end;
+      gap:4px;
+    }
+
+    .finger{
+      width:12px;
+      border-radius:10px 10px 8px 8px;
+      transition:.12s ease;
+      box-shadow:0 3px 8px rgba(0,0,0,.18);
+    }
+
+    .thumb{width:22px;height:24px;background:#a5b4fc;border-radius:14px}
+    .f1{height:34px}
+    .f2{height:44px}
+    .f3{height:54px}
+    .f4{height:48px}
+    .left-pinky{background:#3b82f6}
+    .left-ring{background:#fb923c}
+    .left-middle{background:#22c55e}
+    .left-index{background:#8b5cf6}
+    .right-index{background:#facc15}
+    .right-middle{background:#ec4899}
+    .right-ring{background:#06b6d4}
+    .right-pinky{background:#ef4444}
+
+    .finger.active{
+      outline:2px solid #fff;
+      transform:translateY(-2px) scale(1.04);
+      box-shadow:0 0 0 2px rgba(255,255,255,.12),0 0 10px rgba(255,255,255,.24);
     }
 
     .footer-line{
       position:absolute;
       left:0;
       right:0;
-      bottom:6px;
+      bottom:4px;
       text-align:center;
-      font-size:.88rem;
-      font-weight:700;
+      font-size:.72rem;
+      font-weight:800;
       color:#dbe3f5;
       pointer-events:none;
     }
 
     @media (orientation:portrait){
-      .landscape-overlay.show{
-        display:flex;
-      }
+      .landscape-overlay.show{display:flex}
     }
   </style>
 </head>
@@ -492,154 +511,159 @@
       उसके बाद ही टाइपिंग शुरू होगा।
     </div>
 
-    <div class="screen active" id="splashScreen">
-      <div class="center">
-        <div class="card" style="padding:20px;">
-          <h1 class="title">ACS Typing Master</h1>
-          <p class="subtitle">आसान से भारी की तरफ • बच्चों के लिए रंगीन कीबोर्ड • उंगली मार्गदर्शन सहित</p>
-          <button class="big-btn btn-green" onclick="openSetupPopup()">शुरू करें</button>
-        </div>
+    <div class="screen active splash" id="splashScreen">
+      <div class="card">
+        <h1 class="title">ACS Typing Master</h1>
+        <p class="subtitle">आसान से भारी की तरफ • बच्चों के लिए रंगीन कीबोर्ड • उंगली मार्गदर्शन सहित</p>
+        <button class="big-btn btn-green" onclick="openSetupPopup()">शुरू करें</button>
       </div>
     </div>
 
-    <div class="screen" id="practiceScreen">
+    <div class="screen practice" id="practiceScreen">
       <div class="topbar">
-        <div class="badge" id="modeBadge">Practice Mode</div>
+        <div class="badge">Practice Mode</div>
+        <div class="brand">
+          <h1>ACS Typing Master</h1>
+          <div class="powered">पावर्ड बाय रामभरोस विद्यार्थी</div>
+        </div>
         <div class="badge" id="lessonBadge">L001</div>
       </div>
 
-      <h1 class="lesson-title">ACS Typing Master</h1>
-      <div class="powered-line">पावर्ड बाय रामभरोस विद्यार्थी</div>
-      <div class="lesson-code" id="lessonTitle">Lesson: L001</div>
+      <div class="lesson-line" id="lessonTitle">Lesson: L001</div>
 
-      <div class="target-box">
-        <div id="targetText" style="font-size:1.05rem;font-weight:700;line-height:1.65;"></div>
-        <div class="sequence-box" id="sequenceBox"></div>
-      </div>
-
-      <div class="input-box">
-        <textarea id="typingInput" placeholder="यहाँ typing शुरू करो..." disabled></textarea>
-      </div>
-
-      <div class="stats">
-        <div class="stat">
-          <div class="label">Gross WPM</div>
-          <div class="value" id="grossWpm">0</div>
-        </div>
-        <div class="stat">
-          <div class="label">Net WPM</div>
-          <div class="value" id="netWpm">0</div>
-        </div>
-        <div class="stat">
-          <div class="label">Accuracy</div>
-          <div class="value" id="accuracy">100%</div>
-        </div>
-      </div>
-
-      <div class="sound-indicator" id="soundStatusText">आवाज़: चालू</div>
-
-      <div class="practice-panel">
-        <div class="keyboard">
-          <div class="section-title">रंगीन कीबोर्ड मार्गदर्शन</div>
-
-          <div class="kb-row r1">
-            <div class="key neutral">1</div>
-            <div class="key neutral">2</div>
-            <div class="key neutral">3</div>
-            <div class="key neutral">4</div>
-            <div class="key neutral">5</div>
-            <div class="key neutral">6</div>
-            <div class="key neutral">7</div>
-            <div class="key neutral">8</div>
-            <div class="key neutral">9</div>
-            <div class="key neutral">0</div>
+      <div class="layout">
+        <div class="left-panel">
+          <div class="target-box">
+            <div class="target-text" id="targetText"></div>
+            <div class="sequence-box" id="sequenceBox"></div>
           </div>
 
-          <div class="kb-row r2">
-            <div class="key neutral">Tab</div>
-            <div class="key l-pinky" data-key="q">Q</div>
-            <div class="key l-ring" data-key="w">W</div>
-            <div class="key l-middle" data-key="e">E</div>
-            <div class="key l-index" data-key="r">R</div>
-            <div class="key l-index" data-key="t">T</div>
-            <div class="key r-index" data-key="y">Y</div>
-            <div class="key r-index" data-key="u">U</div>
-            <div class="key r-middle" data-key="i">I</div>
-            <div class="key r-ring" data-key="o">O</div>
-            <div class="key r-pinky" data-key="p">P</div>
-            <div class="key neutral">Back</div>
+          <div class="input-box">
+            <textarea id="typingInput" placeholder="यहाँ typing शुरू करो..." disabled></textarea>
           </div>
 
-          <div class="kb-row r3">
-            <div class="key neutral">Caps</div>
-            <div class="key l-pinky" data-key="a">A</div>
-            <div class="key l-ring" data-key="s">S</div>
-            <div class="key l-middle" data-key="d">D</div>
-            <div class="key l-index" data-key="f">F</div>
-            <div class="key l-index" data-key="g">G</div>
-            <div class="key r-index" data-key="h">H</div>
-            <div class="key r-index" data-key="j">J</div>
-            <div class="key r-middle" data-key="k">K</div>
-            <div class="key r-ring" data-key="l">L</div>
-            <div class="key r-pinky" data-key=";">;</div>
-            <div class="key neutral">Enter</div>
-          </div>
-
-          <div class="kb-row r4">
-            <div class="key neutral">Shift</div>
-            <div class="key l-pinky" data-key="z">Z</div>
-            <div class="key l-ring" data-key="x">X</div>
-            <div class="key l-middle" data-key="c">C</div>
-            <div class="key l-index" data-key="v">V</div>
-            <div class="key l-index" data-key="b">B</div>
-            <div class="key r-index" data-key="n">N</div>
-            <div class="key r-index" data-key="m">M</div>
-            <div class="key r-middle" data-key=",">,</div>
-            <div class="key r-ring" data-key=".">.</div>
-            <div class="key neutral">Shift</div>
-          </div>
-
-          <div class="kb-row r5">
-            <div class="key neutral">Ctrl</div>
-            <div class="key neutral">Alt</div>
-            <div class="key neutral" data-key=" ">Space</div>
-            <div class="key neutral">Alt</div>
-            <div class="key neutral">Ctrl</div>
-          </div>
-        </div>
-
-        <div class="hands">
-          <div class="section-title">उंगली मार्गदर्शन</div>
-          <div class="hands-wrap">
-            <div class="hand" id="leftHand">
-              <div class="finger thumb"></div>
-              <div class="finger f1 left-pinky" data-finger="left-pinky"></div>
-              <div class="finger f2 left-ring" data-finger="left-ring"></div>
-              <div class="finger f3 left-middle" data-finger="left-middle"></div>
-              <div class="finger f4 left-index" data-finger="left-index"></div>
+          <div class="stats">
+            <div class="stat">
+              <div class="label">Gross WPM</div>
+              <div class="value" id="grossWpm">0</div>
             </div>
-
-            <div class="hand" id="rightHand">
-              <div class="finger f4 right-index" data-finger="right-index"></div>
-              <div class="finger f3 right-middle" data-finger="right-middle"></div>
-              <div class="finger f2 right-ring" data-finger="right-ring"></div>
-              <div class="finger f1 right-pinky" data-finger="right-pinky"></div>
-              <div class="finger thumb"></div>
+            <div class="stat">
+              <div class="label">Net WPM</div>
+              <div class="value" id="netWpm">0</div>
+            </div>
+            <div class="stat">
+              <div class="label">Accuracy</div>
+              <div class="value" id="accuracy">100%</div>
             </div>
           </div>
+
+          <div class="sound-status" id="soundStatusText">आवाज़: चालू</div>
+
+          <div class="button-grid">
+            <button class="small-btn btn-green" onclick="startPractice()">Practice Start</button>
+            <button class="small-btn btn-blue" onclick="prevLesson()">⬅ पिछला</button>
+            <button class="small-btn btn-orange" onclick="nextLesson()">अगला ➡</button>
+          </div>
+
+          <div class="button-grid two">
+            <button class="small-btn btn-dark" onclick="toggleSound()">आवाज़</button>
+            <button class="small-btn btn-dark" onclick="openSetupPopup()">नियम</button>
+            <button class="small-btn btn-dark" onclick="goDashboard()">Dashboard</button>
+          </div>
         </div>
-      </div>
 
-      <div class="footer-buttons">
-        <button class="small-btn btn-green" onclick="startPractice()">Practice Start</button>
-        <button class="small-btn btn-blue" onclick="prevLesson()">⬅ पिछला</button>
-        <button class="small-btn btn-orange" onclick="nextLesson()">अगला ➡</button>
-      </div>
+        <div class="right-panel">
+          <div class="keyboard-card">
+            <div class="section-title">रंगीन कीबोर्ड मार्गदर्शन</div>
+            <div class="keyboard">
+              <div class="kb-row r1">
+                <div class="key neutral">1</div>
+                <div class="key neutral">2</div>
+                <div class="key neutral">3</div>
+                <div class="key neutral">4</div>
+                <div class="key neutral">5</div>
+                <div class="key neutral">6</div>
+                <div class="key neutral">7</div>
+                <div class="key neutral">8</div>
+                <div class="key neutral">9</div>
+                <div class="key neutral">0</div>
+              </div>
 
-      <div class="footer-buttons" style="margin-top:10px;">
-        <button class="small-btn btn-dark" onclick="toggleSound()">आवाज़ चालू/बंद</button>
-        <button class="small-btn btn-dark" onclick="openSetupPopup()">नियम देखें</button>
-        <button class="small-btn btn-dark" onclick="goDashboard()">Dashboard</button>
+              <div class="kb-row r2">
+                <div class="key neutral">Tab</div>
+                <div class="key l-pinky" data-key="q">Q</div>
+                <div class="key l-ring" data-key="w">W</div>
+                <div class="key l-middle" data-key="e">E</div>
+                <div class="key l-index" data-key="r">R</div>
+                <div class="key l-index" data-key="t">T</div>
+                <div class="key r-index" data-key="y">Y</div>
+                <div class="key r-index" data-key="u">U</div>
+                <div class="key r-middle" data-key="i">I</div>
+                <div class="key r-ring" data-key="o">O</div>
+                <div class="key r-pinky" data-key="p">P</div>
+                <div class="key neutral">Back</div>
+              </div>
+
+              <div class="kb-row r3">
+                <div class="key neutral">Caps</div>
+                <div class="key l-pinky" data-key="a">A</div>
+                <div class="key l-ring" data-key="s">S</div>
+                <div class="key l-middle" data-key="d">D</div>
+                <div class="key l-index" data-key="f">F</div>
+                <div class="key l-index" data-key="g">G</div>
+                <div class="key r-index" data-key="h">H</div>
+                <div class="key r-index" data-key="j">J</div>
+                <div class="key r-middle" data-key="k">K</div>
+                <div class="key r-ring" data-key="l">L</div>
+                <div class="key r-pinky" data-key=";">;</div>
+                <div class="key neutral">Enter</div>
+              </div>
+
+              <div class="kb-row r4">
+                <div class="key neutral">Shift</div>
+                <div class="key l-pinky" data-key="z">Z</div>
+                <div class="key l-ring" data-key="x">X</div>
+                <div class="key l-middle" data-key="c">C</div>
+                <div class="key l-index" data-key="v">V</div>
+                <div class="key l-index" data-key="b">B</div>
+                <div class="key r-index" data-key="n">N</div>
+                <div class="key r-index" data-key="m">M</div>
+                <div class="key r-middle" data-key=",">,</div>
+                <div class="key r-ring" data-key=".">.</div>
+                <div class="key neutral">Shift</div>
+              </div>
+
+              <div class="kb-row r5">
+                <div class="key neutral">Ctrl</div>
+                <div class="key neutral">Alt</div>
+                <div class="key neutral" data-key=" ">Space</div>
+                <div class="key neutral">Alt</div>
+                <div class="key neutral">Ctrl</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hands-card">
+            <div class="section-title">उंगली मार्गदर्शन</div>
+            <div class="hands-wrap">
+              <div class="hand">
+                <div class="finger thumb"></div>
+                <div class="finger f1 left-pinky" data-finger="left-pinky"></div>
+                <div class="finger f2 left-ring" data-finger="left-ring"></div>
+                <div class="finger f3 left-middle" data-finger="left-middle"></div>
+                <div class="finger f4 left-index" data-finger="left-index"></div>
+              </div>
+
+              <div class="hand">
+                <div class="finger f4 right-index" data-finger="right-index"></div>
+                <div class="finger f3 right-middle" data-finger="right-middle"></div>
+                <div class="finger f2 right-ring" data-finger="right-ring"></div>
+                <div class="finger f1 right-pinky" data-finger="right-pinky"></div>
+                <div class="finger thumb"></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -691,32 +715,6 @@
           </ul>
         </div>
 
-        <div class="popup-block">
-          <h3>Scoring System (Final)</h3>
-          <ul>
-            <li>Gross WPM = (Total Characters ÷ 5) ÷ Minutes</li>
-            <li>Net WPM = (Correct Characters ÷ 5) ÷ Minutes</li>
-            <li>Accuracy = (Correct ÷ Total) × 100</li>
-            <li>Consistency = हर 30 सेकंड का WPM, standard deviation, normalize करके 0–100</li>
-            <li>Weak Keys = highest error keys, slow keys</li>
-          </ul>
-        </div>
-
-        <div class="popup-block">
-          <h3>Onboarding Flow</h3>
-          <ul>
-            <li>1. Splash</li>
-            <li>2. Rotate screen</li>
-            <li>3. Connect keyboard</li>
-            <li>4. Press any key</li>
-            <li>5. User type select</li>
-            <li>6. Consent</li>
-            <li>7. Finger guide</li>
-            <li>8. First practice</li>
-            <li>9. Dashboard</li>
-          </ul>
-        </div>
-
         <div class="popup-note" id="popupNote">
           मोबाइल को आड़ा करें, ओटीजी और कीबोर्ड जोड़ें।<br>
           फिर कीबोर्ड से कोई भी बटन दबाएँ।<br>
@@ -736,8 +734,7 @@
   <script>
     const translations = {
       hi: {
-        popupSpeech:
-          "टाइपिंग शुरू करने से पहले कृपया मोबाइल को आड़ा करें, ओ टी जी डोंगल लगाएँ, कीबोर्ड जोड़ें, फिर कीबोर्ड से कोई भी बटन दबाएँ।",
+        popupSpeech: "टाइपिंग शुरू करने से पहले कृपया मोबाइल को आड़ा करें, ओ टी जी डोंगल लगाएँ, कीबोर्ड जोड़ें, फिर कीबोर्ड से कोई भी बटन दबाएँ।",
         title: "टाइपिंग शुरू करने से पहले",
         note: "मोबाइल को आड़ा करें, ओटीजी और कीबोर्ड जोड़ें। फिर कीबोर्ड से कोई भी बटन दबाएँ। उसी से popup बंद होगा।",
         soundOn: "आवाज़: चालू",
@@ -754,26 +751,11 @@
     let currentLesson = getLessonFromURL();
 
     const lessonData = {
-      L001: {
-        text: "the quick brown fox jumps over the lazy dog",
-        sequence: ["t","h","e"," ","q","u","i","c","k"]
-      },
-      L002: {
-        text: "asdf asdf asdf",
-        sequence: ["a","s","d","f"]
-      },
-      L003: {
-        text: "jkl semicolon jkl semicolon",
-        sequence: ["j","k","l",";"]
-      },
-      L004: {
-        text: "ask flask sad fall",
-        sequence: ["a","s","k","f","l"]
-      },
-      L005: {
-        text: "practice typing slowly and correctly",
-        sequence: ["p","r","a","c","t","i","c","e"]
-      }
+      L001: { text: "the quick brown fox jumps over the lazy dog", sequence: ["t","h","e"," ","q","u","i","c","k"] },
+      L002: { text: "asdf asdf asdf", sequence: ["a","s","d","f"] },
+      L003: { text: "jkl semicolon jkl semicolon", sequence: ["j","k","l",";"] },
+      L004: { text: "ask flask sad fall", sequence: ["a","s","k","f","l"] },
+      L005: { text: "practice typing slowly and correctly", sequence: ["p","r","a","c","t","i","c","e"] }
     };
 
     let currentText = (lessonData[currentLesson] || lessonData["L001"]).text;
@@ -797,51 +779,54 @@
       if(!("speechSynthesis" in window)) return;
       speechSynthesis.cancel();
       const u = new SpeechSynthesisUtterance(translations[currentLang].popupSpeech);
-      u.lang = currentLang === "hi" ? "hi-IN" : "en-US";
+      u.lang = "hi-IN";
       u.rate = 0.92;
       speechSynthesis.speak(u);
     }
 
-    function playCorrectSound(){
+    function tone(freq, dur, vol){
       if(!soundEnabled) return;
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.frequency.value = 620;
-      gain.gain.value = 0.03;
-      osc.start();
-      osc.stop(ctx.currentTime + 0.06);
+      try{
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.frequency.value = freq;
+        gain.gain.value = vol;
+        osc.start();
+        osc.stop(ctx.currentTime + dur);
+      }catch(e){}
     }
 
-    function playWrongSound(){
-      if(!soundEnabled) return;
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.frequency.value = 210;
-      gain.gain.value = 0.04;
-      osc.start();
-      osc.stop(ctx.currentTime + 0.08);
-    }
+    function playCorrectSound(){ tone(620,0.05,0.03); }
+    function playWrongSound(){ tone(210,0.07,0.04); }
 
     function toggleSound(){
       soundEnabled = !soundEnabled;
       applyLanguage();
-      if(soundEnabled){
-        speakPopup();
-      }else if("speechSynthesis" in window){
-        speechSynthesis.cancel();
-      }
+      if(soundEnabled) speakPopup();
+      else if("speechSynthesis" in window) speechSynthesis.cancel();
+    }
+
+    function checkLandscape(){
+      const overlay = document.getElementById("landscapeOverlay");
+      if(window.innerHeight > window.innerWidth) overlay.classList.add("show");
+      else overlay.classList.remove("show");
     }
 
     function openSetupPopup(){
       checkLandscape();
       document.getElementById("setupPopup").classList.add("show");
       speakPopup();
+    }
+
+    function closeSetupPopup(){
+      document.getElementById("setupPopup").classList.remove("show");
+      document.getElementById("splashScreen").classList.remove("active");
+      document.getElementById("practiceScreen").classList.add("active");
+      document.getElementById("typingInput").disabled = false;
+      if("speechSynthesis" in window) speechSynthesis.cancel();
     }
 
     function manualClosePopup(){
@@ -852,78 +837,23 @@
       closeSetupPopup();
     }
 
-    function closeSetupPopup(){
-      document.getElementById("setupPopup").classList.remove("show");
-      document.getElementById("splashScreen").classList.remove("active");
-      document.getElementById("practiceScreen").classList.add("active");
-      document.getElementById("typingInput").disabled = false;
-      if("speechSynthesis" in window) speechSynthesis.cancel();
-      localStorage.setItem("typing_popup_seen", "yes");
-    }
-
-    function checkLandscape(){
-      const overlay = document.getElementById("landscapeOverlay");
-      if(window.innerHeight > window.innerWidth){
-        overlay.classList.add("show");
-      }else{
-        overlay.classList.remove("show");
-      }
-    }
-
     function renderLesson(){
       document.getElementById("lessonBadge").textContent = currentLesson;
       document.getElementById("lessonTitle").textContent = "Lesson: " + currentLesson;
-      document.getElementById("targetText").textContent = currentText;
+      renderTypingState("");
+      renderSequence();
+      renderKeyboardHighlight(currentText[0] || "a");
+    }
 
+    function renderSequence(activeIndex = 0){
       const seqBox = document.getElementById("sequenceBox");
       seqBox.innerHTML = "";
       currentSequence.forEach((item, index) => {
         const d = document.createElement("div");
-        d.className = "seq" + (index === 0 ? " active" : "");
+        d.className = "seq" + (index === activeIndex ? " active" : "");
         d.textContent = item === " " ? "Space" : item.toUpperCase();
         seqBox.appendChild(d);
       });
-    }
-
-    function renderKeyboardHighlight(expectedChar){
-      document.querySelectorAll(".key").forEach(k => k.classList.remove("active"));
-      document.querySelectorAll(".finger").forEach(f => f.classList.remove("active"));
-
-      let keySelector = expectedChar;
-      if(expectedChar === " ") keySelector = " ";
-      const key = document.querySelector('.key[data-key="' + cssEscape(keySelector) + '"]');
-      if(key){
-        key.classList.add("active");
-
-        if(key.classList.contains("l-pinky")) activateFinger("left-pinky");
-        else if(key.classList.contains("l-ring")) activateFinger("left-ring");
-        else if(key.classList.contains("l-middle")) activateFinger("left-middle");
-        else if(key.classList.contains("l-index")) activateFinger("left-index");
-        else if(key.classList.contains("r-index")) activateFinger("right-index");
-        else if(key.classList.contains("r-middle")) activateFinger("right-middle");
-        else if(key.classList.contains("r-ring")) activateFinger("right-ring");
-        else if(key.classList.contains("r-pinky")) activateFinger("right-pinky");
-      }
-    }
-
-    function activateFinger(name){
-      const finger = document.querySelector('.finger[data-finger="' + name + '"]');
-      if(finger) finger.classList.add("active");
-    }
-
-    function cssEscape(ch){
-      if(ch === '"') return '\\"';
-      return ch;
-    }
-
-    function startPractice(){
-      practiceStarted = true;
-      startTime = Date.now();
-      document.getElementById("typingInput").value = "";
-      updateStats();
-      renderTypingState("");
-      renderKeyboardHighlight(currentText[0] || "a");
-      document.getElementById("typingInput").focus();
     }
 
     function renderTypingState(input){
@@ -944,12 +874,36 @@
         target.appendChild(span);
       }
 
-      const seq = document.querySelectorAll(".seq");
-      seq.forEach(s => s.classList.remove("active"));
       const nextChar = currentText[input.length];
-      if(nextChar){
-        const idx = currentSequence.findIndex(x => x === nextChar);
-        if(idx >= 0 && seq[idx]) seq[idx].classList.add("active");
+      const idx = currentSequence.findIndex(x => x === nextChar);
+      renderSequence(idx >= 0 ? idx : 0);
+    }
+
+    function activateFinger(name){
+      const finger = document.querySelector('.finger[data-finger="' + name + '"]');
+      if(finger) finger.classList.add("active");
+    }
+
+    function cssEscape(ch){
+      if(ch === '"') return '\\"';
+      return ch;
+    }
+
+    function renderKeyboardHighlight(expectedChar){
+      document.querySelectorAll(".key").forEach(k => k.classList.remove("active"));
+      document.querySelectorAll(".finger").forEach(f => f.classList.remove("active"));
+
+      const key = document.querySelector('.key[data-key="' + cssEscape(expectedChar === " " ? " " : expectedChar) + '"]');
+      if(key){
+        key.classList.add("active");
+        if(key.classList.contains("l-pinky")) activateFinger("left-pinky");
+        else if(key.classList.contains("l-ring")) activateFinger("left-ring");
+        else if(key.classList.contains("l-middle")) activateFinger("left-middle");
+        else if(key.classList.contains("l-index")) activateFinger("left-index");
+        else if(key.classList.contains("r-index")) activateFinger("right-index");
+        else if(key.classList.contains("r-middle")) activateFinger("right-middle");
+        else if(key.classList.contains("r-ring")) activateFinger("right-ring");
+        else if(key.classList.contains("r-pinky")) activateFinger("right-pinky");
       }
     }
 
@@ -968,6 +922,16 @@
       document.getElementById("grossWpm").textContent = isFinite(gross) ? gross : 0;
       document.getElementById("netWpm").textContent = isFinite(net) ? net : 0;
       document.getElementById("accuracy").textContent = acc + "%";
+    }
+
+    function startPractice(){
+      practiceStarted = true;
+      startTime = Date.now();
+      document.getElementById("typingInput").value = "";
+      document.getElementById("typingInput").focus();
+      updateStats();
+      renderTypingState("");
+      renderKeyboardHighlight(currentText[0] || "a");
     }
 
     document.getElementById("typingInput").addEventListener("input", function(){
@@ -1003,18 +967,14 @@
     function nextLesson(){
       let n = lessonNumber();
       if(n < 40){
-        n++;
-        const next = formatLesson(n);
-        window.location.href = "typing-master.html?lesson=" + next;
+        window.location.href = "typing-master.html?lesson=" + formatLesson(n + 1);
       }
     }
 
     function prevLesson(){
       let n = lessonNumber();
       if(n > 1){
-        n--;
-        const prev = formatLesson(n);
-        window.location.href = "typing-master.html?lesson=" + prev;
+        window.location.href = "typing-master.html?lesson=" + formatLesson(n - 1);
       }
     }
 
@@ -1026,8 +986,6 @@
 
     applyLanguage();
     renderLesson();
-    renderTypingState("");
-    renderKeyboardHighlight(currentText[0] || "a");
     checkLandscape();
     openSetupPopup();
   </script>
