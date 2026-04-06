@@ -74,7 +74,6 @@
       background:var(--bg);
     }
 
-    /* ===== HEADER ===== */
     .मुख्य-हेडर{
       position:relative;
       background:linear-gradient(180deg,#ff9933 0%, #ffffff 50%, #138808 100%);
@@ -115,7 +114,6 @@
       color:#222;
     }
 
-    /* ===== TOP ACTION AREA ===== */
     .ऊपर-खंड{
       display:grid;
       grid-template-columns:1fr 92px 1fr;
@@ -205,7 +203,6 @@
       display:block;
     }
 
-    /* ===== MAIN GATEWAY ===== */
     .गेटवे-फ्रेम{
       background:linear-gradient(180deg,#8dd9ff 0%, #73d0ff 100%);
       border-radius:28px;
@@ -219,7 +216,6 @@
       overflow:hidden;
     }
 
-    /* Pink course selector strip */
     .चयन-हेडर{
       position:relative;
       background:linear-gradient(180deg,#ff93ea,#ff62da);
@@ -252,7 +248,6 @@
       line-height:1.15;
     }
 
-    /* Three selection boxes */
     .तीन-बॉक्स-पंक्ति{
       display:grid;
       grid-template-columns:repeat(3,1fr);
@@ -265,9 +260,9 @@
       position:relative;
       border:none;
       border-radius:18px;
-      min-height:105px; /* HEIGHT REDUCED HERE */
+      min-height:105px;
       box-shadow:var(--shadow);
-      padding:10px 6px 8px; /* PADDING REDUCED HERE */
+      padding:10px 6px 8px;
       display:flex;
       flex-direction:column;
       justify-content:flex-start;
@@ -278,26 +273,21 @@
       transition:transform .12s ease, opacity .12s ease, box-shadow .12s ease, background .3s ease;
     }
 
-    /* GAME STATE COLORS */
-    
-    /* Active State - Yellow (Need to touch) */
     .चयन-बॉक्स.active{
       background:linear-gradient(180deg,#fff067,#ffe24c 58%, #e7be12 100%);
       color:#1d1d1d;
     }
 
-    /* Completed State - Green (Already selected) */
     .चयन-बॉक्स.completed{
       background:linear-gradient(180deg,#35d26f,#00a748);
       color:#fff;
     }
-    
+
     .चयन-बॉक्स.completed .बॉक्स-लेबल,
     .चयन-बॉक्स.completed .बॉक्स-मूल्य{
       color:#fff;
     }
 
-    /* Inactive State - Gray */
     .चयन-बॉक्स.inactive{
       background:linear-gradient(180deg,#eef2f7,#dfe6ef);
       color:var(--inactive-text);
@@ -332,7 +322,6 @@
       color:var(--inactive-text);
     }
 
-    /* Invisible native selects */
     .छिपा-सेलेक्ट{
       position:absolute;
       inset:0;
@@ -348,7 +337,6 @@
       cursor:not-allowed;
     }
 
-    /* Start button */
     .मुख्य-शुरू-बटन{
       border:none;
       background:linear-gradient(180deg,#ffe96d 0%, #ffd83a 55%, #e9bc00 100%);
@@ -374,7 +362,6 @@
       cursor:not-allowed;
     }
 
-    /* Bottom nav */
     .नीचे-पंक्ति{
       display:grid;
       grid-template-columns:repeat(3,1fr);
@@ -406,7 +393,6 @@
       cursor:not-allowed;
     }
 
-    /* ===== ABOUT FULL SCREEN ===== */
     .पर्दा{
       position:fixed;
       inset:0;
@@ -574,7 +560,6 @@
       margin:8px 0 6px;
     }
 
-    /* ===== AI HELP ===== */
     .एआई-पर्दा{
       position:fixed;
       inset:0;
@@ -742,7 +727,7 @@
       .चयन-हेडर{ min-height:72px; }
       .चयन-हेडर .ऊपर-पंक्ति{ font-size:1.12rem; }
       .चयन-हेडर .नीचे-पंक्ति{ font-size:.95rem; }
-      .चयन-बॉक्स{ min-height:95px; } /* HEIGHT REDUCED HERE FOR SMALL SCREENS */
+      .चयन-बॉक्स{ min-height:95px; }
       .मुख्य-शुरू-बटन{ font-size:1.72rem; min-height:70px; }
       .नीचे-बटन{ font-size:.92rem; }
       .अंदर-पाठ{ font-size:1rem; }
@@ -784,6 +769,7 @@
       <select class="छिपा-सेलेक्ट" id="कोर्ससेलेक्ट" onchange="कोर्सबदला()">
         <option value="">अपना कोर्स चुनिए</option>
         <option value="ai_digital_master">एआई डिजिटल मास्टर</option>
+        <option value="typing_master">ACS Typing Master</option>
       </select>
     </div>
 
@@ -845,7 +831,7 @@
       </div>
       <div class="अंदर-शीर्षक">नई दुनिया में प्रवेश</div>
       <div class="अंदर-पाठ">
-        यह कोर्स सिर्फ मोबाइल फोन पर आधारित, मातृभाषा हिंदी में, सोशल मीडिया कंटेंट क्रिएशन की मास्टरी है。<br><br>
+        यह कोर्स सिर्फ मोबाइल फोन पर आधारित, मातृभाषा हिंदी में, सोशल मीडिया कंटेंट क्रिएशन की मास्टरी है।<br><br>
         इसे पूरा करने के क्रम में आप अपने मोबाइल से ही शानदार, एडवेंचरस प्रोजेक्ट पूरा करके, कंटेंट निर्माण में मास्टरी
         <b>“एसीएस-ए.आई. डिजिटल मास्टर एकलव्य”</b> का प्रमाण पत्र प्राप्त कर सकेंगे, और बनेंगे
         <b>“परिवार में सबसे ज्यादा पैसा कमाने वाला, सोशल मीडिया का सुल्तान”</b>।
@@ -943,6 +929,44 @@
             ]
           }
         ]
+      },
+      {
+        id: "typing_master",
+        नाम: "ACS Typing Master",
+        levels: [
+          {
+            id: "typing_beginner",
+            नाम: "लेवल 1: बिगनर",
+            chapters: [
+              { no: 1, नाम: "फिंगर गाइड", start: 1, end: 5 },
+              { no: 2, नाम: "होम रो प्रैक्टिस", start: 6, end: 10 }
+            ]
+          },
+          {
+            id: "typing_medium",
+            नाम: "लेवल 2: मीडियम",
+            chapters: [
+              { no: 3, नाम: "वर्ड प्रैक्टिस", start: 11, end: 15 },
+              { no: 4, नाम: "स्पीड प्रैक्टिस", start: 16, end: 20 }
+            ]
+          },
+          {
+            id: "typing_advanced",
+            नाम: "लेवल 3: एडवांस",
+            chapters: [
+              { no: 5, नाम: "सेंटेंस प्रैक्टिस", start: 21, end: 25 },
+              { no: 6, नाम: "ऑफिशियल टेस्ट तैयारी", start: 26, end: 30 }
+            ]
+          },
+          {
+            id: "typing_pro",
+            नाम: "लेवल 4: प्रो",
+            chapters: [
+              { no: 7, नाम: "लॉन्ग टेस्ट", start: 31, end: 35 },
+              { no: 8, नाम: "ग्रैंड मास्टर तैयारी", start: 36, end: 40 }
+            ]
+          }
+        ]
       }
     ]
   };
@@ -992,26 +1016,25 @@
   }
 
   function बॉक्सस्थिति(){
-    // GAME LOGIC ADDED HERE: Inactive (Gray), Active (Yellow), Completed (Green)
     लेवलबॉक्स.className = "चयन-बॉक्स inactive";
     चैप्टरबॉक्स.className = "चयन-बॉक्स inactive";
     लेसनबॉक्स.className = "चयन-बॉक्स inactive";
 
     if(चयनितकोर्स){
       if(!चयनितलेवल){
-        लेवलबॉक्स.className = "चयन-बॉक्स active"; // Yellow
+        लेवलबॉक्स.className = "चयन-बॉक्स active";
       } else {
-        लेवलबॉक्स.className = "चयन-बॉक्स completed"; // Green
+        लेवलबॉक्स.className = "चयन-बॉक्स completed";
         
         if(!चयनितचैप्टर){
-          चैप्टरबॉक्स.className = "चयन-बॉक्स active"; // Yellow
+          चैप्टरबॉक्स.className = "चयन-बॉक्स active";
         } else {
-          चैप्टरबॉक्स.className = "चयन-बॉक्स completed"; // Green
+          चैप्टरबॉक्स.className = "चयन-बॉक्स completed";
           
           if(!चयनितलेसन){
-            लेसनबॉक्स.className = "चयन-बॉक्स active"; // Yellow
+            लेसनबॉक्स.className = "चयन-बॉक्स active";
           } else {
-            लेसनबॉक्स.className = "चयन-बॉक्स completed"; // Green
+            लेसनबॉक्स.className = "चयन-बॉक्स completed";
           }
         }
       }
@@ -1075,7 +1098,8 @@
     चयनितलेसन = "";
 
     if(चयनितकोर्स){
-      कोर्समूल्य.textContent = "एआई डिजिटल मास्टर";
+      const course = कोर्सखोजो(चयनितकोर्स);
+      कोर्समूल्य.textContent = course ? course.नाम : "—";
     } else {
       कोर्समूल्य.textContent = "—";
     }
@@ -1158,30 +1182,61 @@
 
   function पाठखोलो(){
     if(!चयनितलेसन) return;
+
     localStorage.setItem("acs_last_lesson", चयनितलेसन);
-    window.location.href = `${चयनितलेसन}.html`;
+    localStorage.setItem("acs_last_course", चयनितकोर्स);
+
+    if(चयनितकोर्स === "typing_master"){
+      window.location.href = `typing/typing-master.html?lesson=${चयनितलेसन}`;
+    } else {
+      window.location.href = `${चयनितलेसन}.html`;
+    }
   }
 
   function पिछलापाठ(){
     let आधार = चयनितलेसन || localStorage.getItem("acs_last_lesson") || "L001";
+    const lastCourse = चयनितकोर्स || localStorage.getItem("acs_last_course") || "ai_digital_master";
     const n = parseInt(आधार.replace("L",""), 10);
     const prev = n > 1 ? लेसनकोड(n - 1) : "L001";
+
     localStorage.setItem("acs_last_lesson", prev);
-    window.location.href = `${prev}.html`;
+    localStorage.setItem("acs_last_course", lastCourse);
+
+    if(lastCourse === "typing_master"){
+      window.location.href = `typing/typing-master.html?lesson=${prev}`;
+    } else {
+      window.location.href = `${prev}.html`;
+    }
   }
 
   function अगलापाठ(){
     let आधार = चयनितलेसन || localStorage.getItem("acs_last_lesson") || "L001";
+    const lastCourse = चयनितकोर्स || localStorage.getItem("acs_last_course") || "ai_digital_master";
     const n = parseInt(आधार.replace("L",""), 10);
-    const next = n < 150 ? लेसनकोड(n + 1) : "L150";
+    const maxLesson = lastCourse === "typing_master" ? 40 : 150;
+    const next = n < maxLesson ? लेसनकोड(n + 1) : लेसनकोड(maxLesson);
+
     localStorage.setItem("acs_last_lesson", next);
-    window.location.href = `${next}.html`;
+    localStorage.setItem("acs_last_course", lastCourse);
+
+    if(lastCourse === "typing_master"){
+      window.location.href = `typing/typing-master.html?lesson=${next}`;
+    } else {
+      window.location.href = `${next}.html`;
+    }
   }
 
   function रिज्यूमपाठ(){
     const last = localStorage.getItem("acs_last_lesson");
+    const lastCourse = localStorage.getItem("acs_last_course");
+
     if(!last) return;
-    window.location.href = `${last}.html`;
+
+    if(lastCourse === "typing_master"){
+      window.location.href = `typing/typing-master.html?lesson=${last}`;
+    } else {
+      window.location.href = `${last}.html`;
+    }
   }
 
   function खोलोकोर्स(){
@@ -1273,7 +1328,7 @@
 
     let reply = "पहले अपना कोर्स चुनिए, फिर लेवल, चैप्टर और लेसन चुनिए।";
     if(चयनितलेसन){
-      reply = `आपने ${चयनितलेसन} चुना है। इसी लेसन के बारे बारे में सवाल पूछिए।`;
+      reply = `आपने ${चयनितलेसन} चुना है। इसी लेसन के बारे में सवाल पूछिए।`;
     }
 
     बुलबुलाजोड़ो(reply, "सहायक");
