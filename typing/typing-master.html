@@ -1,1 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ACS Typing Master</title>
 
+<style>
+body {
+  margin:0;
+  font-family: Arial;
+  background:#0f172a;
+  color:white;
+  text-align:center;
+}
+
+.container {
+  padding:20px;
+}
+
+.text-display {
+  font-size:22px;
+  background:#1e293b;
+  padding:15px;
+  border-radius:10px;
+  margin-bottom:15px;
+  min-height:80px;
+}
+
+.correct { color:#22c55e; }
+.wrong { color:#ef4444; }
+
+textarea {
+  width:90%;
+  height:100px;
+  font-size:18px;
+  padding:10px;
+  border-radius:10px;
+  outline:none;
+}
+
+.stats {
+  margin-top:10px;
+  font-size:18px;
+}
+
+button {
+  margin-top:15px;
+  padding:12px 20px;
+  border:none;
+  border-radius:10px;
+  background:#22c55e;
+  color:white;
+  font-size:16px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>ACS Typing Master</h2>
+
+<div id="text" class="text-display"></div>
+
+<textarea id="input" placeholder="Typing शुरू करो..."></textarea>
+
+<div class="stats">
+  WPM: <span id="wpm">0</span> |
+  Accuracy: <span id="accuracy">100</span>%
+</div>
+
+<button onclick="startTest()">Start Test</button>
+
+</div>
+
+<script>
+
+let text = "the quick brown fox jumps over the lazy dog";
+let startTime = null;
+
+function loadText() {
+  const textDiv = document.getElementById("text");
+  textDiv.innerHTML = "";
+  text.split("").forEach(char => {
+    let span = document.createElement("span");
+    span.innerText = char;
+    textDiv.appendChild(span);
+  });
+}
+
+function startTest() {
+  document.getElementById("input").value = "";
+  startTime = new Date().getTime();
+  loadText();
+}
+
+document.getElementById("input").addEventListener("input", function() {
+
+  let input = this.value;
+  let spans = document.getElementById("text").querySelectorAll("span");
+
+  let correct = 0;
+
+  spans.forEach((span, index) => {
+    let char = input[index];
+
+    if(char == null) {
+      span.classList.remove("correct","wrong");
+    }
+    else if(char === span.innerText) {
+      span.classList.add("correct");
+      span.classList.remove("wrong");
+      correct++;
+    }
+    else {
+      span.classList.add("wrong");
+      span.classList.remove("correct");
+    }
+  });
+
+  let time = (new Date().getTime() - startTime) / 1000 / 60;
+
+  let wpm = Math.round((correct / 5) / time);
+  let accuracy = Math.round((correct / input.length) * 100) || 100;
+
+  document.getElementById("wpm").innerText = wpm;
+  document.getElementById("accuracy").innerText = accuracy;
+
+});
+
+loadText();
+
+</script>
+
+</body>
+</html>
