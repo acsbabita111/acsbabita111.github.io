@@ -9,7 +9,6 @@
       --bg:#071224;
       --panel:#0f1d3a;
       --panel-soft:#12254a;
-      --panel-glow:rgba(255,255,255,.06);
       --text:#ffffff;
       --muted:#d7e1f7;
       --green:#22c55e;
@@ -52,9 +51,23 @@
       position:relative;
       overflow:hidden;
       background:
-        radial-gradient(circle at 18% 12%, rgba(37,99,235,.18), transparent 28%),
-        radial-gradient(circle at 84% 16%, rgba(249,115,22,.12), transparent 24%),
+        radial-gradient(circle at 18% 12%, rgba(37,99,235,.14), transparent 24%),
+        radial-gradient(circle at 84% 16%, rgba(249,115,22,.10), transparent 20%),
         linear-gradient(180deg,#06101f 0%, #09162e 100%);
+    }
+
+    .app::before,
+    .app::after,
+    .practice::before,
+    .practice::after,
+    .main-layout::before,
+    .main-layout::after,
+    .left-panel::before,
+    .left-panel::after,
+    .right-panel::before,
+    .right-panel::after{
+      content:none !important;
+      display:none !important;
     }
 
     .screen{
@@ -152,6 +165,8 @@
       font-weight:800;
       cursor:pointer;
       box-shadow:var(--shadow);
+      position:relative;
+      z-index:5;
     }
 
     .big-btn{
@@ -212,6 +227,9 @@
       display:flex;
       flex-direction:column;
       gap:6px;
+      position:relative;
+      z-index:2;
+      overflow:hidden;
     }
 
     .header-line{
@@ -220,18 +238,22 @@
       gap:8px;
       align-items:center;
       flex:0 0 auto;
+      position:relative;
+      z-index:5;
     }
 
     .badge{
       padding:6px 10px;
       border-radius:999px;
-      background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.06));
+      background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.05));
       border:1px solid rgba(255,255,255,.08);
       font-size:.8rem;
       font-weight:800;
       text-align:center;
       white-space:nowrap;
       box-shadow:var(--shadow);
+      position:relative;
+      z-index:5;
     }
 
     .title-inline{
@@ -244,6 +266,8 @@
       text-overflow:ellipsis;
       color:#f8fbff;
       text-shadow:0 2px 10px rgba(255,255,255,.15);
+      position:relative;
+      z-index:5;
     }
 
     .lesson-badge{
@@ -257,6 +281,9 @@
       display:grid;
       grid-template-columns:1.12fr .88fr;
       gap:10px;
+      position:relative;
+      z-index:3;
+      overflow:hidden;
     }
 
     .left-panel,.right-panel{
@@ -264,14 +291,19 @@
       display:flex;
       flex-direction:column;
       gap:8px;
+      position:relative;
+      z-index:3;
+      overflow:hidden;
     }
 
     .panel{
-      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
       border-radius:18px;
       box-shadow:var(--shadow);
       border:1px solid var(--border);
-      backdrop-filter:blur(4px);
+      position:relative;
+      z-index:4;
+      overflow:hidden;
     }
 
     .lesson-panel{
@@ -289,6 +321,9 @@
       padding:10px 10px 8px;
       box-shadow:var(--shadow);
       border:1px solid rgba(255,255,255,.08);
+      position:relative;
+      z-index:5;
+      overflow:hidden;
     }
 
     .target-text{
@@ -299,6 +334,8 @@
       line-height:1.45;
       word-break:break-word;
       color:#fff;
+      position:relative;
+      z-index:5;
     }
 
     .sequence-box{
@@ -307,6 +344,8 @@
       gap:6px;
       justify-content:center;
       margin-top:8px;
+      position:relative;
+      z-index:5;
     }
 
     .seq{
@@ -332,6 +371,9 @@
       padding:8px;
       box-shadow:var(--shadow);
       border:2px solid rgba(255,255,255,.14);
+      position:relative;
+      z-index:5;
+      overflow:hidden;
     }
 
     textarea{
@@ -347,18 +389,24 @@
       color:#111827;
       overflow:auto;
       background:transparent;
+      position:relative;
+      z-index:5;
     }
 
     .button-grid{
       display:grid;
       grid-template-columns:repeat(3,1fr);
       gap:6px;
+      position:relative;
+      z-index:5;
     }
 
     .right-top-stats{
       display:grid;
       grid-template-columns:repeat(2,1fr);
       gap:6px;
+      position:relative;
+      z-index:5;
     }
 
     .stat{
@@ -371,6 +419,9 @@
       display:flex;
       flex-direction:column;
       justify-content:center;
+      position:relative;
+      z-index:5;
+      overflow:hidden;
     }
 
     .stat .label{
@@ -378,6 +429,8 @@
       color:var(--muted);
       font-weight:700;
       line-height:1.1;
+      position:relative;
+      z-index:5;
     }
 
     .stat .value{
@@ -385,6 +438,8 @@
       font-size:1rem;
       font-weight:900;
       line-height:1.1;
+      position:relative;
+      z-index:5;
     }
 
     .timer-value{
@@ -406,6 +461,8 @@
       font-weight:900;
       line-height:1.1;
       color:#f8fbff;
+      position:relative;
+      z-index:5;
     }
 
     .keyboard{
@@ -413,12 +470,17 @@
       display:flex;
       flex-direction:column;
       gap:4px;
+      position:relative;
+      z-index:5;
+      overflow:hidden;
     }
 
     .kb-row{
       display:grid;
       gap:4px;
       width:100%;
+      position:relative;
+      z-index:5;
     }
 
     .kb-row.r3{
@@ -438,6 +500,8 @@
       border:1px solid rgba(255,255,255,.25);
       transition:.12s ease;
       box-shadow:0 3px 10px rgba(0,0,0,.16);
+      position:relative;
+      z-index:5;
     }
 
     .key.l-pinky{background:#3b82f6;color:#fff}
@@ -463,6 +527,9 @@
       display:flex;
       flex-direction:column;
       justify-content:flex-start;
+      position:relative;
+      z-index:5;
+      overflow:hidden;
     }
 
     .hands-wrap{
@@ -473,6 +540,8 @@
       margin-top:6px;
       padding:0 10px 2px;
       min-height:84px;
+      position:relative;
+      z-index:5;
     }
 
     .hand{
@@ -481,6 +550,8 @@
       justify-content:center;
       align-items:flex-end;
       gap:5px;
+      position:relative;
+      z-index:5;
     }
 
     .finger{
@@ -489,6 +560,7 @@
       position:relative;
       transition:.12s ease;
       box-shadow:0 4px 10px rgba(0,0,0,.22);
+      z-index:5;
     }
 
     .finger::before{
@@ -510,6 +582,7 @@
       background:#c8d0ff;
       border-radius:16px;
       position:relative;
+      z-index:5;
     }
 
     .thumb::before{
@@ -554,6 +627,7 @@
       font-weight:800;
       color:#dbe3f5;
       pointer-events:none;
+      z-index:10;
     }
   </style>
 </head>
