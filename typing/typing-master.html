@@ -8,7 +8,8 @@
     :root{
       --bg:#071224;
       --panel:#0f1d3a;
-      --panel2:#112348;
+      --panel-soft:#12254a;
+      --panel-glow:rgba(255,255,255,.06);
       --text:#ffffff;
       --muted:#d7e1f7;
       --green:#22c55e;
@@ -19,7 +20,9 @@
       --cyan:#06b6d4;
       --pink:#ec4899;
       --purple:#8b5cf6;
-      --shadow:0 8px 18px rgba(0,0,0,.22);
+      --silver:#dbe4ff;
+      --shadow:0 10px 24px rgba(0,0,0,.28);
+      --border:rgba(255,255,255,.08);
     }
 
     *{
@@ -49,8 +52,8 @@
       position:relative;
       overflow:hidden;
       background:
-        radial-gradient(circle at 20% 10%, rgba(37,99,235,.18), transparent 25%),
-        radial-gradient(circle at 80% 20%, rgba(249,115,22,.14), transparent 22%),
+        radial-gradient(circle at 18% 12%, rgba(37,99,235,.18), transparent 28%),
+        radial-gradient(circle at 84% 16%, rgba(249,115,22,.12), transparent 24%),
         linear-gradient(180deg,#06101f 0%, #09162e 100%);
     }
 
@@ -159,8 +162,8 @@
     }
 
     .small-btn{
-      min-height:40px;
-      font-size:.85rem;
+      min-height:38px;
+      font-size:.82rem;
       padding:8px 10px;
       white-space:nowrap;
     }
@@ -205,7 +208,7 @@
 
     .practice{
       height:100%;
-      padding:8px 10px 28px;
+      padding:8px 10px 24px;
       display:flex;
       flex-direction:column;
       gap:6px;
@@ -222,21 +225,25 @@
     .badge{
       padding:6px 10px;
       border-radius:999px;
-      background:rgba(255,255,255,.08);
+      background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.06));
+      border:1px solid rgba(255,255,255,.08);
       font-size:.8rem;
       font-weight:800;
       text-align:center;
       white-space:nowrap;
+      box-shadow:var(--shadow);
     }
 
     .title-inline{
       text-align:center;
-      font-size:1.18rem;
+      font-size:1.08rem;
       font-weight:900;
       line-height:1.05;
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
+      color:#f8fbff;
+      text-shadow:0 2px 10px rgba(255,255,255,.15);
     }
 
     .lesson-badge{
@@ -244,22 +251,11 @@
       font-weight:900;
     }
 
-    .powered{
-      text-align:center;
-      font-size:.72rem;
-      font-weight:700;
-      color:#d8e1f7;
-      line-height:1.15;
-      margin-top:-2px;
-      margin-bottom:2px;
-      flex:0 0 auto;
-    }
-
     .main-layout{
       flex:1 1 auto;
       min-height:0;
       display:grid;
-      grid-template-columns:1.02fr .98fr;
+      grid-template-columns:1.12fr .88fr;
       gap:10px;
     }
 
@@ -271,14 +267,15 @@
     }
 
     .panel{
-      background:rgba(255,255,255,.06);
-      border-radius:16px;
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border-radius:18px;
       box-shadow:var(--shadow);
-      border:1px solid rgba(255,255,255,.08);
+      border:1px solid var(--border);
+      backdrop-filter:blur(4px);
     }
 
     .lesson-panel{
-      padding:8px;
+      padding:10px;
       display:flex;
       flex-direction:column;
       gap:8px;
@@ -288,18 +285,20 @@
 
     .target-box{
       background:linear-gradient(180deg,#1732ff,#1536c4);
-      border-radius:14px;
+      border-radius:16px;
       padding:10px 10px 8px;
       box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,.08);
     }
 
     .target-text{
-      min-height:48px;
+      min-height:46px;
       text-align:center;
       font-size:1rem;
       font-weight:800;
       line-height:1.45;
       word-break:break-word;
+      color:#fff;
     }
 
     .sequence-box{
@@ -311,14 +310,15 @@
     }
 
     .seq{
-      min-width:34px;
-      padding:6px 8px;
-      border-radius:8px;
-      background:#fff;
+      min-width:40px;
+      padding:7px 9px;
+      border-radius:10px;
+      background:#f8fbff;
       color:#111827;
-      font-size:.84rem;
+      font-size:.86rem;
       font-weight:800;
       line-height:1;
+      box-shadow:0 4px 12px rgba(0,0,0,.18);
     }
 
     .seq.active{
@@ -328,9 +328,10 @@
 
     .input-box{
       background:#fff;
-      border-radius:14px;
+      border-radius:16px;
       padding:8px;
       box-shadow:var(--shadow);
+      border:2px solid rgba(255,255,255,.14);
     }
 
     textarea{
@@ -345,19 +346,31 @@
       font-family:inherit;
       color:#111827;
       overflow:auto;
+      background:transparent;
     }
 
-    .stats{
+    .button-grid{
       display:grid;
       grid-template-columns:repeat(3,1fr);
       gap:6px;
     }
 
+    .right-top-stats{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:6px;
+    }
+
     .stat{
-      background:rgba(255,255,255,.07);
-      border-radius:12px;
+      background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.05));
+      border-radius:14px;
       padding:7px 6px;
       text-align:center;
+      border:1px solid rgba(255,255,255,.06);
+      min-height:54px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
     }
 
     .stat .label{
@@ -374,22 +387,12 @@
       line-height:1.1;
     }
 
-    .sound-status{
-      text-align:center;
-      font-size:.82rem;
-      font-weight:700;
-      color:#d6def7;
-      line-height:1.2;
-    }
-
-    .button-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:6px;
+    .timer-value{
+      color:var(--yellow);
     }
 
     .keyboard-panel{
-      padding:8px;
+      padding:10px;
       display:flex;
       flex-direction:column;
       gap:8px;
@@ -402,6 +405,7 @@
       font-size:.9rem;
       font-weight:900;
       line-height:1.1;
+      color:#f8fbff;
     }
 
     .keyboard{
@@ -417,24 +421,23 @@
       width:100%;
     }
 
-    .kb-row.r1{grid-template-columns:repeat(10,1fr)}
-    .kb-row.r2{grid-template-columns:1.1fr repeat(10,1fr) 1.25fr}
-    .kb-row.r3{grid-template-columns:1.35fr repeat(10,1fr) 1.45fr}
-    .kb-row.r4{grid-template-columns:1.7fr repeat(9,1fr) 1.75fr}
-    .kb-row.r5{grid-template-columns:1fr 1fr 3.6fr 1fr 1fr}
+    .kb-row.r3{
+      grid-template-columns:repeat(9,1fr);
+    }
 
     .key{
-      min-height:26px;
-      border-radius:7px;
+      min-height:34px;
+      border-radius:10px;
       display:flex;
       align-items:center;
       justify-content:center;
       font-weight:900;
-      font-size:.74rem;
+      font-size:.86rem;
       color:#111827;
       background:#f8fafc;
       border:1px solid rgba(255,255,255,.25);
       transition:.12s ease;
+      box-shadow:0 3px 10px rgba(0,0,0,.16);
     }
 
     .key.l-pinky{background:#3b82f6;color:#fff}
@@ -447,45 +450,85 @@
     .key.r-pinky{background:#ef4444;color:#fff}
     .key.neutral{background:#e5e7eb;color:#111827}
     .key.active{
-      outline:2px solid #fff;
+      outline:3px solid #fff;
       transform:scale(1.03);
-      box-shadow:0 0 0 2px rgba(255,255,255,.12),0 0 10px rgba(255,255,255,.24);
+      box-shadow:0 0 0 3px rgba(255,255,255,.12),0 0 14px rgba(255,255,255,.26);
     }
 
     .hands-box{
       background:rgba(255,255,255,.04);
-      border-radius:12px;
+      border-radius:14px;
       padding:8px;
+      flex:1 1 auto;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-start;
     }
 
     .hands-wrap{
       display:grid;
       grid-template-columns:1fr 1fr;
-      gap:12px;
+      gap:16px;
       align-items:end;
-      margin-top:4px;
+      margin-top:6px;
+      padding:0 10px 2px;
+      min-height:84px;
     }
 
     .hand{
-      height:70px;
+      height:88px;
       display:flex;
       justify-content:center;
       align-items:flex-end;
-      gap:4px;
+      gap:5px;
     }
 
     .finger{
-      width:12px;
-      border-radius:10px 10px 8px 8px;
+      width:16px;
+      border-radius:14px 14px 10px 10px;
+      position:relative;
       transition:.12s ease;
-      box-shadow:0 3px 8px rgba(0,0,0,.18);
+      box-shadow:0 4px 10px rgba(0,0,0,.22);
     }
 
-    .thumb{width:22px;height:24px;background:#a5b4fc;border-radius:14px}
-    .f1{height:34px}
-    .f2{height:44px}
-    .f3{height:54px}
-    .f4{height:48px}
+    .finger::before{
+      content:"";
+      position:absolute;
+      top:2px;
+      left:50%;
+      transform:translateX(-50%);
+      width:9px;
+      height:8px;
+      border-radius:8px 8px 5px 5px;
+      background:rgba(255,255,255,.65);
+      opacity:.9;
+    }
+
+    .thumb{
+      width:24px;
+      height:28px;
+      background:#c8d0ff;
+      border-radius:16px;
+      position:relative;
+    }
+
+    .thumb::before{
+      content:"";
+      position:absolute;
+      top:3px;
+      left:50%;
+      transform:translateX(-50%);
+      width:12px;
+      height:8px;
+      border-radius:8px 8px 5px 5px;
+      background:rgba(255,255,255,.7);
+    }
+
+    .f1{height:42px}
+    .f2{height:56px}
+    .f3{height:68px}
+    .f4{height:60px}
+
     .left-pinky{background:#3b82f6}
     .left-ring{background:#fb923c}
     .left-middle{background:#22c55e}
@@ -496,9 +539,9 @@
     .right-pinky{background:#ef4444}
 
     .finger.active{
-      outline:2px solid #fff;
+      outline:3px solid #fff;
       transform:translateY(-2px) scale(1.04);
-      box-shadow:0 0 0 2px rgba(255,255,255,.12),0 0 10px rgba(255,255,255,.24);
+      box-shadow:0 0 0 3px rgba(255,255,255,.12),0 0 12px rgba(255,255,255,.22);
     }
 
     .footer-line{
@@ -507,7 +550,7 @@
       right:0;
       bottom:4px;
       text-align:center;
-      font-size:.72rem;
+      font-size:.7rem;
       font-weight:800;
       color:#dbe3f5;
       pointer-events:none;
@@ -532,12 +575,10 @@
     <div class="screen practice" id="practiceScreen">
       <div class="header-line">
         <div class="badge">Practice Mode</div>
-        <div class="title-inline">ACS Typing Master</div>
+        <div class="title-inline">ACS Typing Master by Rambharosh Vidyarthi</div>
         <div class="badge lesson-badge" id="lessonBadge">L001</div>
         <button class="small-btn btn-dark" onclick="toggleFullscreen()">⛶ फुल स्क्रीन</button>
       </div>
-
-      <div class="powered">पावर्ड बाय रामभरोस विद्यार्थी</div>
 
       <div class="main-layout">
         <div class="left-panel">
@@ -550,23 +591,6 @@
             <div class="input-box">
               <textarea id="typingInput" placeholder="यहाँ typing शुरू करो..." disabled></textarea>
             </div>
-
-            <div class="stats">
-              <div class="stat">
-                <div class="label">Gross WPM</div>
-                <div class="value" id="grossWpm">0</div>
-              </div>
-              <div class="stat">
-                <div class="label">Net WPM</div>
-                <div class="value" id="netWpm">0</div>
-              </div>
-              <div class="stat">
-                <div class="label">Accuracy</div>
-                <div class="value" id="accuracy">100%</div>
-              </div>
-            </div>
-
-            <div class="sound-status" id="soundStatusText">आवाज़: चालू</div>
 
             <div class="button-grid">
               <button class="small-btn btn-green" onclick="startPractice()">Practice Start</button>
@@ -583,40 +607,39 @@
         </div>
 
         <div class="right-panel">
+          <div class="right-top-stats">
+            <div class="stat">
+              <div class="label">Gross WPM</div>
+              <div class="value" id="grossWpm">0</div>
+            </div>
+            <div class="stat">
+              <div class="label">Net WPM</div>
+              <div class="value" id="netWpm">0</div>
+            </div>
+            <div class="stat">
+              <div class="label">Accuracy</div>
+              <div class="value" id="accuracy">100%</div>
+            </div>
+            <div class="stat">
+              <div class="label">Digital Timer</div>
+              <div class="value timer-value" id="timerValue">00:00</div>
+            </div>
+          </div>
+
           <div class="panel keyboard-panel">
             <div class="section-title">रंगीन कीबोर्ड मार्गदर्शन</div>
 
             <div class="keyboard">
-              <div class="kb-row r1">
-                <div class="key neutral">1</div><div class="key neutral">2</div><div class="key neutral">3</div><div class="key neutral">4</div><div class="key neutral">5</div>
-                <div class="key neutral">6</div><div class="key neutral">7</div><div class="key neutral">8</div><div class="key neutral">9</div><div class="key neutral">0</div>
-              </div>
-              <div class="kb-row r2">
-                <div class="key neutral">Tab</div>
-                <div class="key l-pinky" data-key="q">Q</div><div class="key l-ring" data-key="w">W</div><div class="key l-middle" data-key="e">E</div>
-                <div class="key l-index" data-key="r">R</div><div class="key l-index" data-key="t">T</div>
-                <div class="key r-index" data-key="y">Y</div><div class="key r-index" data-key="u">U</div><div class="key r-middle" data-key="i">I</div>
-                <div class="key r-ring" data-key="o">O</div><div class="key r-pinky" data-key="p">P</div>
-                <div class="key neutral">Back</div>
-              </div>
               <div class="kb-row r3">
-                <div class="key neutral">Caps</div>
-                <div class="key l-pinky" data-key="a">A</div><div class="key l-ring" data-key="s">S</div><div class="key l-middle" data-key="d">D</div>
-                <div class="key l-index" data-key="f">F</div><div class="key l-index" data-key="g">G</div>
-                <div class="key r-index" data-key="h">H</div><div class="key r-index" data-key="j">J</div><div class="key r-middle" data-key="k">K</div>
-                <div class="key r-ring" data-key="l">L</div><div class="key r-pinky" data-key=";">;</div>
-                <div class="key neutral">Enter</div>
-              </div>
-              <div class="kb-row r4">
-                <div class="key neutral">Shift</div>
-                <div class="key l-pinky" data-key="z">Z</div><div class="key l-ring" data-key="x">X</div><div class="key l-middle" data-key="c">C</div>
-                <div class="key l-index" data-key="v">V</div><div class="key l-index" data-key="b">B</div>
-                <div class="key r-index" data-key="n">N</div><div class="key r-index" data-key="m">M</div><div class="key r-middle" data-key=",">,</div>
-                <div class="key r-ring" data-key=".">.</div>
-                <div class="key neutral">Shift</div>
-              </div>
-              <div class="kb-row r5">
-                <div class="key neutral">Ctrl</div><div class="key neutral">Alt</div><div class="key neutral" data-key=" ">Space</div><div class="key neutral">Alt</div><div class="key neutral">Ctrl</div>
+                <div class="key l-pinky" data-key="a">A</div>
+                <div class="key l-ring" data-key="s">S</div>
+                <div class="key l-middle" data-key="d">D</div>
+                <div class="key l-index" data-key="f">F</div>
+                <div class="key neutral" data-key=" ">Space</div>
+                <div class="key r-index" data-key="j">J</div>
+                <div class="key r-middle" data-key="k">K</div>
+                <div class="key r-ring" data-key="l">L</div>
+                <div class="key r-pinky" data-key=";">;</div>
               </div>
             </div>
 
@@ -624,7 +647,7 @@
               <div class="section-title">उंगली मार्गदर्शन</div>
               <div class="hands-wrap">
                 <div class="hand">
-                  <div class="finger thumb"></div>
+                  <div class="thumb"></div>
                   <div class="finger f1 left-pinky" data-finger="left-pinky"></div>
                   <div class="finger f2 left-ring" data-finger="left-ring"></div>
                   <div class="finger f3 left-middle" data-finger="left-middle"></div>
@@ -636,10 +659,12 @@
                   <div class="finger f3 right-middle" data-finger="right-middle"></div>
                   <div class="finger f2 right-ring" data-finger="right-ring"></div>
                   <div class="finger f1 right-pinky" data-finger="right-pinky"></div>
-                  <div class="finger thumb"></div>
+                  <div class="thumb"></div>
                 </div>
               </div>
             </div>
+
+            <div class="section-title" id="soundStatusText" style="text-align:center;color:#d6def7;">आवाज़: चालू</div>
           </div>
         </div>
       </div>
@@ -708,14 +733,15 @@
     let soundEnabled = true;
     let practiceStarted = false;
     let startTime = null;
+    let timerInterval = null;
     let currentLesson = getLessonFromURL();
 
     const lessonData = {
-      L001: { text: "the quick brown fox jumps over the lazy dog", sequence: ["t","h","e"," ","q","u","i","c","k"] },
-      L002: { text: "asdf asdf asdf", sequence: ["a","s","d","f"] },
-      L003: { text: "jkl semicolon jkl semicolon", sequence: ["j","k","l",";"] },
-      L004: { text: "ask flask sad fall", sequence: ["a","s","k","f","l"] },
-      L005: { text: "practice typing slowly and correctly", sequence: ["p","r","a","c","t","i","c","e"] }
+      L001: { text: "asdf jkl; asdf jkl;", sequence: ["a","s","d","f"," ","j","k","l",";"] },
+      L002: { text: "asdf asdf jkl; jkl;", sequence: ["a","s","d","f"," ","j","k","l",";"] },
+      L003: { text: "jkl; jkl; asdf asdf", sequence: ["a","s","d","f"," ","j","k","l",";"] },
+      L004: { text: "asdf jkl; asdf jkl;", sequence: ["a","s","d","f"," ","j","k","l",";"] },
+      L005: { text: "asdf jkl; asdf jkl;", sequence: ["a","s","d","f"," ","j","k","l",";"] }
     };
 
     let currentText = (lessonData[currentLesson] || lessonData["L001"]).text;
@@ -878,6 +904,17 @@
       }
     }
 
+    function updateTimer(){
+      if(!practiceStarted || !startTime){
+        document.getElementById("timerValue").textContent = "00:00";
+        return;
+      }
+      const secs = Math.floor((Date.now() - startTime) / 1000);
+      const mm = String(Math.floor(secs / 60)).padStart(2,"0");
+      const ss = String(secs % 60).padStart(2,"0");
+      document.getElementById("timerValue").textContent = `${mm}:${ss}`;
+    }
+
     function updateStats(){
       const input = document.getElementById("typingInput").value;
       let correct = 0;
@@ -893,6 +930,7 @@
       document.getElementById("grossWpm").textContent = isFinite(gross) ? gross : 0;
       document.getElementById("netWpm").textContent = isFinite(net) ? net : 0;
       document.getElementById("accuracy").textContent = acc + "%";
+      updateTimer();
     }
 
     function startPractice(){
@@ -900,6 +938,8 @@
       startTime = Date.now();
       document.getElementById("typingInput").value = "";
       document.getElementById("typingInput").focus();
+      if(timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(updateTimer, 1000);
       updateStats();
       renderTypingState("");
       renderKeyboardHighlight(currentText[0] || "a");
@@ -955,6 +995,7 @@
 
     applyLanguage();
     renderLesson();
+    updateTimer();
     checkLandscape();
     openSetupPopup();
   </script>
