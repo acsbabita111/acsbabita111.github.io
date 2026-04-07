@@ -7,22 +7,19 @@
   <style>
     :root{
       --bg:#081226;
-      --panel:#0f1f44;
-      --panel2:#132957;
       --text:#ffffff;
       --muted:#d6def7;
       --green:#22c55e;
       --red:#ef4444;
       --orange:#f97316;
       --yellow:#facc15;
-      --blue:#2563eb;
-      --cyan:#06b6d4;
-      --pink:#ec4899;
-      --purple:#8b5cf6;
       --shadow:0 8px 18px rgba(0,0,0,.22);
     }
 
-    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+    *{
+      box-sizing:border-box;
+      -webkit-tap-highlight-color:transparent;
+    }
 
     html,body{
       margin:0;
@@ -41,8 +38,7 @@
     }
 
     .app{
-      width:100%;
-      max-width:430px;
+      width:100vw;
       height:100dvh;
       background:linear-gradient(180deg,#07101f 0%, #0b1631 100%);
       position:relative;
@@ -66,7 +62,8 @@
     }
 
     .card{
-      width:100%;
+      width:min(96vw,780px);
+      margin:auto;
       background:rgba(255,255,255,.06);
       border:1px solid rgba(255,255,255,.12);
       border-radius:18px;
@@ -108,8 +105,9 @@
 
     .small-btn{
       min-height:42px;
-      font-size:.9rem;
+      font-size:.88rem;
       padding:8px 10px;
+      white-space:nowrap;
     }
 
     .btn-green{background:linear-gradient(180deg,#34d399,#16a34a);color:#fff}
@@ -148,7 +146,7 @@
     .popup-backdrop.show{display:flex}
 
     .popup{
-      width:100%;
+      width:min(96vw,760px);
       max-height:92dvh;
       overflow:auto;
       background:linear-gradient(180deg,#0d1b36,#0b1530);
@@ -201,15 +199,16 @@
     }
 
     .practice{
-      padding:8px 8px 28px;
+      padding:8px 10px 24px;
       height:100%;
       display:flex;
       flex-direction:column;
+      width:100%;
     }
 
     .topbar{
       display:grid;
-      grid-template-columns:auto 1fr auto;
+      grid-template-columns:auto 1fr auto auto;
       align-items:center;
       gap:8px;
       flex:0 0 auto;
@@ -223,6 +222,7 @@
       font-size:.8rem;
       font-weight:800;
       white-space:nowrap;
+      text-align:center;
     }
 
     .brand{
@@ -232,7 +232,7 @@
 
     .brand h1{
       margin:0;
-      font-size:1.15rem;
+      font-size:1.2rem;
       font-weight:900;
       line-height:1.05;
     }
@@ -259,8 +259,9 @@
       flex:1 1 auto;
       min-height:0;
       display:grid;
-      grid-template-columns:1.02fr .98fr;
-      gap:8px;
+      grid-template-columns:1.05fr .95fr;
+      gap:10px;
+      width:100%;
     }
 
     .left-panel,.right-panel{
@@ -279,12 +280,12 @@
     }
 
     .target-text{
-      font-size:.95rem;
+      font-size:1rem;
       font-weight:800;
       line-height:1.45;
       text-align:center;
       word-break:break-word;
-      min-height:44px;
+      min-height:46px;
     }
 
     .sequence-box{
@@ -296,7 +297,7 @@
     }
 
     .seq{
-      min-width:32px;
+      min-width:34px;
       padding:6px 8px;
       border-radius:8px;
       background:#fff;
@@ -321,8 +322,8 @@
 
     textarea{
       width:100%;
-      min-height:66px;
-      max-height:66px;
+      min-height:72px;
+      max-height:72px;
       border:none;
       outline:none;
       resize:none;
@@ -357,7 +358,7 @@
 
     .stat .value{
       margin-top:4px;
-      font-size:.98rem;
+      font-size:1rem;
       font-weight:900;
       line-height:1.1;
     }
@@ -378,10 +379,6 @@
       flex:0 0 auto;
     }
 
-    .button-grid.two{
-      margin-top:0;
-    }
-
     .keyboard-card,.hands-card{
       background:rgba(255,255,255,.06);
       border-radius:16px;
@@ -398,15 +395,15 @@
     }
 
     .keyboard{
-      transform-origin:top center;
-      scale:.92;
-      margin-top:-2px;
+      width:100%;
+      overflow:hidden;
     }
 
     .kb-row{
       display:grid;
       gap:4px;
       margin-bottom:4px;
+      width:100%;
     }
 
     .kb-row.r1{grid-template-columns:repeat(10,1fr)}
@@ -416,13 +413,13 @@
     .kb-row.r5{grid-template-columns:1fr 1fr 3.6fr 1fr 1fr}
 
     .key{
-      min-height:24px;
+      min-height:26px;
       border-radius:7px;
       display:flex;
       align-items:center;
       justify-content:center;
       font-weight:900;
-      font-size:.72rem;
+      font-size:.74rem;
       color:#111827;
       background:#f8fafc;
       border:1px solid rgba(255,255,255,.25);
@@ -453,7 +450,7 @@
     }
 
     .hand{
-      height:66px;
+      height:70px;
       display:flex;
       justify-content:center;
       align-items:flex-end;
@@ -499,13 +496,13 @@
       pointer-events:none;
     }
 
-    @media (orientation:portrait){
-      .landscape-overlay.show{display:flex}
+    @media (max-width:900px){
+      .brand h1{font-size:1.1rem}
     }
   </style>
 </head>
 <body>
-  <div class="app">
+  <div class="app" id="appRoot">
     <div class="landscape-overlay" id="landscapeOverlay">
       कृपया मोबाइल को आड़ा (Landscape) करें।<br>
       उसके बाद ही टाइपिंग शुरू होगा।
@@ -527,6 +524,7 @@
           <div class="powered">पावर्ड बाय रामभरोस विद्यार्थी</div>
         </div>
         <div class="badge" id="lessonBadge">L001</div>
+        <button class="small-btn btn-dark" onclick="toggleFullscreen()">⛶ फुल स्क्रीन</button>
       </div>
 
       <div class="lesson-line" id="lessonTitle">Lesson: L001</div>
@@ -565,7 +563,7 @@
             <button class="small-btn btn-orange" onclick="nextLesson()">अगला ➡</button>
           </div>
 
-          <div class="button-grid two">
+          <div class="button-grid">
             <button class="small-btn btn-dark" onclick="toggleSound()">आवाज़</button>
             <button class="small-btn btn-dark" onclick="openSetupPopup()">नियम</button>
             <button class="small-btn btn-dark" onclick="goDashboard()">Dashboard</button>
@@ -577,68 +575,35 @@
             <div class="section-title">रंगीन कीबोर्ड मार्गदर्शन</div>
             <div class="keyboard">
               <div class="kb-row r1">
-                <div class="key neutral">1</div>
-                <div class="key neutral">2</div>
-                <div class="key neutral">3</div>
-                <div class="key neutral">4</div>
-                <div class="key neutral">5</div>
-                <div class="key neutral">6</div>
-                <div class="key neutral">7</div>
-                <div class="key neutral">8</div>
-                <div class="key neutral">9</div>
-                <div class="key neutral">0</div>
+                <div class="key neutral">1</div><div class="key neutral">2</div><div class="key neutral">3</div><div class="key neutral">4</div><div class="key neutral">5</div>
+                <div class="key neutral">6</div><div class="key neutral">7</div><div class="key neutral">8</div><div class="key neutral">9</div><div class="key neutral">0</div>
               </div>
-
               <div class="kb-row r2">
                 <div class="key neutral">Tab</div>
-                <div class="key l-pinky" data-key="q">Q</div>
-                <div class="key l-ring" data-key="w">W</div>
-                <div class="key l-middle" data-key="e">E</div>
-                <div class="key l-index" data-key="r">R</div>
-                <div class="key l-index" data-key="t">T</div>
-                <div class="key r-index" data-key="y">Y</div>
-                <div class="key r-index" data-key="u">U</div>
-                <div class="key r-middle" data-key="i">I</div>
-                <div class="key r-ring" data-key="o">O</div>
-                <div class="key r-pinky" data-key="p">P</div>
+                <div class="key l-pinky" data-key="q">Q</div><div class="key l-ring" data-key="w">W</div><div class="key l-middle" data-key="e">E</div>
+                <div class="key l-index" data-key="r">R</div><div class="key l-index" data-key="t">T</div>
+                <div class="key r-index" data-key="y">Y</div><div class="key r-index" data-key="u">U</div><div class="key r-middle" data-key="i">I</div>
+                <div class="key r-ring" data-key="o">O</div><div class="key r-pinky" data-key="p">P</div>
                 <div class="key neutral">Back</div>
               </div>
-
               <div class="kb-row r3">
                 <div class="key neutral">Caps</div>
-                <div class="key l-pinky" data-key="a">A</div>
-                <div class="key l-ring" data-key="s">S</div>
-                <div class="key l-middle" data-key="d">D</div>
-                <div class="key l-index" data-key="f">F</div>
-                <div class="key l-index" data-key="g">G</div>
-                <div class="key r-index" data-key="h">H</div>
-                <div class="key r-index" data-key="j">J</div>
-                <div class="key r-middle" data-key="k">K</div>
-                <div class="key r-ring" data-key="l">L</div>
-                <div class="key r-pinky" data-key=";">;</div>
+                <div class="key l-pinky" data-key="a">A</div><div class="key l-ring" data-key="s">S</div><div class="key l-middle" data-key="d">D</div>
+                <div class="key l-index" data-key="f">F</div><div class="key l-index" data-key="g">G</div>
+                <div class="key r-index" data-key="h">H</div><div class="key r-index" data-key="j">J</div><div class="key r-middle" data-key="k">K</div>
+                <div class="key r-ring" data-key="l">L</div><div class="key r-pinky" data-key=";">;</div>
                 <div class="key neutral">Enter</div>
               </div>
-
               <div class="kb-row r4">
                 <div class="key neutral">Shift</div>
-                <div class="key l-pinky" data-key="z">Z</div>
-                <div class="key l-ring" data-key="x">X</div>
-                <div class="key l-middle" data-key="c">C</div>
-                <div class="key l-index" data-key="v">V</div>
-                <div class="key l-index" data-key="b">B</div>
-                <div class="key r-index" data-key="n">N</div>
-                <div class="key r-index" data-key="m">M</div>
-                <div class="key r-middle" data-key=",">,</div>
+                <div class="key l-pinky" data-key="z">Z</div><div class="key l-ring" data-key="x">X</div><div class="key l-middle" data-key="c">C</div>
+                <div class="key l-index" data-key="v">V</div><div class="key l-index" data-key="b">B</div>
+                <div class="key r-index" data-key="n">N</div><div class="key r-index" data-key="m">M</div><div class="key r-middle" data-key=",">,</div>
                 <div class="key r-ring" data-key=".">.</div>
                 <div class="key neutral">Shift</div>
               </div>
-
               <div class="kb-row r5">
-                <div class="key neutral">Ctrl</div>
-                <div class="key neutral">Alt</div>
-                <div class="key neutral" data-key=" ">Space</div>
-                <div class="key neutral">Alt</div>
-                <div class="key neutral">Ctrl</div>
+                <div class="key neutral">Ctrl</div><div class="key neutral">Alt</div><div class="key neutral" data-key=" ">Space</div><div class="key neutral">Alt</div><div class="key neutral">Ctrl</div>
               </div>
             </div>
           </div>
@@ -686,7 +651,7 @@
         <div class="popup-block">
           <h3>UI नियम</h3>
           <ul>
-            <li>Landscape optimized (max usable height ~400px)</li>
+            <li>Landscape optimized</li>
             <li>बड़े font</li>
             <li>simple UI</li>
             <li>fast loading</li>
@@ -694,24 +659,6 @@
             <li>correct → green</li>
             <li>wrong → red</li>
             <li>active → orange</li>
-          </ul>
-        </div>
-
-        <div class="popup-block">
-          <h3>Modes</h3>
-          <ul>
-            <li>Fun Typing — letters, words, sound feedback</li>
-            <li>Practice Mode — drills, weak keys</li>
-            <li>Official Test — system text</li>
-          </ul>
-        </div>
-
-        <div class="popup-block">
-          <h3>Learning Elements</h3>
-          <ul>
-            <li>finger guide</li>
-            <li>posture training</li>
-            <li>weak key system</li>
           </ul>
         </div>
 
@@ -807,6 +754,18 @@
       applyLanguage();
       if(soundEnabled) speakPopup();
       else if("speechSynthesis" in window) speechSynthesis.cancel();
+    }
+
+    async function toggleFullscreen(){
+      try{
+        if(!document.fullscreenElement){
+          await document.documentElement.requestFullscreen();
+        }else{
+          await document.exitFullscreen();
+        }
+      }catch(e){
+        alert("कुछ browser में full screen button दबाने के बाद भी address bar थोड़ा दिख सकता है।");
+      }
     }
 
     function checkLandscape(){
