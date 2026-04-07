@@ -6,13 +6,19 @@
   <title>ACS Typing Master</title>
   <style>
     :root{
-      --bg:#081226;
+      --bg:#071224;
+      --panel:#0f1d3a;
+      --panel2:#112348;
       --text:#ffffff;
-      --muted:#d6def7;
+      --muted:#d7e1f7;
       --green:#22c55e;
       --red:#ef4444;
       --orange:#f97316;
       --yellow:#facc15;
+      --blue:#2563eb;
+      --cyan:#06b6d4;
+      --pink:#ec4899;
+      --purple:#8b5cf6;
       --shadow:0 8px 18px rgba(0,0,0,.22);
     }
 
@@ -40,9 +46,12 @@
     .app{
       width:100vw;
       height:100dvh;
-      background:linear-gradient(180deg,#07101f 0%, #0b1631 100%);
       position:relative;
       overflow:hidden;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(37,99,235,.18), transparent 25%),
+        radial-gradient(circle at 80% 20%, rgba(249,115,22,.14), transparent 22%),
+        linear-gradient(180deg,#06101f 0%, #09162e 100%);
     }
 
     .screen{
@@ -50,99 +59,34 @@
       inset:0;
       display:none;
     }
-
     .screen.active{display:block}
-
-    .splash{
-      padding:16px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      height:100%;
-    }
-
-    .card{
-      width:min(96vw,780px);
-      margin:auto;
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:18px;
-      box-shadow:var(--shadow);
-      padding:18px 14px;
-    }
-
-    .title{
-      margin:0;
-      text-align:center;
-      font-size:2rem;
-      font-weight:800;
-      line-height:1.05;
-    }
-
-    .subtitle{
-      margin:10px 0 0;
-      text-align:center;
-      font-size:.98rem;
-      line-height:1.5;
-      color:var(--muted);
-    }
-
-    .big-btn,.small-btn{
-      border:none;
-      border-radius:14px;
-      font-family:inherit;
-      font-weight:800;
-      cursor:pointer;
-      box-shadow:var(--shadow);
-    }
-
-    .big-btn{
-      width:100%;
-      min-height:52px;
-      margin-top:16px;
-      font-size:1rem;
-    }
-
-    .small-btn{
-      min-height:42px;
-      font-size:.88rem;
-      padding:8px 10px;
-      white-space:nowrap;
-    }
-
-    .btn-green{background:linear-gradient(180deg,#34d399,#16a34a);color:#fff}
-    .btn-blue{background:linear-gradient(180deg,#3b82f6,#1d4ed8);color:#fff}
-    .btn-orange{background:linear-gradient(180deg,#fb923c,#ea580c);color:#fff}
-    .btn-dark{background:linear-gradient(180deg,#334155,#1e293b);color:#fff}
 
     .landscape-overlay{
       position:absolute;
       inset:0;
       background:#020617;
-      z-index:130;
+      z-index:150;
       display:none;
       align-items:center;
       justify-content:center;
       text-align:center;
-      padding:18px;
+      padding:20px;
       font-size:1.25rem;
       font-weight:800;
       line-height:1.5;
     }
-
     .landscape-overlay.show{display:flex}
 
     .popup-backdrop{
       position:absolute;
       inset:0;
       background:rgba(0,0,0,.74);
-      z-index:120;
+      z-index:140;
       display:none;
       align-items:center;
       justify-content:center;
       padding:10px;
     }
-
     .popup-backdrop.show{display:flex}
 
     .popup{
@@ -198,70 +142,129 @@
       margin-top:10px;
     }
 
-    .practice{
-      padding:8px 10px 24px;
-      height:100%;
-      display:flex;
-      flex-direction:column;
-      width:100%;
+    .big-btn,.small-btn{
+      border:none;
+      border-radius:14px;
+      font-family:inherit;
+      font-weight:800;
+      cursor:pointer;
+      box-shadow:var(--shadow);
     }
 
-    .topbar{
+    .big-btn{
+      width:100%;
+      min-height:52px;
+      font-size:1rem;
+      padding:12px 14px;
+    }
+
+    .small-btn{
+      min-height:40px;
+      font-size:.85rem;
+      padding:8px 10px;
+      white-space:nowrap;
+    }
+
+    .btn-green{background:linear-gradient(180deg,#34d399,#16a34a);color:#fff}
+    .btn-blue{background:linear-gradient(180deg,#3b82f6,#1d4ed8);color:#fff}
+    .btn-orange{background:linear-gradient(180deg,#fb923c,#ea580c);color:#fff}
+    .btn-dark{background:linear-gradient(180deg,#334155,#1e293b);color:#fff}
+
+    .splash{
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:16px;
+    }
+
+    .card{
+      width:min(96vw,760px);
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:18px 14px;
+    }
+
+    .splash-title{
+      margin:0;
+      text-align:center;
+      font-size:2rem;
+      font-weight:900;
+      line-height:1.05;
+    }
+
+    .splash-subtitle{
+      margin:10px 0 0;
+      text-align:center;
+      font-size:.98rem;
+      line-height:1.5;
+      color:var(--muted);
+    }
+
+    .practice{
+      height:100%;
+      padding:8px 10px 28px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .header{
       display:grid;
       grid-template-columns:auto 1fr auto auto;
-      align-items:center;
       gap:8px;
+      align-items:center;
       flex:0 0 auto;
-      margin-bottom:6px;
     }
 
     .badge{
       padding:6px 10px;
       border-radius:999px;
-      background:rgba(255,255,255,.09);
+      background:rgba(255,255,255,.08);
       font-size:.8rem;
       font-weight:800;
-      white-space:nowrap;
       text-align:center;
+      white-space:nowrap;
     }
 
     .brand{
-      text-align:center;
       min-width:0;
+      text-align:center;
     }
 
     .brand h1{
       margin:0;
-      font-size:1.2rem;
+      font-size:1.22rem;
       font-weight:900;
-      line-height:1.05;
+      line-height:1.02;
     }
 
     .powered{
       margin-top:2px;
       font-size:.72rem;
       font-weight:700;
-      color:#d7dff5;
-      line-height:1.2;
+      color:#d8e1f7;
+      line-height:1.15;
     }
 
     .lesson-line{
       text-align:center;
       color:var(--yellow);
-      font-size:1.2rem;
+      font-size:1.22rem;
       font-weight:900;
       line-height:1.1;
-      margin-bottom:6px;
       flex:0 0 auto;
+      margin-top:-2px;
     }
 
-    .layout{
+    .main-layout{
       flex:1 1 auto;
       min-height:0;
       display:grid;
-      grid-template-columns:1.05fr .95fr;
+      grid-template-columns:1.02fr .98fr;
       gap:10px;
-      width:100%;
     }
 
     .left-panel,.right-panel{
@@ -271,21 +274,36 @@
       gap:8px;
     }
 
+    .panel{
+      background:rgba(255,255,255,.06);
+      border-radius:16px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .lesson-panel{
+      padding:8px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      min-height:0;
+      flex:1 1 auto;
+    }
+
     .target-box{
       background:linear-gradient(180deg,#1732ff,#1536c4);
-      border-radius:16px;
+      border-radius:14px;
       padding:10px 10px 8px;
       box-shadow:var(--shadow);
-      min-height:0;
     }
 
     .target-text{
+      min-height:48px;
+      text-align:center;
       font-size:1rem;
       font-weight:800;
       line-height:1.45;
-      text-align:center;
       word-break:break-word;
-      min-height:46px;
     }
 
     .sequence-box{
@@ -317,7 +335,6 @@
       border-radius:14px;
       padding:8px;
       box-shadow:var(--shadow);
-      flex:0 0 auto;
     }
 
     textarea{
@@ -338,7 +355,6 @@
       display:grid;
       grid-template-columns:repeat(3,1fr);
       gap:6px;
-      flex:0 0 auto;
     }
 
     .stat{
@@ -346,7 +362,6 @@
       border-radius:12px;
       padding:7px 6px;
       text-align:center;
-      box-shadow:var(--shadow);
     }
 
     .stat .label{
@@ -369,26 +384,25 @@
       font-weight:700;
       color:#d6def7;
       line-height:1.2;
-      flex:0 0 auto;
     }
 
     .button-grid{
       display:grid;
       grid-template-columns:repeat(3,1fr);
       gap:6px;
-      flex:0 0 auto;
     }
 
-    .keyboard-card,.hands-card{
-      background:rgba(255,255,255,.06);
-      border-radius:16px;
-      box-shadow:var(--shadow);
+    .keyboard-panel{
       padding:8px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
       min-height:0;
+      flex:1 1 auto;
     }
 
     .section-title{
-      margin:0 0 6px;
+      margin:0;
       font-size:.9rem;
       font-weight:900;
       line-height:1.1;
@@ -396,13 +410,14 @@
 
     .keyboard{
       width:100%;
-      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      gap:4px;
     }
 
     .kb-row{
       display:grid;
       gap:4px;
-      margin-bottom:4px;
       width:100%;
     }
 
@@ -441,12 +456,18 @@
       box-shadow:0 0 0 2px rgba(255,255,255,.12),0 0 10px rgba(255,255,255,.24);
     }
 
+    .hands-box{
+      background:rgba(255,255,255,.04);
+      border-radius:12px;
+      padding:8px;
+    }
+
     .hands-wrap{
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:12px;
       align-items:end;
-      margin-top:2px;
+      margin-top:4px;
     }
 
     .hand{
@@ -495,10 +516,6 @@
       color:#dbe3f5;
       pointer-events:none;
     }
-
-    @media (max-width:900px){
-      .brand h1{font-size:1.1rem}
-    }
   </style>
 </head>
 <body>
@@ -510,14 +527,14 @@
 
     <div class="screen active splash" id="splashScreen">
       <div class="card">
-        <h1 class="title">ACS Typing Master</h1>
-        <p class="subtitle">आसान से भारी की तरफ • बच्चों के लिए रंगीन कीबोर्ड • उंगली मार्गदर्शन सहित</p>
+        <h1 class="splash-title">ACS Typing Master</h1>
+        <p class="splash-subtitle">आसान से भारी की तरफ • बच्चों के लिए रंगीन कीबोर्ड • उंगली मार्गदर्शन सहित</p>
         <button class="big-btn btn-green" onclick="openSetupPopup()">शुरू करें</button>
       </div>
     </div>
 
     <div class="screen practice" id="practiceScreen">
-      <div class="topbar">
+      <div class="header">
         <div class="badge">Practice Mode</div>
         <div class="brand">
           <h1>ACS Typing Master</h1>
@@ -529,50 +546,53 @@
 
       <div class="lesson-line" id="lessonTitle">Lesson: L001</div>
 
-      <div class="layout">
+      <div class="main-layout">
         <div class="left-panel">
-          <div class="target-box">
-            <div class="target-text" id="targetText"></div>
-            <div class="sequence-box" id="sequenceBox"></div>
-          </div>
-
-          <div class="input-box">
-            <textarea id="typingInput" placeholder="यहाँ typing शुरू करो..." disabled></textarea>
-          </div>
-
-          <div class="stats">
-            <div class="stat">
-              <div class="label">Gross WPM</div>
-              <div class="value" id="grossWpm">0</div>
+          <div class="panel lesson-panel">
+            <div class="target-box">
+              <div class="target-text" id="targetText"></div>
+              <div class="sequence-box" id="sequenceBox"></div>
             </div>
-            <div class="stat">
-              <div class="label">Net WPM</div>
-              <div class="value" id="netWpm">0</div>
+
+            <div class="input-box">
+              <textarea id="typingInput" placeholder="यहाँ typing शुरू करो..." disabled></textarea>
             </div>
-            <div class="stat">
-              <div class="label">Accuracy</div>
-              <div class="value" id="accuracy">100%</div>
+
+            <div class="stats">
+              <div class="stat">
+                <div class="label">Gross WPM</div>
+                <div class="value" id="grossWpm">0</div>
+              </div>
+              <div class="stat">
+                <div class="label">Net WPM</div>
+                <div class="value" id="netWpm">0</div>
+              </div>
+              <div class="stat">
+                <div class="label">Accuracy</div>
+                <div class="value" id="accuracy">100%</div>
+              </div>
             </div>
-          </div>
 
-          <div class="sound-status" id="soundStatusText">आवाज़: चालू</div>
+            <div class="sound-status" id="soundStatusText">आवाज़: चालू</div>
 
-          <div class="button-grid">
-            <button class="small-btn btn-green" onclick="startPractice()">Practice Start</button>
-            <button class="small-btn btn-blue" onclick="prevLesson()">⬅ पिछला</button>
-            <button class="small-btn btn-orange" onclick="nextLesson()">अगला ➡</button>
-          </div>
+            <div class="button-grid">
+              <button class="small-btn btn-green" onclick="startPractice()">Practice Start</button>
+              <button class="small-btn btn-blue" onclick="prevLesson()">⬅ पिछला</button>
+              <button class="small-btn btn-orange" onclick="nextLesson()">अगला ➡</button>
+            </div>
 
-          <div class="button-grid">
-            <button class="small-btn btn-dark" onclick="toggleSound()">आवाज़</button>
-            <button class="small-btn btn-dark" onclick="openSetupPopup()">नियम</button>
-            <button class="small-btn btn-dark" onclick="goDashboard()">Dashboard</button>
+            <div class="button-grid">
+              <button class="small-btn btn-dark" onclick="toggleSound()">आवाज़</button>
+              <button class="small-btn btn-dark" onclick="openSetupPopup()">नियम</button>
+              <button class="small-btn btn-dark" onclick="goDashboard()">Dashboard</button>
+            </div>
           </div>
         </div>
 
         <div class="right-panel">
-          <div class="keyboard-card">
+          <div class="panel keyboard-panel">
             <div class="section-title">रंगीन कीबोर्ड मार्गदर्शन</div>
+
             <div class="keyboard">
               <div class="kb-row r1">
                 <div class="key neutral">1</div><div class="key neutral">2</div><div class="key neutral">3</div><div class="key neutral">4</div><div class="key neutral">5</div>
@@ -606,25 +626,25 @@
                 <div class="key neutral">Ctrl</div><div class="key neutral">Alt</div><div class="key neutral" data-key=" ">Space</div><div class="key neutral">Alt</div><div class="key neutral">Ctrl</div>
               </div>
             </div>
-          </div>
 
-          <div class="hands-card">
-            <div class="section-title">उंगली मार्गदर्शन</div>
-            <div class="hands-wrap">
-              <div class="hand">
-                <div class="finger thumb"></div>
-                <div class="finger f1 left-pinky" data-finger="left-pinky"></div>
-                <div class="finger f2 left-ring" data-finger="left-ring"></div>
-                <div class="finger f3 left-middle" data-finger="left-middle"></div>
-                <div class="finger f4 left-index" data-finger="left-index"></div>
-              </div>
+            <div class="hands-box">
+              <div class="section-title">उंगली मार्गदर्शन</div>
+              <div class="hands-wrap">
+                <div class="hand">
+                  <div class="finger thumb"></div>
+                  <div class="finger f1 left-pinky" data-finger="left-pinky"></div>
+                  <div class="finger f2 left-ring" data-finger="left-ring"></div>
+                  <div class="finger f3 left-middle" data-finger="left-middle"></div>
+                  <div class="finger f4 left-index" data-finger="left-index"></div>
+                </div>
 
-              <div class="hand">
-                <div class="finger f4 right-index" data-finger="right-index"></div>
-                <div class="finger f3 right-middle" data-finger="right-middle"></div>
-                <div class="finger f2 right-ring" data-finger="right-ring"></div>
-                <div class="finger f1 right-pinky" data-finger="right-pinky"></div>
-                <div class="finger thumb"></div>
+                <div class="hand">
+                  <div class="finger f4 right-index" data-finger="right-index"></div>
+                  <div class="finger f3 right-middle" data-finger="right-middle"></div>
+                  <div class="finger f2 right-ring" data-finger="right-ring"></div>
+                  <div class="finger f1 right-pinky" data-finger="right-pinky"></div>
+                  <div class="finger thumb"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -764,7 +784,7 @@
           await document.exitFullscreen();
         }
       }catch(e){
-        alert("कुछ browser में full screen button दबाने के बाद भी address bar थोड़ा दिख सकता है।");
+        alert("कुछ browser में address bar थोड़ा दिख सकता है।");
       }
     }
 
@@ -896,12 +916,10 @@
     document.getElementById("typingInput").addEventListener("input", function(){
       const val = this.value;
       const index = val.length - 1;
-
       if(index >= 0){
         if(val[index] === currentText[index]) playCorrectSound();
         else playWrongSound();
       }
-
       renderTypingState(val);
       updateStats();
       renderKeyboardHighlight(currentText[val.length] || "a");
