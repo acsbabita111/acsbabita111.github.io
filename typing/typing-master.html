@@ -208,10 +208,10 @@
       padding:8px 10px 28px;
       display:flex;
       flex-direction:column;
-      gap:8px;
+      gap:6px;
     }
 
-    .header{
+    .header-line{
       display:grid;
       grid-template-columns:auto 1fr auto auto;
       gap:8px;
@@ -229,34 +229,30 @@
       white-space:nowrap;
     }
 
-    .brand{
-      min-width:0;
+    .title-inline{
       text-align:center;
+      font-size:1.18rem;
+      font-weight:900;
+      line-height:1.05;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
 
-    .brand h1{
-      margin:0;
-      font-size:1.22rem;
+    .lesson-badge{
+      color:var(--yellow);
       font-weight:900;
-      line-height:1.02;
     }
 
     .powered{
-      margin-top:2px;
+      text-align:center;
       font-size:.72rem;
       font-weight:700;
       color:#d8e1f7;
       line-height:1.15;
-    }
-
-    .lesson-line{
-      text-align:center;
-      color:var(--yellow);
-      font-size:1.22rem;
-      font-weight:900;
-      line-height:1.1;
-      flex:0 0 auto;
       margin-top:-2px;
+      margin-bottom:2px;
+      flex:0 0 auto;
     }
 
     .main-layout{
@@ -534,17 +530,14 @@
     </div>
 
     <div class="screen practice" id="practiceScreen">
-      <div class="header">
+      <div class="header-line">
         <div class="badge">Practice Mode</div>
-        <div class="brand">
-          <h1>ACS Typing Master</h1>
-          <div class="powered">पावर्ड बाय रामभरोस विद्यार्थी</div>
-        </div>
-        <div class="badge" id="lessonBadge">L001</div>
+        <div class="title-inline">ACS Typing Master</div>
+        <div class="badge lesson-badge" id="lessonBadge">L001</div>
         <button class="small-btn btn-dark" onclick="toggleFullscreen()">⛶ फुल स्क्रीन</button>
       </div>
 
-      <div class="lesson-line" id="lessonTitle">Lesson: L001</div>
+      <div class="powered">पावर्ड बाय रामभरोस विद्यार्थी</div>
 
       <div class="main-layout">
         <div class="left-panel">
@@ -818,7 +811,6 @@
 
     function renderLesson(){
       document.getElementById("lessonBadge").textContent = currentLesson;
-      document.getElementById("lessonTitle").textContent = "Lesson: " + currentLesson;
       renderTypingState("");
       renderSequence();
       renderKeyboardHighlight(currentText[0] || "a");
