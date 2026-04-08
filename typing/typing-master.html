@@ -8,73 +8,95 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background: linear-gradient(135deg, #FF9933 0%, #FFFFFF 50%, #138808 100%); height: 100vh; overflow: hidden; display: flex; justify-content: center; align-items: center; }
 
-        /* पोर्ट्रेट मोड चेतावनी */
         #portrait-warning { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #222; color: white; z-index: 9999; text-align: center; justify-content: center; align-items: center; flex-direction: column; padding: 20px; }
         @media screen and (orientation: portrait) { #portrait-warning { display: flex; } #app-container { display: none !important; } }
 
-        #app-container { width: 98%; max-width: 1400px; height: 95vh; background: rgba(255, 255, 255, 0.98); border-radius: 12px; display: flex; flex-direction: column; box-shadow: 0 10px 40px rgba(0,0,0,0.5); border: 2px solid #fff; transition: all 0.3s ease; }
-        #app-container:fullscreen { width: 100vw; height: 100vh; border-radius: 0; max-width: none; border: none; }
-
-        .top-header { background: #f8f9fa; padding: 15px 25px; border-bottom: 2px solid #e0e0e0; display: flex; justify-content: space-between; align-items: center; }
-        .top-header h1 { color: #FF9933; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
-        .top-header p { color: #138808; font-size: 1rem; margin-top: 5px; font-weight: bold; }
-        .fs-btn { background: #0056b3; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-right: 10px; font-size: 1rem; }
-        .exit-btn { background: #dc3545; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 1rem; }
+        #app-container { width: 100%; max-width: 1400px; height: 100vh; background: rgba(255, 255, 255, 0.98); display: flex; flex-direction: column; box-shadow: 0 10px 40px rgba(0,0,0,0.5); border: none; }
+        
+        .top-header { background: #f8f9fa; padding: 10px 20px; border-bottom: 2px solid #e0e0e0; display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap; }
+        .top-header-left { flex: 1; }
+        .top-header-right { display: flex; gap: 10px; white-space: nowrap; }
+        .top-header h1 { color: #FF9933; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
+        .top-header p { color: #138808; font-size: 0.9rem; margin-top: 2px; font-weight: bold; }
+        
+        .fs-btn { background: #0056b3; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 0.9rem; }
+        .exit-btn { background: #dc3545; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 0.9rem; }
 
         .main-body { display: flex; flex: 1; overflow: hidden; }
+        .content-area { flex: 1; padding: 20px; overflow-y: auto; background: #fff; display: flex; flex-direction: column; }
         
-        /* बायां कंटेंट एरिया */
-        .content-area { flex: 1; padding: 30px; overflow-y: auto; background: #fff; }
-        
-        /* डैशबोर्ड (लेसन लिस्ट) */
         #dashboard { display: block; }
-        .course-title { font-size: 1.8rem; color: #333; border-bottom: 3px solid #138808; padding-bottom: 10px; margin-bottom: 20px; }
-        .lesson-group { margin-bottom: 30px; }
-        .lesson-group h3 { background: #e9ecef; padding: 10px 15px; border-left: 5px solid #FF9933; margin-bottom: 15px; color: #222; font-size: 1.3rem; }
-        .drill-card { display: flex; justify-content: space-between; align-items: center; background: #fdfdfd; border: 1px solid #ddd; padding: 15px 20px; margin-bottom: 10px; border-radius: 8px; cursor: pointer; transition: 0.2s; }
-        .drill-card:hover { background: #f1f8ff; border-color: #0056b3; transform: translateX(5px); }
-        .drill-title { font-size: 1.1rem; color: #0056b3; font-weight: 600; }
-        .drill-meta { font-size: 0.9rem; color: #666; background: #eee; padding: 4px 10px; border-radius: 20px; }
+        .course-title { font-size: 1.5rem; color: #333; border-bottom: 3px solid #138808; padding-bottom: 10px; margin-bottom: 15px; }
+        .lesson-group h3 { background: #e9ecef; padding: 8px 15px; border-left: 5px solid #FF9933; margin-bottom: 10px; color: #222; font-size: 1.1rem; }
+        .drill-card { display: flex; justify-content: space-between; align-items: center; background: #fdfdfd; border: 1px solid #ddd; padding: 12px 15px; margin-bottom: 8px; border-radius: 8px; cursor: pointer; }
+        .drill-card:hover { background: #f1f8ff; border-color: #0056b3; }
+        .drill-title { font-size: 1rem; color: #0056b3; font-weight: 600; }
+        .drill-meta { font-size: 0.8rem; color: #666; background: #eee; padding: 3px 8px; border-radius: 20px; }
 
-        /* टाइपिंग व्यू */
-        #typing-view { display: none; flex-direction: column; height: 100%; gap: 20px; }
-        .drill-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-        .drill-header h2 { color: #138808; font-size: 1.5rem; }
-        .back-btn { background: #6c757d; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        #typing-view { display: none; flex-direction: column; height: 100%; gap: 10px; }
+        .drill-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .drill-header h2 { color: #138808; font-size: 1.2rem; }
+        .back-btn { background: #6c757d; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 0.8rem; }
 
-        .stats-bar { display: flex; gap: 15px; margin-bottom: 10px; }
-        .stat-card { flex: 1; background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #ddd; border-bottom: 4px solid #138808; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .stat-card span { font-size: 0.9rem; color: #555; text-transform: uppercase; font-weight: bold; }
-        .stat-card h3 { font-size: 2rem; margin-top: 5px; color: #222; }
+        .stats-bar { display: flex; gap: 10px; margin-bottom: 5px; }
+        .stat-card { flex: 1; background: #f8f9fa; padding: 10px; border-radius: 8px; text-align: center; border: 1px solid #ddd; border-bottom: 3px solid #138808; }
+        .stat-card span { font-size: 0.75rem; color: #555; text-transform: uppercase; font-weight: bold; }
+        .stat-card h3 { font-size: 1.5rem; margin-top: 2px; color: #222; }
 
-        .text-box { flex: 1; font-size: 2.2rem; line-height: 3.5rem; color: #555; padding: 30px; background: #fff; border: 2px solid #ccc; border-radius: 10px; overflow-y: auto; font-family: 'Courier New', monospace; letter-spacing: 3px; box-shadow: inset 0 0 10px rgba(0,0,0,0.05); }
-        
+        .text-box { flex: 1; font-size: 1.8rem; line-height: 2.8rem; color: #555; padding: 20px; background: #fff; border: 2px solid #ccc; border-radius: 10px; overflow-y: auto; font-family: 'Courier New', monospace; letter-spacing: 2px; }
         .correct { color: #138808; font-weight: bold; }
         .incorrect { color: white; background: #dc3545; border-radius: 4px; padding: 0 2px; }
         .current { background: #FF9933; color: white; border-radius: 4px; padding: 0 2px; border-bottom: 3px solid #b35900; }
 
-        /* दायां साइडबार */
-        .sidebar { width: 280px; background: #f1f3f5; border-left: 1px solid #ddd; display: flex; flex-direction: column; }
-        .menu-header { padding: 20px; background: #e9ecef; border-bottom: 2px solid #ddd; font-weight: bold; color: #333; font-size: 1.1rem; text-align: center; }
-        .menu-item { padding: 18px 25px; color: #444; font-weight: 600; cursor: pointer; transition: 0.2s; border-bottom: 1px solid #ddd; font-size: 1.1rem; }
-        .menu-item:hover { background: #e2e6ea; }
-        .menu-item.active { background: #fff; color: #138808; border-left: 6px solid #FF9933; box-shadow: -2px 0 5px rgba(0,0,0,0.05); }
+        .sidebar { width: 220px; background: #f1f3f5; border-left: 1px solid #ddd; display: flex; flex-direction: column; }
+        .menu-header { padding: 15px; background: #e9ecef; border-bottom: 2px solid #ddd; font-weight: bold; color: #333; font-size: 1rem; text-align: center; }
+        .menu-item { padding: 15px 20px; color: #444; font-weight: 600; cursor: pointer; border-bottom: 1px solid #ddd; font-size: 1rem; }
+        .menu-item.active { background: #fff; color: #138808; border-left: 5px solid #FF9933; }
+
+        /* =========================================
+           MOBILE LANDSCAPE FIX (आपके स्क्रीनशॉट के लिए)
+           ========================================= */
+        @media (max-width: 950px) and (orientation: landscape) {
+            .top-header { padding: 5px 10px; }
+            .top-header h1 { font-size: 1rem; letter-spacing: 0; }
+            .top-header p { font-size: 0.75rem; }
+            .fs-btn, .exit-btn { padding: 5px 10px; font-size: 0.75rem; }
+            
+            .sidebar { width: 160px; }
+            .menu-header { padding: 10px; font-size: 0.85rem; }
+            .menu-item { padding: 10px 15px; font-size: 0.85rem; }
+            
+            .content-area { padding: 10px; }
+            .course-title { font-size: 1.2rem; margin-bottom: 10px; }
+            .drill-card { padding: 8px 10px; }
+            .drill-title { font-size: 0.9rem; }
+            
+            .stat-card { padding: 5px; }
+            .stat-card h3 { font-size: 1.2rem; }
+            .stat-card span { font-size: 0.65rem; }
+            .text-box { font-size: 1.4rem; line-height: 2.2rem; padding: 10px; letter-spacing: 1px; }
+        }
+
+        /* RESULT MODAL (प्रोफेशनल रिजल्ट स्क्रीन) */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; justify-content: center; align-items: center; }
+        .modal-content { background: #fff; width: 90%; max-width: 500px; border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 0 20px rgba(0,0,0,0.5); border-top: 5px solid #138808; }
+        .modal-content h2 { color: #FF9933; margin-bottom: 15px; font-size: 1.8rem; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .result-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 1.1rem; border-bottom: 1px dashed #ccc; padding-bottom: 5px; }
+        .result-row strong { color: #333; }
+        .modal-btn { background: #0056b3; color: white; border: none; padding: 10px 20px; font-size: 1.1rem; border-radius: 5px; cursor: pointer; margin-top: 15px; width: 100%; }
     </style>
 </head>
 <body>
 
-<div id="portrait-warning">
-    <h2>⚠️ स्क्रीन को घुमाएं (Rotate Device)</h2>
-    <p>यह मास्टर कोर्स केवल हॉरिजॉन्टल (Landscape) मोड में चलता है।</p>
-</div>
+<div id="portrait-warning"><h2>⚠️ फोन को घुमाएं (Rotate Device)</h2></div>
 
 <div id="app-container">
     <div class="top-header">
-        <div>
+        <div class="top-header-left">
             <h1>ACS-AI Master - Digital Typing Course</h1>
-            <p>Freedom Fighter Gangadhar Prasad Memorial Trust | Powered by ACS</p>
+            <p>Freedom Fighter Gangadhar Prasad Memorial Trust</p>
         </div>
-        <div>
+        <div class="top-header-right">
             <button class="fs-btn" onclick="toggleFullScreen()">⛶ FULL SCREEN</button>
             <button class="exit-btn" onclick="location.reload()">EXIT ⏏</button>
         </div>
@@ -82,121 +104,73 @@
 
     <div class="main-body">
         <div class="content-area">
-            
             <div id="dashboard">
                 <div class="course-title">Fast Touch Typing Course Syllabus</div>
-                <div id="lesson-list-container">
-                    </div>
+                <div id="lesson-list-container"></div>
             </div>
-
             <div id="typing-view">
                 <div class="drill-header">
                     <h2 id="current-drill-title">Drill Title</h2>
                     <button class="back-btn" onclick="showDashboard()">⬅ Back to Syllabus</button>
                 </div>
-
                 <div class="stats-bar">
                     <div class="stat-card" style="border-bottom-color: #007bff;"><span>⏱ Time</span><h3 id="timer">00:00</h3></div>
                     <div class="stat-card" style="border-bottom-color: #138808;"><span>🚀 Net WPM</span><h3 id="wpm">0</h3></div>
                     <div class="stat-card" style="border-bottom-color: #FF9933;"><span>🎯 Accuracy</span><h3 id="acc">100%</h3></div>
                     <div class="stat-card" style="border-bottom-color: #dc3545;"><span>❌ Errors</span><h3 id="err">0</h3></div>
                 </div>
-
-                <div class="text-box" id="display-text">
-                    </div>
+                <div class="text-box" id="display-text"></div>
             </div>
-
         </div>
-
         <div class="sidebar">
             <div class="menu-header">MAIN MENU</div>
-            <div class="menu-item active" onclick="showDashboard()">📚 Studying (Syllabus)</div>
-            <div class="menu-item">🏆 SSC/Beltron Tests</div>
-            <div class="menu-item">👤 Custom Review</div>
-            <div class="menu-item">📊 Your Statistics</div>
+            <div class="menu-item active" onclick="showDashboard()">📚 Syllabus</div>
+            <div class="menu-item">🏆 SSC Tests</div>
+            <div class="menu-item">📊 Statistics</div>
         </div>
     </div>
 </div>
 
-<script>
-    // ==========================================
-    // 1. THE MASSIVE DATABASE (LESSONS 1 TO 12)
-    // ==========================================
-    const lessonData = [
-        { group: "Lesson 1: The Home Row", title: "1.1 Home Row Basics", time: "3 Min", text: "aaa sss ddd fff jjj kkk lll ;;; asdf jkl; asdf jkl; fdsa ;lkj asdf jkl;" },
-        { group: "Lesson 1: The Home Row", title: "1.2 Home Row Words", time: "5 Min", text: "sad dad fall glass flash dash ask all fall flask salsa salad alas lad" },
-        { group: "Lesson 1: The Home Row", title: "1.3 Paragraph Drill", time: "5 Min", text: "a sad dad falls. ask a lass. a glass flask. all falls flash. a sad dad had a glass flask." },
-        
-        { group: "Lesson 2: Keys E and I", title: "2.1 New keys: E and I", time: "3 Min", text: "eee iii ded kik ded kik de ki fde jki ed ik ed ik" },
-        { group: "Lesson 2: Keys E and I", title: "2.2 Word Drill: E & I", time: "4 Min", text: "see sea did die side file life fake lake ease idea lease please" },
-        
-        { group: "Lesson 3: Keys R and U", title: "3.1 New keys: R and U", time: "3 Min", text: "rrr uuu frf juj frf juj fr ju dfr kju rf uj rf uj" },
-        { group: "Lesson 3: Keys R and U", title: "3.2 Sentence Drill", time: "5 Min", text: "are you sure. he runs in the dark. make a mark. the rule is sure." },
-        
-        { group: "Lesson 4: Keys T and O", title: "4.1 New keys: T and O", time: "3 Min", text: "ttt ooo ftf lol ftf lol ft lo ftf lol tf ol too hot" },
-        
-        { group: "Lesson 5: Capital Letters", title: "5.1 Shift Key Practice", time: "5 Min", text: "Delhi. India. Ram. Trust. Freedom. Fighter. Memorial. School." },
-        
-        { group: "Lesson 6: Keys C and Comma", title: "6.1 C and Comma", time: "4 Min", text: "car, cat, cut, cold, color, come, race, pace, face, fact, care," },
-        
-        { group: "Lesson 7: Keys G, H, Apostrophe", title: "7.1 G, H and '", time: "5 Min", text: "It's a high light. Don't fight the ghost. He's right. I won't go." },
-        
-        { group: "Lesson 8: Keys V, N, Question", title: "8.1 V, N and ?", time: "4 Min", text: "Is the van near? Never vote for nothing. What is your voice?" },
-        
-        { group: "Lesson 9: Keys W and M", title: "9.1 W and M", time: "4 Min", text: "The smart woman wants some more water. The man did the work." },
-        
-        { group: "Lesson 10: Keys Q and P", title: "10.1 Q and P", time: "4 Min", text: "Be quick and quiet. Put the pure paper in the past. Quote the post." },
-        
-        { group: "Lesson 11: Keys B and Y", title: "11.1 B and Y", time: "4 Min", text: "Yes, you can build it. The boy is beyond the yellow line." },
-        
-        { group: "Lesson 12: Keys Z and X", title: "12.1 Z and X", time: "5 Min", text: "Relax in the next taxi. The exact size of the box is zero. Zebra in the zoo." },
+<div class="modal-overlay" id="result-modal">
+    <div class="modal-content">
+        <h2>📊 Exercise Results</h2>
+        <div class="result-row"><span>Time Used:</span> <strong id="res-time">00:00</strong></div>
+        <div class="result-row"><span>Gross Speed:</span> <strong id="res-gross">0 WPM</strong></div>
+        <div class="result-row"><span>Accuracy:</span> <strong id="res-acc" style="color:#138808;">100%</strong></div>
+        <div class="result-row"><span>Net Speed:</span> <strong id="res-net" style="color:#0056b3; font-size:1.3rem;">0 WPM</strong></div>
+        <button class="modal-btn" onclick="closeResultModal()">OK - Return to Menu</button>
+    </div>
+</div>
 
-        { group: "OFFICIAL EXAM MOCK TESTS", title: "SSC CHSL Official Practice", time: "10 Min", text: "Information technology has completely changed the way we live and work today. Computers are everywhere, from our homes to our offices. They help us communicate faster, solve complex problems, and store massive amounts of data securely. Typing accurately and quickly is an essential skill in this digital era." }
+<script>
+    // आपका विशाल डेटाबेस यहाँ पेस्ट करें (अभी मैं 2 डमी डाल रहा हूँ)
+    const lessonData = [
+        { group: "Lesson 1: The Home Row", title: "1.1 Home Row Basics", time: "3 Min", text: "aaa sss ddd fff jjj kkk lll ;;; asdf jkl;" },
+        { group: "Lesson 1: The Home Row", title: "1.2 Word Drill", time: "5 Min", text: "sad dad fall glass flash dash ask all" }
     ];
 
-    // ==========================================
-    // 2. UI GENERATION LOGIC
-    // ==========================================
     function renderDashboard() {
         const container = document.getElementById('lesson-list-container');
         let currentGroup = "";
         let htmlContent = "";
-
         lessonData.forEach((lesson, index) => {
             if(lesson.group !== currentGroup) {
-                if(currentGroup !== "") htmlContent += `</div>`; // Close previous group
+                if(currentGroup !== "") htmlContent += `</div>`; 
                 htmlContent += `<div class="lesson-group"><h3>${lesson.group}</h3>`;
                 currentGroup = lesson.group;
             }
-            htmlContent += `
-                <div class="drill-card" onclick="startLesson(${index})">
-                    <span class="drill-title">▶ ${lesson.title}</span>
-                    <span class="drill-meta">${lesson.time}</span>
-                </div>
-            `;
+            htmlContent += `<div class="drill-card" onclick="startLesson(${index})"><span class="drill-title">▶ ${lesson.title}</span><span class="drill-meta">${lesson.time}</span></div>`;
         });
-        htmlContent += `</div>`; // Close last group
+        htmlContent += `</div>`; 
         container.innerHTML = htmlContent;
     }
 
-    // ==========================================
-    // 3. STATE VARIABLES
-    // ==========================================
-    let currentText = "";
-    let currentIndex = 0;
-    let errors = 0;
-    let totalTyped = 0;
-    let startTime = null;
-    let timerInterval = null;
-    let isTypingActive = false;
+    let currentText = "", currentIndex = 0, errors = 0, totalTyped = 0, startTime = null, timerInterval = null, isTypingActive = false;
 
-    // ==========================================
-    // 4. VIEW CONTROLLERS
-    // ==========================================
     function toggleFullScreen() {
-        let elem = document.getElementById("app-container");
+        let elem = document.documentElement;
         if (!document.fullscreenElement) {
-            elem.requestFullscreen().catch(err => alert(`Error: ${err.message}`));
+            elem.requestFullscreen().catch(err => console.log(err));
         } else {
             document.exitFullscreen();
         }
@@ -212,10 +186,8 @@
     function startLesson(index) {
         currentText = lessonData[index].text;
         document.getElementById('current-drill-title').innerText = lessonData[index].title;
-        
         document.getElementById('dashboard').style.display = 'none';
         document.getElementById('typing-view').style.display = 'flex';
-        
         resetStats();
         renderTypingText();
         document.addEventListener("keydown", handleKey);
@@ -224,101 +196,74 @@
     function resetStats() {
         currentIndex = 0; errors = 0; totalTyped = 0; startTime = null; isTypingActive = false;
         clearInterval(timerInterval);
-        document.getElementById("wpm").innerText = "0";
-        document.getElementById("acc").innerText = "100%";
-        document.getElementById("err").innerText = "0";
-        document.getElementById("timer").innerText = "00:00";
+        document.getElementById("wpm").innerText = "0"; document.getElementById("acc").innerText = "100%"; document.getElementById("err").innerText = "0"; document.getElementById("timer").innerText = "00:00";
     }
 
     function renderTypingText() {
-        const display = document.getElementById("display-text");
-        display.innerHTML = currentText.split('').map((char, i) => 
+        document.getElementById("display-text").innerHTML = currentText.split('').map((char, i) => 
             `<span id="char-${i}" class="${i === 0 ? 'current' : ''}">${char}</span>`
         ).join('');
     }
 
-    // ==========================================
-    // 5. THE TYPING ENGINE (WPM MATH & LOGIC)
-    // ==========================================
     function handleKey(e) {
         if (e.key.length !== 1 && e.key !== "Backspace") return;
         if (e.key === " " || e.key === "Backspace") e.preventDefault();
+        if (!isTypingActive && e.key.length === 1) { isTypingActive = true; startTime = new Date(); timerInterval = setInterval(updateStats, 1000); }
 
-        if (!isTypingActive && e.key.length === 1) {
-            isTypingActive = true;
-            startTime = new Date();
-            timerInterval = setInterval(updateStats, 1000);
-        }
-
-        const spanElements = document.getElementById("display-text").children;
-
-        // बैकस्पेस लॉजिक (गलती सुधारने के लिए)
+        const spans = document.getElementById("display-text").children;
         if (e.key === "Backspace") {
-            if (currentIndex > 0) {
-                spanElements[currentIndex].className = ""; // Remove current
-                currentIndex--;
-                spanElements[currentIndex].className = "current"; // Set previous to current
-            }
+            if (currentIndex > 0) { spans[currentIndex].className = ""; currentIndex--; spans[currentIndex].className = "current"; }
             return;
         }
-
         if (currentIndex >= currentText.length) return;
 
-        const expectedChar = currentText[currentIndex];
-
-        if (e.key === expectedChar) {
-            spanElements[currentIndex].className = "correct";
-        } else {
-            spanElements[currentIndex].className = "incorrect";
-            errors++;
-        }
-
-        totalTyped++;
-        currentIndex++;
+        if (e.key === currentText[currentIndex]) { spans[currentIndex].className = "correct"; } 
+        else { spans[currentIndex].className = "incorrect"; errors++; }
+        
+        totalTyped++; currentIndex++;
 
         if (currentIndex < currentText.length) {
-            spanElements[currentIndex].className = "current";
-            // ऑटो-स्क्रॉलिंग ताकि छात्र को टाइप करते समय टेक्स्ट हमेशा दिखे
-            spanElements[currentIndex].scrollIntoView({ behavior: "smooth", block: "center" });
+            spans[currentIndex].className = "current";
+            spans[currentIndex].scrollIntoView({ behavior: "smooth", block: "center" });
         } else {
-            // टेस्ट समाप्त
-            clearInterval(timerInterval);
-            isTypingActive = false;
-            setTimeout(() => {
-                alert("शानदार! अभ्यास समाप्त हुआ।\nआपकी अंतिम गति: " + document.getElementById("wpm").innerText + " WPM");
-                showDashboard();
-            }, 100);
+            clearInterval(timerInterval); isTypingActive = false;
+            showResultModal(); // नया रिजल्ट डैशबोर्ड कॉल
         }
     }
 
     function updateStats() {
         if (!startTime) return;
-        const now = new Date();
-        const timeElapsedInMin = (now - startTime) / 60000;
-        
-        // टाइमर फॉर्मेट (MM:SS)
-        const seconds = Math.floor((now - startTime) / 1000);
-        const min = String(Math.floor(seconds / 60)).padStart(2, '0');
-        const sec = String(seconds % 60).padStart(2, '0');
-        document.getElementById("timer").innerText = `${min}:${sec}`;
-
-        // WPM & Accuracy Math
-        const grossWpm = (totalTyped / 5) / timeElapsedInMin;
-        let netWpm = Math.round(grossWpm - (errors / timeElapsedInMin));
-        if (netWpm < 0 || !netWpm) netWpm = 0;
-
-        let acc = 100;
-        if (totalTyped > 0) acc = Math.round(((totalTyped - errors) / totalTyped) * 100);
-
-        document.getElementById("wpm").innerText = netWpm;
-        document.getElementById("acc").innerText = acc + "%";
-        document.getElementById("err").innerText = errors;
+        let timeInMin = (new Date() - startTime) / 60000;
+        let sec = Math.floor((new Date() - startTime) / 1000);
+        document.getElementById("timer").innerText = `${String(Math.floor(sec/60)).padStart(2,'0')}:${String(sec%60).padStart(2,'0')}`;
+        let grossWpm = (totalTyped / 5) / timeInMin;
+        let netWpm = Math.max(0, Math.round(grossWpm - (errors / timeInMin)));
+        let acc = totalTyped > 0 ? Math.round(((totalTyped - errors) / totalTyped) * 100) : 100;
+        document.getElementById("wpm").innerText = netWpm; document.getElementById("acc").innerText = acc + "%"; document.getElementById("err").innerText = errors;
     }
 
-    // Initialize Dashboard on load
+    /* रिजल्ट स्क्रीन लॉजिक */
+    function showResultModal() {
+        let timeInMin = (new Date() - startTime) / 60000;
+        let grossWpm = Math.round((totalTyped / 5) / timeInMin);
+        let netWpm = Math.max(0, Math.round(grossWpm - (errors / timeInMin)));
+        let acc = totalTyped > 0 ? Math.round(((totalTyped - errors) / totalTyped) * 100) : 100;
+        
+        document.getElementById("res-time").innerText = document.getElementById("timer").innerText;
+        document.getElementById("res-gross").innerText = grossWpm + " WPM";
+        document.getElementById("res-acc").innerText = acc + "%";
+        document.getElementById("res-net").innerText = netWpm + " WPM";
+        
+        document.getElementById("result-modal").style.display = "flex";
+        document.removeEventListener("keydown", handleKey);
+    }
+
+    function closeResultModal() {
+        document.getElementById("result-modal").style.display = "none";
+        showDashboard();
+    }
+
     window.onload = renderDashboard;
-
 </script>
-
 </body>
 </html>
