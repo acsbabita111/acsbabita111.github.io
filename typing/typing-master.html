@@ -1,1 +1,192 @@
+// =========================================================================
+// ACS-AI DIGITAL MASTER: COMPLETE SYLLABUS DATABASE (LESSON 1 TO 12)
+// Developed for Freedom Fighter Gangadhar Prasad Memorial Trust
+// =========================================================================
 
+const lessonData = [
+    // ------------------- LESSON 1: THE HOME ROW -------------------
+    { 
+        title: "1.1 New keys: Home row (ASDF JKL;)", 
+        text: "aaa sss ddd fff jjj kkk lll ;;; asdf jkl; asdf jkl; fdsa ;lkj asdf jkl;" 
+    },
+    { 
+        title: "1.2 Key drill: Home row", 
+        text: "a s d f j k l ; a s d f j k l ; as df jk l; as df jk l; fd sa ;l kj" 
+    },
+    { 
+        title: "1.3 Word drill: Home row", 
+        text: "sad dad fall glass flash dash ask all fall flask salsa salad alas lad" 
+    },
+    { 
+        title: "1.4 Paragraph drill: Home row", 
+        text: "a sad dad falls. ask a lass. a glass flask. all falls flash. a sad dad had a glass flask. ask a lad. a lad had a salad." 
+    },
+
+    // ------------------- LESSON 2: KEYS E AND I -------------------
+    { 
+        title: "2.1 New keys: E and I", 
+        text: "eee iii ded kik ded kik de ki de ki fde jki fde jki ed ik ed ik" 
+    },
+    { 
+        title: "2.2 Word drill: E and I", 
+        text: "see sea did die side file life fake lake ease idea lease please" 
+    },
+    { 
+        title: "2.3 Sentence drill: E and I", 
+        text: "he is a fake. see the sea. please file the lease. is he dead. she said please. did she see the fake lake." 
+    },
+    { 
+        title: "2.4 Paragraph drill: E and I", 
+        text: "she is a fake leader. he sees the sea and the fake lake. please file the lease and ease the life. ideas fly high if led." 
+    },
+
+    // ------------------- LESSON 3: KEYS R AND U -------------------
+    { 
+        title: "3.1 New keys: R and U", 
+        text: "rrr uuu frf juj frf juj fr ju fr ju dfr kju dfr kju rf uj rf uj" 
+    },
+    { 
+        title: "3.2 Word drill: R and U", 
+        text: "red run use sure user dark lark mark park shark usual sure rule" 
+    },
+    { 
+        title: "3.3 Sentence drill: R and U", 
+        text: "are you sure. he runs in the dark. make a mark. the rule is sure. a shark in the sea. use the dark red file." 
+    },
+
+    // ------------------- LESSON 4: KEYS T AND O -------------------
+    { 
+        title: "4.1 New keys: T and O", 
+        text: "ttt ooo ftf lol ftf lol ft lo ft lo ftf lol tf ol tf ol too hot" 
+    },
+    { 
+        title: "4.2 Word drill: T and O", 
+        text: "too hot lot rot total order otter outer tour route footer tooth" 
+    },
+    { 
+        title: "4.3 Sentence drill: T and O", 
+        text: "the tour is too hot. total order of the route. rot the tooth. a lot of otters. out of the route." 
+    },
+
+    // ------------------- LESSON 5: CAPITAL LETTERS AND PERIOD -------------------
+    { 
+        title: "5.1 New keys: Shift and Period (.)", 
+        text: "A S D F J K L . a. s. d. f. j. k. l. As. Df. Jk. L. The. Is. To." 
+    },
+    { 
+        title: "5.2 Word drill: Capitals and Period", 
+        text: "Delhi. India. Ram. Trust. Freedom. Fighter. Memorial. School." 
+    },
+    { 
+        title: "5.3 Sentence drill: Capitals and Period", 
+        text: "Ram is here. The Trust is old. Delhi is hot. India is great. He is a fighter. The school is good." 
+    },
+
+    // ------------------- LESSON 6: KEYS C AND COMMA -------------------
+    { 
+        title: "6.1 New keys: C and Comma (,)", 
+        text: "ccc ,,, dcd k,k dcd k,k dc k, dc k, fcc j,, fcc j,, cd ,k cd ,k" 
+    },
+    { 
+        title: "6.2 Word drill: C and Comma", 
+        text: "car, cat, cut, cold, color, come, race, pace, face, fact, care," 
+    },
+    { 
+        title: "6.3 Paragraph drill: C and Comma", 
+        text: "The cat is cold, but the car is hot. He came to the race, saw the face, and faced the fact. Care for the color, please." 
+    },
+
+    // ------------------- LESSON 7: KEYS G H AND APOSTROPHE -------------------
+    { 
+        title: "7.1 New keys: G H and Apostrophe (')", 
+        text: "ggg hhh ''' fgf jhj ;'; fgf jhj fg jh fg jh g h ' it's he's" 
+    },
+    { 
+        title: "7.2 Word drill: G H and Apostrophe", 
+        text: "high ghost right sight light fight might don't won't isn't" 
+    },
+    { 
+        title: "7.3 Sentence drill: G H and Apostrophe", 
+        text: "It's a high light. Don't fight the ghost. He's right. I won't go. Isn't it a bright sight." 
+    },
+
+    // ------------------- LESSON 8: KEYS V N AND QUESTION MARK -------------------
+    { 
+        title: "8.1 New keys: V N and Question Mark (?)", 
+        text: "vvv nnn ??? fvf jnj ;?; fvf jnj fv jn fv jn v n ? van man ?" 
+    },
+    { 
+        title: "8.2 Word drill: V N and Question Mark", 
+        text: "van never near vine vote note nothing voice choice? when? how?" 
+    },
+    { 
+        title: "8.3 Sentence drill: V N and Question Mark", 
+        text: "Is the van near? Never vote for nothing. What is your voice? When will the man come? How is the vine?" 
+    },
+
+    // ------------------- LESSON 9: KEYS W AND M -------------------
+    { 
+        title: "9.1 New keys: W and M", 
+        text: "www mmm sws jmj sws jmj sw jm sw jm w m we me whom want" 
+    },
+    { 
+        title: "9.2 Word drill: W and M", 
+        text: "want some more water woman man smart word work warm worm" 
+    },
+    { 
+        title: "9.3 Paragraph drill: W and M", 
+        text: "The smart woman wants some more water. The man did the work. Warm words make a warm heart. Whom do you want?" 
+    },
+
+    // ------------------- LESSON 10: KEYS Q AND P -------------------
+    { 
+        title: "10.1 New keys: Q and P", 
+        text: "qqq ppp aqa ;p; aqa ;p; aq ;p aq ;p q p quit put pure quiet" 
+    },
+    { 
+        title: "10.2 Word drill: Q and P", 
+        text: "quick pale quiet past paper quote quest part post pure path" 
+    },
+    { 
+        title: "10.3 Sentence drill: Q and P", 
+        text: "Be quick and quiet. Put the pure paper in the past. The quest is a part of the path. Quote the post." 
+    },
+
+    // ------------------- LESSON 11: KEYS B AND Y -------------------
+    { 
+        title: "11.1 New keys: B and Y", 
+        text: "bbb yyy fbf jyj fbf jyj fb jy fb jy b y by boy yes you year" 
+    },
+    { 
+        title: "11.2 Word drill: B and Y", 
+        text: "boy yes you year baby maybe yellow beyond build yield blind" 
+    },
+    { 
+        title: "11.3 Sentence drill: B and Y", 
+        text: "Yes, you can build it. The boy is beyond the yellow line. Maybe the baby will yield. Are you blind?" 
+    },
+
+    // ------------------- LESSON 12: KEYS Z AND X -------------------
+    { 
+        title: "12.1 New keys: Z and X", 
+        text: "zzz xxx aza sxs aza sxs az sx az sx z x zoo box exact zone" 
+    },
+    { 
+        title: "12.2 Word drill: Z and X", 
+        text: "zoo box exact zone zero text next exam taxi zebra size relax" 
+    },
+    { 
+        title: "12.3 Paragraph drill: Z and X", 
+        text: "Relax in the next taxi. The exact size of the box is zero. The zebra is in the zoo zone. Prepare for the exam." 
+    },
+
+    // ------------------- BONUS: SSC CHSL OFFICIAL TEST LEVEL -------------------
+    {
+        title: "13.1 SSC CHSL Exam Practice (10 Minutes)",
+        text: "Information technology has completely changed the way we live and work today. Computers are everywhere, from our homes to our offices. They help us communicate faster, solve complex problems, and store massive amounts of data securely. Typing accurately and quickly is an essential skill in this digital era. Whether you are typing an email, writing code, or entering data for a government examination, touch typing can save you hundreds of hours every year. Practice makes perfect, and with consistent effort, anyone can master the keyboard. Focus on your accuracy first, because speed will naturally follow once your fingers memorize the correct paths. Do not look down at the keys; trust your muscle memory."
+    }
+];
+
+// =========================================================================
+// END OF DATABASE
+// =========================================================================
