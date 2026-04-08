@@ -1,1 +1,362 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ACS Digital Typing Course</title>
+    <style>
+        /* =========================================
+           1. ग्लोबल और थीम सेटिंग
+        ========================================= */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        body {
+            /* फ्रीडम फाइटर मेमोरियल ट्रस्ट थीम (तिरंगा) */
+            background: linear-gradient(135deg, #FF9933 0%, #FFFFFF 50%, #138808 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
 
+        /* पोर्ट्रेट मोड चेतावनी */
+        #portrait-warning {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #222; color: white; z-index: 9999;
+            text-align: center; justify-content: center; align-items: center; flex-direction: column; padding: 20px;
+        }
+        @media screen and (orientation: portrait) {
+            #portrait-warning { display: flex; }
+            #app-container { display: none !important; }
+        }
+
+        /* =========================================
+           2. मुख्य सॉफ्टवेयर लेआउट
+        ========================================= */
+        #app-container {
+            width: 98%; max-width: 1300px; height: 95vh;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: flex; flex-direction: column; overflow: hidden; border: 2px solid #fff;
+        }
+
+        /* टॉप हेडर */
+        .top-header {
+            background: #f8f9fa; padding: 10px 20px; border-bottom: 2px solid #e0e0e0;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .top-header h1 { font-size: 1.2rem; color: #FF9933; text-transform: uppercase; letter-spacing: 1px; }
+        .top-header h2 { font-size: 0.9rem; color: #138808; margin-top: 2px; }
+
+        .main-body { display: flex; flex: 1; overflow: hidden; position: relative; }
+
+        /* =========================================
+           3. डैशबोर्ड व्यू (लेसन लिस्ट और मेनू)
+        ========================================= */
+        #dashboard-view { display: flex; width: 100%; height: 100%; }
+        
+        .lesson-panel { flex: 3; padding: 30px; background: #ffffff; overflow-y: auto; }
+        .course-title { font-size: 1.4rem; color: #333; border-bottom: 2px solid #138808; padding-bottom: 10px; margin-bottom: 20px; }
+        
+        .drill-list { list-style: none; max-width: 700px; margin: 0 auto; }
+        .drill-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 20px; margin-bottom: 8px; background: #f8f9fa;
+            border-radius: 6px; border-left: 4px solid transparent; cursor: pointer; transition: 0.3s;
+        }
+        .drill-item:hover { background: #e9ecef; border-left: 4px solid #FF9933; }
+        .drill-item.active { background: #e3f2fd; border-left: 4px solid #138808; font-weight: bold; }
+        .drill-name { color: #0056b3; font-size: 1.1rem; }
+        
+        .sidebar { flex: 1; background: #f1f3f5; border-left: 1px solid #ddd; padding: 20px 0; display: flex; flex-direction: column; }
+        .menu-item { padding: 15px 25px; color: #444; font-weight: 600; cursor: pointer; transition: 0.2s; }
+        .menu-item.active { background: #e3f2fd; color: #0056b3; border-left: 5px solid #FF9933; }
+
+        /* =========================================
+           4. ड्रिल व्यू (टाइपिंग स्क्रीन)
+        ========================================= */
+        #drill-view { display: none; width: 100%; height: 100%; flex-direction: column; background: #fff; }
+        
+        .drill-top-bar { display: flex; justify-content: space-between; padding: 10px 20px; background: #e9ecef; border-bottom: 1px solid #ccc; }
+        
+        .drill-workspace { display: flex; flex: 1; padding: 20px; gap: 20px; }
+        
+        .typing-area { flex: 3; display: flex; flex-direction: column; gap: 20px; }
+        
+        /* टाइपिंग बॉक्स */
+        .text-display-box {
+            flex: 1; background: #fdfdfd; border: 2px solid #ddd; border-radius: 8px; padding: 20px;
+            font-size: 1.8rem; line-height: 2.5rem; letter-spacing: 2px; color: #555; overflow-y: auto; font-family: monospace;
+        }
+        
+        .correct { color: #138808; }
+        .incorrect { color: red; background-color: #ffcccc; }
+        .current { background-color: #4da6ff; color: white; border-radius: 4px; padding: 0 2px; }
+
+        /* विजुअल कीबोर्ड */
+        .keyboard-container { background: #eee; padding: 10px; border-radius: 8px; text-align: center; }
+        .kb-row { display: flex; justify-content: center; gap: 5px; margin-bottom: 5px; }
+        .key { padding: 10px 15px; background: #fff; border: 1px solid #ccc; border-radius: 4px; font-weight: bold; font-family: sans-serif; }
+        /* कलर कोडिंग (Typing Master Style) */
+        .key.blue { background: #cce0ff; border-color: #99c2ff; }
+        .key.red { background: #ffcccc; border-color: #ff9999; }
+        .key.green { background: #ccffcc; border-color: #99ff99; }
+        .key.purple { background: #e6ccff; border-color: #cc99ff; }
+        .key.space { width: 300px; }
+
+        /* दायां रिजल्ट पैनल */
+        .stats-panel { flex: 1; background: #f8f9fa; border: 1px solid #ddd; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 15px; }
+        .stat-box { background: #fff; padding: 15px; border-radius: 8px; border-left: 5px solid #ccc; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .stat-box span { display: block; font-size: 0.9rem; color: #666; text-transform: uppercase; font-weight: bold; }
+        .stat-box strong { font-size: 1.8rem; color: #333; }
+
+        /* बटन */
+        .btn-start { background: #138808; color: white; border: none; padding: 10px 25px; font-size: 1.1rem; border-radius: 25px; cursor: pointer; font-weight: bold; }
+        .btn-cancel { background: #dc3545; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <div id="portrait-warning">
+        <h2>⚠️ कृपया फोन को घुमाएं (Rotate Device)</h2>
+        <p>यह कोर्स केवल लैंडस्केप मोड और एक्सटर्नल कीबोर्ड के साथ काम करता है।</p>
+    </div>
+
+    <div id="app-container">
+        <div class="top-header">
+            <div>
+                <h1>Freedom Fighter Gangadhar Prasad Memorial Trust</h1>
+                <h2>Applied Computer School - ACS Digital Master (acslearn.com)</h2>
+            </div>
+            <div style="font-weight: bold; color: #666;">User: Rambharosh Vidyarthi</div>
+        </div>
+
+        <div class="main-body">
+            
+            <div id="dashboard-view">
+                <div class="lesson-panel">
+                    <div class="course-title">Fast Touch Typing Course</div>
+                    <h2 style="text-align: center; margin-bottom: 20px; color:#222;">Lesson 1: The Home Row</h2>
+                    
+                    <ul class="drill-list">
+                        <li class="drill-item" onclick="startDrill(0)">
+                            <span class="drill-name">🔘 1.1 Home Row Basics (A S D F J K L ;)</span>
+                            <span class="drill-time">Drill 1</span>
+                        </li>
+                        <li class="drill-item" onclick="startDrill(1)">
+                            <span class="drill-name">🔘 1.2 Home Row Words (sad, dad, fall)</span>
+                            <span class="drill-time">Drill 2</span>
+                        </li>
+                        <li class="drill-item" onclick="startDrill(2)">
+                            <span class="drill-name">🔘 1.3 SSC CHSL Practice Paragraph</span>
+                            <span class="drill-time">Test Level</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar">
+                    <div class="menu-item active">⬅ STUDYING</div>
+                    <div class="menu-item">📊 TYPING TEST</div>
+                    <div class="menu-item">📈 STATISTICS</div>
+                </div>
+            </div>
+
+            <div id="drill-view">
+                <div class="drill-top-bar">
+                    <h3 id="drill-title" style="color: #0056b3;">1.1 Key Drill</h3>
+                    <button class="btn-cancel" onclick="showDashboard()">Back to Lessons</button>
+                </div>
+                
+                <div class="drill-workspace">
+                    <div class="typing-area">
+                        <div class="text-display-box" id="text-display"></div>
+                        
+                        <div class="keyboard-container">
+                            <div class="kb-row">
+                                <span class="key">Q</span><span class="key">W</span><span class="key">E</span><span class="key">R</span><span class="key">T</span>
+                                <span class="key">Y</span><span class="key">U</span><span class="key">I</span><span class="key">O</span><span class="key">P</span>
+                            </div>
+                            <div class="kb-row">
+                                <span class="key blue">A</span><span class="key red">S</span><span class="key green">D</span><span class="key purple">F</span><span class="key">G</span>
+                                <span class="key">H</span><span class="key purple">J</span><span class="key green">K</span><span class="key red">L</span><span class="key blue">;</span>
+                            </div>
+                            <div class="kb-row">
+                                <span class="key space">Space</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stats-panel">
+                        <div class="stat-box" style="border-color: #FF9933;">
+                            <span>⏱ Time</span>
+                            <strong id="timer">00:00</strong>
+                        </div>
+                        <div class="stat-box" style="border-color: #138808;">
+                            <span>🚀 Net Speed</span>
+                            <strong><span id="wpm">0</span> WPM</strong>
+                        </div>
+                        <div class="stat-box" style="border-color: #4da6ff;">
+                            <span>🎯 Accuracy</span>
+                            <strong id="accuracy">100%</strong>
+                        </div>
+                        <button class="btn-start" onclick="resetDrill()" style="margin-top:auto;">Restart Drill</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // 1. कोर्स का डेटा (यहीं पर आप अपने 100 लेसन भरेंगे)
+        const lessonData = [
+            { title: "1.1 Home Row Basics", text: "aaa sss ddd fff jjj kkk lll ;;; asdf jkl; asdf jkl;" },
+            { title: "1.2 Home Row Words", text: "sad dad fall glass flash dash ask all fall flask" },
+            { title: "1.3 SSC CHSL Practice", text: "Somewhere below the clouds there is an island called the United Kingdom. In the south of this island there is a city." }
+        ];
+
+        // 2. DOM Elements
+        const dashboardView = document.getElementById('dashboard-view');
+        const drillView = document.getElementById('drill-view');
+        const textDisplay = document.getElementById('text-display');
+        const drillTitle = document.getElementById('drill-title');
+        
+        const wpmDisplay = document.getElementById('wpm');
+        const accuracyDisplay = document.getElementById('accuracy');
+        const timerDisplay = document.getElementById('timer');
+
+        // 3. State Variables
+        let currentDrillText = "";
+        let characters = [];
+        let currentIndex = 0;
+        let totalKeystrokes = 0;
+        let errors = 0;
+        let startTime = null;
+        let timerInterval = null;
+        let isTestActive = false;
+
+        // 4. View Controllers
+        function showDashboard() {
+            clearInterval(timerInterval);
+            isTestActive = false;
+            document.removeEventListener('keydown', handleTyping); // कीबोर्ड इवेंट हटाएं
+            drillView.style.display = 'none';
+            dashboardView.style.display = 'flex';
+        }
+
+        function startDrill(lessonIndex) {
+            currentDrillText = lessonData[lessonIndex].text;
+            drillTitle.innerText = lessonData[lessonIndex].title;
+            
+            dashboardView.style.display = 'none';
+            drillView.style.display = 'flex';
+            
+            resetDrill();
+            document.addEventListener('keydown', handleTyping); // कीबोर्ड इवेंट चालू करें
+        }
+
+        // 5. Drill Initialization
+        function resetDrill() {
+            clearInterval(timerInterval);
+            currentIndex = 0;
+            totalKeystrokes = 0;
+            errors = 0;
+            startTime = null;
+            isTestActive = false;
+            
+            wpmDisplay.innerText = "0";
+            accuracyDisplay.innerText = "100%";
+            timerDisplay.innerText = "00:00";
+            
+            textDisplay.innerHTML = '';
+            characters = currentDrillText.split('').map((char, index) => {
+                const span = document.createElement('span');
+                span.innerText = char;
+                if (index === 0) span.classList.add('current');
+                textDisplay.appendChild(span);
+                return span;
+            });
+        }
+
+        // 6. The Core Engine (Typing Logic)
+        function handleTyping(e) {
+            if (e.key.length !== 1 && e.key !== 'Backspace') return;
+            if(e.key === ' ' || e.key === 'Backspace') e.preventDefault();
+
+            // टाइमर स्टार्ट करें
+            if (!isTestActive && e.key.length === 1) {
+                isTestActive = true;
+                startTime = new Date();
+                timerInterval = setInterval(updateStats, 1000);
+            }
+
+            // बैकस्पेस लॉजिक
+            if (e.key === 'Backspace') {
+                if (currentIndex > 0) {
+                    characters[currentIndex].classList.remove('current', 'correct', 'incorrect');
+                    currentIndex--;
+                    characters[currentIndex].classList.remove('correct', 'incorrect');
+                    characters[currentIndex].classList.add('current');
+                }
+                return;
+            }
+
+            if (currentIndex >= characters.length) return;
+
+            const expectedChar = characters[currentIndex].innerText;
+            const typedChar = e.key;
+            totalKeystrokes++;
+
+            // सही/गलत चेकिंग
+            if (typedChar === expectedChar) {
+                characters[currentIndex].classList.add('correct');
+            } else {
+                characters[currentIndex].classList.add('incorrect');
+                errors++;
+            }
+
+            characters[currentIndex].classList.remove('current');
+            currentIndex++;
+
+            if (currentIndex < characters.length) {
+                characters[currentIndex].classList.add('current');
+                // ऑटो स्क्रॉल
+                characters[currentIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                clearInterval(timerInterval);
+                isTestActive = false;
+                setTimeout(() => alert("Drill Completed! Net Speed: " + wpmDisplay.innerText + " WPM"), 100);
+            }
+        }
+
+        // 7. Math & Formula (Typing Master Standard)
+        function updateStats() {
+            if (!startTime) return;
+            const now = new Date();
+            const timeElapsedInMinutes = (now - startTime) / 60000;
+            
+            const seconds = Math.floor((now - startTime) / 1000);
+            const min = String(Math.floor(seconds / 60)).padStart(2, '0');
+            const sec = String(seconds % 60).padStart(2, '0');
+            timerDisplay.innerText = `${min}:${sec}`;
+
+            // ग्रॉस WPM (5 Keystrokes = 1 Word)
+            const grossWpm = (totalKeystrokes / 5) / timeElapsedInMinutes;
+            
+            // नेट WPM
+            let netWpm = Math.round(grossWpm - (errors / timeElapsedInMinutes));
+            if (netWpm < 0 || !netWpm) netWpm = 0;
+
+            // Accuracy %
+            let accuracy = 100;
+            if (totalKeystrokes > 0) {
+                accuracy = Math.round(((totalKeystrokes - errors) / totalKeystrokes) * 100);
+            }
+
+            wpmDisplay.innerText = netWpm;
+            accuracyDisplay.innerText = accuracy + '%';
+        }
+    </script>
+</body>
+</html>
