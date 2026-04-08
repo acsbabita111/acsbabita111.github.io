@@ -1,13 +1,161 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Typing Test</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(to right,orange,green);
+}
+
+/* HEADER */
+.header{
+text-align:center;
+padding:8px;
+background:#ffb74d;
+font-weight:bold;
+}
+
+/* LAYOUT */
+.container{
+display:flex;
+height:60vh;
+}
+
+/* LEFT */
+.left{
+width:200px;
+background:#fff3e0;
+padding:10px;
+}
+
+.graph{
+display:flex;
+align-items:flex-end;
+height:80px;
+gap:3px;
+}
+.bar{
+width:8px;
+background:linear-gradient(orange,green);
+}
+
+/* RIGHT */
+.right{
+flex:1;
+padding:10px;
+}
+
+/* TEXT */
+.text{
+font-size:18px;
+line-height:1.5;
+}
+.correct{color:green;}
+.wrong{color:red;}
+
+/* INPUT */
+textarea{
+width:100%;
+height:80px;
+font-size:18px;
+margin-top:10px;
+}
+
+/* RESULT */
+.result{
+margin-top:10px;
+font-size:16px;
+}
+
+</style>
+</head>
+
 <body>
 
-<input id="box" autofocus style="font-size:30px; width:100%">
+<div class="header">
+DIGITAL TYPING COURSE
+</div>
+
+<div class="container">
+
+<div class="left">
+<div>Test Time<br>10 Min</div>
+
+<div>Your Progress</div>
+<div class="graph" id="graph"></div>
+
+<div>Time: <span id="time">0</span></div>
+</div>
+
+<div class="right">
+<div id="text" class="text"></div>
+
+<textarea id="input" autofocus></textarea>
+
+<div id="result" class="result"></div>
+</div>
+
+</div>
 
 <script>
-setInterval(()=>{
-document.getElementById("box").focus();
-},1000);
+
+let lesson="somewhere below the clouds there is an island";
+let start=new Date();
+
+/* GRAPH */
+let g="";
+for(let i=1;i<=10;i++){
+g+=`<div class="bar" style="height:${i*8}px"></div>`;
+}
+document.getElementById("graph").innerHTML=g;
+
+/* TEXT */
+function render(typed){
+let html="";
+for(let i=0;i<lesson.length;i++){
+if(i<typed.length){
+if(typed[i]===lesson[i]){
+html+=`<span class="correct">${lesson[i]}</span>`;
+}else{
+html+=`<span class="wrong">${lesson[i]}</span>`;
+}
+}else{
+html+=lesson[i];
+}
+}
+document.getElementById("text").innerHTML=html;
+}
+
+/* INPUT */
+document.getElementById("input").addEventListener("input",function(){
+
+let typed=this.value;
+
+render(typed);
+
+/* RESULT */
+let correct=0;
+for(let i=0;i<typed.length;i++){
+if(typed[i]===lesson[i]) correct++;
+}
+
+let time=(new Date()-start)/1000;
+let wpm=Math.round((typed.length/5)/(time/60));
+let acc=Math.round((correct/lesson.length)*100);
+
+document.getElementById("result").innerText=
+"WPM: "+(wpm||0)+" | Accuracy: "+acc+"%";
+
+document.getElementById("time").innerText=Math.floor(time);
+
+});
+
+render("");
+
 </script>
 
 </body>
