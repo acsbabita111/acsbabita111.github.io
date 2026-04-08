@@ -1,1054 +1,195 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>ACS Typing Master</title>
-  <style>
-    :root{
-      --bg:#071224;
-      --panel:#0f1d3a;
-      --panel-soft:#12254a;
-      --text:#ffffff;
-      --muted:#d7e1f7;
-      --green:#22c55e;
-      --red:#ef4444;
-      --orange:#f97316;
-      --yellow:#facc15;
-      --blue:#2563eb;
-      --cyan:#06b6d4;
-      --pink:#ec4899;
-      --purple:#8b5cf6;
-      --silver:#dbe4ff;
-      --shadow:0 10px 24px rgba(0,0,0,.28);
-      --border:rgba(255,255,255,.08);
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Typing Master Mobile</title>
 
-    *{
-      box-sizing:border-box;
-      -webkit-tap-highlight-color:transparent;
-    }
-
-    html,body{
-      margin:0;
-      width:100%;
-      height:100%;
-      overflow:hidden;
-      background:var(--bg);
-      color:var(--text);
-      font-family:Arial,"Noto Sans Devanagari",sans-serif;
-    }
-
-    body{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-    }
-
-    .app{
-  width:100vw;
-  height:100dvh;
-  position:relative;
-  overflow:hidden;
-  background:#071224;
+<style>
+body {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  margin: 0;
+  background: #f5f7fa;
 }
 
-    .app::before,
-    .app::after,
-    .practice::before,
-    .practice::after,
-    .main-layout::before,
-    .main-layout::after,
-    .left-panel::before,
-    .left-panel::after,
-    .right-panel::before,
-    .right-panel::after,
-    .panel::before,
-    .panel::after,
-    .lesson-panel::before,
-    .lesson-panel::after,
-    .keyboard-panel::before,
-    .keyboard-panel::after,
-    .hands-box::before,
-    .hands-box::after{
-      content:none !important;
-      display:none !important;
-      background:none !important;
-    }
+.container {
+  max-width: 430px;
+  margin: auto;
+  padding: 10px;
+}
 
-    .screen{
-      position:absolute;
-      inset:0;
-      display:none;
-    }
-    .screen.active{display:block}
+.header {
+  font-size: 14px;
+  color: #555;
+}
 
-    .landscape-overlay{
-      position:absolute;
-      inset:0;
-      background:#020617;
-      z-index:150;
-      display:none;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:20px;
-      font-size:1.25rem;
-      font-weight:800;
-      line-height:1.5;
-    }
-    .landscape-overlay.show{display:flex}
+.progress {
+  margin-top: 5px;
+  font-size: 12px;
+}
 
-    .popup-backdrop{
-      position:absolute;
-      inset:0;
-      background:rgba(0,0,0,.74);
-      z-index:140;
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:10px;
-    }
-    .popup-backdrop.show{display:flex}
+.text-box {
+  background: #e8f5e9;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+  font-size: 16px;
+}
 
-    .popup{
-      width:min(96vw,760px);
-      max-height:92dvh;
-      overflow:auto;
-      background:linear-gradient(180deg,#0d1b36,#0b1530);
-      border-radius:18px;
-      padding:14px;
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow:var(--shadow);
-    }
+.input-box {
+  margin-top: 10px;
+}
 
-    .popup-title{
-      margin:0 0 10px;
-      text-align:center;
-      font-size:1.35rem;
-      font-weight:900;
-    }
+textarea {
+  width: 100%;
+  height: 100px;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
 
-    .popup-block{
-      background:rgba(255,255,255,.06);
-      border-radius:14px;
-      padding:10px 12px;
-      margin-bottom:8px;
-    }
+.result {
+  margin-top: 10px;
+  font-size: 14px;
+}
 
-    .popup-block h3{
-      margin:0 0 6px;
-      color:var(--yellow);
-      font-size:1rem;
-    }
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+}
 
-    .popup-block ul{
-      margin:0;
-      padding-left:18px;
-      line-height:1.5;
-      font-size:.92rem;
-    }
+.next {
+  background: #4caf50;
+  color: white;
+}
 
-    .popup-note{
-      text-align:center;
-      font-size:.88rem;
-      color:#d8e1f7;
-      line-height:1.5;
-      margin-top:8px;
-    }
-
-    .popup-actions{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:8px;
-      margin-top:10px;
-    }
-
-    .big-btn,.small-btn{
-      border:none;
-      border-radius:14px;
-      font-family:inherit;
-      font-weight:800;
-      cursor:pointer;
-      box-shadow:var(--shadow);
-      position:relative;
-      z-index:5;
-    }
-
-    .big-btn{
-      width:100%;
-      min-height:52px;
-      font-size:1rem;
-      padding:12px 14px;
-    }
-
-    .small-btn{
-      min-height:38px;
-      font-size:.82rem;
-      padding:8px 10px;
-      white-space:nowrap;
-    }
-
-    .btn-green{background:linear-gradient(180deg,#22c55e,#16a34a);color:#fff}
-    .btn-blue{background:linear-gradient(180deg,#3b82f6,#1d4ed8);color:#fff}
-    .btn-orange{background:linear-gradient(180deg,#fb923c,#ea580c);color:#fff}
-    .btn-dark{background:linear-gradient(180deg,#334155,#1e293b);color:#fff}
-
-    .splash{
-      height:100%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:16px;
-    }
-
-    .card{
-      width:min(96vw,760px);
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:18px;
-      box-shadow:var(--shadow);
-      padding:18px 14px;
-    }
-
-    .splash-title{
-      margin:0;
-      text-align:center;
-      font-size:2rem;
-      font-weight:900;
-      line-height:1.05;
-    }
-
-    .splash-subtitle{
-      margin:10px 0 0;
-      text-align:center;
-      font-size:.98rem;
-      line-height:1.5;
-      color:var(--muted);
-    }
-
-    .practice{
-      height:100%;
-      padding:8px 10px 24px;
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-      position:relative;
-      z-index:2;
-      overflow:hidden;
-    }
-
-    .header-line{
-      display:grid;
-      grid-template-columns:auto 1fr auto auto;
-      gap:8px;
-      align-items:center;
-      flex:0 0 auto;
-      position:relative;
-      z-index:5;
-    }
-
-    .badge{
-      padding:6px 10px;
-      border-radius:999px;
-      background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.05));
-      border:1px solid rgba(255,255,255,.08);
-      font-size:.8rem;
-      font-weight:800;
-      text-align:center;
-      white-space:nowrap;
-      box-shadow:var(--shadow);
-      position:relative;
-      z-index:5;
-    }
-
-    .title-inline{
-      text-align:center;
-      font-size:1.08rem;
-      font-weight:900;
-      line-height:1.05;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      color:#f8fbff;
-      text-shadow:0 2px 10px rgba(255,255,255,.15);
-      position:relative;
-      z-index:5;
-    }
-
-    .lesson-badge{
-      color:var(--yellow);
-      font-weight:900;
-    }
-
-    .main-layout{
-      flex:1 1 auto;
-      min-height:0;
-      display:grid;
-      grid-template-columns:1.12fr .88fr;
-      gap:10px;
-      position:relative;
-      z-index:3;
-      overflow:hidden;
-    }
-
-    .left-panel,.right-panel{
-      min-height:0;
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      position:relative;
-      z-index:3;
-      overflow:hidden;
-    }
-
-    .panel{
-      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
-      border-radius:18px;
-      box-shadow:var(--shadow);
-      border:1px solid var(--border);
-      position:relative;
-      z-index:4;
-      overflow:hidden;
-      backdrop-filter:none !important;
-    }
-
-    .lesson-panel{
-      padding:10px;
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      min-height:0;
-      flex:1 1 auto;
-    }
-
-    .target-box{
-      background:linear-gradient(180deg,#1732ff,#1536c4);
-      border-radius:16px;
-      padding:10px 10px 8px;
-      box-shadow:var(--shadow);
-      border:1px solid rgba(255,255,255,.08);
-      position:relative;
-      z-index:5;
-      overflow:hidden;
-    }
-
-    .target-text{
-      min-height:46px;
-      text-align:center;
-      font-size:1rem;
-      font-weight:800;
-      line-height:1.45;
-      word-break:break-word;
-      color:#fff;
-      position:relative;
-      z-index:5;
-    }
-
-    .sequence-box{
-      display:flex;
-      flex-wrap:wrap;
-      gap:6px;
-      justify-content:center;
-      margin-top:8px;
-      position:relative;
-      z-index:5;
-    }
-
-    .seq{
-      min-width:40px;
-      padding:7px 9px;
-      border-radius:10px;
-      background:#f8fbff;
-      color:#111827;
-      font-size:.86rem;
-      font-weight:800;
-      line-height:1;
-      box-shadow:0 4px 12px rgba(0,0,0,.18);
-    }
-
-    .seq.active{
-      background:var(--orange);
-      color:#fff;
-    }
-
-    .input-box{
-      background:#ffffff;
-      border-radius:16px;
-      padding:8px;
-      box-shadow:0 8px 22px rgba(0,0,0,.35);
-      border:2px solid rgba(255,255,255,.25);
-      position:relative;
-      z-index:5;
-      overflow:hidden;
-    }
-
-    textarea{
-      width:100%;
-      min-height:72px;
-      max-height:72px;
-      border:none;
-      outline:none;
-      resize:none;
-      font-size:1rem;
-      line-height:1.35;
-      font-family:inherit;
-      color:#111827;
-      overflow:auto;
-      background:transparent;
-      position:relative;
-      z-index:5;
-    }
-
-    .button-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:6px;
-      position:relative;
-      z-index:5;
-    }
-
-    .right-top-stats{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:6px;
-      position:relative;
-      z-index:5;
-    }
-
-    .stat{
-      background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.05));
-      border-radius:14px;
-      padding:7px 6px;
-      text-align:center;
-      border:1px solid rgba(255,255,255,.06);
-      min-height:54px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      position:relative;
-      z-index:5;
-      overflow:hidden;
-    }
-
-    .stat .label{
-      font-size:.66rem;
-      color:var(--muted);
-      font-weight:700;
-      line-height:1.1;
-      position:relative;
-      z-index:5;
-    }
-
-    .stat .value{
-      margin-top:4px;
-      font-size:1rem;
-      font-weight:900;
-      line-height:1.1;
-      position:relative;
-      z-index:5;
-    }
-
-    .timer-value{
-      color:var(--yellow);
-    }
-
-    .keyboard-panel{
-      padding:10px;
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      min-height:0;
-      flex:1 1 auto;
-    }
-
-    .section-title{
-      margin:0;
-      font-size:.9rem;
-      font-weight:900;
-      line-height:1.1;
-      color:#f8fbff;
-      position:relative;
-      z-index:5;
-    }
-
-    .keyboard{
-      width:100%;
-      display:flex;
-      flex-direction:column;
-      gap:4px;
-      position:relative;
-      z-index:5;
-      overflow:hidden;
-    }
-
-    .kb-row{
-      display:grid;
-      gap:4px;
-      width:100%;
-      position:relative;
-      z-index:5;
-    }
-
-    .kb-row.r3{
-      grid-template-columns:repeat(9,1fr);
-    }
-
-    .key{
-      min-height:34px;
-      border-radius:10px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:900;
-      font-size:.86rem;
-      color:#111827;
-      background:#f8fafc;
-      border:1px solid rgba(255,255,255,.25);
-      transition:.12s ease;
-      box-shadow:0 3px 10px rgba(0,0,0,.16);
-      position:relative;
-      z-index:5;
-    }
-
-    .key.l-pinky{background:#3b82f6;color:#fff}
-    .key.l-ring{background:#fb923c;color:#fff}
-    .key.l-middle{background:#22c55e;color:#fff}
-    .key.l-index{background:#8b5cf6;color:#fff}
-    .key.r-index{background:#facc15;color:#111827}
-    .key.r-middle{background:#ec4899;color:#fff}
-    .key.r-ring{background:#06b6d4;color:#fff}
-    .key.r-pinky{background:#ef4444;color:#fff}
-    .key.neutral{background:#e5e7eb;color:#111827}
-    .key.active{
-      outline:3px solid #fff;
-      transform:scale(1.03);
-      box-shadow:0 0 0 3px rgba(255,255,255,.12),0 0 14px rgba(255,255,255,.26);
-    }
-
-    .hands-box{
-      background:rgba(255,255,255,.04);
-      border-radius:14px;
-      padding:10px 10px 6px;
-      flex:1 1 auto;
-      display:flex;
-      flex-direction:column;
-      justify-content:flex-start;
-      position:relative;
-      z-index:5;
-      overflow:hidden;
-    }
-
-    .hands-wrap{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:16px;
-      align-items:end;
-      justify-items:center;
-      margin-top:6px;
-      padding:0 10px 2px;
-      min-height:84px;
-      position:relative;
-      z-index:5;
-    }
-
-    .hand{
-      height:88px;
-      display:flex;
-      justify-content:center;
-      align-items:flex-end;
-      gap:5px;
-      position:relative;
-      z-index:5;
-    }
-
-    .finger{
-      width:16px;
-      border-radius:14px 14px 10px 10px;
-      position:relative;
-      transition:.12s ease;
-      box-shadow:0 4px 10px rgba(0,0,0,.22);
-      z-index:5;
-    }
-
-    .finger::before{
-      content:"";
-      position:absolute;
-      top:2px;
-      left:50%;
-      transform:translateX(-50%);
-      width:9px;
-      height:8px;
-      border-radius:8px 8px 5px 5px;
-      background:rgba(255,255,255,.65);
-      opacity:.9;
-    }
-
-    .f1{height:42px}
-    .f2{height:56px}
-    .f3{height:68px}
-    .f4{height:60px}
-
-    .left-pinky{background:#3b82f6}
-    .left-ring{background:#fb923c}
-    .left-middle{background:#22c55e}
-    .left-index{background:#8b5cf6}
-    .right-index{background:#facc15}
-    .right-middle{background:#ec4899}
-    .right-ring{background:#06b6d4}
-    .right-pinky{background:#ef4444}
-
-    .finger.active{
-      outline:3px solid #fff;
-      transform:translateY(-2px) scale(1.04);
-      box-shadow:0 0 0 3px rgba(255,255,255,.12),0 0 12px rgba(255,255,255,.22);
-    }
-
-    .footer-line{
-      position:absolute;
-      left:0;
-      right:0;
-      bottom:4px;
-      text-align:center;
-      font-size:.7rem;
-      font-weight:800;
-      color:#dbe3f5;
-      pointer-events:none;
-      z-index:10;
-    }
-  </style>
+.timer {
+  font-size: 12px;
+  color: #888;
+  margin-top: 5px;
+}
+</style>
 </head>
+
 <body>
-  <div class="app" id="appRoot">
-    <div class="landscape-overlay" id="landscapeOverlay">
-      कृपया मोबाइल को आड़ा (Landscape) करें।<br>
-      उसके बाद ही टाइपिंग शुरू होगा।
-    </div>
-    
-    <div class="screen practice" id="practiceScreen">
-      <div class="header-line">
-        <div class="badge">Practice Mode</div>
-        <div class="title-inline">ACS Typing Master by Rambharosh Vidyarthi</div>
-        <div class="badge lesson-badge" id="lessonBadge">L001</div>
-        <button class="small-btn btn-dark" onclick="toggleFullscreen()">⛶ फुल स्क्रीन</button>
-      </div>
 
-      <div class="main-layout">
-        <div class="left-panel">
-          <div class="panel lesson-panel">
-            <div class="target-box">
-              <div class="target-text" id="targetText"></div>
-              <div class="sequence-box" id="sequenceBox"></div>
-            </div>
+<div class="container">
 
-            <div class="input-box">
-              <textarea id="typingInput" placeholder="यहाँ typing शुरू करो..." disabled></textarea>
-            </div>
+<div class="header">Typing Practice (OTG Keyboard)</div>
+<div class="progress" id="progress">Lesson 1 / 40</div>
 
-            <div class="button-grid">
-              <button class="small-btn btn-green" onclick="startPractice()">Practice Start</button>
-              <button class="small-btn btn-blue" onclick="prevLesson()">⬅ पिछला</button>
-              <button class="small-btn btn-orange" onclick="nextLesson()">अगला ➡</button>
-            </div>
+<div class="text-box" id="text"></div>
 
-            <div class="button-grid">
-              <button class="small-btn btn-dark" onclick="toggleSound()">आवाज़</button>
-              <button class="small-btn btn-dark" onclick="openSetupPopup()">नियम</button>
-              <button class="small-btn btn-dark" onclick="goDashboard()">Dashboard</button>
-            </div>
-          </div>
-        </div>
+<div class="input-box">
+<textarea id="input" placeholder="यहाँ टाइप करें..."></textarea>
+</div>
 
-        <div class="right-panel">
-          <div class="right-top-stats">
-            <div class="stat">
-              <div class="label">Gross WPM</div>
-              <div class="value" id="grossWpm">0</div>
-            </div>
-            <div class="stat">
-              <div class="label">Net WPM</div>
-              <div class="value" id="netWpm">0</div>
-            </div>
-            <div class="stat">
-              <div class="label">Accuracy</div>
-              <div class="value" id="accuracy">100%</div>
-            </div>
-            <div class="stat">
-              <div class="label">Digital Timer</div>
-              <div class="value timer-value" id="timerValue">00:00</div>
-            </div>
-          </div>
+<div class="timer" id="timer">Time: 0s</div>
 
-          <div class="panel keyboard-panel">
-            <div class="section-title">रंगीन कीबोर्ड मार्गदर्शन</div>
+<div class="result" id="result"></div>
 
-            <div class="keyboard">
-              <div class="kb-row r3">
-                <div class="key l-pinky" data-key="a">A</div>
-                <div class="key l-ring" data-key="s">S</div>
-                <div class="key l-middle" data-key="d">D</div>
-                <div class="key l-index" data-key="f">F</div>
-                <div class="key neutral" data-key=" ">Space</div>
-                <div class="key r-index" data-key="j">J</div>
-                <div class="key r-middle" data-key="k">K</div>
-                <div class="key r-ring" data-key="l">L</div>
-                <div class="key r-pinky" data-key=";">;</div>
-              </div>
-            </div>
+<button class="next" onclick="nextLesson()">Next</button>
 
-            <div class="hands-box">
-              <div class="section-title">उंगली मार्गदर्शन</div>
-              <div class="hands-wrap">
-                <div class="hand">
-                  <div class="finger f1 left-pinky" data-finger="left-pinky"></div>
-                  <div class="finger f2 left-ring" data-finger="left-ring"></div>
-                  <div class="finger f3 left-middle" data-finger="left-middle"></div>
-                  <div class="finger f4 left-index" data-finger="left-index"></div>
-                </div>
+</div>
 
-                <div class="hand">
-                  <div class="finger f4 right-index" data-finger="right-index"></div>
-                  <div class="finger f3 right-middle" data-finger="right-middle"></div>
-                  <div class="finger f2 right-ring" data-finger="right-ring"></div>
-                  <div class="finger f1 right-pinky" data-finger="right-pinky"></div>
-                </div>
-              </div>
-            </div>
+<script>
 
-            <div class="section-title" id="soundStatusText" style="text-align:center;color:#d6def7;">आवाज़: चालू</div>
-          </div>
-        </div>
-      </div>
-    </div>
+const lessons = [
 
-    <div class="popup-backdrop" id="setupPopup">
-      <div class="popup">
-        <h2 class="popup-title" id="popupTitle">टाइपिंग शुरू करने से पहले</h2>
+"asdf jkl;",
+"asdf asdf jkl; jkl;",
+"aaa sss ddd fff jjj kkk lll",
+"asdf jkl; asdf jkl;",
+"as as df df jk jk ll ;;",
+"qwer uiop",
+"qwe qwe rty rty uio uio",
+"qq ww ee rr tt yy uu ii oo pp",
+"qwerty uiop qwerty",
+"zxcv nm",
+"zxc zxc vbn vbn",
+"zzz xxx ccc vvv bbb nnn mmm",
+"zxcv zxcv nm nm",
+"asdf qwer zxcv",
+"asdf qwer zxcv uiop",
+"hello world",
+"this is typing practice",
+"mobile typing master course",
+"practice makes perfect",
+"typing speed test start",
+"improve your typing speed",
+"learn typing step by step",
+"accuracy is important",
+"never look at keyboard",
+"focus on screen only",
+"typing is a skill",
+"develop muscle memory",
+"daily practice required",
+"slow is smooth smooth is fast",
+"keep practicing daily",
+"typing improves productivity",
+"real world typing test",
+"chat like whatsapp typing",
+"write fast and accurate",
+"improve your focus",
+"stay consistent",
+"final practice level",
+"full keyboard mastery",
+"speed and accuracy test",
+"congratulations you completed course"
 
-        <div class="popup-block">
-          <h3>न्यूनतम आवश्यकता</h3>
-          <ul>
-            <li>Android 8+</li>
-            <li>2GB RAM</li>
-            <li>OTG Dongle</li>
-            <li>QWERTY Keyboard</li>
-            <li>Internet</li>
-            <li>Landscape Mode only</li>
-          </ul>
-        </div>
+];
 
-        <div class="popup-block">
-          <h3>UI नियम</h3>
-          <ul>
-            <li>Landscape optimized</li>
-            <li>बड़े font</li>
-            <li>simple UI</li>
-            <li>fast loading</li>
-            <li>no heavy animation</li>
-            <li>correct → green</li>
-            <li>wrong → red</li>
-            <li>active → orange</li>
-          </ul>
-        </div>
+let current = 0;
+let startTime;
 
-        <div class="popup-note" id="popupNote">
-          मोबाइल को आड़ा करें, ओटीजी और कीबोर्ड जोड़ें।<br>
-          फिर कीबोर्ड से कोई भी बटन दबाएँ।<br>
-          उसी से popup बंद होगा।
-        </div>
+function loadLesson() {
+  document.getElementById("text").innerText = lessons[current];
+  document.getElementById("input").value = "";
+  document.getElementById("result").innerText = "";
+  document.getElementById("progress").innerText = `Lesson ${current+1} / 40`;
+  startTime = new Date();
+}
 
-        <div class="popup-actions">
-          <button class="big-btn btn-blue" id="soundToggleBtn" onclick="toggleSound()">🔊 आवाज बंद करें</button>
-          <button class="big-btn btn-green" onclick="manualClosePopup()">ठीक है</button>
-        </div>
-      </div>
-    </div>
+document.getElementById("input").addEventListener("input", function() {
 
-    <div class="footer-line">© Applied Computer School™</div>
-  </div>
+  let typed = this.value;
+  let target = lessons[current];
 
-  <script>
-    const translations = {
-      hi: {
-        popupSpeech: "टाइपिंग शुरू करने से पहले कृपया मोबाइल को आड़ा करें, ओ टी जी डोंगल लगाएँ, कीबोर्ड जोड़ें, फिर कीबोर्ड से कोई भी बटन दबाएँ।",
-        title: "टाइपिंग शुरू करने से पहले",
-        note: "मोबाइल को आड़ा करें, ओटीजी और कीबोर्ड जोड़ें। फिर कीबोर्ड से कोई भी बटन दबाएँ। उसी से popup बंद होगा।",
-        soundOn: "आवाज़: चालू",
-        soundOff: "आवाज़: बंद",
-        muteBtn: "🔊 आवाज बंद करें",
-        unmuteBtn: "🔇 आवाज चालू करें"
-      }
-    };
+  let correct = 0;
 
-    let currentLang = "hi";
-    let soundEnabled = true;
-    let practiceStarted = false;
-    let startTime = null;
-    let timerInterval = null;
-    let currentLesson = getLessonFromURL();
+  for (let i = 0; i < typed.length; i++) {
+    if (typed[i] === target[i]) correct++;
+  }
 
-    const lessonData = {
-      L001: { text: "asdf jkl; asdf jkl;", sequence: ["a","s","d","f"," ","j","k","l",";"] },
-      L002: { text: "asdf asdf jkl; jkl;", sequence: ["a","s","d","f"," ","j","k","l",";"] },
-      L003: { text: "jkl; jkl; asdf asdf", sequence: ["a","s","d","f"," ","j","k","l",";"] },
-      L004: { text: "asdf jkl; asdf jkl;", sequence: ["a","s","d","f"," ","j","k","l",";"] },
-      L005: { text: "asdf jkl; asdf jkl;", sequence: ["a","s","d","f"," ","j","k","l",";"] }
-    };
+  let accuracy = Math.round((correct / target.length) * 100);
 
-    let currentText = (lessonData[currentLesson] || lessonData["L001"]).text;
-    let currentSequence = (lessonData[currentLesson] || lessonData["L001"]).sequence;
+  let time = (new Date() - startTime) / 1000;
+  document.getElementById("timer").innerText = "Time: " + Math.floor(time) + "s";
 
-    function getLessonFromURL(){
-      const params = new URLSearchParams(window.location.search);
-      return params.get("lesson") || "L001";
-    }
+  let wpm = Math.round((typed.length / 5) / (time / 60));
 
-    function applyLanguage(){
-      const t = translations[currentLang];
-      document.getElementById("popupTitle").textContent = t.title;
-      document.getElementById("popupNote").innerHTML = t.note.replace(/\n/g,"<br>");
-      document.getElementById("soundStatusText").textContent = soundEnabled ? t.soundOn : t.soundOff;
-      document.getElementById("soundToggleBtn").textContent = soundEnabled ? t.muteBtn : t.unmuteBtn;
-    }
+  document.getElementById("result").innerText =
+    "Accuracy: " + accuracy + "% | WPM: " + (wpm || 0);
 
-    function speakPopup(){
-      if(!soundEnabled) return;
-      if(!("speechSynthesis" in window)) return;
-      speechSynthesis.cancel();
-      const u = new SpeechSynthesisUtterance(translations[currentLang].popupSpeech);
-      u.lang = "hi-IN";
-      u.rate = 0.92;
-      speechSynthesis.speak(u);
-    }
+});
 
-    function tone(freq, dur, vol){
-      if(!soundEnabled) return;
-      try{
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.frequency.value = freq;
-        gain.gain.value = vol;
-        osc.start();
-        osc.stop(ctx.currentTime + dur);
-      }catch(e){}
-    }
+function nextLesson() {
+  if (current < lessons.length - 1) {
+    current++;
+    loadLesson();
+  } else {
+    alert("Course Completed 🎉");
+  }
+}
 
-    function playCorrectSound(){ tone(620,0.05,0.03); }
-    function playWrongSound(){ tone(210,0.07,0.04); }
+loadLesson();
 
-    function toggleSound(){
-      soundEnabled = !soundEnabled;
-      applyLanguage();
-      if(soundEnabled) speakPopup();
-      else if("speechSynthesis" in window) speechSynthesis.cancel();
-    }
+</script>
 
-    async function toggleFullscreen(){
-      try{
-        if(!document.fullscreenElement){
-          await document.documentElement.requestFullscreen();
-        }else{
-          await document.exitFullscreen();
-        }
-      }catch(e){
-        alert("कुछ browser में address bar थोड़ा दिख सकता है।");
-      }
-    }
-
-    function checkLandscape(){
-      const overlay = document.getElementById("landscapeOverlay");
-      if(window.innerHeight > window.innerWidth) overlay.classList.add("show");
-      else overlay.classList.remove("show");
-    }
-
-    function openSetupPopup(){
-      checkLandscape();
-      document.getElementById("setupPopup").classList.add("show");
-      speakPopup();
-    }
-
-    function closeSetupPopup(){
-      document.getElementById("setupPopup").classList.remove("show");
-      document.getElementById("splashScreen").classList.remove("active");
-      document.getElementById("practiceScreen").classList.add("active");
-      document.getElementById("typingInput").disabled = false;
-      if("speechSynthesis" in window) speechSynthesis.cancel();
-    }
-
-    function manualClosePopup(){
-      if(window.innerHeight > window.innerWidth){
-        alert("पहले मोबाइल को Landscape करें");
-        return;
-      }
-      closeSetupPopup();
-    }
-
-    function renderLesson(){
-      document.getElementById("lessonBadge").textContent = currentLesson;
-      renderTypingState("");
-      renderSequence();
-      renderKeyboardHighlight(currentText[0] || "a");
-    }
-
-    function renderSequence(activeIndex = 0){
-      const seqBox = document.getElementById("sequenceBox");
-      seqBox.innerHTML = "";
-      currentSequence.forEach((item, index) => {
-        const d = document.createElement("div");
-        d.className = "seq" + (index === activeIndex ? " active" : "");
-        d.textContent = item === " " ? "Space" : item.toUpperCase();
-        seqBox.appendChild(d);
-      });
-    }
-
-    function renderTypingState(input){
-      const target = document.getElementById("targetText");
-      target.innerHTML = "";
-      for(let i=0;i<currentText.length;i++){
-        const span = document.createElement("span");
-        span.textContent = currentText[i];
-        if(i < input.length){
-          if(input[i] === currentText[i]) span.style.color = "var(--green)";
-          else span.style.color = "var(--red)";
-        }else if(i === input.length){
-          span.style.background = "var(--orange)";
-          span.style.color = "#fff";
-          span.style.borderRadius = "4px";
-          span.style.padding = "0 2px";
-        }
-        target.appendChild(span);
-      }
-
-      const nextChar = currentText[input.length];
-      const idx = currentSequence.findIndex(x => x === nextChar);
-      renderSequence(idx >= 0 ? idx : 0);
-    }
-
-    function activateFinger(name){
-      const finger = document.querySelector('.finger[data-finger="' + name + '"]');
-      if(finger) finger.classList.add("active");
-    }
-
-    function cssEscape(ch){
-      if(ch === '"') return '\\"';
-      return ch;
-    }
-
-    function renderKeyboardHighlight(expectedChar){
-      document.querySelectorAll(".key").forEach(k => k.classList.remove("active"));
-      document.querySelectorAll(".finger").forEach(f => f.classList.remove("active"));
-
-      const key = document.querySelector('.key[data-key="' + cssEscape(expectedChar === " " ? " " : expectedChar) + '"]');
-      if(key){
-        key.classList.add("active");
-        if(key.classList.contains("l-pinky")) activateFinger("left-pinky");
-        else if(key.classList.contains("l-ring")) activateFinger("left-ring");
-        else if(key.classList.contains("l-middle")) activateFinger("left-middle");
-        else if(key.classList.contains("l-index")) activateFinger("left-index");
-        else if(key.classList.contains("r-index")) activateFinger("right-index");
-        else if(key.classList.contains("r-middle")) activateFinger("right-middle");
-        else if(key.classList.contains("r-ring")) activateFinger("right-ring");
-        else if(key.classList.contains("r-pinky")) activateFinger("right-pinky");
-      }
-    }
-
-    function updateTimer(){
-      if(!practiceStarted || !startTime){
-        document.getElementById("timerValue").textContent = "00:00";
-        return;
-      }
-      const secs = Math.floor((Date.now() - startTime) / 1000);
-      const mm = String(Math.floor(secs / 60)).padStart(2,"0");
-      const ss = String(secs % 60).padStart(2,"0");
-      document.getElementById("timerValue").textContent = `${mm}:${ss}`;
-    }
-
-    function updateStats(){
-      const input = document.getElementById("typingInput").value;
-      let correct = 0;
-      for(let i=0;i<input.length;i++){
-        if(input[i] === currentText[i]) correct++;
-      }
-
-      const elapsedMin = practiceStarted ? ((Date.now() - startTime) / 60000) : 0;
-      const gross = elapsedMin > 0 ? Math.round((input.length / 5) / elapsedMin) : 0;
-      const net = elapsedMin > 0 ? Math.round((correct / 5) / elapsedMin) : 0;
-      const acc = input.length > 0 ? Math.round((correct / input.length) * 100) : 100;
-
-      document.getElementById("grossWpm").textContent = isFinite(gross) ? gross : 0;
-      document.getElementById("netWpm").textContent = isFinite(net) ? net : 0;
-      document.getElementById("accuracy").textContent = acc + "%";
-      updateTimer();
-    }
-
-    function startPractice(){
-      practiceStarted = true;
-      startTime = Date.now();
-      document.getElementById("typingInput").value = "";
-      document.getElementById("typingInput").focus();
-      if(timerInterval) clearInterval(timerInterval);
-      timerInterval = setInterval(updateTimer, 1000);
-      updateStats();
-      renderTypingState("");
-      renderKeyboardHighlight(currentText[0] || "a");
-    }
-
-    document.getElementById("typingInput").addEventListener("input", function(){
-      const val = this.value;
-      const index = val.length - 1;
-      if(index >= 0){
-        if(val[index] === currentText[index]) playCorrectSound();
-        else playWrongSound();
-      }
-      renderTypingState(val);
-      updateStats();
-      renderKeyboardHighlight(currentText[val.length] || "a");
-    });
-
-    window.addEventListener("keydown", function(){
-      if(document.getElementById("setupPopup").classList.contains("show")){
-        if(window.innerWidth > window.innerHeight){
-          closeSetupPopup();
-        }
-      }
-    });
-
-    function formatLesson(n){
-      return "L" + String(n).padStart(3, "0");
-    }
-
-    function lessonNumber(){
-      return parseInt(currentLesson.replace("L",""),10);
-    }
-
-    function nextLesson(){
-      let n = lessonNumber();
-      if(n < 40){
-        window.location.href = "typing-master.html?lesson=" + formatLesson(n + 1);
-      }
-    }
-
-    function prevLesson(){
-      let n = lessonNumber();
-      if(n > 1){
-        window.location.href = "typing-master.html?lesson=" + formatLesson(n - 1);
-      }
-    }
-
-    function goDashboard(){
-      window.location.href = "/a-dashboard.html";
-    }
-
-    window.addEventListener("resize", checkLandscape);
-
-    applyLanguage();
-    renderLesson();
-    updateTimer();
-    checkLandscape();
-    openSetupPopup();
-  </script>
 </body>
 </html>
